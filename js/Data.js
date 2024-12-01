@@ -130,13 +130,7 @@ const data={
 // export default data;
 
 
-function loadStateFromLocalStorage() {
-    console.log("state LOADED:>> ");
-    for (const key in data) {
-      data[key] = JSON.parse(localStorage.getItem(key)) || data[key];
-    }
-  }
-  function saveStateInLocalStorage() {
+  function saveDataInLocalStorage() {
     for (const key in data) {
       localStorage.setItem(key, JSON.stringify(data[key]));
     }
@@ -150,7 +144,7 @@ function getCurrentUser() {
   }
 function addUser(User) {
     data.Users.push(User);
-    saveStateInLocalStorage();
+    saveDataInLocalStorage();
   }
   
 function getUserById(id) {
