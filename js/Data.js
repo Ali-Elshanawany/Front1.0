@@ -1,15 +1,3 @@
-let u1 = {
-    "_id": "usesssssssssssssssssssr1",
-    "Name": "Johdddddddddn Doe",
-    "Email": "admin@example.com",
-    "Password": "hashed_password1",
-    "Phone": "123456789",
-    "Address": "123 Elm Street, Springfield",
-    "Role": "Admin",
-    "CreatedAt": "2024-11-27T12:34:56Z"
-};
-
-
 const data = {
     guestCart: [],
     CurrentUSer: null,
