@@ -1,6 +1,18 @@
-const data={
+let u1 = {
+    "_id": "usesssssssssssssssssssr1",
+    "Name": "Johdddddddddn Doe",
+    "Email": "admin@example.com",
+    "Password": "hashed_password1",
+    "Phone": "123456789",
+    "Address": "123 Elm Street, Springfield",
+    "Role": "Admin",
+    "CreatedAt": "2024-11-27T12:34:56Z"
+};
+
+
+const data = {
     guestCart: [],
-    CurrentUSer:null,
+    CurrentUSer: null,
     Users: [
         {
             "_id": "user1",
@@ -59,7 +71,7 @@ const data={
                 "image2_url"
             ],
             "CreatedAt": "2024-11-27T12:37:00Z",
-            "NumOfSales":5
+            "NumOfSales": 5
         },
         {
             "_id": "prod2",
@@ -74,7 +86,7 @@ const data={
                 "image4_url"
             ],
             "CreatedAt": "2024-11-27T12:38:00Z",
-            "NumOfSales":5
+            "NumOfSales": 5
         }
     ],
     Orders: [
@@ -130,27 +142,33 @@ const data={
 // export default data;
 
 
-  function saveDataInLocalStorage() {
+function loadDataFromLocalStorage() {
+    console.log("Data LOADED:>> ");
     for (const key in data) {
-      localStorage.setItem(key, JSON.stringify(data[key]));
+        data[key] = JSON.parse(localStorage.getItem(key)) || data[key];
     }
-  }
+}
+function saveDataInLocalStorage() {
+    for (const key in data) {
+        localStorage.setItem(key, JSON.stringify(data[key]));
+    }
+}
 function saveInLocalStorage(key, value) {
-  localStorage.setItem(key, JSON.stringify(value));
+    localStorage.setItem(key, JSON.stringify(value));
 }
 
 function getCurrentUser() {
     return data.currentUser;
-  }
+}
 function addUser(User) {
     data.Users.push(User);
     saveDataInLocalStorage();
-  }
-  
+}
+
 function getUserById(id) {
-    return data.Users.find((user)=>user._id===id);
-  }
+    return data.Users.find((user) => user._id === id);
+}
 function getUserByEmail(email) {
     return data.Users.find((user) => user.Email === email);
-  }
+}
 
