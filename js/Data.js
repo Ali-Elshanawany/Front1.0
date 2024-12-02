@@ -1,6 +1,6 @@
-const data = {
+export const data = {
     guestCart: [],
-    CurrentUSer: null,
+    CurrentUser: null,
     Users: [
         {
             "_id": "user1",
@@ -8,7 +8,8 @@ const data = {
             "Email": "admin@example.com",
             "Password": "hashed_password1",
             "Phone": "123456789",
-            "Address": "123 Elm Street, Springfield",
+            "Address": "Cairo",
+            "Street":"bla bla blaablaa ",
             "Role": "Admin",
             "CreatedAt": "2024-11-27T12:34:56Z"
         },
@@ -18,7 +19,8 @@ const data = {
             "Email": "seller@example.com",
             "Password": "hashed_password2",
             "Phone": "987654321",
-            "Address": "456 Maple Avenue, Springfield",
+            "Address": "Cairo",
+            "Street":"bla bla blaablaa ",
             "Role": "Seller",
             "CreatedAt": "2024-11-27T12:35:00Z"
         },
@@ -28,7 +30,8 @@ const data = {
             "Email": "buyer@example.com",
             "Password": "hashed_password3",
             "Phone": "123987456",
-            "Address": "789 Oak Lane, Shelbyville",
+            "Address": "Cairo",
+            "Street":"bla bla blaablaa ",
             "Role": "User",
             "CreatedAt": "2024-11-27T12:36:00Z"
         }
@@ -130,33 +133,33 @@ const data = {
 // export default data;
 
 
-function loadDataFromLocalStorage() {
+export function loadDataFromLocalStorage() {
     console.log("Data LOADED:>> ");
     for (const key in data) {
         data[key] = JSON.parse(localStorage.getItem(key)) || data[key];
     }
 }
-function saveDataInLocalStorage() {
+export function saveDataInLocalStorage() {
     for (const key in data) {
         localStorage.setItem(key, JSON.stringify(data[key]));
     }
 }
-function saveInLocalStorage(key, value) {
+export function saveInLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
-function getCurrentUser() {
-    return data.currentUser;
+export function getCurrentUser() {
+    return data.CurrentUser;
 }
-function addUser(User) {
+export function addUser(User) {
     data.Users.push(User);
     saveDataInLocalStorage();
 }
 
-function getUserById(id) {
+export function getUserById(id) {
     return data.Users.find((user) => user._id === id);
 }
-function getUserByEmail(email) {
+export function getUserByEmail(email) {
     return data.Users.find((user) => user.Email === email);
 }
 
