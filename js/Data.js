@@ -82,7 +82,7 @@ export const data = {
     ],
     Orders: [
         {
-            "_id": "order1",
+            "_id": "order33331",
             "UserID": "user3",
             "Items": [
                 {
@@ -120,7 +120,7 @@ export const data = {
             "CreatedAt": "2024-11-27T12:40:00Z"
         },
         {
-            "_id": "order1",
+            "_id": "order133",
             "UserID": "user3",
             "Items": [
                 {
@@ -229,7 +229,7 @@ export const data = {
 
 
 export function loadDataFromLocalStorage() {
-    console.log("Data LOADED:>> ");
+    console.log("Data LOADED:>>zzzz ");
     for (const key in data) {
         data[key] = JSON.parse(localStorage.getItem(key)) || data[key];
     }
@@ -259,7 +259,12 @@ export function getUserByEmail(email) {
 }
 
 export function getUsers(){
+    loadDataFromLocalStorage();
     return data.Users;
+}
+export function getOrders(){
+    loadDataFromLocalStorage();
+    return data.Orders;
 }
 
 // * Will Return array Containg Total Sales of Each Month 

@@ -1,4 +1,4 @@
-import { getOrders, getUsers, loadDataFromLocalStorage, saveDataInLocalStorage } from "../Data.js";
+import { getOrders, loadDataFromLocalStorage, saveDataInLocalStorage } from "../Data.js";
 
 
 
@@ -6,8 +6,29 @@ import { getOrders, getUsers, loadDataFromLocalStorage, saveDataInLocalStorage }
 //saveDataInLocalStorage();
 // ! Note ----------------- Remove All Console.log() in Production
 
+// function DisplayHeaders(){
+
+//     const inputs=
+//     `
+//        <!-- Inputs Section  -->
+//             <div class="col-md-4 col-sm-12 mb-2">
+//                 <input type="number" name="RowCount" id="" value="10" min="1" class="form-control border-1 border-black"
+//                     placeholder="Rows per page">
+//             </div>
+//             <div class="col-md-4 col-sm-12 mb-2">
+//                 <input type="text" name="Search" class="form-control  border-1 border-black " placeholder="Search">
+//             </div>
+//             <div class="col-md-4 col-sm-12">
+//                 <button type="button" class="form-control btn  btn-success border-1 border-black"> Add Account</button>
+//             </div>
+//     `;
+//     const InputDiv = document.getElementById("Inputs");
+//     InputDiv.innerHTML=inputs;
+
+// }
+
 // * Function to Display the User Table
-function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
+function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
     const table = document.getElementsByTagName("table")[0];
     const tbody = document.querySelector("tbody");
     const thead = document.querySelector("thead");
@@ -17,19 +38,18 @@ function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
 
     const start = (currentPage - 1) * rowsPerPage;
     const end = start + rowsPerPage;
-    const paginatedUsers = Users.slice(start, end);
+    const paginatedOrders = Orders.slice(start, end);
     const tr = document.createElement("tr");
     tr.innerHTML = `
     <tr >
-    <th  id="id" > Id</th>
-    <th  id="name" > Name</th>
-    <th  id="email" > Email</th>
-    <th  id="phone" > Phone</th>
-    <th  id="city" > City</th>
-    <th  id="role" > Role</th>
+    <th  id="id" > OrderId</th>
+    <th  id="name" > UserId</th>
+    <th  id="email" > UserName</th>
+    <th  id="phone" > #Items</th>
+    <th  id="city" > TotalPrice</th>
+    <th  id="role" > Status</th>
     <th  id="CreatedAt" > CreatedAt</th>
     <th  id="delete" > Delete</th>
-    <th  id="update" > Update</th>
     </tr>   
 `;
     thead.appendChild(tr);
@@ -37,8 +57,8 @@ function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
     tr.addEventListener("click", function (event) {
         const prop = event.target.id;
         if (prop) {
-            Users.sort((a, b) => a[prop] > b[prop] ? 1 : -1);
-            displayTable(Users, currentPage, rowsPerPage);
+            Orders.sort((a, b) => a[prop] > b[prop] ? 1 : -1);
+            displayOrdersTable(Orders, currentPage, rowsPerPage);
         }
     });
     // * Add Desc Sorting Event
@@ -46,44 +66,40 @@ function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
         const prop = event.target.id;
 
         if (prop) {
-            Users.sort((a, b) => a[prop] < b[prop] ? 1 : -1);
-            displayTable(Users, currentPage, rowsPerPage);
+            Orders.sort((a, b) => a[prop] < b[prop] ? 1 : -1);
+            displayOrdersTable(Orders, currentPage, rowsPerPage);
         }
     });
-    paginatedUsers.forEach((employee, index) => {
+    paginatedOrders.forEach((order, index) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td >${employee._id}</td>
-            <td >${employee.Name}</td>
-            <td >${employee.Email}</td>
-            <td >${employee.Phone}</td>
-            <td >${employee.City}</td>
-            <td >${employee.Role}</td>
-            <td >${employee.CreatedAt}</td>
+            <td >${order._id}</td>
+            <td >${order.UserID}</td>
+            <td >${order.UserID}</td>
+            <td >${order.Items.len}</td>
+            <td >${order.TotalAmount}</td>
+            <td >${order.Status}</td>
+            <td >${order.CreatedAt}</td>
             <td class="delete-btn" >
             <button id="Del" type="button"  data-index="${start + index}" class="btn btn-danger">
             <i id="Del" data-index="${start + index}" class="bi bi-trash-fill"> </i>
-            </button>
-            </td>
-            <td class="Update-btn" >
-            <button id="Update" type="button"  data-index="${start + index}" class="btn btn-warning">
-            <i id="Update" data-index="${start + index}"  class="bi bi-pencil-fill"> </i>
             </button>
             </td>
             `;
         tbody.appendChild(tr);
     });
 
-    setupPagination(Users, rowsPerPage, currentPage);
+    setupPagination(Orders, rowsPerPage, currentPage);
 }
 
+
 // * Function to Set Up Pagination
-function setupPagination(Users, rowsPerPage, currentPage) {
+function setupPagination(Orders, rowsPerPage, currentPage) {
     const pagination = document.getElementById("pagination");
 
     pagination.innerHTML = ""; // * Clear previous pagination
 
-    const totalPages = Math.ceil(Users.length / rowsPerPage);
+    const totalPages = Math.ceil(Orders.length / rowsPerPage);
 
     for (let i = 1; i <= totalPages; i++) {
         const button = document.createElement("button");
@@ -92,7 +108,7 @@ function setupPagination(Users, rowsPerPage, currentPage) {
         if (i === currentPage) button.className = ("btn btn-dark");
 
         button.addEventListener("click", () => {
-            displayTable(Users, i, rowsPerPage);
+            displayOrdersTable(Orders, i, rowsPerPage);
         });
 
         pagination.appendChild(button);
@@ -101,7 +117,7 @@ function setupPagination(Users, rowsPerPage, currentPage) {
 
 // * Event Listeners Load 
 window.addEventListener("load", function () {
-    let Users = getUsers();
+    let Orders = getOrders();
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;
 
@@ -109,15 +125,23 @@ window.addEventListener("load", function () {
     const searchInput = document.querySelector('input[type="text"]');
     const table = document.getElementsByTagName("table")[0];
     const headerRow = document.getElementsByTagName("tr")[0];
-    const UsersNum = this.document.getElementById("Users");
-    UsersNum.innerText = getUsers().length
+    const OrdersNum = this.document.getElementById("Orders");
+    const InputDiv = this.document.getElementById("Inputs");
+    // InputDiv.innerHTML="";
+    // DisplayHeaders();
+    // OrdersNum.innerText = getOrders().length
 
-    displayTable(Users, currentPage, rowsPerPage);
+    displayOrdersTable(Orders, currentPage, rowsPerPage);
+
+    $("#home").on('click', function () {
+        displayOrdersTable(Orders, 1, 10);
+    });
+
     // * Update Rows Per Page Based on Counter Input
     counterInput.addEventListener("change", function () {
         rowsPerPage = parseInt(this.value, 10) || 5;
         currentPage = 1; // * Reset to the first page
-        displayTable(Users, currentPage, rowsPerPage);
+        displayOrdersTable(Orders, currentPage, rowsPerPage);
     });
 
     // * Delete User Row
@@ -142,40 +166,30 @@ window.addEventListener("load", function () {
                     });
                     const index = +event.target.dataset.index;
                     console.log(index);
-                    Users.splice(index, 1);
-                    localStorage.setItem("Users", JSON.stringify(Users));
+                    Orders.splice(index, 1);
+                    localStorage.setItem("Orders", JSON.stringify(Orders));
                     // * Load Data From Local To Data Object To Achieve Consistency 
+                    console.log("ddd");
                     loadDataFromLocalStorage()
-                    displayTable(Users, currentPage, rowsPerPage);
+                    displayOrdersTable(Orders, currentPage, rowsPerPage);
                 }
             });
             // * End Sweet Alert
-
-            // const index = +event.target.dataset.index;
-            // console.log(index);
-            // Users.splice(index, 1);
-            // localStorage.setItem("Users", JSON.stringify(Users));
-            // // * Load Data From Local To Data Object To Achieve Consistency 
-            // loadDataFromLocalStorage()
-            // displayTable(Users, currentPage, rowsPerPage);
         }
     });
 
-    // * Search Users
+    // * Search Orders
     searchInput.addEventListener("keyup", function () {
         const searchTerm = this.value.trim().toLowerCase();
-        const filteredUsers = Users.filter(user =>
-            user.Name.toLowerCase().includes(searchTerm) ||
-            user._id.toLowerCase().includes(searchTerm) ||
-            user.Email.toLowerCase().includes(searchTerm) ||
-            user.Phone.toLowerCase().includes(searchTerm) ||
-            user.City.toLowerCase().includes(searchTerm) ||
-            user.Role.toLowerCase().includes(searchTerm) ||
-            user.CreatedAt.toLowerCase().includes(searchTerm)
+        const filteredOrders = Orders.filter(order =>
+            order.UserID.toLowerCase().includes(searchTerm) ||
+            order._id.toLowerCase().includes(searchTerm) ||
+            order.Status.toLowerCase().includes(searchTerm) ||
+            order.CreatedAt.toLowerCase().includes(searchTerm)
         );
 
         currentPage = 1; // * Reset to the first page
-        displayTable(filteredUsers, currentPage, rowsPerPage);
+        displayOrdersTable(filteredOrders, currentPage, rowsPerPage);
     });
 
 
