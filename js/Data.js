@@ -163,3 +163,7 @@ export function getUserByEmail(email) {
     return data.Users.find((user) => user.Email === email);
 }
 
+export function getUsers(){
+    return data.Users;
+}
+
