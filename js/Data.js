@@ -99,6 +99,101 @@ export const data = {
             "TotalAmount": 239.98,
             "Status": "Pending",
             "CreatedAt": "2024-11-27T12:40:00Z"
+        },
+        {
+            "_id": "order1",
+            "UserID": "user3",
+            "Items": [
+                {
+                    "ProductID": "prod1",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },
+                {
+                    "ProductID": "prod2",
+                    "Quantity": 1,
+                    "Price": 120.0
+                }
+            ],
+            "TotalAmount": 239.98,
+            "Status": "Pending",
+            "CreatedAt": "2024-11-27T12:40:00Z"
+        },
+        {
+            "_id": "order1",
+            "UserID": "user3",
+            "Items": [
+                {
+                    "ProductID": "prod1",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },
+                {
+                    "ProductID": "prod2",
+                    "Quantity": 1,
+                    "Price": 120.0
+                }
+            ],
+            "TotalAmount": 565.98,
+            "Status": "Pending",
+            "CreatedAt": "2024-01-27T12:40:00Z"
+        },
+        {
+            "_id": "order1",
+            "UserID": "user3",
+            "Items": [
+                {
+                    "ProductID": "prod1",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },
+                {
+                    "ProductID": "prod2",
+                    "Quantity": 1,
+                    "Price": 120.0
+                }
+            ],
+            "TotalAmount": 239.98,
+            "Status": "Pending",
+            "CreatedAt": "2024-12-27T12:40:00Z"
+        },
+        {
+            "_id": "order1",
+            "UserID": "user3",
+            "Items": [
+                {
+                    "ProductID": "prod1",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },
+                {
+                    "ProductID": "prod2",
+                    "Quantity": 1,
+                    "Price": 120.0
+                }
+            ],
+            "TotalAmount": 239.98,
+            "Status": "Pending",
+            "CreatedAt": "2024-08-27T12:40:00Z"
+        },
+        {
+            "_id": "order1",
+            "UserID": "user3",
+            "Items": [
+                {
+                    "ProductID": "prod1",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },
+                {
+                    "ProductID": "prod2",
+                    "Quantity": 1,
+                    "Price": 120.0
+                }
+            ],
+            "TotalAmount": 239.98,
+            "Status": "Pending",
+            "CreatedAt": "2024-09-27T12:40:00Z"
         }
     ],
     Cart: [
@@ -167,3 +262,14 @@ export function getUsers(){
     return data.Users;
 }
 
+// * Will Return array Containg Total Sales of Each Month 
+// * This Will be the Input for the Graph in Admin Dashboard 
+export function getSalesByMonth(){
+    let monthlySalesArr=new Array(12).fill(0)
+    data.Orders.forEach(x=>{
+        // new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
+        monthlySalesArr[new Date(x.CreatedAt).getMonth()]+=x.TotalAmount;
+    });
+    //console.log(monthlySalesArr);
+    return monthlySalesArr;
+}

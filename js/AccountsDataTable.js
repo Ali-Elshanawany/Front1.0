@@ -109,6 +109,8 @@ window.addEventListener("load", function () {
     const searchInput = document.querySelector('input[type="text"]');
     const table = document.getElementsByTagName("table")[0];
     const headerRow = document.getElementsByTagName("tr")[0];
+    const UsersNum=this.document.getElementById("Users");
+    UsersNum.innerText=getUsers().length
 
     displayTable(Users, currentPage, rowsPerPage);
 
@@ -152,6 +154,7 @@ window.addEventListener("load", function () {
 
 
 });// * end of load
+
 
 
 
