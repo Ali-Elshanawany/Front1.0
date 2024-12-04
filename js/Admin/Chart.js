@@ -1,4 +1,4 @@
-import { getSalesByMonth } from "./Data.js";
+import { getSalesByMonth } from "../Data.js";
 
 const dataValues = getSalesByMonth();
 

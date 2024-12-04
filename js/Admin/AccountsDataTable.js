@@ -1,4 +1,4 @@
-import { getUsers, loadDataFromLocalStorage, saveDataInLocalStorage } from "./Data.js";
+import { getUsers, loadDataFromLocalStorage, saveDataInLocalStorage } from "../Data.js";
 
 const Users = getUsers();
 

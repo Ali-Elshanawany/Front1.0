@@ -59,7 +59,7 @@
     margin-left: 15px;
     color: #000;
     position: absolute;
-    right: -5px;
+    right: 5px;
     top: 20px;
     opacity: 0.1;
 }
@@ -85,3 +85,11 @@
 }
 
 /* End Card 2 Style */
+
+
+/* 
+    Box Shadow Effect
+*/
+.shadow{
+    box-shadow: seashell 5px 5px 5px,seashell -5px -5px 5px !important ;
+}
