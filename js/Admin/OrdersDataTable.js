@@ -3,6 +3,7 @@ import {
     loadDataFromLocalStorage,
     saveDataInLocalStorage,
     data,
+    isAuthorized
 } from "../Data.js";
 
 // ! Tesing Only Remove For Production
@@ -111,6 +112,7 @@ function setupPagination(Orders, rowsPerPage, currentPage) {
 
 // * Event Listeners Load
 window.addEventListener("load", function () {
+    isAuthorized();
     let Orders = getOrders();
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;

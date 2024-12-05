@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css?family=Lato');
+
+* {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(to bottom right, #EEE, #AAA);
+}
+
+h1 {
+  margin: 40px 0 20px;
+}
+
+.lock {
+  border-radius: 5px;
+  width: 55px;
+  height: 45px;
+  background-color: #333;
+  animation: dip 1s;
+  animation-delay: (2s - .5);
+  
+  &::before,
+  &::after {
+    content: '';
+    position: absolute;
+    border-left: 5px solid #333;
+    height: 20px;
+    width: 15px;
+    left: calc(50% - 12.5px);
+  }
+  
+  &::before {
+    top: -30px;
+    border: 5px solid #333;
+    border-bottom-color: transparent;
+    border-radius: 15px 15px 0 0;
+    height: 30px;
+    animation: lock 2s, spin 2s;
+  }
+  
+  &::after {
+    top: -10px; 
+    border-right: 5px solid transparent;
+    animation: spin 2s;
+  }
+}
+
+@keyframes lock {
+  0% {
+    top: -45px;
+  }
+  65% {
+    top: -45px;
+  }
+  100% {
+    top: -30px;
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: scaleX(-1);
+    left: calc(50% - 30px);
+  }
+  65% {
+    transform: scaleX(1);
+    left: calc(50% - 12.5px);
+  }
+}
+
+@keyframes dip {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+/* Start Home Page Btn Style */
+.custom-button {
+    display: inline-block; /* Makes the link behave like a button */
+    width: 120px;
+    height: 40px;
+    line-height: 40px; /* Vertically centers the text */
+    text-align: center; /* Centers the text horizontally */
+    margin-top: 15px;
+    background-color: #e4d8d8; /* Light background color */
+    color: #333; /* Dark text color */
+    font-size: 15px;
+    font-weight: bold;
+    text-decoration: none; /* Removes the underline */
+    border: 2px solid #ccc; /* Border to add structure */
+    border-radius: 5px; /* Rounded corners */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+    cursor: pointer; /* Pointer cursor on hover */
+}
+
+.custom-button:hover {
+    background-color: #d1bebe; /* Slightly darker background on hover */
+    color: #000; /* Darker text on hover */
+    border-color: #a99f9f; /* Darker border on hover */
+    transform: scale(1.05); /* Slight zoom effect */
+}
+
+.custom-button:active {
+    transform: scale(0.95); /* Slight shrink effect on click */
+    background-color: #c4a9a9; /* Active background color */
+    border-color: #977979; /* Active border color */
+}
+/* End  Home Page Btn Style */

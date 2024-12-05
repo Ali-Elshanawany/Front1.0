@@ -1,4 +1,4 @@
-import { getOrders, getUsers, loadDataFromLocalStorage, saveDataInLocalStorage } from "../Data.js";
+import { data, getOrders, getUsers, loadDataFromLocalStorage, saveDataInLocalStorage,isAuthorized } from "../Data.js";
 
 
 
@@ -94,8 +94,10 @@ function setupPagination(Users, rowsPerPage, currentPage) {
     }
 }
 
+
 // * Event Listeners Load 
 window.addEventListener("load", function () {
+   isAuthorized();
     let Users = getUsers();
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;
