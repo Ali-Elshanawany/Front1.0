@@ -8,7 +8,7 @@ export const data = {
         "Phone": "123456789",
         "City": "Cairo",
         "Street": "bla bla blaablaa ",
-        "Role": "Admin",
+        "Role": "Seller",
         "CreatedAt": "2024-11-27T12:34:56Z"
     },
     Users: [
@@ -32,7 +32,8 @@ export const data = {
             "City": "Cairo",
             "Street": "bla bla blaablaa ",
             "Role": "Seller",
-            "CreatedAt": "2024-11-27T12:35:00Z"
+            "CreatedAt": "2024-11-27T12:35:00Z",
+            "TotalSales":23
         },
         {
             "_id": "user3",
@@ -72,7 +73,8 @@ export const data = {
                 "image2_url"
             ],
             "CreatedAt": "2024-11-27T12:37:00Z",
-            "NumOfSales": 5
+            "NumOfSales": 5,
+            "Approved":true
         },
         {
             "_id": "prod2",
@@ -223,12 +225,10 @@ export const data = {
             "UpdatedAt": "2024-11-27T12:41:00Z"
         }
     ],
-    Reviews: [
+    Tickets: [
         {
             "_id": "review1",
-            "ProductID": "prod1",
             "UserID": "user3",
-            "Rating": 4,
             "Comment": "Great quality, sturdy chair.",
             "CreatedAt": "2024-11-27T12:42:00Z"
         }
