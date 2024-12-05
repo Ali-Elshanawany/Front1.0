@@ -154,7 +154,7 @@ export const data = {
                 }
             ],
             "TotalAmount": 239.98,
-            "Status": "Pending",
+            "Status": "Shipped",
             "CreatedAt": "2024-12-27T12:40:00Z"
         },
         {
@@ -173,7 +173,7 @@ export const data = {
                 }
             ],
             "TotalAmount": 239.98,
-            "Status": "Pending",
+            "Status": "Processing",
             "CreatedAt": "2024-08-27T12:40:00Z"
         },
         {
@@ -267,14 +267,14 @@ export function getOrders(){
     return data.Orders;
 }
 
+
 // * Will Return array Containg Total Sales of Each Month 
 // * This Will be the Input for the Graph in Admin Dashboard 
 export function getSalesByMonth(){
     let monthlySalesArr=new Array(12).fill(0)
     data.Orders.forEach(x=>{
-        // new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
+        // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
         monthlySalesArr[new Date(x.CreatedAt).getMonth()]+=x.TotalAmount;
     });
-    //console.log(monthlySalesArr);
     return monthlySalesArr;
 }

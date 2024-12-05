@@ -80,21 +80,16 @@ function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
 // * Function to Set Up Pagination
 function setupPagination(Users, rowsPerPage, currentPage) {
     const pagination = document.getElementById("pagination");
-
     pagination.innerHTML = ""; // * Clear previous pagination
-
     const totalPages = Math.ceil(Users.length / rowsPerPage);
-
     for (let i = 1; i <= totalPages; i++) {
         const button = document.createElement("button");
         button.textContent = i;
         button.className = "btn btn-info m-1";
         if (i === currentPage) button.className = ("btn btn-dark");
-
         button.addEventListener("click", () => {
             displayTable(Users, i, rowsPerPage);
         });
-
         pagination.appendChild(button);
     }
 }
@@ -108,11 +103,12 @@ window.addEventListener("load", function () {
     const counterInput = document.querySelector('input[type="number"]');
     const searchInput = document.querySelector('input[type="text"]');
     const table = document.getElementsByTagName("table")[0];
-    const headerRow = document.getElementsByTagName("tr")[0];
     const UsersNum = this.document.getElementById("Users");
     UsersNum.innerText = getUsers().length
 
-    displayTable(Users, currentPage, rowsPerPage);
+    
+        displayTable(Users, currentPage, rowsPerPage);
+    
     // * Update Rows Per Page Based on Counter Input
     counterInput.addEventListener("change", function () {
         rowsPerPage = parseInt(this.value, 10) || 5;
@@ -150,17 +146,8 @@ window.addEventListener("load", function () {
                 }
             });
             // * End Sweet Alert
-
-            // const index = +event.target.dataset.index;
-            // console.log(index);
-            // Users.splice(index, 1);
-            // localStorage.setItem("Users", JSON.stringify(Users));
-            // // * Load Data From Local To Data Object To Achieve Consistency 
-            // loadDataFromLocalStorage()
-            // displayTable(Users, currentPage, rowsPerPage);
         }
     });
-
     // * Search Users
     searchInput.addEventListener("keyup", function () {
         const searchTerm = this.value.trim().toLowerCase();
@@ -173,13 +160,12 @@ window.addEventListener("load", function () {
             user.Role.toLowerCase().includes(searchTerm) ||
             user.CreatedAt.toLowerCase().includes(searchTerm)
         );
-
         currentPage = 1; // * Reset to the first page
         displayTable(filteredUsers, currentPage, rowsPerPage);
     });
 
-
 });// * end of load
+
 
 
 
