@@ -1,6 +1,6 @@
 export const data = {
     guestCart: [],
-    CurrentUser:  {
+    CurrentUser:   {
         "_id": "user1",
         "Name": "John Doe",
         "Email": "admin@example.com",
@@ -8,7 +8,7 @@ export const data = {
         "Phone": "123456789",
         "City": "Cairo",
         "Street": "bla bla blaablaa ",
-        "Role": "Seller",
+        "Role": "Admin",
         "CreatedAt": "2024-11-27T12:34:56Z"
     },
     Users: [
@@ -33,7 +33,7 @@ export const data = {
             "Street": "bla bla blaablaa ",
             "Role": "Seller",
             "CreatedAt": "2024-11-27T12:35:00Z",
-            "TotalSales":23
+            "TotalSales":99999
         },
         {
             "_id": "user3",
@@ -95,15 +95,17 @@ export const data = {
     Orders: [
         {
             "_id": "order33331",
-            "UserID": "user3",
+            "UserID": "user1",
             "Items": [
                 {
                     "ProductID": "prod1",
+                    "SellerId":"user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
+                    "SellerId":"user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -118,11 +120,13 @@ export const data = {
             "Items": [
                 {
                     "ProductID": "prod1",
+                    "SellerId":"user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
+                    "SellerId":"user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -137,11 +141,13 @@ export const data = {
             "Items": [
                 {
                     "ProductID": "prod1",
+                    "SellerId":"user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
+                    "SellerId":"user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -156,11 +162,13 @@ export const data = {
             "Items": [
                 {
                     "ProductID": "prod1",
+                    "SellerId":"user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
+                    "SellerId":"user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -175,11 +183,13 @@ export const data = {
             "Items": [
                 {
                     "ProductID": "prod1",
+                    "SellerId":"user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
+                    "SellerId":"user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -194,11 +204,13 @@ export const data = {
             "Items": [
                 {
                     "ProductID": "prod1",
+                    "SellerId":"user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
+                    "SellerId":"user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -269,6 +281,10 @@ export function addUser(User) {
 export function getUserById(id) {
     return data.Users.find((user) => user._id === id);
 }
+export function SetUserById(user) {
+    data.Users.find((user) => user._id === id)=user;
+}
+
 export function getUserByEmail(email) {
     return data.Users.find((user) => user.Email === email);
 }

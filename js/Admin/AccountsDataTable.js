@@ -1,4 +1,4 @@
-import { data, getOrders, getUsers, loadDataFromLocalStorage, saveDataInLocalStorage,isAuthorized } from "../Data.js";
+import { data, getOrders, getUsers, loadDataFromLocalStorage, saveDataInLocalStorage, isAuthorized, getUserById, SetUserById } from "../Data.js";
 
 
 
@@ -66,7 +66,7 @@ function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
             </button>
             </td>
             <td class="Update-btn" >
-            <button id="Update" type="button"  data-index="${start + index}" class="btn btn-warning">
+            <button id="Update" type="button"  data-index="${start + index}" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
             <i id="Update" data-index="${start + index}"  class="bi bi-pencil-fill"> </i>
             </button>
             </td>
@@ -97,7 +97,7 @@ function setupPagination(Users, rowsPerPage, currentPage) {
 
 // * Event Listeners Load 
 window.addEventListener("load", function () {
-   isAuthorized();
+    isAuthorized();
     let Users = getUsers();
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;
@@ -108,9 +108,9 @@ window.addEventListener("load", function () {
     const UsersNum = this.document.getElementById("Users");
     UsersNum.innerText = getUsers().length
 
-    
-        displayTable(Users, currentPage, rowsPerPage);
-    
+
+    displayTable(Users, currentPage, rowsPerPage);
+
     // * Update Rows Per Page Based on Counter Input
     counterInput.addEventListener("change", function () {
         rowsPerPage = parseInt(this.value, 10) || 5;
@@ -118,7 +118,7 @@ window.addEventListener("load", function () {
         displayTable(Users, currentPage, rowsPerPage);
     });
 
-    // * Delete User Row
+    // * Delete || update User Row
     table.addEventListener("click", function (event) {
         console.log(event.target.id);
         if (event.target.id == "Del") {
@@ -138,16 +138,31 @@ window.addEventListener("load", function () {
                         text: "Your file has been deleted.",
                         icon: "success"
                     });
+
                     const index = +event.target.dataset.index;
                     console.log(index);
-                    Users.splice(index, 1);
-                    localStorage.setItem("Users", JSON.stringify(Users));
-                    // * Load Data From Local To Data Object To Achieve Consistency 
-                    loadDataFromLocalStorage()
+                    const user = Users.splice(index, 1);
+                    DeleteCustomer(user[0]._id);
                     displayTable(Users, currentPage, rowsPerPage);
                 }
             });
             // * End Sweet Alert
+        }
+        if (event.target.id == "Update") {
+            const selectedUser = data.Users[event.target.dataset.index]
+            $("#in-head").text(" Update Account");
+            $("#in-email").val(selectedUser.Email);
+            $("#in-name").val(selectedUser.Name);
+            $("#in-password").val(selectedUser.Password);
+            $("#in-Phone").val(selectedUser.Phone);
+            $("#in-City").val(selectedUser.City);
+            $("#in-Street").val(selectedUser.Street);
+            selectedUser.Role == "Admin"
+                ? $("#roleAdmin").prop("checked", true)
+                : selectedUser.Role == "Seller"
+                    ? $("#roleSeller").prop("checked", true)
+                    : $("#roleCustomer").prop("checked", true);
+            console.log("Changes");
         }
     });
     // * Search Users
@@ -165,6 +180,63 @@ window.addEventListener("load", function () {
         currentPage = 1; // * Reset to the first page
         displayTable(filteredUsers, currentPage, rowsPerPage);
     });
+
+    // * on click Add Account Button the form will reset and the header will change to the default 
+    $("#add-Account").on('click', function () {
+        $("#in-head").text("Add New Account");
+        $("#AccountsForm")[0].reset();
+    });
+
+    function DeleteCustomer(customerid) {
+        const selectedorders = data.Orders.filter(function (e) {
+            return e.UserID == customerid && e.Status != "Shipped"
+        });
+        console.log(selectedorders);
+        selectedorders.forEach(function (or) {
+            console.log(or.Items)
+            decreaseTotalSales(or.Items)
+            increaseStock(or.Items);
+            DeleteOrders(customerid);
+        });
+        DeleteUser(customerid);
+    }
+
+    
+    // * decrease  order Price from Seller TotalSales When order is canceled or customer Account is deleted 
+    function decreaseTotalSales(items) {
+        items.forEach(function (item) {
+            data.Users.forEach(function (u) {
+                if (u._id == item.SellerId)
+                    u.TotalSales -= (item.Quantity * item.Price);
+            });
+
+            saveDataInLocalStorage();
+        });
+    }
+
+    function increaseStock(items) {
+        items.forEach(function (item) {
+            data.Products.forEach(function (p) {
+                if (p._id == item.ProductID)
+                    p.Stock += item.Quantity;
+            });
+
+            saveDataInLocalStorage();
+        });
+    }
+    // * Delete Order of Customer 
+    function DeleteOrders(userId) {
+        data.Orders = data.Orders.filter(order => order.UserID !== userId);
+
+        saveDataInLocalStorage();
+
+    }
+    function DeleteUser(userId) {
+        data.Users = data.Users.filter(user => user._id !== userId);
+        console.log(data.Users)
+
+        saveDataInLocalStorage();
+    }
 
 });// * end of load
 
