@@ -217,7 +217,7 @@
                     <!-- Email Input -->
                     <div class="input-group">
                         <div class="form-floating">
-                            <input type="email" class="form-control" id="in-email" placeholder="name@example.com">
+                            <input required type="email" class="form-control" id="in-email" placeholder="name@example.com">
                             <label for="email">Email Address</label>
                         </div>
                         <div class="invalid-feedback email">Please choose a valid email.</div>
@@ -226,7 +226,7 @@
                     <!-- Customer Name Input -->
                     <div class="input-group has-validation">
                         <div class="form-floating mt-3">
-                            <input type="text" class="form-control" id="in-name" placeholder="Customer Name">
+                            <input required type="text" class="form-control" id="in-name" placeholder="Customer Name">
                             <label for="userName">Name</label>
                         </div>
                         <div class="invalid-feedback name">
@@ -237,7 +237,7 @@
                     <!-- Password Input -->
                     <div class="input-group has-validation">
                         <div class="form-floating mt-3">
-                            <input type="password" class="form-control" id="in-password" placeholder="Password">
+                            <input required type="password" class="form-control" id="in-password" placeholder="Password" minlength="6" title='Password must contain at least 6 characters, including an uppercase letter, a lowercase letter, and a special character.'>
                             <label for="password">Password</label>
                         </div>
                         <div class="invalid-feedback password">
@@ -249,25 +249,62 @@
                     <!-- Phone Input -->
                     <div class="input-group has-validation">
                         <div class="form-floating mt-3">
-                            <input type="text" class="form-control" id="in-Phone" placeholder="Phone">
+                            <input required type="text" class="form-control" id="in-Phone" placeholder="Phone">
                             <label for="Phone">Phone</label>
                         </div>
                         <div class="invalid-feedback">Please choose a valid phone number.</div>
                     </div>
 
                     <!-- City Input -->
-                    <div class="input-group has-validation">
+                    <!-- <div class="input-group has-validation">
                         <div class="form-floating mt-3">
                             <input type="text" class="form-control" id="in-City" placeholder="City">
                             <label for="City">City Name</label>
                         </div>
                         <div class="invalid-feedback">Please choose a valid city name.</div>
+                    </div> -->
+                    <!-- -------------------------- -->
+                    <div class="input-group has-validation">
+                        <div class="form-floating mt-3 ">
+                            <select id="in-City" required class="login__input form-control">
+                                <option value="">Select City</option>
+                                <option value="cairo">Cairo</option>
+                                <option value="alexandria">Alexandria</option>
+                                <option value="giza">Giza</option>
+                                <option value="qalyubia">Qalyubia</option>
+                                <option value="port_said">Port Said</option>
+                                <option value="suez">Suez</option>
+                                <option value="sharqia">Sharqia</option>
+                                <option value="dakahlia">Dakahlia</option>
+                                <option value="aswan">Aswan</option>
+                                <option value="asiyut">Asyut</option>
+                                <option value="beheira">Beheira</option>
+                                <option value="beni_suef">Beni Suef</option>
+                                <option value="fayoum">Fayoum</option>
+                                <option value="gharbia">Gharbia</option>
+                                <option value="ismailia">Ismailia</option>
+                                <option value="kafr_el_sheikh">Kafr El Sheikh</option>
+                                <option value="matruh">Matruh</option>
+                                <option value="minya">Minya</option>
+                                <option value="monufia">Monufia</option>
+                                <option value="new_valley">New Valley</option>
+                                <option value="north_sinai">North Sinai</option>
+                                <option value="qena">Qena</option>
+                                <option value="red_sea">Red Sea</option>
+                                <option value="sohag">Sohag</option>
+                                <option value="south_sinai">South Sinai</option>
+                                <option value="damietta">Damietta</option>
+                                <option value="luxor">Luxor</option>
+                             </select>
+                            </div>
+                        <div class="invalid-feedback">Please choose a valid city name.</div>
                     </div>
+                    <!-- -------------------------- -->
 
                     <!-- Street Input -->
                     <div class="input-group has-validation">
                         <div class="form-floating mt-3">
-                            <input type="text" class="form-control" id="in-Street" placeholder="Street">
+                            <input required type="text" class="form-control" id="in-Street" placeholder="Street">
                             <label for="Street">Street Name</label>
                         </div>
                         <div class="invalid-feedback">Please choose a valid street name.</div>
@@ -303,7 +340,7 @@
                     <!-- Modal Footer -->
                     <div class="modal-footer d-flex justify-content-between">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                        <button type="button" class="btn btn-success">Confirm</button>
+                        <button id="Confirm" type="button" class="btn btn-success">Confirm</button>
                     </div>
                 </div>
             </div>

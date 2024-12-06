@@ -6,7 +6,7 @@ export const data = {
         "Email": "admin@example.com",
         "Password": "hashed_password1",
         "Phone": "123456789",
-        "City": "Cairo",
+        "City": "cairo",
         "Street": "bla bla blaablaa ",
         "Role": "Admin",
         "CreatedAt": "2024-11-27T12:34:56Z"
@@ -18,7 +18,7 @@ export const data = {
             "Email": "admin@example.com",
             "Password": "hashed_password1",
             "Phone": "123456789",
-            "City": "Cairo",
+            "City": "cairo",
             "Street": "bla bla blaablaa ",
             "Role": "Admin",
             "CreatedAt": "2024-11-27T12:34:56Z"
@@ -29,7 +29,7 @@ export const data = {
             "Email": "seller@example.com",
             "Password": "hashed_password2",
             "Phone": "987654321",
-            "City": "Cairo",
+            "City": "cairo",
             "Street": "bla bla blaablaa ",
             "Role": "Seller",
             "CreatedAt": "2024-11-27T12:35:00Z",
@@ -41,7 +41,7 @@ export const data = {
             "Email": "buyer@example.com",
             "Password": "hashed_password3",
             "Phone": "123987456",
-            "City": "Cairo",
+            "City": "cairo",
             "Street": "bla bla blaablaa ",
             "Role": "User",
             "CreatedAt": "2024-11-27T12:36:00Z"
@@ -256,7 +256,7 @@ const GuestPages = ['home.page','ProductDetails'];
 
 
 export function loadDataFromLocalStorage() {
-    console.log("Data LOADED:>>zzzz ");
+    console.log("Data LOADED:>> ");
     for (const key in data) {
         data[key] = JSON.parse(localStorage.getItem(key)) || data[key];
     }
@@ -353,4 +353,16 @@ export function isAuthorized() {
         console.log("Access Granted");
     }
 }
+
+export function DeleteUser(userId) {
+    data.Users = data.Users.filter(user => user._id !== userId);
+    console.log(data.Users)
+    saveDataInLocalStorage();
+}
+export function DeleteUserByEmail(email) {
+    data.Users = data.Users.filter(user => user.Email !== email);
+    console.log(data.Users)
+    saveDataInLocalStorage();
+}
+
 

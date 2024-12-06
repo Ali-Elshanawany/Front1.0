@@ -1,6 +1,8 @@
-import { data, getOrders, getUsers, loadDataFromLocalStorage, saveDataInLocalStorage, isAuthorized, getUserById, SetUserById } from "../Data.js";
+import { data, getOrders, getUsers, loadDataFromLocalStorage,
+     saveDataInLocalStorage, isAuthorized, getUserById, SetUserById,DeleteUser } from "../Data.js";
 
-
+import {AddAccounts} from './AddAccounts.js'
+import { DeleteSeller } from "./DeleteSellerAccount.js";
 
 // ! Tesing Only Remove For Production 
 //saveDataInLocalStorage();
@@ -98,6 +100,8 @@ function setupPagination(Users, rowsPerPage, currentPage) {
 // * Event Listeners Load 
 window.addEventListener("load", function () {
     isAuthorized();
+    let isUpdate=false;
+
     let Users = getUsers();
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;
@@ -142,13 +146,19 @@ window.addEventListener("load", function () {
                     const index = +event.target.dataset.index;
                     console.log(index);
                     const user = Users.splice(index, 1);
-                    DeleteCustomer(user[0]._id);
+                    if(user.Role=="Customer"){
+                        DeleteCustomer(user[0]._id);
+                    }else{
+                        DeleteSeller(user[0]._id)
+                    }
                     displayTable(Users, currentPage, rowsPerPage);
                 }
             });
             // * End Sweet Alert
         }
         if (event.target.id == "Update") {
+                // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
+            isUpdate=true;
             const selectedUser = data.Users[event.target.dataset.index]
             $("#in-head").text(" Update Account");
             $("#in-email").val(selectedUser.Email);
@@ -185,7 +195,19 @@ window.addEventListener("load", function () {
     $("#add-Account").on('click', function () {
         $("#in-head").text("Add New Account");
         $("#AccountsForm")[0].reset();
+        isUpdate=false
+        
     });
+    $("#Confirm").on('click', function (e) {
+        console.log(e.target.parentElement)
+        AddAccounts(isUpdate);
+        loadDataFromLocalStorage();
+        Users=getUsers();
+        displayTable(Users,currentPage,rowsPerPage);
+    });
+   
+
+
 
     function DeleteCustomer(customerid) {
         const selectedorders = data.Orders.filter(function (e) {
@@ -231,12 +253,7 @@ window.addEventListener("load", function () {
         saveDataInLocalStorage();
 
     }
-    function DeleteUser(userId) {
-        data.Users = data.Users.filter(user => user._id !== userId);
-        console.log(data.Users)
-
-        saveDataInLocalStorage();
-    }
+   
 
 });// * end of load
 
