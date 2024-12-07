@@ -146,7 +146,7 @@ window.addEventListener("load", function () {
                     const index = +event.target.dataset.index;
                     console.log(index);
                     const user = Users.splice(index, 1);
-                    if(user.Role=="Customer"){
+                    if(user[0].Role=="User"){
                         DeleteCustomer(user[0]._id);
                     }else{
                         DeleteSeller(user[0]._id)
