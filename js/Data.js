@@ -1,6 +1,20 @@
-const data = {
+ export const data = {
     guestCart: [],
-    CurrentUSer: null,
+    CurrentUSer: 
+    {
+        "_id": "user3",
+        "Name": "Bob Buyer",
+        "Email": "buyer@example.com",
+        "Password": "hashed_password3",
+        "Phone": "123987456",
+        "Address": "789 Oak Lane, Shelbyville",
+        "Role": "User",
+        "CreatedAt": "2024-11-27T12:36:00Z",
+        "cart" : [
+            { "_id": "prod1", "Quantity": 2 },
+            { "_id": "prod2", "Quantity": 2 },
+        ],
+    },
     Users: [
         {
             "_id": "user1",
@@ -30,7 +44,11 @@ const data = {
             "Phone": "123987456",
             "Address": "789 Oak Lane, Shelbyville",
             "Role": "User",
-            "CreatedAt": "2024-11-27T12:36:00Z"
+            "CreatedAt": "2024-11-27T12:36:00Z",
+            "cart" : [
+                { "_id": "prod1", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+              ],
         }
     ],
     Categories: [
@@ -55,23 +73,67 @@ const data = {
             "CategoryID": "cat1",
             "SellerID": "user2",
             "Images": [
-                "image1_url",
-                "image2_url"
+                "../assets/chair2.jpg",
+                "../assets/chair.jpg",
             ],
             "CreatedAt": "2024-11-27T12:37:00Z",
             "NumOfSales": 5
         },
         {
             "_id": "prod2",
-            "Name": "Glass Table",
-            "Description": "A stylish glass-top table.",
+            "Name": "Wodden Table",
+            "Description": "A stylish wooden table.",
             "Price": 120.0,
             "Stock": 20,
             "CategoryID": "cat2",
             "SellerID": "user2",
             "Images": [
-                "image3_url",
-                "image4_url"
+                "../assets/table.jpg",
+                "../assets/tabelswebp.webp"
+            ],
+            "CreatedAt": "2024-11-27T12:38:00Z",
+            "NumOfSales": 5
+        },
+        {
+            "_id": "prod3",
+            "Name": "kitchen",
+            "Description": "A stylish kitchen.",
+            "Price": 1200.0,
+            "Stock": 20,
+            "CategoryID": "cat3",
+            "SellerID": "user2",
+            "Images": [
+                "../assets/dinningroom.jpg",
+                "../assets/kitchen.avif"
+            ],
+            "CreatedAt": "2024-11-27T12:38:00Z",
+            "NumOfSales": 5
+        },{
+            "_id": "prod4",
+            "Name": "master room",
+            "Description": "A stylish master room.",
+            "Price": 120.0,
+            "Stock": 20,
+            "CategoryID": "cat4",
+            "SellerID": "user2",
+            "Images": [
+                "../assets/file.png",
+                "../assets/img3.avif"
+            ],
+            "CreatedAt": "2024-11-27T12:38:00Z",
+            "NumOfSales": 5
+        },
+        ,{
+            "_id": "prod5",
+            "Name": "master room",
+            "Description": "A stylish master room.",
+            "Price": 120.0,
+            "Stock": 20,
+            "CategoryID": "cat4",
+            "SellerID": "user2",
+            "Images": [
+                "../assets/children-bed.avif",
+                "../assets/img3.avif"
             ],
             "CreatedAt": "2024-11-27T12:38:00Z",
             "NumOfSales": 5
@@ -130,33 +192,34 @@ const data = {
 // export default data;
 
 
-function loadDataFromLocalStorage() {
+  export function loadDataFromLocalStorage() {
     console.log("Data LOADED:>> ");
     for (const key in data) {
         data[key] = JSON.parse(localStorage.getItem(key)) || data[key];
     }
+    return data;
 }
-function saveDataInLocalStorage() {
+  export function saveDataInLocalStorage() {
     for (const key in data) {
         localStorage.setItem(key, JSON.stringify(data[key]));
     }
+
 }
-function saveInLocalStorage(key, value) {
+ export function saveInLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
-function getCurrentUser() {
-    return data.currentUser;
+export function getCurrentUser() {
+    return data.CurrentUSer;
 }
-function addUser(User) {
+ export function addUser(User) {
     data.Users.push(User);
     saveDataInLocalStorage();
 }
 
-function getUserById(id) {
+ export function getUserById(id) {
     return data.Users.find((user) => user._id === id);
 }
-function getUserByEmail(email) {
+ export function getUserByEmail(email) {
     return data.Users.find((user) => user.Email === email);
 }
-
