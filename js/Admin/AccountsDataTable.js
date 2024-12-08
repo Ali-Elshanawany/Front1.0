@@ -1,5 +1,5 @@
 import { data, getOrders, getUsers, loadDataFromLocalStorage,
-     saveDataInLocalStorage, isAuthorized, getUserById, SetUserById,DeleteUser } from "../Data.js";
+     saveDataInLocalStorage, isAuthorized, getUserById, SetUserById,DeleteUser,increaseStock,decreaseTotalSales,DeleteOrders } from "../Data.js";
 
 import {AddAccounts} from './AddAccounts.js'
 import { DeleteSeller } from "./DeleteSellerAccount.js";
@@ -24,11 +24,11 @@ function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
     tr.innerHTML = `
     <tr >
     <th  id="id" > Id</th>
-    <th  id="name" > Name</th>
-    <th  id="email" > Email</th>
-    <th  id="phone" > Phone</th>
-    <th  id="city" > City</th>
-    <th  id="role" > Role</th>
+    <th  id="Name" > Name</th>
+    <th  id="Email" > Email</th>
+    <th  id="Phone" > Phone</th>
+    <th  id="City" > City</th>
+    <th  id="Role" > Role</th>
     <th  id="CreatedAt" > CreatedAt</th>
     <th  id="delete" > Delete</th>
     <th  id="update" > Update</th>
@@ -38,6 +38,7 @@ function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
     // * Add Asc Sorting Event
     tr.addEventListener("click", function (event) {
         const prop = event.target.id;
+        console.log("Asc Sorting")
         if (prop) {
             Users.sort((a, b) => a[prop] > b[prop] ? 1 : -1);
             displayTable(Users, currentPage, rowsPerPage);
@@ -46,7 +47,7 @@ function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
     // * Add Desc Sorting Event
     tr.addEventListener("dblclick", function (event) {
         const prop = event.target.id;
-
+        console.log("Desc Sorting")
         if (prop) {
             Users.sort((a, b) => a[prop] < b[prop] ? 1 : -1);
             displayTable(Users, currentPage, rowsPerPage);
@@ -223,37 +224,7 @@ window.addEventListener("load", function () {
         DeleteUser(customerid);
     }
 
-    
-    // * decrease  order Price from Seller TotalSales When order is canceled or customer Account is deleted 
-    function decreaseTotalSales(items) {
-        items.forEach(function (item) {
-            data.Users.forEach(function (u) {
-                if (u._id == item.SellerId)
-                    u.TotalSales -= (item.Quantity * item.Price);
-            });
 
-            saveDataInLocalStorage();
-        });
-    }
-
-    function increaseStock(items) {
-        items.forEach(function (item) {
-            data.Products.forEach(function (p) {
-                if (p._id == item.ProductID)
-                    p.Stock += item.Quantity;
-            });
-
-            saveDataInLocalStorage();
-        });
-    }
-    // * Delete Order of Customer 
-    function DeleteOrders(userId) {
-        data.Orders = data.Orders.filter(order => order.UserID !== userId);
-
-        saveDataInLocalStorage();
-
-    }
-   
 
 });// * end of load
 

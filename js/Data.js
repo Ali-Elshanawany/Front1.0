@@ -365,4 +365,33 @@ export function DeleteUserByEmail(email) {
     saveDataInLocalStorage();
 }
 
+export function decreaseTotalSales(items) {
+    items.forEach(function (item) {
+        data.Users.forEach(function (u) {
+            if (u._id == item.SellerId)
+                u.TotalSales -= (item.Quantity * item.Price);
+        });
+        saveDataInLocalStorage();
+    });
+}
 
+export function increaseStock(items) {
+    items.forEach(function (item) {
+        data.Products.forEach(function (p) {
+            if (p._id == item.ProductID)
+                p.Stock += item.Quantity;
+        });
+
+        saveDataInLocalStorage();
+    });
+}
+
+//* used when deleting a user 
+export function DeleteOrders(userId) {
+    data.Orders = data.Orders.filter(order => order.UserID !== userId);
+    saveDataInLocalStorage();
+}
+export function DeleteProducts(sellerId) {
+    data.Products = data.Products.filter(product => product.SellerID !== sellerId);
+    saveDataInLocalStorage();
+}
