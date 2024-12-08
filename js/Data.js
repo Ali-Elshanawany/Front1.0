@@ -1,19 +1,15 @@
- export const data = {
+export const data = {
     guestCart: [],
-    CurrentUSer: 
-    {
-        "_id": "user3",
-        "Name": "Bob Buyer",
-        "Email": "buyer@example.com",
-        "Password": "hashed_password3",
-        "Phone": "123987456",
-        "Address": "789 Oak Lane, Shelbyville",
-        "Role": "User",
-        "CreatedAt": "2024-11-27T12:36:00Z",
-        "cart" : [
-            { "_id": "prod1", "Quantity": 2 },
-            { "_id": "prod2", "Quantity": 2 },
-        ],
+    CurrentUser:   {
+        "_id": "user1",
+        "Name": "John Doe",
+        "Email": "admin@example.com",
+        "Password": "hashed_password1",
+        "Phone": "123456789",
+        "City": "cairo",
+        "Street": "bla bla blaablaa ",
+        "Role": "Admin",
+        "CreatedAt": "2024-11-27T12:34:56Z"
     },
     Users: [
         {
@@ -22,7 +18,8 @@
             "Email": "admin@example.com",
             "Password": "hashed_password1",
             "Phone": "123456789",
-            "Address": "123 Elm Street, Springfield",
+            "City": "cairo",
+            "Street": "bla bla blaablaa ",
             "Role": "Admin",
             "CreatedAt": "2024-11-27T12:34:56Z"
         },
@@ -32,9 +29,11 @@
             "Email": "seller@example.com",
             "Password": "hashed_password2",
             "Phone": "987654321",
-            "Address": "456 Maple Avenue, Springfield",
+            "City": "cairo",
+            "Street": "bla bla blaablaa ",
             "Role": "Seller",
-            "CreatedAt": "2024-11-27T12:35:00Z"
+            "CreatedAt": "2024-11-27T12:35:00Z",
+            "TotalSales":99999
         },
         {
             "_id": "user3",
@@ -42,7 +41,8 @@
             "Email": "buyer@example.com",
             "Password": "hashed_password3",
             "Phone": "123987456",
-            "Address": "789 Oak Lane, Shelbyville",
+            "City": "cairo",
+            "Street": "bla bla blaablaa ",
             "Role": "User",
             "CreatedAt": "2024-11-27T12:36:00Z",
             "cart" : [
@@ -77,7 +77,8 @@
                 "../assets/chair.jpg",
             ],
             "CreatedAt": "2024-11-27T12:37:00Z",
-            "NumOfSales": 5
+            "NumOfSales": 5,
+            "Approved":true
         },
         {
             "_id": "prod2",
@@ -141,16 +142,18 @@
     ],
     Orders: [
         {
-            "_id": "order1",
-            "UserID": "user3",
+            "_id": "order33331",
+            "UserID": "user1",
             "Items": [
                 {
                     "ProductID": "prod1",
+                    "SellerId":"user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
+                    "SellerId":"user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -158,6 +161,111 @@
             "TotalAmount": 239.98,
             "Status": "Pending",
             "CreatedAt": "2024-11-27T12:40:00Z"
+        },
+        {
+            "_id": "order1",
+            "UserID": "user3",
+            "Items": [
+                {
+                    "ProductID": "prod1",
+                    "SellerId":"user2",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },
+                {
+                    "ProductID": "prod2",
+                    "SellerId":"user2",
+                    "Quantity": 1,
+                    "Price": 120.0
+                }
+            ],
+            "TotalAmount": 239.98,
+            "Status": "Pending",
+            "CreatedAt": "2024-11-27T12:40:00Z"
+        },
+        {
+            "_id": "order133",
+            "UserID": "user3",
+            "Items": [
+                {
+                    "ProductID": "prod1",
+                    "SellerId":"user2",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },
+                {
+                    "ProductID": "prod2",
+                    "SellerId":"user2",
+                    "Quantity": 1,
+                    "Price": 120.0
+                }
+            ],
+            "TotalAmount": 565.98,
+            "Status": "Pending",
+            "CreatedAt": "2024-01-27T12:40:00Z"
+        },
+        {
+            "_id": "order1",
+            "UserID": "user3",
+            "Items": [
+                {
+                    "ProductID": "prod1",
+                    "SellerId":"user2",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },
+                {
+                    "ProductID": "prod2",
+                    "SellerId":"user2",
+                    "Quantity": 1,
+                    "Price": 120.0
+                }
+            ],
+            "TotalAmount": 239.98,
+            "Status": "Shipped",
+            "CreatedAt": "2024-12-27T12:40:00Z"
+        },
+        {
+            "_id": "order1",
+            "UserID": "user3",
+            "Items": [
+                {
+                    "ProductID": "prod1",
+                    "SellerId":"user2",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },
+                {
+                    "ProductID": "prod2",
+                    "SellerId":"user2",
+                    "Quantity": 1,
+                    "Price": 120.0
+                }
+            ],
+            "TotalAmount": 239.98,
+            "Status": "Processing",
+            "CreatedAt": "2024-08-27T12:40:00Z"
+        },
+        {
+            "_id": "order1",
+            "UserID": "user3",
+            "Items": [
+                {
+                    "ProductID": "prod1",
+                    "SellerId":"user2",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },
+                {
+                    "ProductID": "prod2",
+                    "SellerId":"user2",
+                    "Quantity": 1,
+                    "Price": 120.0
+                }
+            ],
+            "TotalAmount": 239.98,
+            "Status": "Pending",
+            "CreatedAt": "2024-09-27T12:40:00Z"
         }
     ],
     Cart: [
@@ -177,50 +285,135 @@
             "UpdatedAt": "2024-11-27T12:41:00Z"
         }
     ],
-    Reviews: [
+    Tickets: [
         {
             "_id": "review1",
-            "ProductID": "prod1",
             "UserID": "user3",
-            "Rating": 4,
             "Comment": "Great quality, sturdy chair.",
             "CreatedAt": "2024-11-27T12:42:00Z"
         }
     ]
 }
 
+const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page'];
+const UserPages = ['home.page'];
+const SellerPages = ['home.page'];
+const GuestPages = ['home.page','ProductDetails'];
+
 // export default data;
 
 
-  export function loadDataFromLocalStorage() {
+export function loadDataFromLocalStorage() {
     console.log("Data LOADED:>> ");
     for (const key in data) {
         data[key] = JSON.parse(localStorage.getItem(key)) || data[key];
     }
     return data;
 }
-  export function saveDataInLocalStorage() {
+export function saveDataInLocalStorage() {
     for (const key in data) {
         localStorage.setItem(key, JSON.stringify(data[key]));
     }
 
 }
- export function saveInLocalStorage(key, value) {
+export function saveInLocalStorage(key, value) {
     localStorage.setItem(key, JSON.stringify(value));
 }
 
 export function getCurrentUser() {
-    return data.CurrentUSer;
+    return data.CurrentUser;
 }
- export function addUser(User) {
+export function addUser(User) {
     data.Users.push(User);
     saveDataInLocalStorage();
 }
 
- export function getUserById(id) {
+export function getUserById(id) {
     return data.Users.find((user) => user._id === id);
 }
- export function getUserByEmail(email) {
+export function SetUserById(user) {
+    data.Users.find((user) => user._id === id)=user;
+}
+
+export function getUserByEmail(email) {
     return data.Users.find((user) => user.Email === email);
     console.log("HI");
 }
+
+export function getUsers() {
+    loadDataFromLocalStorage();
+    return data.Users;
+}
+export function getOrders() {
+    loadDataFromLocalStorage();
+    return data.Orders;
+}
+
+
+// * Will Return array Containg Total Sales of Each Month 
+// * This Will be the Input for the Graph in Admin Dashboard 
+export function getSalesByMonth() {
+    let monthlySalesArr = new Array(12).fill(0)
+    data.Orders.forEach(x => {
+        // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
+        monthlySalesArr[new Date(x.CreatedAt).getMonth()] += x.TotalAmount;
+    });
+    return monthlySalesArr;
+}
+
+export function isAuthorized() {
+    console.log("Authorization Check Started");
+
+    const host = window.location.origin;
+    const webPage = location.href.split('/').pop().toLowerCase(); //* Get the current page
+    let isAuthorized = false;
+
+    // Define a reusable function to check authorization
+    const checkAuthorization = (pages) => {
+        return pages.some(page => page.toLowerCase() === webPage);
+    };
+
+    if(!data.CurrentUser){
+        console.log("Guest Customer");
+        isAuthorized = checkAuthorization(GuestPages);
+    }else{
+        switch (data.CurrentUser.Role) {
+            case "Admin":
+                console.log("Admin Authorized");
+                isAuthorized = checkAuthorization(AdminPages);
+                break;
+            case "Seller":
+                console.log("Seller Authorized");
+                isAuthorized = checkAuthorization(SellerPages);
+                break;
+            case "User":
+                console.log("User Authorized");
+                isAuthorized = checkAuthorization(UserPages);
+                break;
+            case null:
+                console.error("Guest Customer");
+                isAuthorized = checkAuthorization(GuestPages);
+                break;
+        }
+
+    }
+    if (!isAuthorized) {
+        console.log("Access Denied");
+        window.location.replace(host + "/Front1.0/html/403.html");
+    } else {
+        console.log("Access Granted");
+    }
+}
+
+export function DeleteUser(userId) {
+    data.Users = data.Users.filter(user => user._id !== userId);
+    console.log(data.Users)
+    saveDataInLocalStorage();
+}
+export function DeleteUserByEmail(email) {
+    data.Users = data.Users.filter(user => user.Email !== email);
+    console.log(data.Users)
+    saveDataInLocalStorage();
+}
+
+

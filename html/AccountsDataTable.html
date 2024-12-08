@@ -1,0 +1,362 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Accounts</title>
+    <link rel="stylesheet" href="../style/Lux/bootstrap.Lux.css">
+    <link rel="stylesheet" href="../style/Admin/AccountsDataTable.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
+        integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Sweet Alert -->
+    <script src="
+        https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js
+        "></script>
+
+
+
+</head>
+
+
+<body style="background-color: #cfd9df;">
+    <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Furniture</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor02"
+                aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarColor02">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link " href="#" id="home">Home
+                            <span class="visually-hidden">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" id="Accounts" href="./AccountsDataTable.html">Accounts</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" id="Orders" href="./OrdersDataTable.html">Orders</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Profile</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-sm-2" type="search" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+    <div class="container mt-4 pt-2" style="box-shadow: gray 5px 5px 10px,gray -5px -5px 10px;">
+        <!-- Card Container 2 -->
+        <div class="container">
+            <div class="row ">
+                <!-- Start Order Card -->
+                <div class="col-6 col-lg-3">
+                    <div class="shadow card l-bg-cherry ">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-shopping-cart"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">New Orders</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                        3,243
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Order Card -->
+                <!-- Start Customers Card -->
+                <div class="col-6 col-lg-3 ">
+                    <div class="shadow card l-bg-blue-dark">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Users</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 id="Users" class="d-flex align-items-center mb-0">
+                                        15.07k
+                                    </h2>
+                                </div>
+                            </div>
+                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-green" role="progressbar" data-width="25%"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Customers Card -->
+                <!-- Start Ticket Resolved Card -->
+                <div class="col-6 col-lg-3 ">
+                    <div class="shadow card l-bg-green-dark">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Ticket Resolved</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                        578
+                                    </h2>
+                                </div>
+
+                            </div>
+                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-orange" role="progressbar" data-width="25%"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Ticket Resolved Card -->
+                <!-- Start Sales Card -->
+                <div class="col-6 col-lg-3 ">
+                    <div class="shadow card l-bg-orange-dark">
+                        <div class="card-statistic-3 p-4">
+                            <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
+                            <div class="mb-4">
+                                <h5 class="card-title mb-0">Revenue Today</h5>
+                            </div>
+                            <div class="row align-items-center mb-2 d-flex">
+                                <div class="col-8">
+                                    <h2 class="d-flex align-items-center mb-0">
+                                        $11.61k
+                                    </h2>
+                                </div>
+
+                            </div>
+                            <div class="progress mt-1 " data-height="8" style="height: 8px;">
+                                <div class="progress-bar l-bg-cyan" role="progressbar" data-width="25%"
+                                    aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style="width: 25%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Sales Card -->
+            </div>
+        </div>
+        <!-- End Card Container 2 -->
+        <!-- Start Chart Container -->
+        <div class="shadow container">
+            <div class="row">
+                <canvas id="myChart"></canvas>
+            </div>
+        </div>
+        <!-- End Chart Container -->
+        <div id="Inputs" class="row mt-5 mb-3">
+            <!-- Inputs Section  -->
+            <div class="col-md-4 col-sm-12 mb-2">
+                <input type="number" name="RowCount" id="" value="10" min="1" class="form-control border-1 border-black"
+                    placeholder="Rows per page">
+            </div>
+            <div class="col-md-4 col-sm-12 mb-2">
+                <input type="text" name="Search" class="form-control  border-1 border-black " placeholder="Search">
+            </div>
+            <div class="col-md-4 col-sm-12">
+                <!-- <button type="button" class="form-control btn  btn-success border-1 border-black"> Add Account</button> -->
+                <button id="add-Account" class="form-control btn  btn-success border-1 border-black"
+                    data-bs-toggle="modal" data-bs-target="#addCustomerModal">Add Account</button>
+
+            </div>
+        </div>
+        <div class="row">
+            <!-- Table Section  -->
+            <div class="col-12">
+                <div class="table-responsive">
+                    <table class="table table-hover table-bordered">
+                        <thead class="table-dark">
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-4">
+            <!-- Pagination Section  -->
+            <div id="pagination" class="col-12 text-center mb-3 mt-2">
+                <button class="btn btn-dark">1</button>
+            </div>
+        </div>
+    </div>
+
+    <!--Start Pop Up Add Accounts -->
+
+    <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel"
+        aria-hidden="true">
+        <form id="AccountsForm">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addCustomerModalLabel">
+                        <p id="in-head" class="lead text-success">Add New Account</p>
+                    </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <!-- Email Input -->
+                    <div class="input-group">
+                        <div class="form-floating">
+                            <input required type="email" class="form-control" id="in-email" placeholder="name@example.com">
+                            <label for="email">Email Address</label>
+                        </div>
+                        <div class="invalid-feedback email">Please choose a valid email.</div>
+                    </div>
+
+                    <!-- Customer Name Input -->
+                    <div class="input-group has-validation">
+                        <div class="form-floating mt-3">
+                            <input required type="text" class="form-control" id="in-name" placeholder="Customer Name">
+                            <label for="userName">Name</label>
+                        </div>
+                        <div class="invalid-feedback name">
+                            Please choose a valid full name. Must contain at least first and last name (3-16 letters).
+                        </div>
+                    </div>
+
+                    <!-- Password Input -->
+                    <div class="input-group has-validation">
+                        <div class="form-floating mt-3">
+                            <input required type="password" class="form-control" id="in-password" placeholder="Password" minlength="6" title='Password must contain at least 6 characters, including an uppercase letter, a lowercase letter, and a special character.'>
+                            <label for="password">Password</label>
+                        </div>
+                        <div class="invalid-feedback password">
+                            Password must be at least 8 characters, with at least a symbol, upper and lower case
+                            letters, and a number.
+                        </div>
+                    </div>
+
+                    <!-- Phone Input -->
+                    <div class="input-group has-validation">
+                        <div class="form-floating mt-3">
+                            <input required type="text" class="form-control" id="in-Phone" placeholder="Phone">
+                            <label for="Phone">Phone</label>
+                        </div>
+                        <div class="invalid-feedback">Please choose a valid phone number.</div>
+                    </div>
+
+                    <!-- City Input -->
+                    <!-- <div class="input-group has-validation">
+                        <div class="form-floating mt-3">
+                            <input type="text" class="form-control" id="in-City" placeholder="City">
+                            <label for="City">City Name</label>
+                        </div>
+                        <div class="invalid-feedback">Please choose a valid city name.</div>
+                    </div> -->
+                    <!-- -------------------------- -->
+                    <div class="input-group has-validation">
+                        <div class="form-floating mt-3 ">
+                            <select id="in-City" required class="login__input form-control">
+                                <option value="">Select City</option>
+                                <option value="cairo">Cairo</option>
+                                <option value="alexandria">Alexandria</option>
+                                <option value="giza">Giza</option>
+                                <option value="qalyubia">Qalyubia</option>
+                                <option value="port_said">Port Said</option>
+                                <option value="suez">Suez</option>
+                                <option value="sharqia">Sharqia</option>
+                                <option value="dakahlia">Dakahlia</option>
+                                <option value="aswan">Aswan</option>
+                                <option value="asiyut">Asyut</option>
+                                <option value="beheira">Beheira</option>
+                                <option value="beni_suef">Beni Suef</option>
+                                <option value="fayoum">Fayoum</option>
+                                <option value="gharbia">Gharbia</option>
+                                <option value="ismailia">Ismailia</option>
+                                <option value="kafr_el_sheikh">Kafr El Sheikh</option>
+                                <option value="matruh">Matruh</option>
+                                <option value="minya">Minya</option>
+                                <option value="monufia">Monufia</option>
+                                <option value="new_valley">New Valley</option>
+                                <option value="north_sinai">North Sinai</option>
+                                <option value="qena">Qena</option>
+                                <option value="red_sea">Red Sea</option>
+                                <option value="sohag">Sohag</option>
+                                <option value="south_sinai">South Sinai</option>
+                                <option value="damietta">Damietta</option>
+                                <option value="luxor">Luxor</option>
+                             </select>
+                            </div>
+                        <div class="invalid-feedback">Please choose a valid city name.</div>
+                    </div>
+                    <!-- -------------------------- -->
+
+                    <!-- Street Input -->
+                    <div class="input-group has-validation">
+                        <div class="form-floating mt-3">
+                            <input required type="text" class="form-control" id="in-Street" placeholder="Street">
+                            <label for="Street">Street Name</label>
+                        </div>
+                        <div class="invalid-feedback">Please choose a valid street name.</div>
+                    </div>
+
+                    <!-- Role Selection -->
+                    <div class="input-group mt-3 p-3 border rounded" style="background-color: #f7f7f9;">
+                        <label class="form-label d-block mb-2 fw-bold" style="color: #333;">Select Role:</label>
+
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="Role" id="roleAdmin" value="Admin">
+                            <label class="form-check-label" for="roleAdmin" style="color: #333; font-weight: bold;">
+                                Admin
+                            </label>
+                        </div>
+
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="Role" id="roleSeller" value="Seller">
+                            <label class="form-check-label" for="roleSeller" style="color: #333; font-weight: bold;">
+                                Seller
+                            </label>
+                        </div>
+
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="radio" name="Role" id="roleCustomer" value="Customer">
+                            <label class="form-check-label" for="roleCustomer" style="color: #333; font-weight: bold;">
+                                Customer
+                            </label>
+                        </div>
+                    </div>
+
+
+                    <!-- Modal Footer -->
+                    <div class="modal-footer d-flex justify-content-between">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                        <button id="Confirm" type="button" class="btn btn-success">Confirm</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+        <!--End Pop Up Add Accounts -->
+
+
+
+
+        <script src="../js/Admin/AccountsDataTable.js" type="module"></script>
+        <script src="../js/Admin/Chart.js" type="module"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="../js/jq-3-7-1.js"></script>
+
+</body>
+
+</html>
