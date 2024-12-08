@@ -69,12 +69,12 @@ export const data = {
             "CategoryID": "cat1",
             "SellerID": "user2",
             "Images": [
-                "image1_url",
+                "../assets/1.png",
                 "image2_url"
             ],
             "CreatedAt": "2024-11-27T12:37:00Z",
             "NumOfSales": 5,
-            "Approved":true
+            "Approved":false
         },
         {
             "_id": "prod2",
@@ -85,11 +85,12 @@ export const data = {
             "CategoryID": "cat2",
             "SellerID": "user2",
             "Images": [
-                "image3_url",
+                "../assets/2.png",
                 "image4_url"
             ],
             "CreatedAt": "2024-11-27T12:38:00Z",
-            "NumOfSales": 5
+            "NumOfSales": 5,
+            "Approved":false
         }
     ],
     Orders: [
@@ -195,7 +196,7 @@ export const data = {
                 }
             ],
             "TotalAmount": 239.98,
-            "Status": "Processing",
+            "Status": "Delivered",
             "CreatedAt": "2024-08-27T12:40:00Z"
         },
         {
@@ -216,7 +217,7 @@ export const data = {
                 }
             ],
             "TotalAmount": 239.98,
-            "Status": "Pending",
+            "Status": "Canceled",
             "CreatedAt": "2024-09-27T12:40:00Z"
         }
     ],
@@ -430,4 +431,13 @@ export function DeleteOrders(userId) {
 export function DeleteProducts(sellerId) {
     data.Products = data.Products.filter(product => product.SellerID !== sellerId);
     saveDataInLocalStorage();
+}
+export function PendingProducts() {
+    loadDataFromLocalStorage()
+    return data.Products = data.Products.filter(product => product.Approved == false);
+}
+
+export function ApproveProducts(ProductId) {
+     data.Products.find(p=>p._id==ProductId).Approved=true;
+     saveDataInLocalStorage()
 }
