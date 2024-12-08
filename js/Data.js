@@ -241,13 +241,49 @@ export const data = {
         {
             "_id": "review1",
             "UserID": "user3",
+            "Comment": "A",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
+        {
+            "_id": "review2",
+            "UserID": "user3",
+            "Comment": "B",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
+        {
+            "_id": "review1",
+            "UserID": "user3",
+            "Comment": "Z",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
+        {
+            "_id": "review1",
+            "UserID": "user3",
+            "Comment": "Great quality, sturdy chair.",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
+        {
+            "_id": "review1",
+            "UserID": "user3",
+            "Comment": "Great quality, sturdy chair.",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
+        {
+            "_id": "review1",
+            "UserID": "user3",
+            "Comment": "Great quality, sturdy chair.",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
+        {
+            "_id": "review1",
+            "UserID": "user3",
             "Comment": "Great quality, sturdy chair.",
             "CreatedAt": "2024-11-27T12:42:00Z"
         }
     ]
 }
 
-const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page'];
+const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page','Products&Orders.html'];
 const UserPages = ['home.page'];
 const SellerPages = ['home.page'];
 const GuestPages = ['home.page','ProductDetails'];

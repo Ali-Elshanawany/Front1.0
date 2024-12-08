@@ -104,23 +104,37 @@ window.addEventListener("load", function () {
     let isUpdate=false;
 
     let Users = getUsers();
+    let Tickets=data.Tickets;
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;
 
     const counterInput = document.querySelector('input[type="number"]');
     const searchInput = document.querySelector('input[type="text"]');
+
+    const TicketcounterInput = document.getElementById('TicketCounterInput');
+    const TicketsearchInput = document.getElementById('TicketSearhInput');
+
+
+
     const table = document.getElementsByTagName("table")[0];
     const UsersNum = this.document.getElementById("Users");
     UsersNum.innerText = getUsers().length
 
 
     displayTable(Users, currentPage, rowsPerPage);
+    displayTicketsTable(Tickets, currentPage, rowsPerPage);
 
     // * Update Rows Per Page Based on Counter Input
     counterInput.addEventListener("change", function () {
         rowsPerPage = parseInt(this.value, 10) || 5;
         currentPage = 1; // * Reset to the first page
         displayTable(Users, currentPage, rowsPerPage);
+    });
+    // * Tickets counter Row / Page Event
+    TicketcounterInput.addEventListener("change", function () {
+        rowsPerPage = parseInt(this.value, 10) || 5;
+        currentPage = 1; // * Reset to the first page
+        displayTicketsTable(Tickets, currentPage, rowsPerPage);
     });
 
     // * Delete || update User Row
@@ -191,6 +205,17 @@ window.addEventListener("load", function () {
         currentPage = 1; // * Reset to the first page
         displayTable(filteredUsers, currentPage, rowsPerPage);
     });
+    // * Ticket Search Input 
+    TicketsearchInput.addEventListener("keyup", function () {
+        const searchTerm = this.value.trim().toLowerCase();
+        const filteredTickets = Tickets.filter(ticket =>
+            
+            ticket.Comment.toLowerCase().includes(searchTerm) ||
+            ticket.CreatedAt.toLowerCase().includes(searchTerm)
+        );
+        currentPage = 1; // * Reset to the first page
+        displayTicketsTable(filteredTickets, currentPage, rowsPerPage);
+    });
 
     // * on click Add Account Button the form will reset and the header will change to the default 
     $("#add-Account").on('click', function () {
@@ -229,5 +254,76 @@ window.addEventListener("load", function () {
 });// * end of load
 
 
+//! ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+// * Function to Display the User Table
+function displayTicketsTable(Tickets, currentPage = 1, rowsPerPage = 10) {
+    const tbody = document.getElementById("TicketBody");
+    const thead = document.getElementById("TicketHead");
+    tbody.innerHTML = ""; // Clear previous rows
+    thead.innerHTML = ""; // Clear previous rows
+
+
+    const start = (currentPage - 1) * rowsPerPage;
+    const end = start + rowsPerPage;
+    const paginatedUsers = Tickets.slice(start, end);
+    const tr = document.createElement("tr");
+    tr.innerHTML = `
+    <tr >
+    <th  id="Name" > Name</th>
+    <th  id="Comment" > Comments</th>
+    <th  id="CreatedAt" > CreatedAt</th>
+    </tr>   
+`;
+    thead.appendChild(tr);
+    // * Add Asc Sorting Event
+    tr.addEventListener("click", function (event) {
+        const prop = event.target.id;
+        console.log("Asc Sorting")
+        if (prop) {
+            Tickets.sort((a, b) => a[prop] > b[prop] ? 1 : -1);
+            displayTicketsTable(Tickets, currentPage, rowsPerPage);
+        }
+    });
+    // * Add Desc Sorting Event
+    tr.addEventListener("dblclick", function (event) {
+        const prop = event.target.id;
+        console.log("Desc Sorting")
+        if (prop) {
+            Tickets.sort((a, b) => a[prop] < b[prop] ? 1 : -1);
+            displayTicketsTable(Tickets, currentPage, rowsPerPage);
+        }
+    });
+    paginatedUsers.forEach((ticket) => {
+        let UserName=data.Users.find(user=>user._id==ticket.UserID).Name
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+            <td >${UserName}</td>
+            <td >${ticket.Comment}</td>
+            <td >${ticket.CreatedAt}</td>
+            `;
+        tbody.appendChild(tr);
+    });
+
+    setupTicketsPagination(Tickets, rowsPerPage, currentPage);
+}
+
+// * Function to Set Up Pagination
+function setupTicketsPagination(Tickets, rowsPerPage, currentPage) {
+    const pagination = document.getElementById("Ticketpagination");
+    pagination.innerHTML = ""; // * Clear previous pagination
+    const totalPages = Math.ceil(Tickets.length / rowsPerPage);
+    for (let i = 1; i <= totalPages; i++) {
+        const button = document.createElement("button");
+        button.textContent = i;
+        button.className = "btn btn-info m-1";
+        if (i === currentPage) button.className = ("btn btn-dark");
+        button.addEventListener("click", () => {
+            displayTicketsTable(Tickets, i, rowsPerPage);
+        });
+        pagination.appendChild(button);
+    }
+}
 
 
