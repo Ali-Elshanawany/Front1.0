@@ -112,7 +112,7 @@ function setupPagination(Orders, rowsPerPage, currentPage) {
 
 // * Event Listeners Load
 window.addEventListener("load", function () {
-    isAuthorized();
+ //   isAuthorized();
     let Orders = getOrders();
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;

@@ -1,15 +1,16 @@
 export const data = {
     guestCart: [],
     CurrentUser:   {
-        "_id": "user1",
-        "Name": "John Doe",
-        "Email": "admin@example.com",
-        "Password": "hashed_password1",
-        "Phone": "123456789",
+        "_id": "user2",
+        "Name": "Alice Seller",
+        "Email": "seller@example.com",
+        "Password": "hashed_password2",
+        "Phone": "987654321",
         "City": "cairo",
         "Street": "bla bla blaablaa ",
-        "Role": "Admin",
-        "CreatedAt": "2024-11-27T12:34:56Z"
+        "Role": "Seller",
+        "CreatedAt": "2024-11-27T12:35:00Z",
+        "TotalSales":99999
     },
     Users: [
         {
@@ -315,6 +316,11 @@ export function addUser(User) {
     saveDataInLocalStorage();
 }
 
+export function addProduct(product) {
+    data.Products.push(product);
+    saveDataInLocalStorage();
+}
+
 export function getUserById(id) {
     return data.Users.find((user) => user._id === id);
 }
@@ -441,3 +447,7 @@ export function ApproveProducts(ProductId) {
      data.Products.find(p=>p._id==ProductId).Approved=true;
      saveDataInLocalStorage()
 }
+export function SellerProducts() {
+    loadDataFromLocalStorage()
+     return data.Products.filter(p=>p.SellerID===data.CurrentUser._id);
+    }

@@ -7,7 +7,7 @@ const maxValue = Math.max(...dataValues);
 
 // * Assign Diffrent Color For The Highest Value
 const backgroundColors = dataValues.map(
-    (value) => (value === maxValue ? "red" : "blue") // * Red for the highest, blue for others
+    (value) => (value === maxValue ? "#c6d1e3" : "blue") // * Red for the highest, blue for others
 );
 
 const config = {
