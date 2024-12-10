@@ -7,6 +7,9 @@ import {
     PendingProducts,
     ApproveProducts,
     SellerProducts,
+    DeleteSepecificproduct,
+    increaseStock,
+    decreaseTotalSales
 } from "../Data.js";
 
 import { AddProducts } from "../Seller/AddProducts.js";
@@ -20,6 +23,7 @@ window.addEventListener("load", function () {
     //   isAuthorized();
     let Products = SellerProducts();
     let isUpdate = true;
+    let UpdatedProduct = null;
     console.log("Hola");
     console.log(Products);
     let rowsPerPage = 10; // * Default rows per page
@@ -69,46 +73,68 @@ window.addEventListener("load", function () {
                         icon: "success"
                     });
 
-                    
+                    DeleteProducts(event.target.dataset.productid)
+                    Products = SellerProducts();
                     displayProductsTable(Products, currentPage, rowsPerPage);
 
                 }
             });
+         
             // * End Sweet Alert
         }
         if (event.target.id == "Update") {
                 // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
+                console.log("Hereeeeeeeeeeeeeeeeeeeee");
+
             isUpdate=true;
-            const selectedUser = data.Users[event.target.dataset.index]
-            $("#in-head").text(" Update Account");
-            $("#in-email").val(selectedUser.Email);
-            $("#in-name").val(selectedUser.Name);
-            $("#in-password").val(selectedUser.Password);
-            $("#in-Phone").val(selectedUser.Phone);
-            $("#in-City").val(selectedUser.City);
-            $("#in-Street").val(selectedUser.Street);
-            selectedUser.Role == "Admin"
-                ? $("#roleAdmin").prop("checked", true)
-                : selectedUser.Role == "Seller"
-                    ? $("#roleSeller").prop("checked", true)
-                    : $("#roleCustomer").prop("checked", true);
-            console.log("Changes");
+
+            const SelectedProduct = data.Products[event.target.dataset.index]
+            UpdatedProduct=SelectedProduct
+            console.log(SelectedProduct)
+            $("#in-head").text(" Update Product");
+            $("#in-Name").val(SelectedProduct.Name);
+            $("#in-Desc").val(SelectedProduct.Description);
+            $("#in-Price").val(SelectedProduct.Price);
+            $("#in-Stock").val(SelectedProduct.Stock);
+            $("#in-Cat").val(SelectedProduct.CategoryID);
+            $("#previmg1")
+            .attr("src", SelectedProduct.Images[0])
+            .css({
+                "display": "inline-block",
+                "width": "200px",
+                "height": "200px"
+            });
+            $("#previmg2")
+            .attr("src", SelectedProduct.Images[1])
+            .css({
+                "display": "inline-block",
+                "width": "200px",
+                "height": "200px"
+            });
         }
     });
 
     // * on click Add Products Button the form will reset and the header will change to the default
     $("#add-Product").on("click", function () {
-        //   $("#in-head").text("Add New Account");
-        //    $("#AccountsForm")[0].reset();
+        $("#previmg1").css("display", "none");
+        $("#previmg2").css("display", "none");
+           $("#in-head").text("Add New Product");
+            $("#ProductsForm")[0].reset();
         isUpdate = false;
+        UpdatedProduct=null
+        
     });
     $("#Confirm").on("click", function (e) {
-        AddProducts(isUpdate);
-        // AddAccounts(isUpdate);
+        AddProducts(isUpdate,UpdatedProduct);
+        Products = SellerProducts();
+        displayProductsTable(Products, currentPage, rowsPerPage);
         // loadDataFromLocalStorage();
         // Users=getUsers();
         // displayTable(Users,currentPage,rowsPerPage);
     });
+
+
+
 }); // * end of load
 
 //! ////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -191,7 +217,7 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
             </button>
             </td>
              <td class="Update-btn" >
-            <button id="Update" type="button"  data-index="${start + index}" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+            <button id="Update" type="button"  data-index="${start + index}" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addProductModal">
             <i id="Update" data-index="${start + index}"  class="bi bi-pencil-fill"> </i>
             </button>
             </td>
@@ -216,5 +242,35 @@ function setupProductsPagination(Products, rowsPerPage, currentPage) {
             displayProductsTable(Products, i, rowsPerPage);
         });
         pagination.appendChild(button);
+    }
+}
+
+
+function DeleteProducts(productId){
+
+    //* Fisrt Check if the Product isn't approved Yet Then Delete Directly Else Check For Pending  Orders 
+    if(data.Products.find(p=>p.Approved==false)){
+        console.log(productId)
+        DeleteSepecificproduct(productId)
+    }else{
+        const DesiredOrders=data.Orders.filter(function(o){
+            if(o.Status=="Pending"){
+                return o.Items.filter(function(i){
+                    if(i.ProductID==productId){
+                        o.Status="Canceled"
+                    }
+                })
+
+            }
+        });
+        console.log(DesiredOrders)
+        console.log("Passed From Here")
+        DesiredOrders.forEach(function(order){
+            decreaseTotalSales(order.Items);
+            increaseStock(order.Items);
+        });
+        // increaseStock(DesiredOrders.Items)
+        // decreaseTotalSales(DesiredOrders.Items)
+         DeleteSepecificproduct(productId)
     }
 }

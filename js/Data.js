@@ -50,12 +50,12 @@ export const data = {
     ],
     Categories: [
         {
-            "_id": "cat1",
+            "_id": "Cat1",
             "Name": "Chairs",
             "Description": "Seating furniture for all purposes."
         },
         {
-            "_id": "cat2",
+            "_id": "Cat2",
             "Name": "Tables",
             "Description": "Dining and work tables."
         }
@@ -67,7 +67,7 @@ export const data = {
             "Description": "A sturdy wooden chair for dining or work.",
             "Price": 59.99,
             "Stock": 50,
-            "CategoryID": "cat1",
+            "CategoryID": "Cat1",
             "SellerID": "user2",
             "Images": [
                 "../assets/1.png",
@@ -75,7 +75,7 @@ export const data = {
             ],
             "CreatedAt": "2024-11-27T12:37:00Z",
             "NumOfSales": 5,
-            "Approved":false
+            "Approved":true
         },
         {
             "_id": "prod2",
@@ -83,7 +83,7 @@ export const data = {
             "Description": "A stylish glass-top table.",
             "Price": 120.0,
             "Stock": 20,
-            "CategoryID": "cat2",
+            "CategoryID": "Cat2",
             "SellerID": "user2",
             "Images": [
                 "../assets/2.png",
@@ -91,7 +91,7 @@ export const data = {
             ],
             "CreatedAt": "2024-11-27T12:38:00Z",
             "NumOfSales": 5,
-            "Approved":false
+            "Approved":true
         }
     ],
     Orders: [
@@ -408,6 +408,8 @@ export function DeleteUserByEmail(email) {
     saveDataInLocalStorage();
 }
 
+
+// * Receive Items and Decrease Total Sales Of Seller Used When (Deleting-Canceling) Orders Or Deleting (Seller-User) Accounts 
 export function decreaseTotalSales(items) {
     items.forEach(function (item) {
         data.Users.forEach(function (u) {
@@ -418,6 +420,7 @@ export function decreaseTotalSales(items) {
     });
 }
 
+// * Receive Items and Increase Stocks of the products 
 export function increaseStock(items) {
     items.forEach(function (item) {
         data.Products.forEach(function (p) {
@@ -434,20 +437,45 @@ export function DeleteOrders(userId) {
     data.Orders = data.Orders.filter(order => order.UserID !== userId);
     saveDataInLocalStorage();
 }
+
+// * Send Seller Id To Delete All of his Products This Happen When Deleting Seller Accounts
 export function DeleteProducts(sellerId) {
     data.Products = data.Products.filter(product => product.SellerID !== sellerId);
     saveDataInLocalStorage();
 }
+
+// * Return The Products with Approve state = False 
 export function PendingProducts() {
     loadDataFromLocalStorage()
     return data.Products = data.Products.filter(product => product.Approved == false);
 }
 
+//* Change Product Approval State to Approved (True) 
 export function ApproveProducts(ProductId) {
      data.Products.find(p=>p._id==ProductId).Approved=true;
      saveDataInLocalStorage()
 }
+
+// * View Products Specefic for Current Seller 
 export function SellerProducts() {
     loadDataFromLocalStorage()
      return data.Products.filter(p=>p.SellerID===data.CurrentUser._id);
     }
+
+    //* take order id and change status to Canceled
+export function CancelOrder(orderId){
+    data.Orders.find(p=>p._id==orderId).Status="Canceled";
+    saveDataInLocalStorage()
+}
+
+// * Get Specific Order 
+export function GetOrder(orderId){
+    loadDataFromLocalStorage()
+    return data.Orders.find(p=>p._id==orderId)
+}
+
+export function DeleteSepecificproduct(productId){
+    data.Products = data.Products.filter(product => product._id !== productId );
+    console.log(data.Products)
+    saveDataInLocalStorage();
+}

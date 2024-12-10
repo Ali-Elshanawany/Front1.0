@@ -5,7 +5,11 @@ import {
     data,
     isAuthorized,
     PendingProducts,
-    ApproveProducts
+    ApproveProducts,
+    CancelOrder,
+    increaseStock,
+    decreaseTotalSales,
+    GetOrder
 } from "../Data.js";
 
 // ! Tesing Only Remove For Production
@@ -31,6 +35,7 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
     <th  id="TotalAmount" > TotalPrice</th>
     <th  id="CreatedAt" > CreatedAt</th>
     <th  id="Status" > Status</th>
+    <th  id="delete" > Cancel</th>
     </tr>   
 `;
     thead.appendChild(tr);
@@ -53,25 +58,30 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
     });
     paginatedOrders.forEach((order, index) => {
         const tr = document.createElement("tr");
-        let UserName=data.Users.find(user=>user._id==order.UserID).Name
+        let UserName = data.Users.find(user => user._id == order.UserID).Name
         tr.innerHTML = `
             <td >${order._id}</td>
             <td >${UserName}</td>
             <td >${order.Items.length}</td>
             <td >${order.TotalAmount}</td>
             <td >${order.CreatedAt}</td>
+            
             <td >
             <button type="button" 
             id="StatusBtn"
         data-index="${start + index}" 
         data-Orderstatus="${order.Status}" 
-        class="btn form-control status-btn ${
-            order.Status === "Pending"   ? "btn-warning"
-            : order.Status === "Shipped" ? "btn-info"
-            :order.Status==="Delivered"  ? "btn-success" :"btn-danger"
+        class="btn form-control status-btn ${order.Status === "Pending" ? "btn-warning"
+                : order.Status === "Shipped" ? "btn-info"
+                    : order.Status === "Delivered" ? "btn-success" : "btn-danger"
             }">
     ${order.Status}
             </button>
+            <td class="delete-btn" >
+            <button id="Del" type="button"  data-index="${start + index}" class="btn btn-danger" data-order="${order._id}">
+            <i id="Del" data-index="${start + index}"  class="bi bi-x-lg"> </i>
+            </button>
+            </td>
             `;
         tbody.appendChild(tr);
     });
@@ -103,9 +113,9 @@ function setupPagination(Orders, rowsPerPage, currentPage) {
 
 // * Event Listeners Load
 window.addEventListener("load", function () {
-    isAuthorized();
+    // isAuthorized();
     let Orders = getOrders();
-    let Products=PendingProducts();
+    let Products = PendingProducts();
     console.log(Products)
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;
@@ -123,7 +133,7 @@ window.addEventListener("load", function () {
     ProductcounterInput.addEventListener("change", function () {
         rowsPerPage = parseInt(this.value, 10) || 5;
         currentPage = 1; // * Reset to the first page
-        displayProductsTable(Products,currentPage,rowsPerPage)
+        displayProductsTable(Products, currentPage, rowsPerPage)
     });
 
     ProductsearchInput.addEventListener("keyup", function () {
@@ -138,6 +148,82 @@ window.addEventListener("load", function () {
 
 
 
+    table.addEventListener("click", function (event) {
+        if (event.target.id == "Del") {
+            console.log(event.target.dataset.order)
+            const selectedOrder = GetOrder(event.target.dataset.order)
+            if (selectedOrder.Status !== "Delivered" && selectedOrder.Status !== "Canceled") {
+                // * Start Sweet Alert
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success",
+                        });
+                        const index = +event.target.dataset.index;
+                        console.log(index);
+                        Orders.splice(index, 1);
+                        console.log(event.target.dataset.order)
+                        // * Canceling order 
+                        CancelOrder(event.target.dataset.order);
+                        increaseStock(selectedOrder.Items)
+                        decreaseTotalSales(selectedOrder.Items)
+
+                        //localStorage.setItem("Orders", JSON.stringify(Orders));
+                        // * Load Data From Local To Data Object To Achieve Consistency
+                        console.log("ddd");
+                        loadDataFromLocalStorage();
+                        displayOrdersTable(Orders, currentPage, rowsPerPage);
+                    }
+                });
+                // * End Sweet Alert
+            }
+
+        }
+        if (event.target.id == "StatusBtn") {
+            if (event.target.dataset.orderstatus != "Delivered") {
+                Swal.fire({
+                    title: "Are you sure?",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, Update it!",
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Updated Successfully!",
+                            icon: "success",
+                        });
+                        switch (data.Orders[event.target.dataset.index].Status) {
+                            case "Pending":
+                                data.Orders[event.target.dataset.index].Status = "Shipped";
+                                break;
+                            case "Shipped":
+                                data.Orders[event.target.dataset.index].Status = "Delivered";
+                        }
+                        saveDataInLocalStorage();
+                        Orders = getOrders();
+                        //loadDataFromLocalStorage();
+                        displayOrdersTable(Orders, currentPage, rowsPerPage);
+                    }
+                });
+            }
+        }
+    });
+
+
+
+
     // if(Products){
     //     displayProductsTable(Products,currentPage,rowsPerPage)
     //     this.document.getElementById("ProductsNoData").innerText=""
@@ -145,7 +231,7 @@ window.addEventListener("load", function () {
     // else{
     //     this.document.getElementById("ProductsNoData").innerText="No Data"
     // }
-   displayProductsTable(Products,currentPage,rowsPerPage)
+    displayProductsTable(Products, currentPage, rowsPerPage)
 
 
 
@@ -163,6 +249,8 @@ window.addEventListener("load", function () {
     });
 
 
+
+
     Producttable.addEventListener("click", function (event) {
         console.log(event.target.id);
         if (event.target.id == "Approve") {
@@ -173,7 +261,7 @@ window.addEventListener("load", function () {
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
+                confirmButtonText: "Yes, Update it!"
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
@@ -187,16 +275,16 @@ window.addEventListener("load", function () {
                     console.log(index);
                     console.log(id);
                     ApproveProducts(id);
-                    Products=PendingProducts();
+                    Products = PendingProducts();
                     loadDataFromLocalStorage()
-                    displayProductsTable(Products,currentPage,rowsPerPage)
+                    displayProductsTable(Products, currentPage, rowsPerPage)
                 }
             });
             // * End Sweet Alert
         }
         if (event.target.id == "Update") {
-                // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
-            isUpdate=true;
+            // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
+            isUpdate = true;
             const selectedUser = data.Users[event.target.dataset.index]
             $("#in-head").text(" Update Account");
             $("#in-email").val(selectedUser.Email);
@@ -213,7 +301,7 @@ window.addEventListener("load", function () {
             console.log("Changes");
         }
     });
- 
+
 
     // * Search Orders
     searchInput.addEventListener("keyup", function () {
@@ -242,7 +330,7 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
     thead.innerHTML = ""; // Clear previous rows
 
 
-    
+
     const tr = document.createElement("tr");
     tr.innerHTML = `
     <tr >
@@ -254,7 +342,7 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
     <th  id="SellerName" > SellerName</th>
     <th  id="Images" > Images</th>
     <th  id="CreatedAt" > CreatedAt</th>
-    <th  id="approve" > Approve</th>
+    <th  id="approve" > Action</th>
     </tr>   
 `;
     thead.appendChild(tr);
@@ -279,8 +367,8 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
     const start = (currentPage - 1) * rowsPerPage;
     const end = start + rowsPerPage;
     const paginatedUsers = Products.slice(start, end);
-    paginatedUsers.forEach((product,index) => {
-        let SellerName=data.Users.find(user=>user._id==product.SellerID).Name
+    paginatedUsers.forEach((product, index) => {
+        let SellerName = data.Users.find(user => user._id == product.SellerID).Name
         //console.log(SellerName)
         const tr = document.createElement("tr");
         tr.innerHTML = `

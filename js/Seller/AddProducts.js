@@ -1,8 +1,9 @@
-import { data, addUser, loadDataFromLocalStorage,DeleteUserByEmail, addProduct } from "../Data.js";
+import { data, addUser, loadDataFromLocalStorage,DeleteUserByEmail, addProduct, saveDataInLocalStorage } from "../Data.js";
 
-export function AddProducts(isUpdate) {
+export function AddProducts(isUpdate,SelectedProduct) {
 
    console.log(`This is ${isUpdate}`)
+   console.log(`This is ${SelectedProduct}`)
 
    const Name = $("#in-Name").val();
    console.log(Name);
@@ -17,12 +18,12 @@ export function AddProducts(isUpdate) {
    let img1 = $("#in-img1").val();
    console.log(img1);
    let img2 = $("#in-img2").val();
+   console.log(img1);
    console.log(img2);
 
-   img1=CreatePath(img1);
-   img2=CreatePath(img2);
+   
 
-   if (Name === "" || Name.length < 3) {
+   if (Name === "" || Name.length < 3 || !isNaN(Name)) {
       Swal.fire({
          icon: 'error',
          title: 'Invalid Product Name',
@@ -30,7 +31,7 @@ export function AddProducts(isUpdate) {
       });
       return;
    }
-   if (Desc === "" || Desc.length < 20) {
+   if (Desc === "" || Desc.length < 20 || !isNaN(Desc)) {
       Swal.fire({
          icon: 'error',
          title: 'Invalid Description',
@@ -63,49 +64,78 @@ export function AddProducts(isUpdate) {
       });
       return;
    }
-   if (img1 === "" || img2==="") {
-      Swal.fire({
-         icon: 'error',
-         title: 'Invalid Img ',
-         text: 'You must choose an img',
-      });
-      return;
+   
+   if(!isUpdate){
+      if (img1 === "" || img2=== "") {
+         Swal.fire({
+            icon: 'error',
+            title: 'Invalid Img ',
+            text: 'You must choose an img',
+         });
+         return;
+      }
    }
 
-
-   const newProduct = {
-      _id: `Product${Date.now()}`,
-      Name: Name,
-      Description: Desc,
-      Price: Price,
-      Stock: Stock,
-      SellerID:data.CurrentUser._id,
-      CategoryID: Cat,
-      Images: [img1,img2],
-      CreatedAt: new Date().toISOString(),
-      NumOfSales:0,
-      Approved:false
-   };
-
-   if (!isUpdate) {
+   if(img1){
+      img1=CreatePath(img1);
+   }else{
+      img1=SelectedProduct.Images[0]
+   }
+   if(img2){
+      img2=CreatePath(img2);
+   }else{
+      img2=SelectedProduct.Images[1]
+   }
+   
+   if(!isUpdate){
+      const newProduct = {
+         _id: `Product${Date.now()}`,
+         Name: Name,
+         Description: Desc,
+         Price: Price,
+         Stock: Stock,
+         SellerID:data.CurrentUser._id,
+         CategoryID: Cat,
+         Images: [img1,img2],
+         CreatedAt: new Date().toISOString(),
+         NumOfSales:0,
+         Approved:false
+      };
       addProduct(newProduct);
-   } else {
-      // DeleteUserByEmail(newUser.Email);
-      // addUser(newUser);
+   }else{
+      const product = {
+         _id: SelectedProduct._id ,
+         Name: Name,
+         Description: Desc,
+         Price: Price,
+         Stock: Stock,
+         SellerID:data.CurrentUser._id,
+         CategoryID: Cat,
+         Images: [img1,img2],
+         CreatedAt: SelectedProduct.CreatedAt,
+         NumOfSales:SelectedProduct.NumOfSales,
+         Approved:SelectedProduct.Approved
+      };
+      const index = data.Products.findIndex(p => p._id === SelectedProduct._id);
+if (index !== -1) {
+    data.Products[index] = product;
+}
+      saveDataInLocalStorage()
    }
-   console.log("Product added successfully!");
-   // console.log(newUser);
 
-   Swal.fire('Success', 'Product Added successfully!', 'success').then(() => {
-      loadDataFromLocalStorage();
-   });
+   if(!isUpdate){
+      Swal.fire('Success', 'Product Added successfully!', 'success').then(() => {
+         loadDataFromLocalStorage();
+      });
+   }else{
+      Swal.fire('Success', 'Product Updated successfully!', 'success').then(() => {
+         loadDataFromLocalStorage();
+      });
+   }
 
 }
 
 
-let img1 = $("#in-img1").val();
-   console.log(img1);
-   img1=CreatePath(img1);
 // * Alter The img Path
 function CreatePath(img){
 
