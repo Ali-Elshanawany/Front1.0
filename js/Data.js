@@ -1,6 +1,6 @@
 export const data = {
     guestCart: [],
-    CurrentUser:   {
+    CurrentUser:  {
         "_id": "user1",
         "Name": "John Doe",
         "Email": "admin@example.com",
@@ -33,7 +33,7 @@ export const data = {
             "Street": "bla bla blaablaa ",
             "Role": "Seller",
             "CreatedAt": "2024-11-27T12:35:00Z",
-            "TotalSales":99999
+            "TotalSales": 99999
         },
         {
             "_id": "user3",
@@ -45,19 +45,68 @@ export const data = {
             "Street": "bla bla blaablaa ",
             "Role": "User",
             "CreatedAt": "2024-11-27T12:36:00Z"
+        }, {
+            "_id": "user6",
+            "Name": "Emma User",
+            "Email": "user2@example.com",
+            "Password": "hashed_password6",
+            "Phone": "01245678901",
+            "City": "Alexandria",
+            "Street": "678 User Blvd",
+            "Role": "User",
+            "CreatedAt": "2024-11-28T08:05:00Z"
+        },
+        {
+            "_id": "user7",
+            "Name": "Daniel Seller",
+            "Email": "seller3@example.com",
+            "Password": "hashed_password7",
+            "Phone": "01567891234",
+            "City": "Cairo",
+            "Street": "11 Seller Ln",
+            "Role": "Seller",
+            "CreatedAt": "2024-11-28T08:06:00Z",
+            "TotalSales": 300
+        },
+        {
+            "_id": "user8",
+            "Name": "Olivia User",
+            "Email": "user3@example.com",
+            "Password": "hashed_password8",
+            "Phone": "01123456789",
+            "City": "Giza",
+            "Street": "999 User Rd",
+            "Role": "User",
+            "CreatedAt": "2024-11-28T08:07:00Z"
+        },
+        {
+            "_id": "user9",
+            "Name": "Michael Admin",
+            "Email": "admin3@example.com",
+            "Password": "hashed_password9",
+            "Phone": "01087654321",
+            "City": "Alexandria",
+            "Street": "555 Admin Blvd",
+            "Role": "Admin",
+            "CreatedAt": "2024-11-28T08:08:00Z"
+        },
+        {
+            "_id": "user10",
+            "Name": "Sophia User",
+            "Email": "user4@example.com",
+            "Password": "hashed_password10",
+            "Phone": "01534567890",
+            "City": "Cairo",
+            "Street": "123 Sophia St",
+            "Role": "User",
+            "CreatedAt": "2024-11-28T08:09:00Z"
         }
     ],
     Categories: [
-        {
-            "_id": "Cat1",
-            "Name": "Chairs",
-            "Description": "Seating furniture for all purposes."
-        },
-        {
-            "_id": "Cat2",
-            "Name": "Tables",
-            "Description": "Dining and work tables."
-        }
+        { "_id": "Cat1", "Name": "Chairs", "Description": "Various types of chairs for different purposes." },
+    { "_id": "Cat2", "Name": "Tables", "Description": "Dining, work, and coffee tables." },
+    { "_id": "Cat3", "Name": "Beds", "Description": "Comfortable and stylish beds for your home." },
+    { "_id": "Cat4", "Name": "Cabinets", "Description": "Storage solutions for every room." }
     ],
     Products: [
         {
@@ -74,7 +123,7 @@ export const data = {
             ],
             "CreatedAt": "2024-11-27T12:37:00Z",
             "NumOfSales": 5,
-            "Approved":true
+            "Approved": true
         },
         {
             "_id": "prod2",
@@ -90,7 +139,23 @@ export const data = {
             ],
             "CreatedAt": "2024-11-27T12:38:00Z",
             "NumOfSales": 5,
-            "Approved":true
+            "Approved": true
+        },
+        {
+            "_id": "prod3",
+            "Name": "Wooden Chair",
+            "Description": "A sturdy wooden chair for dining or work.",
+            "Price": 59.99,
+            "Stock": 50,
+            "CategoryID": "Cat1",
+            "SellerID": "user5",
+            "Images": [
+                "../assets/1.png",
+                "image2_url"
+            ],
+            "CreatedAt": "2024-11-27T12:37:00Z",
+            "NumOfSales": 5,
+            "Approved": true
         }
     ],
     Orders: [
@@ -99,16 +164,10 @@ export const data = {
             "UserID": "user1",
             "Items": [
                 {
-                    "ProductID": "prod1",
-                    "SellerId":"user2",
+                    "ProductID": "prod3",
+                    "SellerId": "user3",
                     "Quantity": 2,
                     "Price": 59.99
-                },
-                {
-                    "ProductID": "prod2",
-                    "SellerId":"user2",
-                    "Quantity": 1,
-                    "Price": 120.0
                 }
             ],
             "TotalAmount": 239.98,
@@ -121,13 +180,13 @@ export const data = {
             "Items": [
                 {
                     "ProductID": "prod1",
-                    "SellerId":"user2",
+                    "SellerId": "user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
-                    "SellerId":"user2",
+                    "SellerId": "user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -142,13 +201,13 @@ export const data = {
             "Items": [
                 {
                     "ProductID": "prod1",
-                    "SellerId":"user2",
+                    "SellerId": "user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
-                    "SellerId":"user2",
+                    "SellerId": "user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -158,18 +217,18 @@ export const data = {
             "CreatedAt": "2024-01-27T12:40:00Z"
         },
         {
-            "_id": "order1",
+            "_id": "order2",
             "UserID": "user3",
             "Items": [
                 {
                     "ProductID": "prod1",
-                    "SellerId":"user2",
+                    "SellerId": "user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
-                    "SellerId":"user2",
+                    "SellerId": "user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -179,18 +238,18 @@ export const data = {
             "CreatedAt": "2024-12-27T12:40:00Z"
         },
         {
-            "_id": "order1",
+            "_id": "order3",
             "UserID": "user3",
             "Items": [
                 {
                     "ProductID": "prod1",
-                    "SellerId":"user2",
+                    "SellerId": "user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
-                    "SellerId":"user2",
+                    "SellerId": "user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -200,18 +259,18 @@ export const data = {
             "CreatedAt": "2024-08-27T12:40:00Z"
         },
         {
-            "_id": "order1",
+            "_id": "order4",
             "UserID": "user3",
             "Items": [
                 {
                     "ProductID": "prod1",
-                    "SellerId":"user2",
+                    "SellerId": "user2",
                     "Quantity": 2,
                     "Price": 59.99
                 },
                 {
                     "ProductID": "prod2",
-                    "SellerId":"user2",
+                    "SellerId": "user2",
                     "Quantity": 1,
                     "Price": 120.0
                 }
@@ -284,10 +343,10 @@ export const data = {
     ]
 }
 
-const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page','Products&Orders.html'];
+const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page', 'Products&Orders.html'];
 const UserPages = ['home.page'];
 const SellerPages = ['home.page'];
-const GuestPages = ['home.page','ProductDetails'];
+const GuestPages = ['home.page', 'ProductDetails'];
 
 // export default data;
 
@@ -324,7 +383,7 @@ export function getUserById(id) {
     return data.Users.find((user) => user._id === id);
 }
 export function SetUserById(user) {
-    data.Users.find((user) => user._id === id)=user;
+    data.Users.find((user) => user._id === id) = user;
 }
 
 export function getUserByEmail(email) {
@@ -364,10 +423,10 @@ export function isAuthorized() {
         return pages.some(page => page.toLowerCase() === webPage);
     };
 
-    if(!data.CurrentUser){
+    if (!data.CurrentUser) {
         console.log("Guest Customer");
         isAuthorized = checkAuthorization(GuestPages);
-    }else{
+    } else {
         switch (data.CurrentUser.Role) {
             case "Admin":
                 console.log("Admin Authorized");
@@ -451,30 +510,52 @@ export function PendingProducts() {
 
 //* Change Product Approval State to Approved (True) 
 export function ApproveProducts(ProductId) {
-     data.Products.find(p=>p._id==ProductId).Approved=true;
-     saveDataInLocalStorage()
+    data.Products.find(p => p._id == ProductId).Approved = true;
+    saveDataInLocalStorage()
 }
 
 // * View Products Specefic for Current Seller 
 export function SellerProducts() {
     loadDataFromLocalStorage()
-     return data.Products.filter(p=>p.SellerID===data.CurrentUser._id);
-    }
+    return data.Products.filter(p => p.SellerID === data.CurrentUser._id);
+}
+export function SellerOrders() {
+    loadDataFromLocalStorage()
+    return data.Orders.filter(function (o) {
+        return o.Items.some(function (i) {
+            return i.SellerId == data.CurrentUser._id;
+        });
+    });
+}
 
-    //* take order id and change status to Canceled
-export function CancelOrder(orderId){
-    data.Orders.find(p=>p._id==orderId).Status="Canceled";
+//* take order id and change status to Canceled
+export function CancelOrder(orderId) {
+    data.Orders.find(p => p._id == orderId).Status = "Canceled";
     saveDataInLocalStorage()
 }
 
 // * Get Specific Order 
-export function GetOrder(orderId){
+export function GetOrder(orderId) {
     loadDataFromLocalStorage()
-    return data.Orders.find(p=>p._id==orderId)
+    return data.Orders.find(p => p._id == orderId)
 }
 
-export function DeleteSepecificproduct(productId){
-    data.Products = data.Products.filter(product => product._id !== productId );
+export function DeleteSepecificproduct(productId) {
+    data.Products = data.Products.filter(product => product._id !== productId);
     console.log(data.Products)
     saveDataInLocalStorage();
+}
+
+
+export function TotalSales() {
+    loadDataFromLocalStorage()
+    let totalSales = 0;
+    data.Users.forEach(function (u) {
+        if (u.Role == "Seller") {
+            if (!isNaN(u.TotalSales) && typeof u.TotalSales === "number") {
+                totalSales += u.TotalSales;
+            }
+        }
+    })
+    return totalSales.toFixed(2)
 }

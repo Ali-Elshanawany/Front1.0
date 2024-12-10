@@ -3,7 +3,8 @@ import {
     loadDataFromLocalStorage,
     saveDataInLocalStorage,
     data,
-    isAuthorized
+    isAuthorized,
+    SellerOrders
 } from "../Data.js";
 
 // ! Tesing Only Remove For Production
@@ -30,7 +31,6 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
     <th  id="TotalPrice" > TotalPrice</th>
     <th  id="CreatedAt" > CreatedAt</th>
     <th  id="Status" > Status</th>
-    <th  id="Delete" > Delete</th>
     </tr>   
 `;
     thead.appendChild(tr);
@@ -74,13 +74,7 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
     ${order.Status}
             </button>
             </td>
-            <td class="delete-btn" >
-            <button id="Del" type="button"  data-index="${start + index
-            }" class="btn btn-danger">
-            <i id="Del" data-index="${start + index
-            }" class="bi bi-trash-fill"> </i>
-            </button>
-            </td>
+          
             `;
         tbody.appendChild(tr);
     });
@@ -113,7 +107,8 @@ function setupPagination(Orders, rowsPerPage, currentPage) {
 // * Event Listeners Load
 window.addEventListener("load", function () {
  //   isAuthorized();
-    let Orders = getOrders();
+    let Orders = SellerOrders();
+    console.log(Orders)
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;
 
@@ -134,66 +129,7 @@ window.addEventListener("load", function () {
         displayOrdersTable(Orders, currentPage, rowsPerPage);
     });
 
-    // * Delete Order Row
-    table.addEventListener("click", function (event) {
-        if (event.target.id == "Del") {
-            // * Start Sweet Alert
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!",
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success",
-                    });
-                    const index = +event.target.dataset.index;
-                    console.log(index);
-                    Orders.splice(index, 1);
-                    localStorage.setItem("Orders", JSON.stringify(Orders));
-                    // * Load Data From Local To Data Object To Achieve Consistency
-                    console.log("ddd");
-                    loadDataFromLocalStorage();
-                    displayOrdersTable(Orders, currentPage, rowsPerPage);
-                }
-            });
-            // * End Sweet Alert
-        }
-        if (event.target.id == "StatusBtn") {
-            if (event.target.dataset.orderstatus != "Shipped") {
-                Swal.fire({
-                    title: "Are you sure?",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#3085d6",
-                    cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, Update it!",
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire({
-                            title: "Updated Successfully!",
-                            icon: "success",
-                        });
-                        switch (data.Orders[event.target.dataset.index].Status) {
-                            case "Pending":
-                                data.Orders[event.target.dataset.index].Status = "Processing";
-                                break;
-                            case "Processing":
-                                data.Orders[event.target.dataset.index].Status = "Shipped";
-                        }
-                        saveDataInLocalStorage();
-                        displayOrdersTable(Orders, currentPage, rowsPerPage);
-                    }
-                });
-            }
-        }
-    });
+
 
     // * Search Orders
     searchInput.addEventListener("keyup", function () {
@@ -203,7 +139,8 @@ window.addEventListener("load", function () {
                 order.UserID.toLowerCase().includes(searchTerm) ||
                 order._id.toLowerCase().includes(searchTerm) ||
                 order.Status.toLowerCase().includes(searchTerm) ||
-                order.CreatedAt.toLowerCase().includes(searchTerm)
+                order.CreatedAt.toLowerCase().includes(searchTerm)||
+                order.TotalAmount.toString().toLowerCase().includes(searchTerm)
         );
 
         currentPage = 1; // * Reset to the first page

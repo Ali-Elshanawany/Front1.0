@@ -1,6 +1,6 @@
-import { data, addUser, loadDataFromLocalStorage,DeleteUserByEmail } from "../Data.js";
+import { data, addUser, loadDataFromLocalStorage, DeleteUserByEmail, TotalSales,saveDataInLocalStorage } from "../Data.js";
 
-export function AddAccounts(isUpdate) {
+export function AddAccounts(isUpdate, selecteduser) {
 
    console.log(`This is ${isUpdate}`)
 
@@ -96,32 +96,54 @@ export function AddAccounts(isUpdate) {
       }
    }
 
-   const newUser = {
-      _id: `user${Date.now()}`,
-      Name: name,
-      Email: email,
-      Phone: phone,
-      City: city,
-      Street: street,
-      Password: password,
-      Role: role,
-      CreatedAt: new Date().toISOString()
-   };
+
 
    if (!isUpdate) {
+      const newUser = {
+         _id: `user${Date.now()}`,
+         Name: name,
+         Email: email,
+         Phone: phone,
+         City: city,
+         Street: street,
+         Password: password,
+         Role: role,
+         CreatedAt: new Date().toISOString(),
+         TotalSales: role === "Seller" ? 0 : undefined
+      }
       addUser(newUser);
    } else {
-      DeleteUserByEmail(newUser.Email);
-      addUser(newUser);
+      const newUser = {
+         _id: selecteduser._id,
+         Name: name,
+         Email: email,
+         Phone: phone,
+         City: city,
+         Street: street,
+         Password: password,
+         Role: role,
+         CreatedAt: selecteduser.CreatedAt,
+         TotalSales: role === "Seller" ? 0 : undefined
+      }
+      const index = data.Users.findIndex(u => u._id === selecteduser._id);
+      if (index !== -1) {
+         data.Users[index] = newUser;
+      }
+      saveDataInLocalStorage()
    }
 
 
    console.log("User added successfully!");
-   console.log(newUser);
 
-   Swal.fire('Success', 'User registered successfully!', 'success').then(() => {
-      loadDataFromLocalStorage();
-   });
+   if(!isUpdate){
+      Swal.fire('Success', 'User registered successfully!', 'success').then(() => {
+         loadDataFromLocalStorage();
+      });
+   }else{
+      Swal.fire('Success', 'User Updated successfully!', 'success').then(() => {
+         loadDataFromLocalStorage();
+      });
+   }
 
 }
 

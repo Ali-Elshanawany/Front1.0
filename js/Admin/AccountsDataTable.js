@@ -1,5 +1,5 @@
 import { data, getOrders, getUsers, loadDataFromLocalStorage,
-     saveDataInLocalStorage, isAuthorized, getUserById, SetUserById,DeleteUser,increaseStock,decreaseTotalSales,DeleteOrders } from "../Data.js";
+     saveDataInLocalStorage, isAuthorized, getUserById, SetUserById,DeleteUser,increaseStock,decreaseTotalSales,DeleteOrders,TotalSales } from "../Data.js";
 
 import {AddAccounts} from './AddAccounts.js'
 import { DeleteSeller } from "./DeleteSellerAccount.js";
@@ -108,6 +108,8 @@ window.addEventListener("load", function () {
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;
 
+    let UpdatedUser = null;
+
     const counterInput = document.querySelector('input[type="number"]');
     const searchInput = document.querySelector('input[type="text"]');
 
@@ -117,8 +119,32 @@ window.addEventListener("load", function () {
 
 
     const table = document.getElementsByTagName("table")[0];
-    const UsersNum = this.document.getElementById("Users");
-    UsersNum.innerText = getUsers().length
+    // * Altering Cards Dynamically 
+    const NumofOrdersCard = this.document.getElementById("OrderCard");
+    const NumOfUsersCard = this.document.getElementById("UsersCard");
+    const NumofTicketsCard = this.document.getElementById("TicketCard");
+    const TotalSalesCard = this.document.getElementById("TotalSalesCard");
+
+    if(data.Orders.length){
+        NumofOrdersCard.innerText = data.Orders.length 
+    }else{
+        NumofOrdersCard.innerText = 0
+    }
+    if(getUsers().length){
+        NumOfUsersCard.innerText = getUsers().length
+    }else{
+        NumOfUsersCard.innerText = 0
+    }
+    if(data.Tickets.length){
+        NumofTicketsCard.innerText = data.Tickets.length 
+    }else{
+        NumofTicketsCard.innerText = 0
+    }
+    if(TotalSales()){
+        TotalSalesCard.innerText = TotalSales() +'$'
+    }else{
+        TotalSalesCard.innerText = 0
+    }
 
 
     displayTable(Users, currentPage, rowsPerPage);
@@ -186,6 +212,7 @@ window.addEventListener("load", function () {
                 // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
             isUpdate=true;
             const selectedUser = data.Users[event.target.dataset.index]
+            UpdatedUser=selectedUser
             $("#in-head").text(" Update Account");
             $("#in-email").val(selectedUser.Email);
             $("#in-name").val(selectedUser.Name);
@@ -233,11 +260,11 @@ window.addEventListener("load", function () {
         $("#in-head").text("Add New Account");
         $("#AccountsForm")[0].reset();
         isUpdate=false
+        UpdatedUser=null
         
     });
     $("#Confirm").on('click', function (e) {
-        console.log(e.target.parentElement)
-        AddAccounts(isUpdate);
+        AddAccounts(isUpdate,UpdatedUser);
         loadDataFromLocalStorage();
         Users=getUsers();
         displayTable(Users,currentPage,rowsPerPage);
@@ -336,5 +363,7 @@ function setupTicketsPagination(Tickets, rowsPerPage, currentPage) {
         pagination.appendChild(button);
     }
 }
+
+
 
 

@@ -9,7 +9,8 @@ import {
     CancelOrder,
     increaseStock,
     decreaseTotalSales,
-    GetOrder
+    GetOrder,
+    TotalSales
 } from "../Data.js";
 
 // ! Tesing Only Remove For Production
@@ -46,6 +47,7 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
             Orders.sort((a, b) => (a[prop] > b[prop] ? 1 : -1));
             displayOrdersTable(Orders, currentPage, rowsPerPage);
         }
+        Orders = getOrders(); 
     });
     // * Add Desc Sorting Event
     tr.addEventListener("dblclick", function (event) {
@@ -55,6 +57,7 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
             Orders.sort((a, b) => (a[prop] < b[prop] ? 1 : -1));
             displayOrdersTable(Orders, currentPage, rowsPerPage);
         }
+        Orders = getOrders(); 
     });
     paginatedOrders.forEach((order, index) => {
         const tr = document.createElement("tr");
@@ -78,8 +81,8 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
     ${order.Status}
             </button>
             <td class="delete-btn" >
-            <button id="Del" type="button"  data-index="${start + index}" class="btn btn-danger" data-order="${order._id}">
-            <i id="Del" data-index="${start + index}"  class="bi bi-x-lg"> </i>
+            <button id="Del" type="button"  data-index="${start + index}" class="btn btn-danger" data-order="${order._id}" data-status="${order.Status}">
+            <i id="Del" data-index="${start + index}" data-order="${order._id}" data-status="${order.Status}" class="bi bi-x-lg"> </i>
             </button>
             </td>
             `;
@@ -120,6 +123,8 @@ window.addEventListener("load", function () {
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;
 
+    ChangCard()
+
     const counterInput = document.querySelector('input[type="number"]');
     const searchInput = document.querySelector('input[type="text"]');
     const table = document.getElementsByTagName("table")[0];
@@ -150,8 +155,13 @@ window.addEventListener("load", function () {
 
     table.addEventListener("click", function (event) {
         if (event.target.id == "Del") {
+            const index = +event.target.dataset.index;
+            console.log("Start")
             console.log(event.target.dataset.order)
             const selectedOrder = GetOrder(event.target.dataset.order)
+            console.log("This is Order")
+            console.log(selectedOrder)
+
             if (selectedOrder.Status !== "Delivered" && selectedOrder.Status !== "Canceled") {
                 // * Start Sweet Alert
                 Swal.fire({
@@ -169,10 +179,8 @@ window.addEventListener("load", function () {
                             text: "Your file has been deleted.",
                             icon: "success",
                         });
-                        const index = +event.target.dataset.index;
-                        console.log(index);
-                        Orders.splice(index, 1);
-                        console.log(event.target.dataset.order)
+                        // Orders.splice(index, 1);
+                        // console.log(event.target.dataset.order)
                         // * Canceling order 
                         CancelOrder(event.target.dataset.order);
                         increaseStock(selectedOrder.Items)
@@ -180,8 +188,7 @@ window.addEventListener("load", function () {
 
                         //localStorage.setItem("Orders", JSON.stringify(Orders));
                         // * Load Data From Local To Data Object To Achieve Consistency
-                        console.log("ddd");
-                        loadDataFromLocalStorage();
+                        Orders = getOrders(); 
                         displayOrdersTable(Orders, currentPage, rowsPerPage);
                     }
                 });
@@ -221,16 +228,6 @@ window.addEventListener("load", function () {
         }
     });
 
-
-
-
-    // if(Products){
-    //     displayProductsTable(Products,currentPage,rowsPerPage)
-    //     this.document.getElementById("ProductsNoData").innerText=""
-    // }
-    // else{
-    //     this.document.getElementById("ProductsNoData").innerText="No Data"
-    // }
     displayProductsTable(Products, currentPage, rowsPerPage)
 
 
@@ -407,5 +404,38 @@ function setupProductsPagination(Products, rowsPerPage, currentPage) {
             displayProductsTable(Products, i, rowsPerPage);
         });
         pagination.appendChild(button);
+    }
+}
+
+
+function ChangCard() {
+    // * Altering Cards Dynamically 
+    const NumofOrdersCard = document.getElementById("OrderCard");
+    const NumOfCanceledOrdersCard = document.getElementById("CanceledOrdersCard");
+    const NumofPendingProductssCard = document.getElementById("PendingProducts");
+    const TotalSalesCard = document.getElementById("TotalSalesCard");
+
+    if (data.Orders.length) {
+        NumofOrdersCard.innerText = data.Orders.length
+    } else {
+        NumofOrdersCard.innerText = 0
+    }
+
+    if (data.Orders.filter(o=>o.Status=="Canceled").length) {
+        NumOfCanceledOrdersCard.innerText = data.Orders.filter(o=>o.Status=="Canceled").length
+    } else {
+        NumOfCanceledOrdersCard.innerText = 0
+    }
+
+    if (data.Products.filter(p=>p.Approved==false).length) {
+        NumofPendingProductssCard.innerText = data.Products.filter(p=>p.Approved==false).length
+    } else {
+        NumofPendingProductssCard.innerText = 0
+    }
+
+    if (TotalSales()) {
+        TotalSalesCard.innerText = TotalSales() + '$'
+    } else {
+        TotalSalesCard.innerText = 0
     }
 }
