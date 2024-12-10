@@ -141,35 +141,46 @@ window.addEventListener("load", function () {
     table.addEventListener("click", function (event) {
         console.log(event.target.id);
         if (event.target.id == "Del") {
-            // * Start Sweet Alert
-            Swal.fire({
-                title: "Are you sure?",
-                text: "You won't be able to revert this!",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonColor: "#3085d6",
-                cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, delete it!"
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire({
-                        title: "Deleted!",
-                        text: "Your file has been deleted.",
-                        icon: "success"
-                    });
-
-                    const index = +event.target.dataset.index;
-                    console.log(index);
-                    const user = Users.splice(index, 1);
-                    if(user[0].Role=="User"){
-                        DeleteCustomer(user[0]._id);
-                    }else{
-                        DeleteSeller(user[0]._id)
+            const index = +event.target.dataset.index;
+            //const user = Users.splice(index, 1);
+            const user = Users[index];
+            if(user._id!==data.CurrentUser._id){
+                // * Start Sweet Alert
+                Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#3085d6",
+                    cancelButtonColor: "#d33",
+                    confirmButtonText: "Yes, delete it!"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success"
+                        });
+                        console.log(index);
+                        if(user.Role=="User"){
+                            DeleteCustomer(user._id);
+                        }else if(user.Role=="Seller"){
+                            DeleteSeller(user._id)
+                        }else{
+                            DeleteUser(user._id)
+                        }
+                        Users = getUsers();
+                        displayTable(Users, currentPage, rowsPerPage);
                     }
-                    displayTable(Users, currentPage, rowsPerPage);
-                }
-            });
-            // * End Sweet Alert
+                });
+                // * End Sweet Alert
+            }else{
+                Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "You Can't Delete This Account",
+                  });
+            }
         }
         if (event.target.id == "Update") {
                 // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
@@ -296,7 +307,7 @@ function displayTicketsTable(Tickets, currentPage = 1, rowsPerPage = 10) {
         }
     });
     paginatedUsers.forEach((ticket) => {
-        let UserName=data.Users.find(user=>user._id==ticket.UserID).Name
+        let UserName=data.Users.find(user=>user._id==ticket.UserID)?.Name||"Anonymous"
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td >${UserName}</td>
