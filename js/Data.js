@@ -1,15 +1,19 @@
 export const data = {
     guestCart: [],
     CurrentUser:  {
-        "_id": "user1",
-        "Name": "John Doe",
-        "Email": "admin@example.com",
-        "Password": "hashed_password1",
-        "Phone": "123456789",
-        "City": "cairo",
-        "Street": "bla bla blaablaa ",
-        "Role": "Admin",
-        "CreatedAt": "2024-11-27T12:34:56Z"
+        "_id": "user3",
+            "Name": "Bob Buyer",
+            "Email": "buyer@example.com",
+            "Password": "hashed_password3",
+            "Phone": "123987456",
+            "City": "cairo",
+            "Street": "bla bla blaablaa ",
+            "Role": "User",
+            "CreatedAt": "2024-11-27T12:36:00Z" ,
+            "cart" : [
+                { "_id": "prod1", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+              ]
     },
     Users: [
         {
@@ -118,7 +122,7 @@ export const data = {
             "CategoryID": "Cat1",
             "SellerID": "user2",
             "Images": [
-                "../assets/1.png",
+                "../assets/pic3.webp",
                 "image2_url"
             ],
             "CreatedAt": "2024-11-27T12:37:00Z",
@@ -134,7 +138,7 @@ export const data = {
             "CategoryID": "Cat2",
             "SellerID": "user2",
             "Images": [
-                "../assets/2.png",
+                "../assets/pic3.webp",
                 "image4_url"
             ],
             "CreatedAt": "2024-11-27T12:38:00Z",
@@ -280,23 +284,6 @@ export const data = {
             "CreatedAt": "2024-09-27T12:40:00Z"
         }
     ],
-    Cart: [
-        {
-            "_id": "cart1",
-            "UserID": "user3",
-            "Items": [
-                {
-                    "ProductID": "prod1",
-                    "Quantity": 1
-                },
-                {
-                    "ProductID": "prod2",
-                    "Quantity": 2
-                }
-            ],
-            "UpdatedAt": "2024-11-27T12:41:00Z"
-        }
-    ],
     Tickets: [
         {
             "_id": "review1",
@@ -369,6 +356,60 @@ export function saveInLocalStorage(key, value) {
 export function getCurrentUser() {
     return data.CurrentUser;
 }
+
+// cart related
+
+export function getProductById(id) {
+    return data.Products.find((product) => product._id === id);
+}
+
+export function getCurrentCart() {
+    return data.CurrentUser ? data.CurrentUser.cart : data.guestCart;
+}
+
+export function changeCartItemCount(id, quantity) {
+    const cart = getCurrentCart();
+    const index = cart.findIndex((item) => item._id === id);
+
+    if (index === -1) {
+        console.error(`Item with ID ${id} not found in cart.`);
+        return;
+    }
+
+    cart[index].Quantity = quantity;
+
+    if (!data.CurrentUser) {
+        data.guestCart = cart;
+    } else {
+        data.CurrentUser.cart = cart;
+        const userIndex = data.Users.findIndex(
+            (user) => user._id === data.CurrentUser._id
+        );
+        data.Users[userIndex].cart = cart;
+    }
+
+    saveDataInLocalStorage();
+}
+
+export function DeleteFromCart(id) {
+    const cart = getCurrentCart();
+    const newCart = cart.filter((item) => item._id !== id);
+
+    if (!data.CurrentUser) {
+        data.guestCart = newCart;
+    } else {
+        data.CurrentUser.cart = newCart;
+        const userIndex = data.Users.findIndex(
+            (user) => user._id === data.CurrentUser._id
+        );
+        data.Users[userIndex].cart = newCart;
+    }
+
+    saveDataInLocalStorage();
+}
+
+///////////////////////////////////
+
 export function addUser(User) {
     data.Users.push(User);
     saveDataInLocalStorage();
