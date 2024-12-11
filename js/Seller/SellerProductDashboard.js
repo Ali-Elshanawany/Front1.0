@@ -21,6 +21,7 @@ import { AddProducts } from "../Seller/AddProducts.js";
 // * Event Listeners Load
 window.addEventListener("load", function () {
     //   isAuthorized();
+    ChangCard();
     let Products = SellerProducts();
     let isUpdate = true;
     let UpdatedProduct = null;
@@ -75,6 +76,7 @@ window.addEventListener("load", function () {
 
                     DeleteProducts(event.target.dataset.productid)
                     Products = SellerProducts();
+                    ChangCard()
                     displayProductsTable(Products, currentPage, rowsPerPage);
 
                 }
@@ -85,10 +87,12 @@ window.addEventListener("load", function () {
         if (event.target.id == "Update") {
                 // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
                 console.log("Hereeeeeeeeeeeeeeeeeeeee");
+                console.log(event.target.dataset.productid);
 
             isUpdate=true;
-
-            const SelectedProduct = data.Products[event.target.dataset.index]
+            
+            const SelectedProduct = data.Products.find(p=>p._id==event.target.dataset.productid)
+            console.log(SelectedProduct);
             UpdatedProduct=SelectedProduct
             console.log(SelectedProduct)
             $("#in-head").text(" Update Product");
@@ -127,6 +131,7 @@ window.addEventListener("load", function () {
     $("#Confirm").on("click", function (e) {
         AddProducts(isUpdate,UpdatedProduct);
         Products = SellerProducts();
+        ChangCard();
         displayProductsTable(Products, currentPage, rowsPerPage);
         // loadDataFromLocalStorage();
         // Users=getUsers();
@@ -213,12 +218,20 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
             data-index="${start + index}" 
             data-Productid="${product._id}" 
             class="btn btn-danger">
-            <i id="Del" data-index="${start + index}" class="bi bi-trash-fill"> </i>
+            <i id="Del" data-index="${start + index}"
+            data-Productid="${product._id}" 
+             class="bi bi-trash-fill"> </i>
             </button>
             </td>
              <td class="Update-btn" >
-            <button id="Update" type="button"  data-index="${start + index}" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addProductModal">
-            <i id="Update" data-index="${start + index}"  class="bi bi-pencil-fill"> </i>
+            <button id="Update" type="button" 
+             data-index="${start + index}"
+             data-Productid="${product._id}"
+              class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addProductModal">
+            <i id="Update"
+             data-index="${start + index}" 
+             data-Productid="${product._id}"
+             class="bi bi-pencil-fill"> </i>
             </button>
             </td>
             `;
@@ -274,3 +287,40 @@ function DeleteProducts(productId){
          DeleteSepecificproduct(productId)
     }
 }
+
+
+function ChangCard() {
+    console.log("Entered")
+    loadDataFromLocalStorage()
+    // * Altering Cards Dynamically 
+    const NumofOrdersCard = document.getElementById("OrderCard");
+    const NumOfProductsCard = document.getElementById("ProductsCard");
+    const NumofPendingProductssCard = document.getElementById("PendingProducts");
+    const TotalSalesCard = document.getElementById("TotalSalesCard");
+
+    if (data.Orders.filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id)).length) {
+        NumofOrdersCard.innerText = data.Orders.filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id)).length
+
+    } else {
+        NumofOrdersCard.innerText = 0
+    }
+
+    if (data.Products.filter(p=>p.SellerID==data.CurrentUser._id).length) {
+        NumOfProductsCard.innerText =data.Products.filter(p=>p.SellerID==data.CurrentUser._id).length
+    } else {
+        NumOfProductsCard.innerText = 0
+    }
+
+    if (data.Products.filter(p=>p.SellerID==data.CurrentUser._id && p.Approved==false).length) {
+        NumofPendingProductssCard.innerText = data.Products.filter(p=>p.SellerID==data.CurrentUser._id && p.Approved==false).length
+    } else {
+        NumofPendingProductssCard.innerText = 0
+    }
+
+    if (data.CurrentUser.TotalSales) {
+        TotalSalesCard.innerText = data.CurrentUser.TotalSales + '$'
+    } else {
+        TotalSalesCard.innerText = 0
+    }
+}
+

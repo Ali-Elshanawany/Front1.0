@@ -105,6 +105,7 @@ function setupPagination(Orders, rowsPerPage, currentPage) {
 // * Event Listeners Load
 window.addEventListener("load", function () {
  //   isAuthorized();
+ ChangCard()
     let Orders = SellerOrders();
     console.log(Orders)
     let rowsPerPage = 10; // * Default rows per page
@@ -145,3 +146,39 @@ window.addEventListener("load", function () {
         displayOrdersTable(filteredOrders, currentPage, rowsPerPage);
     });
 }); // * end of load
+
+
+function ChangCard() {
+    console.log("Entered")
+    loadDataFromLocalStorage()
+    // * Altering Cards Dynamically 
+    const NumofOrdersCard = document.getElementById("OrderCard");
+    const NumOfCanceledOrdersCard = document.getElementById("CanceledOrdersCard");
+    const NumofDeliveredOrdersCard = document.getElementById("DeliveredOrdersCard");
+    const TotalSalesCard = document.getElementById("TotalSalesCard");
+
+    if ((data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id)).length) {
+        NumofOrdersCard.innerText = (data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id)).length
+
+    } else {
+        NumofOrdersCard.innerText = 0
+    }
+
+    if ((data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id) && o.Status=="Canceled").length) {
+        NumOfCanceledOrdersCard.innerText =(data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id) && o.Status=="Canceled").length
+    } else {
+        NumOfCanceledOrdersCard.innerText = 0
+    }
+
+    if ((data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id) && o.Status=="Delivered").length) {
+        NumofDeliveredOrdersCard.innerText = (data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id) && o.Status=="Delivered").length
+    } else {
+        NumofDeliveredOrdersCard.innerText = 0
+    }
+
+    if (data.CurrentUser.TotalSales) {
+        TotalSalesCard.innerText = data.CurrentUser.TotalSales + '$'
+    } else {
+        TotalSalesCard.innerText = 0
+    }
+}

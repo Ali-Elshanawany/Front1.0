@@ -166,7 +166,7 @@ export const data = {
             "Items": [
                 {
                     "ProductID": "prod3",
-                    "SellerId": "user3",
+                    "SellerId": "user7",
                     "Quantity": 2,
                     "Price": 59.99
                 }
@@ -246,7 +246,7 @@ export const data = {
                     "ProductID": "prod1",
                     "SellerId": "user2",
                     "Quantity": 2,
-                    "Price": 59.99
+                    "Price": 75
                 },
                 {
                     "ProductID": "prod2",
@@ -255,7 +255,7 @@ export const data = {
                     "Price": 120.0
                 }
             ],
-            "TotalAmount": 239.98,
+            "TotalAmount": 350,
             "Status": "Delivered",
             "CreatedAt": "2024-08-27T12:40:00Z"
         },
@@ -276,7 +276,7 @@ export const data = {
                     "Price": 120.0
                 }
             ],
-            "TotalAmount": 239.98,
+            "TotalAmount": 550,
             "Status": "Canceled",
             "CreatedAt": "2024-09-27T12:40:00Z"
         }
@@ -408,6 +408,18 @@ export function getSalesByMonth() {
     data.Orders.forEach(x => {
         // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
         monthlySalesArr[new Date(x.CreatedAt).getMonth()] += x.TotalAmount;
+    });
+    return monthlySalesArr;
+}
+export function getSellerSalesByMonth() {
+    let monthlySalesArr = new Array(12).fill(0)
+    data.Orders.forEach(x => {
+        // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
+        x.Items.forEach(i=>{
+            if(i.SellerId==data.CurrentUser._id){
+                monthlySalesArr[new Date(x.CreatedAt).getMonth()] += (i.Price*i.Quantity)
+            }
+        })
     });
     return monthlySalesArr;
 }

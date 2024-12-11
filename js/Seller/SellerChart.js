@@ -1,6 +1,6 @@
-import { getSalesByMonth } from "../Data.js";
+import { getSellerSalesByMonth } from "../Data.js";
 // import gradient from 'chartjs-plugin-gradient';
-const dataValues = getSalesByMonth();
+const dataValues = getSellerSalesByMonth();
 const ctx = document.getElementById("myChart").getContext("2d");
 
 // * Find the highest value
@@ -122,7 +122,7 @@ const config = {
             y: {
                 beginAtZero: true,
                 grid: {
-                    color: "rgba(0, 0, 0, .1)", // Light grid lines
+                    color: "rgba(0, 0, 0, 0.1)", // Light grid lines
                 },
             },
         },
