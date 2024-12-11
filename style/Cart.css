@@ -203,7 +203,7 @@ body {
 #CheckOut {
     visibility: visible;
     height: auto;
-    background: #333;
+    background: linear-gradient(145deg, #333, #666, #333);
     color: #fff;
     display: flex;
     flex-direction: column;
@@ -211,6 +211,17 @@ body {
     justify-content: center;
     padding: 10px;
 }
+    #CheckOut:hover::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: 1;
+        background: linear-gradient(to right, rgba(255, 215, 0, 0.2), rgba(255, 255, 255, 0));
+    }
+    
 
 #CheckOut h3 {
     margin: 0;
