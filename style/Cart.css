@@ -1,0 +1,217 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#proceed {
+    background: #ffd700;
+    color: #333;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    transition: background 0.3s, transform 0.3s;
+    margin-top: 10px;
+}
+
+#proceed:hover {
+    background: #ffcc00;
+    transform: scale(1.05);
+}
+
+#proceed:active {
+    background: #e6b800;
+    transform: scale(1);
+}
+
+@media (min-width: 768px) {
+    #CheckOut {
+        flex-direction: row;
+        justify-content: space-around;
+        padding: 20px;
+    }
+
+    #proceed {
+        margin-top: 0;
+        margin-left: 250px;
+    }
+}
+
+@media (max-width: 767px) {
+    #proceed {
+        font-size: 1rem;
+        padding: 8px 16px;
+    }
+}
+
+.luxurious-card {
+    border: 2px solid gold;
+    border-radius: 15px;
+    background: linear-gradient(145deg, #f0e68c, #fffacd);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+.luxurious-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.breadcrumb-item a {
+    transition: color 0.3s ease;
+}
+
+.breadcrumb-item a:hover {
+    color: #FFD700;
+}
+
+.breadcrumb-item a::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #FFD700;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+}
+
+.breadcrumb-item a:hover::after {
+    width: 100%;
+}
+
+.breadcrumb-item.active {
+    color: #FFD700;
+}
+
+.card-title
+{
+    font-family: 'Playfair Display', serif;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #000000;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+}
+
+.card-text1
+{
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    font-size: 1.2rem;
+    color: #363232;
+}
+
+.price
+{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.5rem;
+    color: rgb(82, 77, 47);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+    font-size: 2.5rem;
+    font-weight: bolder;
+    padding-bottom: 15px;
+}
+
+.emptyCart
+{
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    color: #8b4513;
+    text-align: center;
+    padding-top: 20px;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 1px;
+    background: linear-gradient(145deg, #f0e68c, #fffacd);
+    border: 2px solid gold;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.breadcrumb-item+.breadcrumb-item::before{
+    content: ">";
+    color: #ffd700;
+    font-weight: bold;
+    padding: 0 5px;
+}
+
+.btn:hover {
+    background-color: #e0d7af !important;
+    color: #8b4513 !important;
+}
+
+.btn:active {
+    background-color: #d2c29d !important;
+    color: #8b4513 !important;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+#hero {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    color: #fff;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    padding: 20px;
+}
+
+#hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: -1;
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(../assets/pic2.jpg) center/cover no-repeat;
+}
+
+#hero img {
+    filter: drop-shadow(2px 4px 6px rgb(255, 188, 3));
+}
+
+.breadcrumb-item a {
+    color: #fff;
+    transition: color 0.3s;
+}
+
+.breadcrumb-item a:hover {
+    color: #ffd700;
+}
+
+.breadcrumb-item.active {
+    color: #ffd700;
+}
+
+#items {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+#CheckOut {
+    visibility: visible;
+    height: auto;
+    background: #333;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+}
+
+#CheckOut h3 {
+    margin: 0;
+}
