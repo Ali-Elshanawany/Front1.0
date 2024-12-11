@@ -189,6 +189,7 @@ window.addEventListener("load", function () {
                         //localStorage.setItem("Orders", JSON.stringify(Orders));
                         // * Load Data From Local To Data Object To Achieve Consistency
                         Orders = getOrders(); 
+                        ChangCard()
                         displayOrdersTable(Orders, currentPage, rowsPerPage);
                     }
                 });
@@ -197,7 +198,8 @@ window.addEventListener("load", function () {
 
         }
         if (event.target.id == "StatusBtn") {
-            if (event.target.dataset.orderstatus != "Delivered") {
+            console.log(event.target.dataset.orderstatus)
+            if (event.target.dataset.orderstatus !== "Delivered" && event.target.dataset.orderstatus !== "Canceled") {
                 Swal.fire({
                     title: "Are you sure?",
                     icon: "warning",
@@ -221,6 +223,7 @@ window.addEventListener("load", function () {
                         saveDataInLocalStorage();
                         Orders = getOrders();
                         //loadDataFromLocalStorage();
+                        ChangCard()
                         displayOrdersTable(Orders, currentPage, rowsPerPage);
                     }
                 });
@@ -274,29 +277,30 @@ window.addEventListener("load", function () {
                     ApproveProducts(id);
                     Products = PendingProducts();
                     loadDataFromLocalStorage()
+                    ChangCard()
                     displayProductsTable(Products, currentPage, rowsPerPage)
                 }
             });
             // * End Sweet Alert
         }
-        if (event.target.id == "Update") {
-            // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
-            isUpdate = true;
-            const selectedUser = data.Users[event.target.dataset.index]
-            $("#in-head").text(" Update Account");
-            $("#in-email").val(selectedUser.Email);
-            $("#in-name").val(selectedUser.Name);
-            $("#in-password").val(selectedUser.Password);
-            $("#in-Phone").val(selectedUser.Phone);
-            $("#in-City").val(selectedUser.City);
-            $("#in-Street").val(selectedUser.Street);
-            selectedUser.Role == "Admin"
-                ? $("#roleAdmin").prop("checked", true)
-                : selectedUser.Role == "Seller"
-                    ? $("#roleSeller").prop("checked", true)
-                    : $("#roleCustomer").prop("checked", true);
-            console.log("Changes");
-        }
+        // if (event.target.id == "Update") {
+        //     // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
+        //     isUpdate = true;
+        //     const selectedUser = data.Users[event.target.dataset.index]
+        //     $("#in-head").text(" Update Account");
+        //     $("#in-email").val(selectedUser.Email);
+        //     $("#in-name").val(selectedUser.Name);
+        //     $("#in-password").val(selectedUser.Password);
+        //     $("#in-Phone").val(selectedUser.Phone);
+        //     $("#in-City").val(selectedUser.City);
+        //     $("#in-Street").val(selectedUser.Street);
+        //     selectedUser.Role == "Admin"
+        //         ? $("#roleAdmin").prop("checked", true)
+        //         : selectedUser.Role == "Seller"
+        //             ? $("#roleSeller").prop("checked", true)
+        //             : $("#roleCustomer").prop("checked", true);
+        //     console.log("Changes");
+        // }
     });
 
 
@@ -409,6 +413,8 @@ function setupProductsPagination(Products, rowsPerPage, currentPage) {
 
 
 function ChangCard() {
+    console.log("Entered")
+    loadDataFromLocalStorage()
     // * Altering Cards Dynamically 
     const NumofOrdersCard = document.getElementById("OrderCard");
     const NumOfCanceledOrdersCard = document.getElementById("CanceledOrdersCard");

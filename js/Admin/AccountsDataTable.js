@@ -120,31 +120,7 @@ window.addEventListener("load", function () {
 
     const table = document.getElementsByTagName("table")[0];
     // * Altering Cards Dynamically 
-    const NumofOrdersCard = this.document.getElementById("OrderCard");
-    const NumOfUsersCard = this.document.getElementById("UsersCard");
-    const NumofTicketsCard = this.document.getElementById("TicketCard");
-    const TotalSalesCard = this.document.getElementById("TotalSalesCard");
-
-    if(data.Orders.length){
-        NumofOrdersCard.innerText = data.Orders.length 
-    }else{
-        NumofOrdersCard.innerText = 0
-    }
-    if(getUsers().length){
-        NumOfUsersCard.innerText = getUsers().length
-    }else{
-        NumOfUsersCard.innerText = 0
-    }
-    if(data.Tickets.length){
-        NumofTicketsCard.innerText = data.Tickets.length 
-    }else{
-        NumofTicketsCard.innerText = 0
-    }
-    if(TotalSales()){
-        TotalSalesCard.innerText = TotalSales() +'$'
-    }else{
-        TotalSalesCard.innerText = 0
-    }
+    changeCard();
 
 
     displayTable(Users, currentPage, rowsPerPage);
@@ -196,6 +172,7 @@ window.addEventListener("load", function () {
                             DeleteUser(user._id)
                         }
                         Users = getUsers();
+                        changeCard();
                         displayTable(Users, currentPage, rowsPerPage);
                     }
                 });
@@ -211,6 +188,7 @@ window.addEventListener("load", function () {
         if (event.target.id == "Update") {
                 // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
             isUpdate=true;
+            $("#RoleDiv").css("display","none")
             const selectedUser = data.Users[event.target.dataset.index]
             UpdatedUser=selectedUser
             $("#in-head").text(" Update Account");
@@ -261,12 +239,14 @@ window.addEventListener("load", function () {
         $("#AccountsForm")[0].reset();
         isUpdate=false
         UpdatedUser=null
+        $("#RoleDiv").css("display","flex")
         
     });
     $("#Confirm").on('click', function (e) {
         AddAccounts(isUpdate,UpdatedUser);
         loadDataFromLocalStorage();
         Users=getUsers();
+        changeCard();
         displayTable(Users,currentPage,rowsPerPage);
     });
    
@@ -366,4 +346,30 @@ function setupTicketsPagination(Tickets, rowsPerPage, currentPage) {
 
 
 
+function changeCard(){
+    const NumofOrdersCard =document.getElementById("OrderCard");
+    const NumOfUsersCard = document.getElementById("UsersCard");
+    const NumofTicketsCard = document.getElementById("TicketCard");
+    const TotalSalesCard = document.getElementById("TotalSalesCard");
 
+    if(data.Orders.length){
+        NumofOrdersCard.innerText = data.Orders.length 
+    }else{
+        NumofOrdersCard.innerText = 0
+    }
+    if(getUsers().length){
+        NumOfUsersCard.innerText = getUsers().length
+    }else{
+        NumOfUsersCard.innerText = 0
+    }
+    if(data.Tickets.length){
+        NumofTicketsCard.innerText = data.Tickets.length 
+    }else{
+        NumofTicketsCard.innerText = 0
+    }
+    if(TotalSales()){
+        TotalSalesCard.innerText = TotalSales() +'$'
+    }else{
+        TotalSalesCard.innerText = 0
+    }
+}

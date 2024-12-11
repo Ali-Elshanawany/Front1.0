@@ -121,7 +121,7 @@ export function AddAccounts(isUpdate, selecteduser) {
          City: city,
          Street: street,
          Password: password,
-         Role: role,
+         Role: selecteduser.Role,
          CreatedAt: selecteduser.CreatedAt,
          TotalSales: role === "Seller" ? 0 : undefined
       }
