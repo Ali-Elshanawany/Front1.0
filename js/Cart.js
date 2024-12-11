@@ -72,8 +72,8 @@ window.addEventListener("load", function () {
                         <div class="card-body d-flex flex-column flex-lg-row gap-3">
                             <!-- Information -->
                             <div class="col-lg-7 col-sm-12 flex-grow-1">
-                                <h5 class="card-title" style="font-size: 1.4rem;">${item.product.Name}</h5>
-                                <p class="card-text card-text1" style="font-size: 1.1rem;">${item.product.Description}</p>
+                                <h5 class="card-title" style="font-size: 1.4rem;font-family: 'Raleway', sans-serif;">${item.product.Name}</h5>
+                                <p class="card-text card-text1" style="font-size: 1.1rem;font-family: 'Raleway', sans-serif;">${item.product.Description}</p>
                                 <p class="card-text" style="font-size: 1rem;">
                                     <small class="text-body-secondary">
                                         <span class="badge bg-dark bg-gradient" style="font-size: 0.75rem;">Seller: ${getUserById(item.product.SellerID).Name}</span>
