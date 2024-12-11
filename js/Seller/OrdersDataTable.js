@@ -65,11 +65,9 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
             id="StatusBtn"
         data-index="${start + index}" 
         data-Orderstatus="${order.Status}" 
-        class="btn form-control status-btn ${order.Status === "Pending"
-                ? "btn-warning"
-                : order.Status === "Processing"
-                    ? "btn-info"
-                    : "btn-success"
+        class="btn form-control status-btn ${order.Status === "Pending" ? "btn-warning"
+                : order.Status === "Shipped" ? "btn-info"
+                    : order.Status === "Delivered" ? "btn-success" : "btn-danger"
             }">
     ${order.Status}
             </button>
