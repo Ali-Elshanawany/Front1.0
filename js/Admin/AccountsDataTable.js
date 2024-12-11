@@ -23,7 +23,6 @@ function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
     <tr >
-    <th  id="id" > Id</th>
     <th  id="Name" > Name</th>
     <th  id="Email" > Email</th>
     <th  id="Phone" > Phone</th>
@@ -56,7 +55,6 @@ function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
     paginatedUsers.forEach((employee, index) => {
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td >${employee._id}</td>
             <td >${employee.Name}</td>
             <td >${employee.Email}</td>
             <td >${employee.Phone}</td>
@@ -64,13 +62,13 @@ function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
             <td >${employee.Role}</td>
             <td >${employee.CreatedAt}</td>
             <td class="delete-btn" >
-            <button id="Del" type="button"  data-index="${start + index}" class="btn btn-danger">
-            <i id="Del" data-index="${start + index}" class="bi bi-trash-fill"> </i>
+            <button id="Del" type="button"  data-index="${start + index}" data-userid="${employee._id}"  class="btn btn-danger">
+            <i id="Del" data-index="${start + index}" data-userid="${employee._id}" class="bi bi-trash-fill"> </i>
             </button>
             </td>
             <td class="Update-btn" >
-            <button id="Update" type="button"  data-index="${start + index}" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
-            <i id="Update" data-index="${start + index}"  class="bi bi-pencil-fill"> </i>
+            <button id="Update" type="button"  data-index="${start + index}" data-userid="${employee._id}" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addCustomerModal">
+            <i id="Update" data-index="${start + index}" data-userid="${employee._id}"  class="bi bi-pencil-fill"> </i>
             </button>
             </td>
             `;
@@ -141,11 +139,9 @@ window.addEventListener("load", function () {
 
     // * Delete || update User Row
     table.addEventListener("click", function (event) {
-        console.log(event.target.id);
         if (event.target.id == "Del") {
-            const index = +event.target.dataset.index;
-            //const user = Users.splice(index, 1);
-            const user = Users[index];
+            const userid = event.target.dataset.userid;
+            const user = data.Users.find(u=>u._id==userid)
             if(user._id!==data.CurrentUser._id){
                 // * Start Sweet Alert
                 Swal.fire({
@@ -163,7 +159,6 @@ window.addEventListener("load", function () {
                             text: "Your file has been deleted.",
                             icon: "success"
                         });
-                        console.log(index);
                         if(user.Role=="User"){
                             DeleteCustomer(user._id);
                         }else if(user.Role=="Seller"){
@@ -189,18 +184,19 @@ window.addEventListener("load", function () {
                 // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
             isUpdate=true;
             $("#RoleDiv").css("display","none")
-            const selectedUser = data.Users[event.target.dataset.index]
-            UpdatedUser=selectedUser
+            const userid = event.target.dataset.userid;
+            const user = data.Users.find(u=>u._id==userid)
+            UpdatedUser=user
             $("#in-head").text(" Update Account");
-            $("#in-email").val(selectedUser.Email);
-            $("#in-name").val(selectedUser.Name);
-            $("#in-password").val(selectedUser.Password);
-            $("#in-Phone").val(selectedUser.Phone);
-            $("#in-City").val(selectedUser.City);
-            $("#in-Street").val(selectedUser.Street);
-            selectedUser.Role == "Admin"
+            $("#in-email").val(user.Email);
+            $("#in-name").val(user.Name);
+            $("#in-password").val(user.Password);
+            $("#in-Phone").val(user.Phone);
+            $("#in-City").val(user.City);
+            $("#in-Street").val(user.Street);
+            user.Role == "Admin"
                 ? $("#roleAdmin").prop("checked", true)
-                : selectedUser.Role == "Seller"
+                : user.Role == "Seller"
                     ? $("#roleSeller").prop("checked", true)
                     : $("#roleCustomer").prop("checked", true);
             console.log("Changes");
@@ -211,7 +207,6 @@ window.addEventListener("load", function () {
         const searchTerm = this.value.trim().toLowerCase();
         const filteredUsers = Users.filter(user =>
             user.Name.toLowerCase().includes(searchTerm) ||
-            user._id.toLowerCase().includes(searchTerm) ||
             user.Email.toLowerCase().includes(searchTerm) ||
             user.Phone.toLowerCase().includes(searchTerm) ||
             user.City.toLowerCase().includes(searchTerm) ||
