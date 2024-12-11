@@ -10,10 +10,20 @@ export const data = {
             "Street": "bla bla blaablaa ",
             "Role": "User",
             "CreatedAt": "2024-11-27T12:36:00Z" ,
-            "cart" : [
+            "cart" : 
+            [
                 { "_id": "prod1", "Quantity": 2 },
                 { "_id": "prod2", "Quantity": 2 },
-              ]
+                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+
+            ]
     },
     Users: [
         {
@@ -331,7 +341,7 @@ export const data = {
 }
 
 const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page', 'Products&Orders.html'];
-const UserPages = ['home.page'];
+const UserPages = ['home.page' , 'Cart.html'];
 const SellerPages = ['home.page'];
 const GuestPages = ['home.page', 'ProductDetails'];
 
@@ -490,7 +500,7 @@ export function isAuthorized() {
     }
     if (!isAuthorized) {
         console.log("Access Denied");
-        window.location.replace(host + "/Front1.0/html/403.html");
+        window.location.replace(host + "/../html/403.html");
     } else {
         console.log("Access Granted");
     }
