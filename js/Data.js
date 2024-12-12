@@ -1,168 +1,123 @@
 export const data = {
     guestCart: [],
     CurrentUser:  {
-        "_id": "user2",
-        "Name": "Alice Seller",
-        "Email": "seller@example.com",
-        "Password": "ABCabc0123!@#",
-        "Phone": "01011245011",
-        "City": "cairo",
-        "Street": "bla bla blaablaa ",
+        "_id": "user1734031165922",
+        "Name": "Seller1",
+        "Email": "Seller1@Seller.com",
+        "Phone": "01011145011",
+        "City": "dakahlia",
+        "Street": "second street ",
+        "Password": "asdASD123!@3",
         "Role": "Seller",
-        "CreatedAt": "2024-11-27T12:35:00Z",
-        "TotalSales": 99999
+        "CreatedAt": "2024-12-12T19:19:25.922Z",
+        "TotalSales": 1500
     },
     Users: [
         {
-            "_id": "user2",
-            "Name": "Alice Seller",
-            "Email": "seller@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01011245011",
+            "_id": "user1734030945450",
+            "Name": "Admin1",
+            "Email": "Admin1@Admin.com",
+            "Phone": "01011145011",
             "City": "cairo",
-            "Street": "bla bla blaablaa ",
+            "Street": "Tanta",
+            "Password": "asdASD123!@3",
+            "Role": "Admin",
+            "CreatedAt": "2024-12-12T19:15:45.450Z"
+        },
+        {
+            "_id": "user1734030970403",
+            "Name": "Admin2",
+            "Email": "Admin2@Admin.com",
+            "Phone": "01011145011",
+            "City": "gharbia",
+            "Street": "al-ashraf",
+            "Password": "asdASD123!@3",
+            "Role": "Admin",
+            "CreatedAt": "2024-12-12T19:16:10.403Z"
+        },
+        {
+            "_id": "user1734031105369",
+            "Name": "Admin3",
+            "Email": "Admin3@Admin.com",
+            "Phone": "01011145011",
+            "City": "alexandria",
+            "Street": "miami",
+            "Password": "asdASD123!@3",
+            "Role": "Admin",
+            "CreatedAt": "2024-12-12T19:18:25.369Z"
+        },
+        {
+            "_id": "user1734031165922",
+            "Name": "Seller1",
+            "Email": "Seller1@Seller.com",
+            "Phone": "01011145011",
+            "City": "dakahlia",
+            "Street": "second street ",
+            "Password": "asdASD123!@3",
             "Role": "Seller",
-            "CreatedAt": "2024-11-27T12:35:00Z",
-            "TotalSales": 99999
-        }, {
-            "_id": "user1",
-            "Name": "John Doe",
-            "Email": "admin@example.com",
-            "Password": "ABCabc0123!@#",
+            "CreatedAt": "2024-12-12T19:19:25.922Z",
+            "TotalSales": 1500
+        },
+        {
+            "_id": "user1734031188592",
+            "Name": "Seller2",
+            "Email": "Seller2@Seller.com",
+            "Phone": "01111145011",
+            "City": "fayoum",
+            "Street": "fa street ",
+            "Password": "asdASD123!@3",
+            "Role": "Seller",
+            "CreatedAt": "2024-12-12T19:19:48.592Z",
+            "TotalSales": 5000
+        },
+        {
+            "_id": "user1734031222895",
+            "Name": "Seller3",
+            "Email": "Seller3@Seller.com",
             "Phone": "01211145011",
-            "City": "cairo",
-            "Street": "bla bla blaablaa ",
-            "Role": "Admin",
-            "CreatedAt": "2024-11-27T12:34:56Z"
-        }, {
-            "_id": "user3",
-            "Name": "Bob Buyer",
-            "Email": "buyer@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01511145011",
-            "City": "cairo",
-            "Street": "bla bla blaablaa ",
-            "Role": "User",
-            "CreatedAt": "2024-11-27T12:36:00Z"
-        },
-
-        {
-            "_id": "user4",
-            "Name": "Emma Smith",
-            "Email": "emma.smith@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01022334455",
-            "City": "cairo",
-            "Street": "123 Elm Street",
+            "City": "gharbia",
+            "Street": "El-Helw",
+            "Password": "asdASD123!@3",
             "Role": "Seller",
-            "CreatedAt": "2024-11-28T08:00:00Z",
-            "TotalSales": 75000
+            "CreatedAt": "2024-12-12T19:20:22.896Z",
+            "TotalSales": 9600
         },
         {
-            "_id": "user5",
-            "Name": "Liam Johnson",
-            "Email": "liam.johnson@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01233445566",
-            "City": "alexandria",
-            "Street": "456 Oak Avenue",
-            "Role": "Admin",
-            "CreatedAt": "2024-11-28T08:15:00Z"
-        },
-        {
-            "_id": "user6",
-            "Name": "Sophia Williams",
-            "Email": "sophia.williams@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01122334455",
-            "City": "giza",
-            "Street": "789 Pine Lane",
+            "_id": "user1734031261613",
+            "Name": "User1",
+            "Email": "User1@User.com",
+            "Phone": "01211145011",
+            "City": "red_sea",
+            "Street": "main street",
+            "Password": "asdASD123!@3",
             "Role": "User",
-            "CreatedAt": "2024-11-28T08:30:00Z"
+            "CreatedAt": "2024-12-12T19:21:01.613Z",
+            "cart": []
         },
         {
-            "_id": "user7",
-            "Name": "James Brown",
-            "Email": "james.brown@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01222334455",
-            "City": "cairo",
-            "Street": "101 Maple Drive",
-            "Role": "Seller",
-            "CreatedAt": "2024-11-28T08:45:00Z",
-            "TotalSales": 60000
-        },
-        {
-            "_id": "user8",
-            "Name": "Olivia Jones",
-            "Email": "olivia.jones@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01033445566",
-            "City": "sharm el-sheikh",
-            "Street": "202 Birch Way",
+            "_id": "user1734031285140",
+            "Name": "User2",
+            "Email": "User2@User.com",
+            "Phone": "01211145011",
+            "City": "minya",
+            "Street": "Omar",
+            "Password": "asdASD123!@3",
             "Role": "User",
-            "CreatedAt": "2024-11-28T09:00:00Z"
+            "CreatedAt": "2024-12-12T19:21:25.140Z",
+            "cart": []
         },
         {
-            "_id": "user9",
-            "Name": "Benjamin Garcia",
-            "Email": "benjamin.garcia@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01522334455",
-            "City": "cairo",
-            "Street": "303 Cedar Lane",
-            "Role": "Admin",
-            "CreatedAt": "2024-11-28T09:15:00Z"
-        },
-        {
-            "_id": "user10",
-            "Name": "Charlotte Martinez",
-            "Email": "charlotte.martinez@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01133445566",
-            "City": "alexandria",
-            "Street": "404 Dogwood Court",
-            "Role": "Seller",
-            "CreatedAt": "2024-11-28T09:30:00Z",
-            "TotalSales": 85000
-        },
-        {
-            "_id": "user11",
-            "Name": "William Hernandez",
-            "Email": "william.hernandez@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01144556677",
-            "City": "cairo",
-            "Street": "505 Spruce Street",
+            "_id": "user1734031302175",
+            "Name": "User3",
+            "Email": "User3@User.com",
+            "Phone": "01211145011",
+            "City": "sharqia",
+            "Street": "bahr",
+            "Password": "asdASD123!@3",
             "Role": "User",
-            "CreatedAt": "2024-11-28T09:45:00Z"
-        },
-        {
-            "_id": "user12",
-            "Name": "Amelia Lopez",
-            "Email": "amelia.lopez@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01055667788",
-            "City": "luxor",
-            "Street": "606 Willow Way",
-            "Role": "Seller",
-            "CreatedAt": "2024-11-28T10:00:00Z",
-            "TotalSales": 70000
-        },
-        {
-            "_id": "user13",
-            "Name": "Michael Gonzalez",
-            "Email": "michael.gonzalez@example.com",
-            "Password": "ABCabc0123!@#",
-            "Phone": "01266778899",
-            "City": "cairo",
-            "Street": "707 Cypress Lane",
-            "Role": "Admin",
-            "CreatedAt": "2024-11-28T10:15:00Z"
+            "CreatedAt": "2024-12-12T19:21:42.175Z",
+            "cart": []
         }
-
-
-
     ],
     Categories: [
         { "_id": "Cat1", "Name": "Chairs", "Description": "Various types of chairs for different purposes." },
@@ -172,196 +127,214 @@ export const data = {
     ],
     Products: [
         {
-            "_id": "prod1",
-            "Name": "Wooden Chair",
-            "Description": "A sturdy wooden chair for dining or work.",
-            "Price": 59.99,
-            "Stock": 50,
+            "_id": "Product1734031752664",
+            "Name": "Product 1",
+            "Description": "This is a brief description for Product 1",
+            "Price": "100",
+            "Stock": "20",
+            "SellerID": "user1734031165922",
             "CategoryID": "Cat1",
-            "SellerID": "user2",
-            "Images": [
-                "../assets/pic3.webp",
-                "image2_url"
-            ],
-            "CreatedAt": "2024-11-27T12:37:00Z",
-            "NumOfSales": 5,
-            "Approved": false
-        },
-        {
-            "_id": "prod2",
-            "Name": "Glass Table",
-            "Description": "A stylish glass-top table.",
-            "Price": 120.0,
-            "Stock": 20,
-            "CategoryID": "Cat2",
-            "SellerID": "user2",
-            "Images": [
-                "../assets/pic3.webp",
-                "image4_url"
-            ],
-            "CreatedAt": "2024-11-27T12:38:00Z",
-            "NumOfSales": 5,
-            "Approved": false
-        },
-        {
-            "_id": "prod3",
-            "Name": "Wooden Chair",
-            "Description": "A sturdy wooden chair for dining or work.",
-            "Price": 59.99,
-            "Stock": 50,
-            "CategoryID": "Cat1",
-            "SellerID": "user5",
             "Images": [
                 "../assets/1.png",
-                "image2_url"
+                "../assets/2.png"
             ],
-            "CreatedAt": "2024-11-27T12:37:00Z",
-            "NumOfSales": 5,
+            "CreatedAt": "2024-12-12T19:29:12.664Z",
+            "NumOfSales": 15,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734031767767",
+            "Name": "Product 2",
+            "Description": "This is a brief description for Product 2",
+            "Price": "200",
+            "Stock": "30",
+            "SellerID": "user1734031165922",
+            "CategoryID": "Cat1",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
+            ],
+            "CreatedAt": "2024-12-12T19:29:27.767Z",
+            "NumOfSales": 12,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734031783865",
+            "Name": "Product 3",
+            "Description": "This is a brief description for Product 3",
+            "Price": "250",
+            "Stock": "35",
+            "SellerID": "user1734031165922",
+            "CategoryID": "Cat2",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
+            ],
+            "CreatedAt": "2024-12-12T19:29:43.865Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734031796361",
+            "Name": "Product 4",
+            "Description": "This is a brief description for Product 4",
+            "Price": "50",
+            "Stock": "50",
+            "SellerID": "user1734031222895",
+            "CategoryID": "Cat2",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
+            ],
+            "CreatedAt": "2024-12-12T19:29:56.361Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734031815018",
+            "Name": "Product 5",
+            "Description": "This is a brief description for Product 5",
+            "Price": "640",
+            "Stock": "10",
+            "SellerID": "user1734031222895",
+            "CategoryID": "Cat3",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
+            ],
+            "CreatedAt": "2024-12-12T19:30:15.018Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734031829750",
+            "Name": "Product 6",
+            "Description": "This is a brief description for Product 6",
+            "Price": "430",
+            "Stock": "30",
+            "SellerID": "user1734031222895",
+            "CategoryID": "Cat3",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
+            ],
+            "CreatedAt": "2024-12-12T19:30:29.750Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734031842546",
+            "Name": "Product 7",
+            "Description": "This is a brief description for Product 7",
+            "Price": "220",
+            "Stock": "35",
+            "SellerID": "user1734031222895",
+            "CategoryID": "Cat3",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
+            ],
+            "CreatedAt": "2024-12-12T19:30:42.546Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734031860699",
+            "Name": "Product 8",
+            "Description": "This is a brief description for Product 8",
+            "Price": "360",
+            "Stock": "45",
+            "SellerID": "user1734031222895",
+            "CategoryID": "Cat4",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
+            ],
+            "CreatedAt": "2024-12-12T19:31:00.699Z",
+            "NumOfSales": 0,
             "Approved": true
         }
     ],
-    Orders: [
+    Orders:[
         {
             "_id": "A",
-            "UserID": "user1",
+            "UserID": "user1734031261613",
             "Items": [
                 {
-                    "ProductID": "prod3",
-                    "SellerId": "user7",
+                    "ProductID": "Product1734031752664",
+                    "SellerId": "user1734031165922",
                     "Quantity": 2,
-                    "Price": 59.99
-                }, {
-                    "ProductID": "prod3",
-                    "SellerId": "user7",
+                    "Price": 100
+                },
+                {
+                    "ProductID": "Product1734031767767",
+                    "SellerId": "user1734031165922",
                     "Quantity": 2,
-                    "Price": 59.99
-                }, {
-                    "ProductID": "prod3",
-                    "SellerId": "user7",
-                    "Quantity": 2,
-                    "Price": 59.99
+                    "Price": 200
                 }
             ],
-            "TotalAmount": 239.98,
+            "TotalAmount": 600,
             "Status": "Pending",
             "CreatedAt": "2024-11-27T12:40:00Z"
-        },
-        {
-            "_id": "B",
-            "UserID": "user3",
-            "Items": [
-                {
-                    "ProductID": "prod1",
-                    "SellerId": "user2",
-                    "Quantity": 2,
-                    "Price": 59.99
-                },
-                {
-                    "ProductID": "prod2",
-                    "SellerId": "user2",
-                    "Quantity": 1,
-                    "Price": 120.0
-                }
-            ],
-            "TotalAmount": 239.98,
-            "Status": "Pending",
-            "CreatedAt": "2024-11-27T12:40:00Z"
-        },
-        {
-            "_id": "C",
-            "UserID": "user3",
-            "Items": [
-                {
-                    "ProductID": "prod1",
-                    "SellerId": "user2",
-                    "Quantity": 2,
-                    "Price": 59.99
-                }, {
-                    "ProductID": "prod3",
-                    "SellerId": "user7",
-                    "Quantity": 2,
-                    "Price": 59.99
-                }, {
-                    "ProductID": "prod3",
-                    "SellerId": "user7",
-                    "Quantity": 2,
-                    "Price": 59.99
-                },
-                {
-                    "ProductID": "prod2",
-                    "SellerId": "user2",
-                    "Quantity": 1,
-                    "Price": 120.0
-                }
-            ],
-            "TotalAmount": 565.98,
-            "Status": "Pending",
-            "CreatedAt": "2024-01-27T12:40:00Z"
-        },
-        {
-            "_id": "D",
-            "UserID": "user3",
-            "Items": [
-                {
-                    "ProductID": "prod1",
-                    "SellerId": "user2",
-                    "Quantity": 2,
-                    "Price": 59.99
-                },
-                {
-                    "ProductID": "prod2",
-                    "SellerId": "user2",
-                    "Quantity": 1,
-                    "Price": 120.0
-                }
-            ],
-            "TotalAmount": 239.98,
-            "Status": "Shipped",
-            "CreatedAt": "2024-12-27T12:40:00Z"
-        },
-        {
-            "_id": "E",
-            "UserID": "user3",
-            "Items": [
-                {
-                    "ProductID": "prod1",
-                    "SellerId": "user2",
-                    "Quantity": 2,
-                    "Price": 75
-                },
-                {
-                    "ProductID": "prod2",
-                    "SellerId": "user2",
-                    "Quantity": 1,
-                    "Price": 120.0
-                }
-            ],
-            "TotalAmount": 350,
-            "Status": "Delivered",
-            "CreatedAt": "2024-08-27T12:40:00Z"
-        },
-        {
-            "_id": "Z",
-            "UserID": "user3",
-            "Items": [
-                {
-                    "ProductID": "prod1",
-                    "SellerId": "user2",
-                    "Quantity": 2,
-                    "Price": 59.99
-                },
-                {
-                    "ProductID": "prod2",
-                    "SellerId": "user2",
-                    "Quantity": 1,
-                    "Price": 120.0
-                }
-            ],
-            "TotalAmount": 550,
-            "Status": "Canceled",
-            "CreatedAt": "2024-09-27T12:40:00Z"
         }
-    ],
+        ,{
+            "_id": "B",
+            "UserID": "user1734031285140",
+            "Items": [
+                {
+                    "ProductID": "Product1734031752664",
+                    "SellerId": "user1734031165922",
+                    "Quantity": 2,
+                    "Price": 100
+                },
+                {
+                    "ProductID": "Product1734031767767",
+                    "SellerId": "user1734031165922",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 600,
+            "Status": "Pending",
+            "CreatedAt": "2024-11-27T12:40:00Z"
+        },
+        {
+            "_id": "c",
+            "UserID": "user1734031261613",
+            "Items": [
+                {
+                    "ProductID": "Product1734031860699",
+                    "SellerId": "user1734031222895",
+                    "Quantity": 1,
+                    "Price": 360
+                }
+            ],
+            "TotalAmount": 360,
+            "Status": "Pending",
+            "CreatedAt": "2024-11-27T12:40:00Z"
+        }
+        ,{
+            "_id": "d",
+            "UserID": "user1734031285140",
+            "Items": [
+                {
+                    "ProductID": "Product1734031860699",
+                    "SellerId": "user1734031222895",
+                    "Quantity": 1,
+                    "Price": 360
+                },
+                {
+                    "ProductID": "Product1734031842546",
+                    "SellerId": "user1734031222895",
+                    "Quantity": 2,
+                    "Price": 220
+                }
+            ],
+            "TotalAmount": 800,
+            "Status": "Pending",
+            "CreatedAt": "2024-11-27T12:40:00Z"
+        }
+        ],
     Tickets: [
         {
             "_id": "review1",
