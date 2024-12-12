@@ -220,7 +220,6 @@ window.addEventListener("load", function () {
     TicketsearchInput.addEventListener("keyup", function () {
         const searchTerm = this.value.trim().toLowerCase();
         const filteredTickets = Tickets.filter(ticket =>
-            
             ticket.Comment.toLowerCase().includes(searchTerm) ||
             ticket.CreatedAt.toLowerCase().includes(searchTerm)
         );

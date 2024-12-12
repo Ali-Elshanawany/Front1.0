@@ -30,7 +30,7 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
     <tr >
-    <th  id="OrderId" > OrderId</th>
+    <th  id="_id" > OrderId</th>
     <th  id="UserName" > UserName</th>
     <th  id="Items" > #Items</th>
     <th  id="TotalAmount" > TotalPrice</th>
@@ -312,7 +312,8 @@ window.addEventListener("load", function () {
                 order.UserID.toLowerCase().includes(searchTerm) ||
                 order._id.toLowerCase().includes(searchTerm) ||
                 order.Status.toLowerCase().includes(searchTerm) ||
-                order.CreatedAt.toLowerCase().includes(searchTerm)
+                order.CreatedAt.toLowerCase().includes(searchTerm)||
+                order.TotalAmount.toString().toLowerCase().includes(searchTerm)
         );
 
         currentPage = 1; // * Reset to the first page
@@ -369,7 +370,14 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
     const end = start + rowsPerPage;
     const paginatedUsers = Products.slice(start, end);
     paginatedUsers.forEach((product, index) => {
+        console.log("-----------------------1")
+        console.log(product.SellerID)
+        console.log("-----------------------2")
+        console.log(data.Users.find(user => user._id == product.SellerID).Name)
+        console.log("-----------------------3")
         let SellerName = data.Users.find(user => user._id == product.SellerID).Name
+        console.log("-----------------------4")
+        console.log(SellerName)
         //console.log(SellerName)
         const tr = document.createElement("tr");
         tr.innerHTML = `

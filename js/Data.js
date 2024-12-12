@@ -161,10 +161,20 @@ export const data = {
     ],
     Orders: [
         {
-            "_id": "order33331",
+            "_id": "A",
             "UserID": "user1",
             "Items": [
                 {
+                    "ProductID": "prod3",
+                    "SellerId": "user7",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },{
+                    "ProductID": "prod3",
+                    "SellerId": "user7",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },{
                     "ProductID": "prod3",
                     "SellerId": "user7",
                     "Quantity": 2,
@@ -176,7 +186,7 @@ export const data = {
             "CreatedAt": "2024-11-27T12:40:00Z"
         },
         {
-            "_id": "order1",
+            "_id": "B",
             "UserID": "user3",
             "Items": [
                 {
@@ -197,12 +207,22 @@ export const data = {
             "CreatedAt": "2024-11-27T12:40:00Z"
         },
         {
-            "_id": "order133",
+            "_id": "C",
             "UserID": "user3",
             "Items": [
                 {
                     "ProductID": "prod1",
                     "SellerId": "user2",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },{
+                    "ProductID": "prod3",
+                    "SellerId": "user7",
+                    "Quantity": 2,
+                    "Price": 59.99
+                },{
+                    "ProductID": "prod3",
+                    "SellerId": "user7",
                     "Quantity": 2,
                     "Price": 59.99
                 },
@@ -218,7 +238,7 @@ export const data = {
             "CreatedAt": "2024-01-27T12:40:00Z"
         },
         {
-            "_id": "order2",
+            "_id": "D",
             "UserID": "user3",
             "Items": [
                 {
@@ -239,7 +259,7 @@ export const data = {
             "CreatedAt": "2024-12-27T12:40:00Z"
         },
         {
-            "_id": "order3",
+            "_id": "E",
             "UserID": "user3",
             "Items": [
                 {
@@ -260,7 +280,7 @@ export const data = {
             "CreatedAt": "2024-08-27T12:40:00Z"
         },
         {
-            "_id": "order4",
+            "_id": "Z",
             "UserID": "user3",
             "Items": [
                 {
@@ -319,7 +339,7 @@ export const data = {
         },
         {
             "_id": "review1",
-            "UserID": "user3",
+            "UserID": "user8",
             "Comment": "Great quality, sturdy chair.",
             "CreatedAt": "2024-11-27T12:42:00Z"
         },
