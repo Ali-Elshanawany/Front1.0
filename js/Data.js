@@ -1,116 +1,174 @@
 export const data = {
     guestCart: [],
     CurrentUser:  {
-        "_id": "user3",
-            "Name": "Bob Buyer",
-            "Email": "buyer@example.com",
-            "Password": "hashed_password3",
-            "Phone": "123987456",
-            "City": "cairo",
-            "Street": "bla bla blaablaa ",
-            "Role": "User",
-            "CreatedAt": "2024-11-27T12:36:00Z" ,
-            "cart" : [
-                { "_id": "prod1", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
-              ]
+        "_id": "user2",
+        "Name": "Alice Seller",
+        "Email": "seller@example.com",
+        "Password": "ABCabc0123!@#",
+        "Phone": "01011245011",
+        "City": "cairo",
+        "Street": "bla bla blaablaa ",
+        "Role": "Seller",
+        "CreatedAt": "2024-11-27T12:35:00Z",
+        "TotalSales": 99999
     },
     Users: [
-        {
-            "_id": "user1",
-            "Name": "John Doe",
-            "Email": "admin@example.com",
-            "Password": "hashed_password1",
-            "Phone": "123456789",
-            "City": "cairo",
-            "Street": "bla bla blaablaa ",
-            "Role": "Admin",
-            "CreatedAt": "2024-11-27T12:34:56Z"
-        },
         {
             "_id": "user2",
             "Name": "Alice Seller",
             "Email": "seller@example.com",
-            "Password": "hashed_password2",
-            "Phone": "987654321",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01011245011",
             "City": "cairo",
             "Street": "bla bla blaablaa ",
             "Role": "Seller",
             "CreatedAt": "2024-11-27T12:35:00Z",
             "TotalSales": 99999
-        },
-        {
+        }, {
+            "_id": "user1",
+            "Name": "John Doe",
+            "Email": "admin@example.com",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01211145011",
+            "City": "cairo",
+            "Street": "bla bla blaablaa ",
+            "Role": "Admin",
+            "CreatedAt": "2024-11-27T12:34:56Z"
+        }, {
             "_id": "user3",
             "Name": "Bob Buyer",
             "Email": "buyer@example.com",
-            "Password": "hashed_password3",
-            "Phone": "123987456",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01511145011",
             "City": "cairo",
             "Street": "bla bla blaablaa ",
             "Role": "User",
             "CreatedAt": "2024-11-27T12:36:00Z"
-        }, {
+        },
+
+        {
+            "_id": "user4",
+            "Name": "Emma Smith",
+            "Email": "emma.smith@example.com",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01022334455",
+            "City": "cairo",
+            "Street": "123 Elm Street",
+            "Role": "Seller",
+            "CreatedAt": "2024-11-28T08:00:00Z",
+            "TotalSales": 75000
+        },
+        {
+            "_id": "user5",
+            "Name": "Liam Johnson",
+            "Email": "liam.johnson@example.com",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01233445566",
+            "City": "alexandria",
+            "Street": "456 Oak Avenue",
+            "Role": "Admin",
+            "CreatedAt": "2024-11-28T08:15:00Z"
+        },
+        {
             "_id": "user6",
-            "Name": "Emma User",
-            "Email": "user2@example.com",
-            "Password": "hashed_password6",
-            "Phone": "01245678901",
-            "City": "Alexandria",
-            "Street": "678 User Blvd",
+            "Name": "Sophia Williams",
+            "Email": "sophia.williams@example.com",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01122334455",
+            "City": "giza",
+            "Street": "789 Pine Lane",
             "Role": "User",
-            "CreatedAt": "2024-11-28T08:05:00Z"
+            "CreatedAt": "2024-11-28T08:30:00Z"
         },
         {
             "_id": "user7",
-            "Name": "Daniel Seller",
-            "Email": "seller3@example.com",
-            "Password": "hashed_password7",
-            "Phone": "01567891234",
-            "City": "Cairo",
-            "Street": "11 Seller Ln",
+            "Name": "James Brown",
+            "Email": "james.brown@example.com",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01222334455",
+            "City": "cairo",
+            "Street": "101 Maple Drive",
             "Role": "Seller",
-            "CreatedAt": "2024-11-28T08:06:00Z",
-            "TotalSales": 300
+            "CreatedAt": "2024-11-28T08:45:00Z",
+            "TotalSales": 60000
         },
         {
             "_id": "user8",
-            "Name": "Olivia User",
-            "Email": "user3@example.com",
-            "Password": "hashed_password8",
-            "Phone": "01123456789",
-            "City": "Giza",
-            "Street": "999 User Rd",
+            "Name": "Olivia Jones",
+            "Email": "olivia.jones@example.com",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01033445566",
+            "City": "sharm el-sheikh",
+            "Street": "202 Birch Way",
             "Role": "User",
-            "CreatedAt": "2024-11-28T08:07:00Z"
+            "CreatedAt": "2024-11-28T09:00:00Z"
         },
         {
             "_id": "user9",
-            "Name": "Michael Admin",
-            "Email": "admin3@example.com",
-            "Password": "hashed_password9",
-            "Phone": "01087654321",
-            "City": "Alexandria",
-            "Street": "555 Admin Blvd",
+            "Name": "Benjamin Garcia",
+            "Email": "benjamin.garcia@example.com",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01522334455",
+            "City": "cairo",
+            "Street": "303 Cedar Lane",
             "Role": "Admin",
-            "CreatedAt": "2024-11-28T08:08:00Z"
+            "CreatedAt": "2024-11-28T09:15:00Z"
         },
         {
             "_id": "user10",
-            "Name": "Sophia User",
-            "Email": "user4@example.com",
-            "Password": "hashed_password10",
-            "Phone": "01534567890",
-            "City": "Cairo",
-            "Street": "123 Sophia St",
+            "Name": "Charlotte Martinez",
+            "Email": "charlotte.martinez@example.com",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01133445566",
+            "City": "alexandria",
+            "Street": "404 Dogwood Court",
+            "Role": "Seller",
+            "CreatedAt": "2024-11-28T09:30:00Z",
+            "TotalSales": 85000
+        },
+        {
+            "_id": "user11",
+            "Name": "William Hernandez",
+            "Email": "william.hernandez@example.com",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01144556677",
+            "City": "cairo",
+            "Street": "505 Spruce Street",
             "Role": "User",
-            "CreatedAt": "2024-11-28T08:09:00Z"
+            "CreatedAt": "2024-11-28T09:45:00Z"
+        },
+        {
+            "_id": "user12",
+            "Name": "Amelia Lopez",
+            "Email": "amelia.lopez@example.com",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01055667788",
+            "City": "luxor",
+            "Street": "606 Willow Way",
+            "Role": "Seller",
+            "CreatedAt": "2024-11-28T10:00:00Z",
+            "TotalSales": 70000
+        },
+        {
+            "_id": "user13",
+            "Name": "Michael Gonzalez",
+            "Email": "michael.gonzalez@example.com",
+            "Password": "ABCabc0123!@#",
+            "Phone": "01266778899",
+            "City": "cairo",
+            "Street": "707 Cypress Lane",
+            "Role": "Admin",
+            "CreatedAt": "2024-11-28T10:15:00Z"
         }
+
+
+
     ],
     Categories: [
         { "_id": "Cat1", "Name": "Chairs", "Description": "Various types of chairs for different purposes." },
-    { "_id": "Cat2", "Name": "Tables", "Description": "Dining, work, and coffee tables." },
-    { "_id": "Cat3", "Name": "Beds", "Description": "Comfortable and stylish beds for your home." },
-    { "_id": "Cat4", "Name": "Cabinets", "Description": "Storage solutions for every room." }
+        { "_id": "Cat2", "Name": "Tables", "Description": "Dining, work, and coffee tables." },
+        { "_id": "Cat3", "Name": "Beds", "Description": "Comfortable and stylish beds for your home." },
+        { "_id": "Cat4", "Name": "Cabinets", "Description": "Storage solutions for every room." }
     ],
     Products: [
         {
@@ -127,7 +185,7 @@ export const data = {
             ],
             "CreatedAt": "2024-11-27T12:37:00Z",
             "NumOfSales": 5,
-            "Approved": true
+            "Approved": false
         },
         {
             "_id": "prod2",
@@ -143,7 +201,7 @@ export const data = {
             ],
             "CreatedAt": "2024-11-27T12:38:00Z",
             "NumOfSales": 5,
-            "Approved": true
+            "Approved": false
         },
         {
             "_id": "prod3",
@@ -172,12 +230,12 @@ export const data = {
                     "SellerId": "user7",
                     "Quantity": 2,
                     "Price": 59.99
-                },{
+                }, {
                     "ProductID": "prod3",
                     "SellerId": "user7",
                     "Quantity": 2,
                     "Price": 59.99
-                },{
+                }, {
                     "ProductID": "prod3",
                     "SellerId": "user7",
                     "Quantity": 2,
@@ -218,12 +276,12 @@ export const data = {
                     "SellerId": "user2",
                     "Quantity": 2,
                     "Price": 59.99
-                },{
+                }, {
                     "ProductID": "prod3",
                     "SellerId": "user7",
                     "Quantity": 2,
                     "Price": 59.99
-                },{
+                }, {
                     "ProductID": "prod3",
                     "SellerId": "user7",
                     "Quantity": 2,
@@ -475,9 +533,9 @@ export function getSellerSalesByMonth() {
     let monthlySalesArr = new Array(12).fill(0)
     data.Orders.forEach(x => {
         // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
-        x.Items.forEach(i=>{
-            if(i.SellerId==data.CurrentUser._id){
-                monthlySalesArr[new Date(x.CreatedAt).getMonth()] += (i.Price*i.Quantity)
+        x.Items.forEach(i => {
+            if (i.SellerId == data.CurrentUser._id) {
+                monthlySalesArr[new Date(x.CreatedAt).getMonth()] += (i.Price * i.Quantity)
             }
         })
     });

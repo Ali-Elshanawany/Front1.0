@@ -145,7 +145,11 @@ window.addEventListener("load", function () {
         const searchTerm = this.value.trim().toLowerCase();
         const filteredProducts = Products.filter(product =>
             product.Name.toLowerCase().includes(searchTerm) ||
-            product.Price.toLocaleString().toLowerCase().includes(searchTerm)
+            product.Description.toLowerCase().includes(searchTerm) ||
+            product.Price.toLocaleString().toLowerCase().includes(searchTerm)||
+            product.Stock.toLocaleString().toLowerCase().includes(searchTerm) ||
+            product.CategoryID.toLowerCase().includes(searchTerm) ||
+            product.CreatedAt.toLowerCase().includes(searchTerm) 
         );
         currentPage = 1; // * Reset to the first page
         displayProductsTable(filteredProducts, currentPage, rowsPerPage);
@@ -171,12 +175,12 @@ window.addEventListener("load", function () {
                     showCancelButton: true,
                     confirmButtonColor: "#3085d6",
                     cancelButtonColor: "#d33",
-                    confirmButtonText: "Yes, delete it!",
+                    confirmButtonText: "Yes, Cancel it!",
                 }).then((result) => {
                     if (result.isConfirmed) {
                         Swal.fire({
-                            title: "Deleted!",
-                            text: "Your file has been deleted.",
+                            title: "Canceled!",
+                            text: "Your Order has been Canceled.",
                             icon: "success",
                         });
                         // Orders.splice(index, 1);
@@ -261,12 +265,12 @@ window.addEventListener("load", function () {
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, Update it!"
+                confirmButtonText: "Yes, Approve it!"
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                        title: "Updated!",
-                        text: "Your file has been deleted.",
+                        title: "Approved!!",
+                        text: "Your Product has been Approved.",
                         icon: "success"
                     });
 
@@ -353,7 +357,7 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
         const prop = event.target.id;
         console.log("Asc Sorting")
         if (prop) {
-            Tickets.sort((a, b) => a[prop] > b[prop] ? 1 : -1);
+            Products.sort((a, b) => a[prop] > b[prop] ? 1 : -1);
             displayProductsTable(Products, currentPage, rowsPerPage);
         }
     });
@@ -362,7 +366,7 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
         const prop = event.target.id;
         console.log("Desc Sorting")
         if (prop) {
-            Tickets.sort((a, b) => a[prop] < b[prop] ? 1 : -1);
+            Products.sort((a, b) => a[prop] < b[prop] ? 1 : -1);
             displayProductsTable(Products, currentPage, rowsPerPage);
         }
     });
