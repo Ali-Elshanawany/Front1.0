@@ -260,7 +260,7 @@ body {
     margin: 1rem 0;
     border: 1px solid #ddd;
     border-radius: 10px;
-    background: linear-gradient(145deg, #f0e68c, #fffacd);
+    background: linear-gradient(145deg, #f0e68c, #9f8625);
     box-shadow:  5px 5px 10px #bebebe, 
                  -5px -5px 10px #ffffff;
     transition: transform 0.3s ease-in-out;
@@ -274,12 +274,12 @@ body {
 #placeOrder
 {
     font-family: 'Raleway', sans-serif;
-        color: #333;
+    color: #070707;
     padding: 2rem;
     margin: 1rem 0;
     border: 1px solid #ddd;
     border-radius: 10px;
-    background: linear-gradient(145deg, #f0e68c, #fffacd);
+    background: linear-gradient(145deg, #f0e68c, #9f8625);
     box-shadow:  5px 5px 10px #bebebe, 
                  -5px -5px 10px #ffffff;
     transition: transform 0.3s ease-in-out;
