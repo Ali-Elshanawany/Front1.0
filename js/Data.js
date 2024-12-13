@@ -1,7 +1,7 @@
 export const data = {
     guestCart: [],
     CurrentUser:  {
-        "_id": "user1734031165922",
+        "_id": "Seller1",
         "Name": "Seller1",
         "Email": "Seller1@Seller.com",
         "Phone": "01011145011",
@@ -10,11 +10,11 @@ export const data = {
         "Password": "asdASD123!@3",
         "Role": "Seller",
         "CreatedAt": "2024-12-12T19:19:25.922Z",
-        "TotalSales": 1500
+        "TotalSales": 9560
     },
     Users: [
         {
-            "_id": "user1734030945450",
+            "_id": "Admin1",
             "Name": "Admin1",
             "Email": "Admin1@Admin.com",
             "Phone": "01011145011",
@@ -25,7 +25,7 @@ export const data = {
             "CreatedAt": "2024-12-12T19:15:45.450Z"
         },
         {
-            "_id": "user1734030970403",
+            "_id": "Admin2",
             "Name": "Admin2",
             "Email": "Admin2@Admin.com",
             "Phone": "01011145011",
@@ -36,7 +36,7 @@ export const data = {
             "CreatedAt": "2024-12-12T19:16:10.403Z"
         },
         {
-            "_id": "user1734031105369",
+            "_id": "Admin3",
             "Name": "Admin3",
             "Email": "Admin3@Admin.com",
             "Phone": "01011145011",
@@ -47,7 +47,7 @@ export const data = {
             "CreatedAt": "2024-12-12T19:18:25.369Z"
         },
         {
-            "_id": "user1734031165922",
+            "_id": "Seller1",
             "Name": "Seller1",
             "Email": "Seller1@Seller.com",
             "Phone": "01011145011",
@@ -56,10 +56,10 @@ export const data = {
             "Password": "asdASD123!@3",
             "Role": "Seller",
             "CreatedAt": "2024-12-12T19:19:25.922Z",
-            "TotalSales": 1500
+            "TotalSales": 9560
         },
         {
-            "_id": "user1734031188592",
+            "_id": "Seller2",
             "Name": "Seller2",
             "Email": "Seller2@Seller.com",
             "Phone": "01111145011",
@@ -68,10 +68,10 @@ export const data = {
             "Password": "asdASD123!@3",
             "Role": "Seller",
             "CreatedAt": "2024-12-12T19:19:48.592Z",
-            "TotalSales": 5000
+            "TotalSales": 7854
         },
         {
-            "_id": "user1734031222895",
+            "_id": "Seller3",
             "Name": "Seller3",
             "Email": "Seller3@Seller.com",
             "Phone": "01211145011",
@@ -80,10 +80,10 @@ export const data = {
             "Password": "asdASD123!@3",
             "Role": "Seller",
             "CreatedAt": "2024-12-12T19:20:22.896Z",
-            "TotalSales": 9600
+            "TotalSales": 4523
         },
         {
-            "_id": "user1734031261613",
+            "_id": "User1",
             "Name": "User1",
             "Email": "User1@User.com",
             "Phone": "01211145011",
@@ -92,10 +92,11 @@ export const data = {
             "Password": "asdASD123!@3",
             "Role": "User",
             "CreatedAt": "2024-12-12T19:21:01.613Z",
-            "cart": []
+            "cart": [],
+            "Img":""
         },
         {
-            "_id": "user1734031285140",
+            "_id": "User2",
             "Name": "User2",
             "Email": "User2@User.com",
             "Phone": "01211145011",
@@ -104,10 +105,11 @@ export const data = {
             "Password": "asdASD123!@3",
             "Role": "User",
             "CreatedAt": "2024-12-12T19:21:25.140Z",
-            "cart": []
+            "cart": [],
+            "Img":""
         },
         {
-            "_id": "user1734031302175",
+            "_id": "User3",
             "Name": "User3",
             "Email": "User3@User.com",
             "Phone": "01211145011",
@@ -116,7 +118,8 @@ export const data = {
             "Password": "asdASD123!@3",
             "Role": "User",
             "CreatedAt": "2024-12-12T19:21:42.175Z",
-            "cart": []
+            "cart": [],
+            "Img":""
         }
     ],
     Categories: [
@@ -127,12 +130,12 @@ export const data = {
     ],
     Products: [
         {
-            "_id": "Product1734031752664",
+            "_id": "pro1",
             "Name": "Product 1",
             "Description": "This is a brief description for Product 1",
             "Price": "100",
             "Stock": "20",
-            "SellerID": "user1734031165922",
+            "SellerID": "Seller1",
             "CategoryID": "Cat1",
             "Images": [
                 "../assets/1.png",
@@ -143,12 +146,12 @@ export const data = {
             "Approved": true
         },
         {
-            "_id": "Product1734031767767",
+            "_id": "pro2",
             "Name": "Product 2",
             "Description": "This is a brief description for Product 2",
             "Price": "200",
             "Stock": "30",
-            "SellerID": "user1734031165922",
+            "SellerID": "Seller1",
             "CategoryID": "Cat1",
             "Images": [
                 "../assets/1.png",
@@ -159,12 +162,12 @@ export const data = {
             "Approved": true
         },
         {
-            "_id": "Product1734031783865",
+            "_id": "pro3",
             "Name": "Product 3",
             "Description": "This is a brief description for Product 3",
             "Price": "250",
             "Stock": "35",
-            "SellerID": "user1734031165922",
+            "SellerID": "Seller2",
             "CategoryID": "Cat2",
             "Images": [
                 "../assets/1.png",
@@ -175,12 +178,12 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "Product1734031796361",
+            "_id": "pro4",
             "Name": "Product 4",
             "Description": "This is a brief description for Product 4",
             "Price": "50",
             "Stock": "50",
-            "SellerID": "user1734031222895",
+            "SellerID": "Seller2",
             "CategoryID": "Cat2",
             "Images": [
                 "../assets/1.png",
@@ -191,12 +194,12 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "Product1734031815018",
+            "_id": "pro5",
             "Name": "Product 5",
             "Description": "This is a brief description for Product 5",
             "Price": "640",
             "Stock": "10",
-            "SellerID": "user1734031222895",
+            "SellerID": "Seller3",
             "CategoryID": "Cat3",
             "Images": [
                 "../assets/1.png",
@@ -207,12 +210,12 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "Product1734031829750",
+            "_id": "pro6",
             "Name": "Product 6",
             "Description": "This is a brief description for Product 6",
             "Price": "430",
             "Stock": "30",
-            "SellerID": "user1734031222895",
+            "SellerID": "Seller3",
             "CategoryID": "Cat3",
             "Images": [
                 "../assets/1.png",
@@ -223,12 +226,12 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "Product1734031842546",
+            "_id": "pro7",
             "Name": "Product 7",
             "Description": "This is a brief description for Product 7",
             "Price": "220",
             "Stock": "35",
-            "SellerID": "user1734031222895",
+            "SellerID": "Seller2",
             "CategoryID": "Cat3",
             "Images": [
                 "../assets/1.png",
@@ -239,12 +242,12 @@ export const data = {
             "Approved": true
         },
         {
-            "_id": "Product1734031860699",
+            "_id": "pro8",
             "Name": "Product 8",
             "Description": "This is a brief description for Product 8",
             "Price": "360",
             "Stock": "45",
-            "SellerID": "user1734031222895",
+            "SellerID": "Seller1",
             "CategoryID": "Cat4",
             "Images": [
                 "../assets/1.png",
@@ -258,38 +261,257 @@ export const data = {
     Orders:[
         {
             "_id": "A",
-            "UserID": "user1734031261613",
+            "UserID": "User1",
             "Items": [
                 {
-                    "ProductID": "Product1734031752664",
-                    "SellerId": "user1734031165922",
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
                     "Quantity": 2,
                     "Price": 100
                 },
                 {
-                    "ProductID": "Product1734031767767",
-                    "SellerId": "user1734031165922",
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
                     "Quantity": 2,
                     "Price": 200
                 }
             ],
             "TotalAmount": 600,
             "Status": "Pending",
-            "CreatedAt": "2024-11-27T12:40:00Z"
-        }
-        ,{
+            "CreatedAt": "2024-10-27T12:40:00Z"
+        },
+        {
             "_id": "B",
-            "UserID": "user1734031285140",
+            "UserID": "User2",
             "Items": [
                 {
-                    "ProductID": "Product1734031752664",
-                    "SellerId": "user1734031165922",
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 5,
+                    "Price": 500
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 900,
+            "Status": "Pending",
+            "CreatedAt": "2024-09-27T12:40:00Z"
+        },
+        {
+            "_id": "C",
+            "UserID": "User1",
+            "Items": [
+                {
+                    "ProductID": "pro8",
+                    "SellerId": "Seller1",
+                    "Quantity": 6,
+                    "Price": 2160
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 2560,
+            "Status": "Delivered",
+            "CreatedAt": "2024-08-27T12:40:00Z"
+        },
+        {
+            "_id": "D",
+            "UserID": "User2",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
                     "Quantity": 2,
                     "Price": 100
                 },
                 {
-                    "ProductID": "Product1734031767767",
-                    "SellerId": "user1734031165922",
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 600,
+            "Status": "Pending",
+            "CreatedAt": "2024-07-27T12:40:00Z"
+        },
+        {
+            "_id": "E",
+            "UserID": "User3",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 100
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 600,
+            "Status": "Pending",
+            "CreatedAt": "2024-10-27T12:40:00Z"
+        },
+        {
+            "_id": "F",
+            "UserID": "User2",
+            "Items": [
+                {
+                    "ProductID": "pro7",
+                    "SellerId": "Seller2",
+                    "Quantity": 2,
+                    "Price": 440
+                }
+            ],
+            "TotalAmount": 400,
+            "Status": "Pending",
+            "CreatedAt": "2024-10-27T12:40:00Z"
+        },
+        {
+            "_id": "WQ",
+            "UserID": "User3",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 10,
+                    "Price": 1000
+                },
+                {
+                    "ProductID": "pro7",
+                    "SellerId": "Seller2",
+                    "Quantity": 2,
+                    "Price": 440
+                }
+            ],
+            "TotalAmount": 1400,
+            "Status": "Shipped",
+            "CreatedAt": "2024-10-27T12:40:00Z"
+        },
+        {
+            "_id": "AA",
+            "UserID": "User1",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 100
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 600,
+            "Status": "Pending",
+            "CreatedAt": "2024-01-27T12:40:00Z"
+        },
+        {
+            "_id": "BA",
+            "UserID": "User3",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 100
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 600,
+            "Status": "Pending",
+            "CreatedAt": "2024-12-27T12:40:00Z"
+        },
+        {
+            "_id": "CA",
+            "UserID": "User2",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 5,
+                    "Price": 500
+                }
+            ],
+            "TotalAmount": 500,
+            "Status": "Pending",
+            "CreatedAt": "2024-10-27T12:40:00Z"
+        },
+        {
+            "_id": "ZA",
+            "UserID": "User3",
+            "Items": [
+                {
+                    "ProductID": "pro7",
+                    "SellerId": "Seller2",
+                    "Quantity": 2,
+                    "Price": 440
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 640,
+            "Status": "Pending",
+            "CreatedAt": "2024-05-27T12:40:00Z"
+        },
+        {
+            "_id": "VFA",
+            "UserID": "User1",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 100
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 600,
+            "Status": "Pending",
+            "CreatedAt": "2024-03-27T12:40:00Z"
+        },
+        {
+            "_id": "EWA",
+            "UserID": "User2",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 100
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
                     "Quantity": 2,
                     "Price": 200
                 }
@@ -299,41 +521,27 @@ export const data = {
             "CreatedAt": "2024-11-27T12:40:00Z"
         },
         {
-            "_id": "c",
-            "UserID": "user1734031261613",
+            "_id": "QWEA",
+            "UserID": "User1",
             "Items": [
                 {
-                    "ProductID": "Product1734031860699",
-                    "SellerId": "user1734031222895",
-                    "Quantity": 1,
-                    "Price": 360
-                }
-            ],
-            "TotalAmount": 360,
-            "Status": "Pending",
-            "CreatedAt": "2024-11-27T12:40:00Z"
-        }
-        ,{
-            "_id": "d",
-            "UserID": "user1734031285140",
-            "Items": [
-                {
-                    "ProductID": "Product1734031860699",
-                    "SellerId": "user1734031222895",
-                    "Quantity": 1,
-                    "Price": 360
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 100
                 },
                 {
-                    "ProductID": "Product1734031842546",
-                    "SellerId": "user1734031222895",
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
                     "Quantity": 2,
-                    "Price": 220
+                    "Price": 200
                 }
             ],
-            "TotalAmount": 800,
+            "TotalAmount": 600,
             "Status": "Pending",
-            "CreatedAt": "2024-11-27T12:40:00Z"
+            "CreatedAt": "2024-06-27T12:40:00Z"
         }
+        
         ],
     Tickets: [
         {
