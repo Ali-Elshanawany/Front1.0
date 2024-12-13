@@ -128,13 +128,13 @@ export const data = {
         { "_id": "Cat3", "Name": "Beds", "Description": "Comfortable and stylish beds for your home." },
         { "_id": "Cat4", "Name": "Cabinets", "Description": "Storage solutions for every room." }
     ],
-    Products: [
+    Products:[
         {
             "_id": "pro1",
             "Name": "Product 1",
             "Description": "This is a brief description for Product 1",
-            "Price": "100",
-            "Stock": "20",
+            "Price": 100,
+            "Stock": 20,
             "SellerID": "Seller1",
             "CategoryID": "Cat1",
             "Images": [
@@ -149,8 +149,8 @@ export const data = {
             "_id": "pro2",
             "Name": "Product 2",
             "Description": "This is a brief description for Product 2",
-            "Price": "200",
-            "Stock": "30",
+            "Price": 200,
+            "Stock": 30,
             "SellerID": "Seller1",
             "CategoryID": "Cat1",
             "Images": [
@@ -165,8 +165,8 @@ export const data = {
             "_id": "pro3",
             "Name": "Product 3",
             "Description": "This is a brief description for Product 3",
-            "Price": "250",
-            "Stock": "35",
+            "Price": 250,
+            "Stock": 35,
             "SellerID": "Seller2",
             "CategoryID": "Cat2",
             "Images": [
@@ -181,8 +181,8 @@ export const data = {
             "_id": "pro4",
             "Name": "Product 4",
             "Description": "This is a brief description for Product 4",
-            "Price": "50",
-            "Stock": "50",
+            "Price": 50,
+            "Stock": 50,
             "SellerID": "Seller2",
             "CategoryID": "Cat2",
             "Images": [
@@ -197,8 +197,8 @@ export const data = {
             "_id": "pro5",
             "Name": "Product 5",
             "Description": "This is a brief description for Product 5",
-            "Price": "640",
-            "Stock": "10",
+            "Price": 640,
+            "Stock": 10,
             "SellerID": "Seller3",
             "CategoryID": "Cat3",
             "Images": [
@@ -213,8 +213,8 @@ export const data = {
             "_id": "pro6",
             "Name": "Product 6",
             "Description": "This is a brief description for Product 6",
-            "Price": "430",
-            "Stock": "30",
+            "Price": 430,
+            "Stock": 30,
             "SellerID": "Seller3",
             "CategoryID": "Cat3",
             "Images": [
@@ -229,8 +229,8 @@ export const data = {
             "_id": "pro7",
             "Name": "Product 7",
             "Description": "This is a brief description for Product 7",
-            "Price": "220",
-            "Stock": "35",
+            "Price": 220,
+            "Stock": 35,
             "SellerID": "Seller2",
             "CategoryID": "Cat3",
             "Images": [
@@ -245,8 +245,8 @@ export const data = {
             "_id": "pro8",
             "Name": "Product 8",
             "Description": "This is a brief description for Product 8",
-            "Price": "360",
-            "Stock": "45",
+            "Price": 360,
+            "Stock": 45,
             "SellerID": "Seller1",
             "CategoryID": "Cat4",
             "Images": [
@@ -541,8 +541,7 @@ export const data = {
             "Status": "Pending",
             "CreatedAt": "2024-06-27T12:40:00Z"
         }
-        
-        ],
+    ],
     Tickets: [
         {
             "_id": "review1",
