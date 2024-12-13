@@ -123,10 +123,14 @@ export const data = {
         }
     ],
     Categories: [
-        { "_id": "Cat1", "Name": "Chairs", "Description": "Various types of chairs for different purposes." },
-        { "_id": "Cat2", "Name": "Tables", "Description": "Dining, work, and coffee tables." },
-        { "_id": "Cat3", "Name": "Beds", "Description": "Comfortable and stylish beds for your home." },
-        { "_id": "Cat4", "Name": "Cabinets", "Description": "Storage solutions for every room." }
+        { "_id": "cat1", "Name": "Chairs", "Description": "Various types of chairs for different purposes." },
+        { "_id": "cat2", "Name": "Tables", "Description": "Dining, work, and coffee tables." },
+        { "_id": "cat3", "Name": "Master Bedrooms", "Description": "Comfortable and stylish beds for your home." },
+        { "_id": "cat4", "Name": "Kitchens", "Description": "Storage solutions for every room." },
+        { "_id": "cat5", "Name": "Dining Rooms", "Description": "Various types of chairs for different purposes." },
+        { "_id": "cat6", "Name": "Living Rooms", "Description": "Dining, work, and coffee tables." },
+        { "_id": "cat7", "Name": "Entertainment", "Description": "Comfortable and stylish beds for your home." },
+        { "_id": "cat8", "Name": "Dressing Rooms", "Description": "Storage solutions for every room." }
     ],
     Products:[
         {
@@ -136,7 +140,7 @@ export const data = {
             "Price": 100,
             "Stock": 20,
             "SellerID": "Seller1",
-            "CategoryID": "Cat1",
+            "CategoryID": "cat1",
             "Images": [
                 "../assets/1.png",
                 "../assets/2.png"
@@ -152,7 +156,7 @@ export const data = {
             "Price": 200,
             "Stock": 30,
             "SellerID": "Seller1",
-            "CategoryID": "Cat1",
+            "CategoryID": "cat1",
             "Images": [
                 "../assets/1.png",
                 "../assets/2.png"
@@ -168,7 +172,7 @@ export const data = {
             "Price": 250,
             "Stock": 35,
             "SellerID": "Seller2",
-            "CategoryID": "Cat2",
+            "CategoryID": "cat2",
             "Images": [
                 "../assets/1.png",
                 "../assets/2.png"
@@ -184,7 +188,7 @@ export const data = {
             "Price": 50,
             "Stock": 50,
             "SellerID": "Seller2",
-            "CategoryID": "Cat2",
+            "CategoryID": "cat2",
             "Images": [
                 "../assets/1.png",
                 "../assets/2.png"
@@ -200,7 +204,7 @@ export const data = {
             "Price": 640,
             "Stock": 10,
             "SellerID": "Seller3",
-            "CategoryID": "Cat3",
+            "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
                 "../assets/2.png"
@@ -216,7 +220,7 @@ export const data = {
             "Price": 430,
             "Stock": 30,
             "SellerID": "Seller3",
-            "CategoryID": "Cat3",
+            "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
                 "../assets/2.png"
@@ -232,7 +236,7 @@ export const data = {
             "Price": 220,
             "Stock": 35,
             "SellerID": "Seller2",
-            "CategoryID": "Cat3",
+            "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
                 "../assets/2.png"
@@ -248,7 +252,7 @@ export const data = {
             "Price": 360,
             "Stock": 45,
             "SellerID": "Seller1",
-            "CategoryID": "Cat4",
+            "CategoryID": "cat4",
             "Images": [
                 "../assets/1.png",
                 "../assets/2.png"
@@ -257,7 +261,10 @@ export const data = {
             "NumOfSales": 0,
             "Approved": true
         }
-    ],
+    ]
+    
+    
+    ,
     Orders:[
         {
             "_id": "A",
