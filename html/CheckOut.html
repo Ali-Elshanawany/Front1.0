@@ -57,7 +57,7 @@
                 <div class="col-lg-8 col-md-10">
                     <form id="checkoutForm" class="row g-3 needs-validation"  novalidate>
 
-                        <div class="rounded-4 p-4 row g-3 bgPaige shadow-lg SD">
+                        <div class="rounded-4 p-4 row g-3 shadow-lg SD d-flex flex-row">
                             <span class="fs-4 fw-bold text-uppercase" style="color: #B88E2F;">Shipping Details:</span>
                             <div class="col-md-8">
                                 <label for="streetAddress" class="form-label">Shipping Address (In Details):</label>
@@ -117,8 +117,8 @@
                         </div>
         
         
-                        <div style="background: linear-gradient(145deg, #f0f0f0, #cacaca);" class="rounded-4 p-4 row g-3 mb-3">
-                            <span class="fs-4">Your Choices:</span>
+                        <div style="    background: linear-gradient(145deg, #f0e68c, #9f8625);" class="rounded-4 p-4 row g-3 mb-3">
+                            <span class="fs-4 fw-bold">Your Choices:</span>
                             <div id="items" class=" p-3 d-flex flex-column gap-3">
         
         
@@ -126,8 +126,8 @@
                         </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
-                    <div id="placeOrder" class="rounded-4 pt-4 p-4 mb-3 ">
-                        <p class="fs-3">Order Summary:</p> 
+                    <div id="placeOrder" class="rounded-4 pt-4 p-4 ">
+                        <p class="fs-3 fw-bold">Order Summary:</p> 
                         <div class="d-flex justify-content-between ">
                             <span id="numOfItems"></span>
                             <span id="SubTotal"></span>
@@ -146,21 +146,21 @@
                         </div>
                         <hr>
                         <div class="d-flex justify-content-between p-3">
-                            <h5 style="color: #B88E2F;">Total:</h5>
+                            <h5 style="color: #B88E2F;" class="fw-bold">Total:</h5>
                             <h5 style="color: #B88E2F;" id="AfterTax"></h5>
                         </div>
                         <hr>
                         <form id="checkoutForm" class="needs-validation" novalidate>
                             <div class="form-check pt-3">
                                 <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
-                                <label class="form-check-label" for="termsCheckbox">
+                                <label class="form-check-label fw-bold" for="termsCheckbox">
                                     I Agree To Company's Privacy Policy
                                 </label>
                                 <div class="invalid-feedback">
                                     You Must Agree Before Placing Your Order.
                                 </div>
                             </div>
-                        <button id="placing" style="background-color: #B88E2F; color: white;" class="btn w-100 mt-3" type="submit">Place Order</button>
+                        <button id="placing" style="background-color: #B88E2F; color: white;" class="btn w-100 mt-3 fw-bold" type="submit">Place Order</button>
                     </div>
                 </div>
             </form>

@@ -47,7 +47,7 @@
 .luxurious-card {
     border: 2px solid gold;
     border-radius: 15px;
-    background-color: #ecd6a4;    
+    background: linear-gradient(145deg, #f0e68c, #fffacd);
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     transition: transform 0.3s, box-shadow 0.3s;
 }
@@ -260,7 +260,7 @@ body {
     margin: 1rem 0;
     border: 1px solid #ddd;
     border-radius: 10px;
-    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    background: linear-gradient(145deg, #f0e68c, #fffacd);
     box-shadow:  5px 5px 10px #bebebe, 
                  -5px -5px 10px #ffffff;
     transition: transform 0.3s ease-in-out;
@@ -279,7 +279,7 @@ body {
     margin: 1rem 0;
     border: 1px solid #ddd;
     border-radius: 10px;
-    background: linear-gradient(145deg, #f0f0f0, #cacaca);
+    background: linear-gradient(145deg, #f0e68c, #fffacd);
     box-shadow:  5px 5px 10px #bebebe, 
                  -5px -5px 10px #ffffff;
     transition: transform 0.3s ease-in-out;
