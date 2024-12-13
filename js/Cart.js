@@ -9,12 +9,12 @@ import {
     isAuthorized,
 } from "./Data.js";
 
-// isAuthorized();
+isAuthorized();
 
-const user = getCurrentUser();
-if (user && user.Role !== "User") {
-    location.assign("../html/Home.html");
-}
+// const user = getCurrentUser();
+// if (user && user.Role !== "User") {
+//     location.assign("../html/403.html");
+// }
 
 let usercart = getCurrentCart();
 let cart = usercart.map((item) => ({
