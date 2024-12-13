@@ -14,16 +14,8 @@ export const data = {
             [
                 { "_id": "prod1", "Quantity": 2 },
                 { "_id": "prod2", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
-
-            ]
+            ],
+            "orders": ["order1"]
     },
     Users: [
         {
@@ -47,7 +39,8 @@ export const data = {
             "Street": "bla bla blaablaa ",
             "Role": "Seller",
             "CreatedAt": "2024-11-27T12:35:00Z",
-            "TotalSales": 99999
+            "TotalSales": 99999,
+            "orders": ["order1"]
         },
         {
             "_id": "user3",
@@ -58,7 +51,13 @@ export const data = {
             "City": "cairo",
             "Street": "bla bla blaablaa ",
             "Role": "User",
-            "CreatedAt": "2024-11-27T12:36:00Z"
+            "CreatedAt": "2024-11-27T12:36:00Z",
+            "cart" : 
+            [
+                { "_id": "prod1", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+            ],
+            "orders": ["order1"]
         }, {
             "_id": "user6",
             "Name": "Emma User",
@@ -68,7 +67,13 @@ export const data = {
             "City": "Alexandria",
             "Street": "678 User Blvd",
             "Role": "User",
-            "CreatedAt": "2024-11-28T08:05:00Z"
+            "CreatedAt": "2024-11-28T08:05:00Z",
+            "cart" : 
+            [
+                { "_id": "prod1", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+            ],
+            "orders": ["order1"]
         },
         {
             "_id": "user7",
@@ -80,7 +85,13 @@ export const data = {
             "Street": "11 Seller Ln",
             "Role": "Seller",
             "CreatedAt": "2024-11-28T08:06:00Z",
-            "TotalSales": 300
+            "TotalSales": 300,
+            "cart" : 
+            [
+                { "_id": "prod1", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+            ],
+            "orders": ["order1"]
         },
         {
             "_id": "user8",
@@ -91,7 +102,13 @@ export const data = {
             "City": "Giza",
             "Street": "999 User Rd",
             "Role": "User",
-            "CreatedAt": "2024-11-28T08:07:00Z"
+            "CreatedAt": "2024-11-28T08:07:00Z",
+            "cart" : 
+            [
+                { "_id": "prod1", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+            ],
+            "orders": ["order1"]
         },
         {
             "_id": "user9",
@@ -102,7 +119,13 @@ export const data = {
             "City": "Alexandria",
             "Street": "555 Admin Blvd",
             "Role": "Admin",
-            "CreatedAt": "2024-11-28T08:08:00Z"
+            "CreatedAt": "2024-11-28T08:08:00Z",
+            "cart" : 
+            [
+                { "_id": "prod1", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+            ],
+            "orders": ["order1"]
         },
         {
             "_id": "user10",
@@ -113,7 +136,13 @@ export const data = {
             "City": "Cairo",
             "Street": "123 Sophia St",
             "Role": "User",
-            "CreatedAt": "2024-11-28T08:09:00Z"
+            "CreatedAt": "2024-11-28T08:09:00Z",
+            "cart" : 
+            [
+                { "_id": "prod1", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+            ],
+            "orders": ["order1"]
         }
     ],
     Categories: [
@@ -186,7 +215,13 @@ export const data = {
             ],
             "TotalAmount": 239.98,
             "Status": "Pending",
-            "CreatedAt": "2024-11-27T12:40:00Z"
+            "CreatedAt": "2024-11-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219",
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
         },
         {
             "_id": "order1",
@@ -207,7 +242,13 @@ export const data = {
             ],
             "TotalAmount": 239.98,
             "Status": "Pending",
-            "CreatedAt": "2024-11-27T12:40:00Z"
+            "CreatedAt": "2024-11-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219",
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
         },
         {
             "_id": "order133",
@@ -228,7 +269,13 @@ export const data = {
             ],
             "TotalAmount": 565.98,
             "Status": "Pending",
-            "CreatedAt": "2024-01-27T12:40:00Z"
+            "CreatedAt": "2024-01-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219",
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
         },
         {
             "_id": "order2",
@@ -249,7 +296,13 @@ export const data = {
             ],
             "TotalAmount": 239.98,
             "Status": "Shipped",
-            "CreatedAt": "2024-12-27T12:40:00Z"
+            "CreatedAt": "2024-12-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219",
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
         },
         {
             "_id": "order3",
@@ -270,7 +323,13 @@ export const data = {
             ],
             "TotalAmount": 239.98,
             "Status": "Delivered",
-            "CreatedAt": "2024-08-27T12:40:00Z"
+            "CreatedAt": "2024-08-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219",
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
         },
         {
             "_id": "order4",
@@ -291,7 +350,13 @@ export const data = {
             ],
             "TotalAmount": 239.98,
             "Status": "Canceled",
-            "CreatedAt": "2024-09-27T12:40:00Z"
+            "CreatedAt": "2024-09-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219", 
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
         }
     ],
     Tickets: [
@@ -341,7 +406,7 @@ export const data = {
 }
 
 const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page', 'Products&Orders.html'];
-const UserPages = ['home.page' , 'Cart.html'];
+const UserPages = ['home.page' , 'Cart.html' , 'CheckOut.html'];
 const SellerPages = ['home.page'];
 const GuestPages = ['home.page', 'ProductDetails'];
 
@@ -366,8 +431,6 @@ export function saveInLocalStorage(key, value) {
 export function getCurrentUser() {
     return data.CurrentUser;
 }
-
-// cart related
 
 export function getProductById(id) {
     return data.Products.find((product) => product._id === id);
@@ -418,7 +481,9 @@ export function DeleteFromCart(id) {
     saveDataInLocalStorage();
 }
 
-///////////////////////////////////
+export function generateRandomId() {
+    return Math.floor(Math.random() * 1000000) + 1;
+}
 
 export function addUser(User) {
     data.Users.push(User);

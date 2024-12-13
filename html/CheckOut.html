@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CheckOut</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style/CheckOut.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Diphylleia&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Lobster&display=swap" rel="stylesheet">
+</head>
+<body style="min-height: 100vh; display: flex; flex-direction: column;">
+    <div id="hero" class="container-fluid d-flex justify-content-center flex-column mb-3 ">
+        <div class="text-center "><img width="75 em" src="../assets/pic.png" alt="logo"></div>
+        <span class="text-center fw-bold fs-1 m-0 p-0">Checkout</span><br>
+        <div class="d-flex justify-content-center">
+            <nav  aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item">
+                        <a class="text-decoration-none text-white fw-bold position-relative" href="../html/Home.html">
+                            Home
+                            <span class="hover-underline-animation"></span>
+                        </a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a class="text-decoration-none text-white fw-bold position-relative" href="../html/Cart.html">
+                                Cart
+                                <span class="hover-underline-animation"></span>
+                            </a>
+                            </li>
+                    <li class="breadcrumb-item active text-decoration-none fw-bold" aria-current="page">Checkout</li>
+                </ol>
+            </nav>
+        </div>
+</div>
+    <div id="all">
+        <div id="content" class="container ">
+            <div class="row ">
+                <div class="col-lg-8 col-md-10">
+                    <form id="checkoutForm" class="row g-3 needs-validation"  novalidate>
+
+                        <!-- Shipping Details  -->
+                        <div class="rounded-4 p-4 row g-3 bgPaige shadow-lg SD">
+                            <span class="fs-4 fw-bold text-uppercase" style="color: #B88E2F;">Shipping Details:</span>
+                            <div class="col-md-8">
+                                <label for="streetAddress" class="form-label">Shipping Address (In Details):</label>
+                                <input type="text" name="streetAddress" class="form-control border-0 shadow-sm" id="streetAddress" pattern=".{8,}" required>
+                                <div class="valid-feedback">
+                                    This Is A Nice Place To live At!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please Enter Your Address Correctly. It should be at least 8 characters long.
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="additionalPhoneNumber" class="form-label">Additional Phone Number:</label>
+                                <input type="text" name="additionalPhoneNumber" class="form-control border-0 shadow-sm" id="additionalPhoneNumber" pattern="^(010|011|012|015)[0-9]{8}$" required>
+                                <div class="valid-feedback">
+                                    We Will Call You!
+                                </div>
+                                <div class="invalid-feedback">
+                                    Please enter a valid phone number.
+                                </div>
+                            </div>
+
+                            <div class="col-md-4">
+                                <label for="Governerate" name="Governerate" class="form-label">Governerate:</label>
+                                <select class="form-select border-0 shadow-sm" id="Governerate" required>
+                                    <option selected disabled value="">Choose Your State</option>
+                                    <option value="Alexandria">Alexandria</option>
+                                    <option value="Dakahlia">Dakahlia</option>
+                                    <option value="Asyut">Asyut</option>
+                                    <option value="Beheira">Beheira</option>
+                                    <option value="Cairo">Cairo</option>
+                                    <option value="Giza">Giza</option>
+                                    <option value="Monufia">Monufia</option>
+                                </select>
+                                <div class="invalid-feedback">
+                                    Please Enter Your Governerate.
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="City" class="form-label">City:</label>
+                                <input name="City" pattern="[A-Za-z]{3,}" type="text" class="form-control border-0 shadow-sm" id="City" required>
+                                <div class="invalid-feedback">
+                                    Please Enter Your City Name.
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <label for="Zip" class="form-label">Zip:</label>
+                                <input name="Zip" pattern="[0-9]{5}" type="text" class="form-control border-0 shadow-sm" id="Zip" required>
+                                <div class="invalid-feedback">
+                                    Please Enter A Valid Zip Code.
+                                </div>
+                                <div class="valid-feedback">
+                                    Alright!
+                                </div>
+                            </div>
+                        </div>
+        
+                        <!-- Items -->
+        
+                        <div style="background: linear-gradient(145deg, #f0f0f0, #cacaca);" class="rounded-4 p-4 row g-3 mb-3">
+                            <span class="fs-4">Your Choices:</span>
+                            <div id="items" class=" p-3 d-flex flex-column gap-3">
+        
+        
+                            </div>
+                        </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div id="placeOrder" class="rounded-4 pt-4 p-4 mb-3 ">
+                        <p class="fs-3">Order Summary:</p> 
+                        <div class="d-flex justify-content-between ">
+                            <span id="numOfItems"></span>
+                            <span id="SubTotal"></span>
+                        </div>
+                        <div class="d-flex justify-content-between ">
+                            <span>Shipping and handling:</span>
+                            <span id="Shipping">66</span>
+                        </div>
+                        <div class="d-flex justify-content-between ">
+                            <span>Before Tax:</span>
+                            <span id="beforeTax">55</span>
+                        </div>
+                        <div class="d-flex justify-content-between ">
+                            <span>Tax Collected:</span>
+                            <span id="Tax">20</span>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between p-3">
+                            <h5 style="color: #B88E2F;">Total:</h5>
+                            <h5 style="color: #B88E2F;" id="AfterTax"></h5>
+                        </div>
+                        <hr>
+                        <form id="checkoutForm" class="needs-validation" novalidate>
+                            <div class="form-check pt-3">
+                                <input class="form-check-input" type="checkbox" id="termsCheckbox" required>
+                                <label class="form-check-label" for="termsCheckbox">
+                                    I Agree To Company's Privacy Policy
+                                </label>
+                                <div class="invalid-feedback">
+                                    You Must Agree Before Placing Your Order.
+                                </div>
+                            </div>
+                        <button id="placing" style="background-color: #B88E2F; color: white;" class="btn w-100 mt-3" type="submit">Place Order</button>
+                    </div>
+                </div>
+            </form>
+        
+            </div>
+        </div>
+    </div>
+    <div style="flex: 1;"></div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="module" src="../js/CheckOut.js"></script>
+</body>
+
+</html>
