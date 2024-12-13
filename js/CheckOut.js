@@ -11,7 +11,6 @@ import {
     isAuthorized,
   } from "./Data.js";
 
-const body = document.querySelector("body");
 const user = getCurrentUser();
 isAuthorized();
 

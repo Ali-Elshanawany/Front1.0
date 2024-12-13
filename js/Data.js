@@ -12,8 +12,8 @@ export const data = {
             "CreatedAt": "2024-11-27T12:36:00Z" ,
             "cart" : 
             [
-                { "_id": "prod1", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
             ],
             "orders": ["order1"]
     },
