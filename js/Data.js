@@ -1,6 +1,6 @@
 export const data = {
     guestCart: [],
-    CurrentUser: {
+    CurrentUser:   {
         "_id": "user1",
         "Name": "John Doe",
         "Email": "admin@example.com",
@@ -13,27 +13,50 @@ export const data = {
     },
     Users: [
         {
-            "_id": "user1",
-            "Name": "John Doe",
-            "Email": "admin@example.com",
-            "Password": "hashed_password1",
-            "Phone": "123456789",
+            "_id": "Admin1",
+            "Name": "Admin1",
+            "Email": "Admin1@Admin.com",
+            "Phone": "01011145011",
             "City": "cairo",
-            "Street": "bla bla blaablaa ",
+            "Street": "Tanta",
+            "Password": "asdASD123!@3",
             "Role": "Admin",
-            "CreatedAt": "2024-11-27T12:34:56Z"
+            "CreatedAt": "2024-12-12T19:15:45.450Z"
         },
         {
-            "_id": "user2",
-            "Name": "Alice Seller",
-            "Email": "seller@example.com",
-            "Password": "hashed_password2",
-            "Phone": "987654321",
-            "City": "cairo",
-            "Street": "bla bla blaablaa ",
+            "_id": "Admin2",
+            "Name": "Admin2",
+            "Email": "Admin2@Admin.com",
+            "Phone": "01011145011",
+            "City": "gharbia",
+            "Street": "al-ashraf",
+            "Password": "asdASD123!@3",
+            "Role": "Admin",
+            "CreatedAt": "2024-12-12T19:16:10.403Z"
+        },
+        {
+            "_id": "Admin3",
+            "Name": "Admin3",
+            "Email": "Admin3@Admin.com",
+            "Phone": "01011145011",
+            "City": "alexandria",
+            "Street": "miami",
+            "Password": "asdASD123!@3",
+            "Role": "Admin",
+            "CreatedAt": "2024-12-12T19:18:25.369Z"
+        },
+        {
+            "_id": "Seller1",
+            "Name": "Seller1",
+            "Email": "Seller1@Seller.com",
+            "Phone": "01011145011",
+            "City": "dakahlia",
+            "Street": "second street ",
+            "Password": "asdASD123!@3",
             "Role": "Seller",
             "CreatedAt": "2024-11-27T12:35:00Z",
-            "TotalSales":99999
+            "TotalSales": 99999,
+            "orders": ["order1"]
         },
         {
             "_id": "user3",
@@ -44,9 +67,8 @@ export const data = {
             "City": "cairo",
             "Street": "bla bla blaablaa ",
             "Role": "User",
-            "CreatedAt": "2024-11-27T12:36:00Z",
-            
-        },
+            "CreatedAt": "2024-11-27T12:36:00Z"
+        }
     ],
     Categories: [
         {
@@ -60,138 +82,116 @@ export const data = {
             "Description": "Dining and work tables."
         }
     ],
-    
     Products: [
         {
             "_id": "prod1",
             "Name": "Wooden Chair",
             "Description": "A sturdy wooden chair for dining or work.",
             "Price": 59.99,
-            "Stock": 0,
+            "Stock": 50,
             "CategoryID": "cat1",
-            "SellerID": "user2",
             "Images": [
-                "../assets/chair2.jpg",
-                "../assets/chair.jpg",
+                "../assets/1.png",
+                "../assets/2.png"
             ],
-            "CreatedAt": "2024-11-27T12:37:00Z",
-            "NumOfSales": 5,
-            "Approved":true
+            "CreatedAt": "2024-12-12T19:29:27.767Z",
+            "NumOfSales": 12,
+            "Approved": true
+        },
+        {
+            "_id": "pro3",
+            "Name": "Product 3",
+            "Description": "This is a brief description for Product 3",
+            "Price": 250,
+            "Stock": 35,
+            "SellerID": "Seller2",
+            "CategoryID": "cat2",
+            "Images": [
+                "image1_url",
+                "image2_url"
+            ],
+            "CreatedAt": "2024-12-12T19:29:43.865Z",
+            "NumOfSales": 0,
+            "Approved": false
         },
         {
             "_id": "prod2",
-            "Name": "Wodden Table",
-            "Description": "A stylish wooden table.",
+            "Name": "Glass Table",
+            "Description": "A stylish glass-top table.",
             "Price": 120.0,
             "Stock": 20,
             "CategoryID": "cat2",
-            "SellerID": "user2",
             "Images": [
-                "../assets/table.jpg",
-                "../assets/tabelswebp.webp"
+                "../assets/1.png",
+                "../assets/2.png"
             ],
-            "CreatedAt": "2024-11-27T12:38:00Z",
-            "NumOfSales": 5,
-            "Approved":true
+            "CreatedAt": "2024-12-12T19:29:56.361Z",
+            "NumOfSales": 0,
+            "Approved": false
         },
         {
-            "_id": "prod3",
-            "Name": "kitchen",
-            "Description": "A stylish kitchen.",
-            "Price": 1200.0,
-            "Stock": 20,
+            "_id": "pro5",
+            "Name": "Product 5",
+            "Description": "This is a brief description for Product 5",
+            "Price": 640,
+            "Stock": 10,
+            "SellerID": "Seller3",
             "CategoryID": "cat3",
-            "SellerID": "user2",
             "Images": [
-                "../assets/dinningroom.jpg",
-                "../assets/kitchen.avif"
+                "../assets/1.png",
+                "../assets/2.png"
             ],
-            "CreatedAt": "2024-11-27T12:38:00Z",
-            "NumOfSales": 5,
-            "Approved":true
-        },{
-            "_id": "prod4",
-            "Name": "master room",
-            "Description": "A stylish master room.",
-            "Price": 120.0,
-            "Stock": 20,
-            "CategoryID": "cat4",
-            "SellerID": "user2",
-            "Images": [
-                "../assets/file.png",
-                "../assets/img3.avif"
-            ],
-            "CreatedAt": "2024-11-27T12:38:00Z",
-            "NumOfSales": 5
+            "CreatedAt": "2024-12-12T19:30:15.018Z",
+            "NumOfSales": 0,
+            "Approved": false
         },
         {
-            "_id": "prod5",
-            "Name": "master room",
-            "Description": "A stylish master room.",
-            "Price": 120.0,
-            "Stock": 20,
-            "CategoryID": "cat4",
-            "SellerID": "user2",
+            "_id": "pro6",
+            "Name": "Product 6",
+            "Description": "This is a brief description for Product 6",
+            "Price": 430,
+            "Stock": 30,
+            "SellerID": "Seller3",
+            "CategoryID": "cat3",
             "Images": [
-                "../assets/file.png",
-                "../assets/img3.avif"
+                "../assets/1.png",
+                "../assets/2.png"
             ],
-            "CreatedAt": "2024-11-27T12:38:00Z",
-            "NumOfSales": 5
+            "CreatedAt": "2024-12-12T19:30:29.750Z",
+            "NumOfSales": 0,
+            "Approved": false
         },
         {
-
-            "_id": "prod6",
-            "Name": "master room",
-            "Description": "A stylish master room.",
-            "Price": 120.0,
-            "Stock": 20,
-            "CategoryID": "cat4",
-            "SellerID": "user2",
+            "_id": "pro7",
+            "Name": "Product 7",
+            "Description": "This is a brief description for Product 7",
+            "Price": 220,
+            "Stock": 35,
+            "SellerID": "Seller2",
+            "CategoryID": "cat3",
             "Images": [
-                "../assets/file.png",
-                "../assets/img3.avif"
+                "../assets/1.png",
+                "../assets/2.png"
             ],
-            "CreatedAt": "2024-11-27T12:38:00Z",
-            "NumOfSales": 5
-
+            "CreatedAt": "2024-12-12T19:30:42.546Z",
+            "NumOfSales": 0,
+            "Approved": true
         },
         {
-
-            "_id": "prod7",
-            "Name": "master room",
-            "Description": "A stylish master room.",
-            "Price": 4000.0,
-            "Stock": 20,
+            "_id": "pro8",
+            "Name": "Product 8",
+            "Description": "This is a brief description for Product 8",
+            "Price": 360,
+            "Stock": 45,
+            "SellerID": "Seller1",
             "CategoryID": "cat4",
-            "SellerID": "user2",
             "Images": [
-                "../assets/children-bed.avif",
-                "../assets/img3.avif"
+                "image3_url",
+                "image4_url"
             ],
             "CreatedAt": "2024-11-27T12:38:00Z",
             "NumOfSales": 5
-
-        },
-        {
-
-            "_id": "prod8",
-            "Name": "dinning room",
-            "Description": "A stylish master room.",
-            "Price": 16000,
-            "Stock": 20,
-            "CategoryID": "cat4",
-            "SellerID": "user2",
-            "Images": [
-                "../assets/img6.jpg",
-                "../assets/img3.avif"
-            ],
-            "CreatedAt": "2024-11-27T12:38:00Z",
-            "NumOfSales": 5
-
         }
-       
-           
     ],
     Orders: [
         {
@@ -199,146 +199,294 @@ export const data = {
             "UserID": "user1",
             "Items": [
                 {
-                    "ProductID": "prod1",
-                    "SellerId":"user2",
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
                     "Quantity": 2,
-                    "Price": 59.99
+                    "Price": 100
                 },
                 {
-                    "ProductID": "prod2",
-                    "SellerId":"user2",
-                    "Quantity": 1,
-                    "Price": 120.0
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
                 }
             ],
-            "TotalAmount": 239.98,
+            "TotalAmount": 600,
             "Status": "Pending",
-            "CreatedAt": "2024-11-27T12:40:00Z"
+            "CreatedAt": "2024-11-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219",
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
         },
         {
-            "_id": "order1",
-            "UserID": "user3",
+            "_id": "E",
+            "UserID": "User3",
             "Items": [
                 {
-                    "ProductID": "prod1",
-                    "SellerId":"user2",
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
                     "Quantity": 2,
-                    "Price": 59.99
+                    "Price": 100
                 },
                 {
-                    "ProductID": "prod2",
-                    "SellerId":"user2",
-                    "Quantity": 1,
-                    "Price": 120.0
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
                 }
             ],
-            "TotalAmount": 239.98,
+            "TotalAmount": 600,
             "Status": "Pending",
-            "CreatedAt": "2024-11-27T12:40:00Z"
+            "CreatedAt": "2024-10-27T12:40:00Z"
         },
         {
-            "_id": "order133",
-            "UserID": "user3",
+            "_id": "F",
+            "UserID": "User2",
             "Items": [
                 {
-                    "ProductID": "prod1",
-                    "SellerId":"user2",
+                    "ProductID": "pro7",
+                    "SellerId": "Seller2",
                     "Quantity": 2,
-                    "Price": 59.99
-                },
-                {
-                    "ProductID": "prod2",
-                    "SellerId":"user2",
-                    "Quantity": 1,
-                    "Price": 120.0
+                    "Price": 440
                 }
             ],
-            "TotalAmount": 565.98,
+            "TotalAmount": 400,
             "Status": "Pending",
-            "CreatedAt": "2024-01-27T12:40:00Z"
+            "CreatedAt": "2024-11-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219",
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
         },
         {
-            "_id": "order1",
-            "UserID": "user3",
+            "_id": "WQ",
+            "UserID": "User3",
             "Items": [
                 {
-                    "ProductID": "prod1",
-                    "SellerId":"user2",
-                    "Quantity": 2,
-                    "Price": 59.99
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 10,
+                    "Price": 1000
                 },
                 {
-                    "ProductID": "prod2",
-                    "SellerId":"user2",
-                    "Quantity": 1,
-                    "Price": 120.0
+                    "ProductID": "pro7",
+                    "SellerId": "Seller2",
+                    "Quantity": 2,
+                    "Price": 440
+                }
+            ],
+            "TotalAmount": 1400,
+            "Status": "Shipped",
+            "CreatedAt": "2024-10-27T12:40:00Z"
+        },
+        {
+            "_id": "AA",
+            "UserID": "User1",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 100
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 600,
+            "Status": "Pending",
+            "CreatedAt": "2024-01-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219",
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
+        },
+        {
+            "_id": "BA",
+            "UserID": "User3",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 100
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
                 }
             ],
             "TotalAmount": 239.98,
             "Status": "Shipped",
-            "CreatedAt": "2024-12-27T12:40:00Z"
+            "CreatedAt": "2024-12-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219",
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
         },
         {
-            "_id": "order1",
-            "UserID": "user3",
+            "_id": "CA",
+            "UserID": "User2",
             "Items": [
                 {
-                    "ProductID": "prod1",
-                    "SellerId":"user2",
-                    "Quantity": 2,
-                    "Price": 59.99
-                },
-                {
-                    "ProductID": "prod2",
-                    "SellerId":"user2",
-                    "Quantity": 1,
-                    "Price": 120.0
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 5,
+                    "Price": 500
                 }
             ],
-            "TotalAmount": 239.98,
-            "Status": "Processing",
-            "CreatedAt": "2024-08-27T12:40:00Z"
-        },
-        {
-            "_id": "order1",
-            "UserID": "user3",
-            "Items": [
-                {
-                    "ProductID": "prod1",
-                    "SellerId":"user2",
-                    "Quantity": 2,
-                    "Price": 59.99
-                },
-                {
-                    "ProductID": "prod2",
-                    "SellerId":"user2",
-                    "Quantity": 1,
-                    "Price": 120.0
-                }
-            ],
-            "TotalAmount": 239.98,
+            "TotalAmount": 500,
             "Status": "Pending",
-            "CreatedAt": "2024-09-27T12:40:00Z"
-        }
-    ],
-    Cart: [
+            "CreatedAt": "2024-10-27T12:40:00Z"
+        },
         {
-            "_id": "cart1",
-            "UserID": "user3",
+            "_id": "ZA",
+            "UserID": "User3",
             "Items": [
                 {
-                    "ProductID": "prod1",
-                    "Quantity": 1
+                    "ProductID": "pro7",
+                    "SellerId": "Seller2",
+                    "Quantity": 2,
+                    "Price": 440
                 },
                 {
-                    "ProductID": "prod2",
-                    "Quantity": 2
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
                 }
             ],
-            "UpdatedAt": "2024-11-27T12:41:00Z"
+            "TotalAmount": 640,
+            "Status": "Pending",
+            "CreatedAt": "2024-05-27T12:40:00Z"
+        },
+        {
+            "_id": "VFA",
+            "UserID": "User1",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 100
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 600,
+            "Status": "Pending",
+            "CreatedAt": "2024-03-27T12:40:00Z"
+        },
+        {
+            "_id": "EWA",
+            "UserID": "User2",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 100
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 239.98,
+            "Status": "Delivered",
+            "CreatedAt": "2024-08-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219",
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
+        },
+        {
+            "_id": "QWEA",
+            "UserID": "User1",
+            "Items": [
+                {
+                    "ProductID": "pro1",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 100
+                },
+                {
+                    "ProductID": "pro2",
+                    "SellerId": "Seller1",
+                    "Quantity": 2,
+                    "Price": 200
+                }
+            ],
+            "TotalAmount": 239.98,
+            "Status": "Canceled",
+            "CreatedAt": "2024-09-27T12:40:00Z",
+            "customerInfo": {
+                "streetAddress": "El-Estaad St.",
+                "AddPNum": "01090300219", 
+                "City": "Mansoura",
+                "Zip": "35511",
+              },
         }
     ],
     Tickets: [
+        {
+            "_id": "review1",
+            "UserID": "user3",
+            "Comment": "A",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
+        {
+            "_id": "review2",
+            "UserID": "user3",
+            "Comment": "B",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
+        {
+            "_id": "review1",
+            "UserID": "user3",
+            "Comment": "Z",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
+        {
+            "_id": "review1",
+            "UserID": "user8",
+            "Comment": "Great quality, sturdy chair.",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
+        {
+            "_id": "review1",
+            "UserID": "user3",
+            "Comment": "Great quality, sturdy chair.",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
+        {
+            "_id": "review1",
+            "UserID": "user3",
+            "Comment": "Great quality, sturdy chair.",
+            "CreatedAt": "2024-11-27T12:42:00Z"
+        },
         {
             "_id": "review1",
             "UserID": "user3",
@@ -348,10 +496,10 @@ export const data = {
     ]
 }
 
-const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page'];
-const UserPages = ['home.page'];
+const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page', 'Products&Orders.html'];
+const UserPages = ['home.page' , 'Cart.html' , 'CheckOut.html'];
 const SellerPages = ['home.page'];
-const GuestPages = ['home.page','ProductDetails'];
+const GuestPages = ['home.page', 'ProductDetails'];
 
 // export default data;
 
@@ -379,8 +527,67 @@ export function saveDataInLocalStorage() {
 export function getCurrentUser() {
     return data.CurrentUser;
 }
+
+export function getProductById(id) {
+    return data.Products.find((product) => product._id === id);
+}
+
+export function getCurrentCart() {
+    return data.CurrentUser ? data.CurrentUser.cart : data.guestCart;
+}
+
+export function changeCartItemCount(id, quantity) {
+    const cart = getCurrentCart();
+    const index = cart.findIndex((item) => item._id === id);
+
+    if (index === -1) {
+        console.error(`Item with ID ${id} not found in cart.`);
+        return;
+    }
+
+    cart[index].Quantity = quantity;
+
+    if (!data.CurrentUser) {
+        data.guestCart = cart;
+    } else {
+        data.CurrentUser.cart = cart;
+        const userIndex = data.Users.findIndex(
+            (user) => user._id === data.CurrentUser._id
+        );
+        data.Users[userIndex].cart = cart;
+    }
+
+    saveDataInLocalStorage();
+}
+
+export function DeleteFromCart(id) {
+    const cart = getCurrentCart();
+    const newCart = cart.filter((item) => item._id !== id);
+
+    if (!data.CurrentUser) {
+        data.guestCart = newCart;
+    } else {
+        data.CurrentUser.cart = newCart;
+        const userIndex = data.Users.findIndex(
+            (user) => user._id === data.CurrentUser._id
+        );
+        data.Users[userIndex].cart = newCart;
+    }
+
+    saveDataInLocalStorage();
+}
+
+export function generateRandomId() {
+    return Math.floor(Math.random() * 1000000) + 1;
+}
+
 export function addUser(User) {
     data.Users.push(User);
+    saveDataInLocalStorage();
+}
+
+export function addProduct(product) {
+    data.Products.push(product);
     saveDataInLocalStorage();
 }
 
@@ -391,9 +598,9 @@ export function SetUserById(user) {
     const index = data.Users.findIndex((u) => u._id === user._id);
     if (index !== -1) {
         data.Users[index] = user; // Update the user at the found index
-    } else {
-        console.error(`User with ID ${user._id} not found`);
     }
+      
+   
 }
 
 export function getUserByEmail(email) {
@@ -421,6 +628,18 @@ export function getSalesByMonth() {
     });
     return monthlySalesArr;
 }
+export function getSellerSalesByMonth() {
+    let monthlySalesArr = new Array(12).fill(0)
+    data.Orders.forEach(x => {
+        // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
+        x.Items.forEach(i => {
+            if (i.SellerId == data.CurrentUser._id) {
+                monthlySalesArr[new Date(x.CreatedAt).getMonth()] += (i.Price * i.Quantity)
+            }
+        })
+    });
+    return monthlySalesArr;
+}
 
 export function isAuthorized() {
     console.log("Authorization Check Started");
@@ -434,10 +653,10 @@ export function isAuthorized() {
         return pages.some(page => page.toLowerCase() === webPage);
     };
 
-    if(!data.CurrentUser){
+    if (!data.CurrentUser) {
         console.log("Guest Customer");
         isAuthorized = checkAuthorization(GuestPages);
-    }else{
+    } else {
         switch (data.CurrentUser.Role) {
             case "Admin":
                 console.log("Admin Authorized");
@@ -460,7 +679,7 @@ export function isAuthorized() {
     }
     if (!isAuthorized) {
         console.log("Access Denied");
-        window.location.replace(host + "/Front1.0/html/403.html");
+        window.location.replace(host + "/../html/403.html");
     } else {
         console.log("Access Granted");
     }
@@ -478,3 +697,95 @@ export function DeleteUserByEmail(email) {
 }
 
 
+// * Receive Items and Decrease Total Sales Of Seller Used When (Deleting-Canceling) Orders Or Deleting (Seller-User) Accounts 
+export function decreaseTotalSales(items) {
+    items.forEach(function (item) {
+        data.Users.forEach(function (u) {
+            if (u._id == item.SellerId)
+                u.TotalSales -= (item.Quantity * item.Price);
+        });
+        saveDataInLocalStorage();
+    });
+}
+
+// * Receive Items and Increase Stocks of the products 
+export function increaseStock(items) {
+    items.forEach(function (item) {
+        data.Products.forEach(function (p) {
+            if (p._id == item.ProductID)
+                p.Stock += item.Quantity;
+        });
+
+        saveDataInLocalStorage();
+    });
+}
+
+//* used when deleting a user 
+export function DeleteOrders(userId) {
+    data.Orders = data.Orders.filter(order => order.UserID !== userId);
+    saveDataInLocalStorage();
+}
+
+// * Send Seller Id To Delete All of his Products This Happen When Deleting Seller Accounts
+export function DeleteProducts(sellerId) {
+    data.Products = data.Products.filter(product => product.SellerID !== sellerId);
+    saveDataInLocalStorage();
+}
+
+// * Return The Products with Approve state = False 
+export function PendingProducts() {
+    loadDataFromLocalStorage()
+    return data.Products = data.Products.filter(product => product.Approved == false);
+}
+
+//* Change Product Approval State to Approved (True) 
+export function ApproveProducts(ProductId) {
+    data.Products.find(p => p._id == ProductId).Approved = true;
+    saveDataInLocalStorage()
+}
+
+// * View Products Specefic for Current Seller 
+export function SellerProducts() {
+    loadDataFromLocalStorage()
+    return data.Products.filter(p => p.SellerID === data.CurrentUser._id);
+}
+export function SellerOrders() {
+    loadDataFromLocalStorage()
+    return data.Orders.filter(function (o) {
+        return o.Items.some(function (i) {
+            return i.SellerId == data.CurrentUser._id;
+        });
+    });
+}
+
+//* take order id and change status to Canceled
+export function CancelOrder(orderId) {
+    data.Orders.find(p => p._id == orderId).Status = "Canceled";
+    saveDataInLocalStorage()
+}
+
+// * Get Specific Order 
+export function GetOrder(orderId) {
+    loadDataFromLocalStorage()
+    return data.Orders.find(p => p._id == orderId)
+}
+
+export function DeleteSepecificproduct(productId) {
+    data.Products = data.Products.filter(product => product._id !== productId);
+    console.log(data.Products)
+    saveDataInLocalStorage();
+}
+
+
+export function TotalSales() {
+    loadDataFromLocalStorage()
+    let totalSales = 0;
+    data.Users.forEach(function (u) {
+        if (u.Role == "Seller") {
+            if (!isNaN(u.TotalSales) && typeof u.TotalSales === "number") {
+                totalSales += u.TotalSales;
+            }
+        }
+    })
+    return totalSales.toFixed(2)
+}
