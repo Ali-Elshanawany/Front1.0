@@ -3,7 +3,6 @@ from './Data.js'
 
 function initializePage() {
  //   Load data from localStorage (if necessary)
- saveDataInLocalStorage()
  loadDataFromLocalStorage();
 
     //Sticky Navbar
