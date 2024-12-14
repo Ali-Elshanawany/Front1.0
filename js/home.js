@@ -1,289 +1,306 @@
-import { data, loadDataFromLocalStorage, saveDataInLocalStorage, saveInLocalStorage,getCurrentUser } from './Data.js';
+import { data, loadDataFromLocalStorage, saveDataInLocalStorage,SetUserById }
+from './Data.js'
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function (e) {
-      e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      window.scrollTo({
-          top: target.offsetTop - 100, // Adjust for navbar height
-          behavior: 'smooth'
-      });
-  });
-});
-/*
-if (!localStorage.getItem('data')) {
-  localStorage.setItem('data', JSON.stringify(data));
-  console.log('Initialized data in localStorage.');
-}*/
+function initializePage() {
+ //   Load data from localStorage (if necessary)
+ saveDataInLocalStorage()
+ loadDataFromLocalStorage();
 
-
-let dataFromStorage = loadDataFromLocalStorage();
-if (!dataFromStorage || !dataFromStorage.Products || dataFromStorage.Products.length === 0) {
-    console.log("No products available in local storage.");
-} else {
-    displayProducts(dataFromStorage.Products); // Display products if they exist
-}
-
-
-
-// Load the data from localStorage
-//let dataFromStorage = loadDataFromLocalStorage();
-
-// Variables to track active category and search query
-let activeCategory = '';
-let searchQuery = '';
-
-// Sticky Navbar
-
-const firstNavbarHeight = $('.navbar-main').outerHeight();
-
-$(window).on('scroll', function () {
-  if ($(this).scrollTop() > firstNavbarHeight) {
-    $('.sticky-navbar').addClass('show');
-  } else {
-    $('.sticky-navbar').removeClass('show');
-  }
-});
-
-// Handle category filter click event
-$('.nav-link').on('click', function (e) {
-  e.preventDefault(); // Prevent default anchor behavior
-
-  // Remove active class from all links and add it to the clicked one
-  $('.nav-link').removeClass('active');
-  $(this).addClass('active');
-
-  // Update the active category
-  activeCategory = $(this).data('category') || '';
-
-  // Filter products based on the current search query and category
-  searchProducts(searchQuery, activeCategory);
-});
-
-// Handle search input change event
-$('.search').on('input', function () {
-  searchQuery = $(this).val(); // Update search query
-  searchProducts(searchQuery, activeCategory); // Filter based on updated query
-});
-
-// Function to search and filter products by query and category
-function searchProducts(query, categoryFilter) {
-  let filteredProducts = dataFromStorage.Products; // Ensure 'Products' is available
-
-  // Filter by search query (case-insensitive)
-  if (query) {
-    filteredProducts = filteredProducts.filter(product =>
-      product.Name.toLowerCase().includes(query.toLowerCase())
-    );
-  }
-
-  // Filter by category if a valid categoryFilter is provided
-  if (categoryFilter) {
-    filteredProducts = filteredProducts.filter(product =>
-      product.CategoryID === categoryFilter
-    );
-  }
-
-  // Display the filtered products
-  displayProducts(filteredProducts);
-}
-
-
-// Function to display products
-function displayProducts(products) {
-  const $productSection = $('#products-container');
-
-  if (!$productSection.length) {
-    console.error('Element with id "products-container" not found');
-    return;
-  }
-
-  $productSection.empty(); // Clear the container before appending and searching new products
-
-  if (!products || products.length === 0) {
-    $productSection.html("<p class='notAvalible' style='font-weight: bold;font-size: 22px;color:red;'>No products available.</p>");
-    return;
-  }
-
-  products.forEach(product => {
-    const productCard = `
-      <div class="col-md-4">
-        <div class="card h-100 shadow-sm product-item" >
-          <a href="productDetails.html?id=${product._id}"><img src="${product.Images[0]}" class="card-img-top product-image" alt="${product.Name}"></a>
-          <div class="label-top shadow-sm">${getCategoryName(product.CategoryID)}</div>
-          <div class="card-body">
-            <h5 class="card-title">${product.Name}</h5>
-            <p class="card-text">${product.Description}</p>
-            <div class="clearfix mb-3">
-              <span class="float-start badge rounded-pill bg-success">${product.Price.toFixed(2)}€</span>
-            </div>
-            <div class="text-center my-4">
-              <a href="#" class="btn-addToCard btn btn-warning" data-id="${product._id}">Add to Cart</a>
-            </div>
-          </div>
-        </div>
-      </div>
-    `;
-    $productSection.append(productCard);
-  });
-}
-
-// Function to get the category name from the category ID
-function getCategoryName(categoryID) {
-  const categories = {
-    "cat1": "Chairs",
-    "cat2": "Tables",
-    "cat3": "Master Bedrooms",
-    // Add more categories as needed
-  };
-  return categories[categoryID] || "Unknown Category";
-}
-
-// Profile page
-$('.profile').click(function () { 
-  window.open("profile.html", "_blank");
-});
-
-// Cart page
-$('.cartIcon').click(function(){
-  window.open("cart.html");
-});
-
-
-
-
-    
-    // Update cart in `data`
-    
-    $(document).on('click', '.btn-addToCard', function () {
-      const productID = $(this).data('id');
-      loadDataFromLocalStorage();
-      
-      const product = data.Products.find(p => p._id === productID);
-      if (product) {
-        const quantity = 1; // Default quantity, you can change this based on user input (e.g., from an input field)
-    
-        // Check stock availability
-        if (quantity > product.Stock) {
-          Swal.fire({
-            icon: 'warning',
-            title: 'Insufficient Stock',
-            text: `The quantity you ordered (${quantity}) is not available in stock. Available stock: ${product.Stock}.`,
-          });
-          return; // Exit early if there's not enough stock
-        }
-    
-        // If the user is not logged in, use the guest cart
-        const currentUser = getCurrentUser();
-    
-        if (!currentUser) {
-          // Handle guest cart
-          let guestCart = data.guestCart || [];
-    
-          const productInGuestCart = guestCart.find(item => item.ProductID === productID);
-          
-          if (productInGuestCart) {
-            // Update quantity in guest cart
-            const totalQuantity = productInGuestCart.Quantity + quantity;
-            
-            // Check if the updated quantity exceeds the stock
-            if (totalQuantity > product.Stock) {
-              Swal.fire({
-                icon: 'warning',
-                title: 'Stock Exceeded',
-                text: `The total quantity you want (${totalQuantity}) exceeds available stock (${product.Stock}).`,
-              });
-              return; // Exit if the total quantity exceeds available stock
-            }
-    
-            productInGuestCart.Quantity = totalQuantity;
-          } else {
-            // Add new product to guest cart
-            guestCart.push({
-              ProductID: productID,
-              Quantity: quantity,
-            });
-          }
-    
-          // Save guest cart to localStorage
-          saveInLocalStorage('guestCart', guestCart);
-    
-          // Show success message
-          Swal.fire({
-            icon: 'success',
-            title: 'Product Added!',
-            text: `${product.Name} has been added to your guest cart.`,
-          });
+    //Sticky Navbar
+    const firstNavbarHeight = $('.navbar-main').outerHeight();
+    $(window).on('scroll', function () {
+        const scrollPosition = $(this).scrollTop();
+        if (scrollPosition > firstNavbarHeight) {
+            $('.sticky-navbar').addClass('show');
         } else {
-          // Handle logged-in user cart
-          const userCartIndex = data.Cart.findIndex(cart => cart.UserID === currentUser._id);
-    
-          if (userCartIndex !== -1) {
-            const userCart = data.Cart[userCartIndex];
-            const productInUserCart = userCart.Items.find(item => item.ProductID === productID);
-    
-            if (productInUserCart) {
-              // Update quantity if product already in cart
-              const totalQuantity = productInUserCart.Quantity + quantity;
-              
-              // Check if the updated quantity exceeds the stock
-              if (totalQuantity > product.Stock) {
-                Swal.fire({
-                  icon: 'warning',
-                  title: 'Stock Exceeded',
-                  text: `The total quantity you want (${totalQuantity}) exceeds available stock (${product.Stock}).`,
-                });
-                return; // Exit if the total quantity exceeds available stock
-              }
-    
-              productInUserCart.Quantity = totalQuantity;
-            } else {
-              // Add new product to user cart
-              userCart.Items.push({
-                ProductID: productID,
-                Quantity: quantity,
-              });
-            }
-    
-            // Update the cart's updated time
-            userCart.UpdatedAt = new Date().toISOString();
-          } else {
-            // Create a new cart for the user if one does not exist
-            const newCart = {
-              _id: `cart${storageData.Cart.length + 1}`,
-              UserID: currentUser._id,
-              Items: [
-                {
-                  ProductID: productID,
-                  Quantity: quantity,
-                },
-              ],
-              UpdatedAt: new Date().toISOString(),
-            };
-    
-            storageData.Cart.push(newCart);
-          }
-    
-          // Save updated cart data to localStorage
-          saveDataInLocalStorage();
-    
-          // Show success message
-          Swal.fire({
-            icon: 'success',
-            title: 'Product Added!',
-            text: `${product.Name} has been added to your cart.`,
-          });
+            $('.sticky-navbar').removeClass('show');
         }
-      } else {
-        Swal.fire({
-          icon: 'error',
-          title: 'Error!',
-          text: 'Product not found in the product list!',
-        });
-      }
     });
+
+ //   Smooth scrolling for sections
+    document.querySelectorAll('.navbar a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').slice(1);
+            const targetElement = document.getElementById(targetId);
+            if (targetElement) {
+                const offset = document.querySelector('.navbar-main').offsetHeight; // Adjust for navbar height
+                const position = targetElement.offsetTop - offset;
+                window.scrollTo({
+                    top: position,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+
+   // Open profile and cart in new tabs
+    $('.profileIcon').on("click", function () {
+        window.open("profile.html", "_blank");
+    });
+
+    $('.cartIcon').on("click", function () {
+        window.open("card.html", "_blank");
+    });
+
+ //   Function to display products
+    function displayProducts(products) {
+        let $productSection = $('#products-container');
+        $productSection.empty(); // Clear the container before appending new products
+
+        if (!products || products.length === 0) {
+            $productSection.html("<p class='notAvalible' style='font-weight: bold; font-size: 22px; color: red;'>No products available.</p>");
+            return;
+        }
+
+        products.forEach(product => {
+            if(product.Approved){
+            let productCard = `
+                <div class="col-md-4">
+                    <div class="card h-100 shadow-sm product-item">
+                        <a href="productDetails.html" class="view-details" data-product-id="${product._id}">
+                            <img src="${product.Images[0]}" data-product-id="${product._id}" class="card-img-top product-image" alt="${product.Name}">
+                        </a>
+                        <div class="label-top shadow-sm">${(product.Stock > 0) ? "in stock" : "out stock"}</div>
+                        <div class="card-body">
+                            <h5 class="card-title">${product.Name}</h5>
+                            <p class="card-text">${product.Description}</p>
+                            <div class="clearfix mb-3 d-flex justify-content-between">
+                                <span class="float-start badge rounded-pill bg-success">${product.Price.toFixed(2)}€</span>
+                            </div>
+                            <div class="text-center my-4">
+                                <a href="#" class="btn-addToCart btn btn-warning" data-product-id="${product._id}">Add to Cart</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            $productSection.append(productCard);
+            }else{
+                console.log(`Product "${product.Name}" is not approved and will not be displayed.`);
+            }
+        });
+    }
+
+
+   // Function to filter products by category (based on CategoryID)
+    function filterByCategory(categoryID) {
+        let filteredProducts = data.Products.filter(product => {
+            return categoryID === '' || product.CategoryID === categoryID;
+        });
+
+        displayProducts(filteredProducts);
+    }
+
+  //  Function to filter products by search query (ignoring category)
+    function filterBySearch(searchQuery) {
+        let filteredProducts = data.Products.filter(product => {
+            let title = product.Name.toLowerCase();
+            return title.includes(searchQuery.toLowerCase());
+        });
+
+        displayProducts(filteredProducts);
+    }
+
+  //  Handle category filter click event
+    $('.nav-link').on('click', function (e) {
+        e.preventDefault();
+  //      Remove active class from all links and add it to the clicked one
+        $('.nav-link').removeClass('active');
+        $(this).addClass('active');
+
+   //     Get the selected category ID (assuming it's stored in data-category)
+        let categoryID = $(this).data('category') || '';
+
+     //   Apply the category filter
+        filterByCategory(categoryID);
+
+     //   Clear the search input when changing categories
+        $('#searchInput').val('');
+    });
+
+  //  Keyup event for search input
+    $('#searchInput').on('keyup', function () {
+        let searchText = $(this).val().toLowerCase();
+
+  //      Apply the search filter (ignoring category)
+        filterBySearch(searchText);
+
+    //    Remove active class from categories when typing in the search input
+        $('.nav-link').removeClass('active');
+        activeCategory = ''; // Clear the active category filter when typing in the search input
+    });
+
+ //   Initially display all products (optional)
+    displayProducts(data.Products); // Assuming data.Products contains the full list of products
+
+ //   Add product to cart
+    $(document).on('click', '.btn-addToCart', function () {
+        let productID = $(this).data('product-id'); // Get product ID
+        console.log("Add to Cart button clicked for product ID:", productID);
+
+        let product = data.Products.find((p) => p._id === productID); // Find the product in the data
+        if (!product) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Product not found.',
+            });
+            return;
+        }
+
+        console.log("Product found:", product);
+
+     //   Check if there is a logged-in user (currentUser is not null)
+        const currentUser = (data.CurrentUser && data.CurrentUser._id && data.CurrentUser._id !== '') ? data.CurrentUser : null;
+        console.log("Current User:", currentUser ? "Logged In" : "Guest");
+
+        if (currentUser) {
+     //       User is logged in: Add to their cart
+            console.log("User is logged in. Adding to user's cart...");
+            let userCart = currentUser.cart || []; // If no cart exists, initialize an empty array
+
+      //      Find if product already exists in user's cart
+            let existingItem = userCart.find(item => item.ProductID === productID);
+            if (existingItem) {
+                existingItem.Quantity += 1;
+            } else {
+                userCart.push({ ProductID: productID, Quantity: 1 });
+            }
+
+     //       Update user's cart in the data object
+            currentUser.cart = userCart;
+           
+            console.log(currentUser._id)
+            SetUserById(currentUser); // Save updated user data
+            saveDataInLocalStorage(); // Save updated data
+
+            console.log("Updated user cart:", currentUser.cart);
+        } else {
+      //      User is NOT logged in: Add to guest cart
+    
+            let guestCart = JSON.parse(localStorage.getItem('guestCart')) || [];
+
+            if (guestCart.length === 0) {
+                guestCart = [{
+                    UserID: 'guest',
+                    Items: [],
+                    UpdatedAt: new Date().toISOString()
+                }];
+            }
+
+            let existingItem = guestCart[0].Items.find(item => item.ProductID === productID);
+            if (existingItem) {
+                existingItem.Quantity += 1;
+            } else {
+                guestCart[0].Items.push({ ProductID: productID, Quantity: 1 });
+            }
+
+            guestCart[0].UpdatedAt = new Date().toISOString();
+            localStorage.setItem('guestCart', JSON.stringify(guestCart));
+        }
+
+        Swal.fire({
+            icon: 'success',
+            title: 'Added to Cart',
+            text: `${product.Name} has been added to your cart.`,
+        });
+    });
+
+ //   Add click event to product image or product details link
+    $(document).on('click', '.view-details', function (e) {
+        e.preventDefault();
+        let productID = $(this).data('product-id');
+        console.log("Clicked product ID:", productID);
+        window.location.href = `productDetails.html?productID=${productID}`;
+    });
+
+ //   Handle comment form submission
+    $('#AddTicketButton').on("click", function (e) {
+       // e.preventDefault();
+        let comment = $('#textarea').val();
+       
+        console.log("User comment:", comment);
+        if(data.CurrentUser){
+            const ticket={
+                "_id": "ticket"+Date.now(),
+                "Email": data.CurrentUser.Email,
+                "Comment": comment,
+                "CreatedAt": new Date().toISOString() 
+            }
+            data.Tickets.push(ticket)
+            saveDataInLocalStorage()
+            console.log("User Ticket:", ticket);
+}
+    
     
 
+    });
+   // Assuming data is already available and contains Products
+let bestSellers = data.Products;
+
+// Sort and get the top 5 best-sellers
+bestSellers = bestSellers.sort((a, b) => b.NumOfSales - a.NumOfSales).slice(0, 5);
+
+// Select the best-sellers section
+let bestSellersSection = $('.best-sellers-section');
+
+// Create the structure dynamically
+let best = `
+    <input type="radio" name="position" checked />
+    <input type="radio" name="position" />
+    <input type="radio" name="position" />
+    <input type="radio" name="position" />
+    <input type="radio" name="position" />
+    <main id="carousel">
+`;
+
+// Loop through best-seller products and add each image to the carousel
+bestSellers.forEach((product) => {
+    product.Images.forEach((image) => {
+        best -= `
+            <div class="item"><img src="${image}" alt="${product.Name}"></div>
+        `;
+    });
+});
 
 
+ 
+  
+;
+
+// Append the dynamic structure to the best-sellers section
+bestSellersSection.append(best);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
+//Run the initializePage function when the document is ready
+$(document).ready(function(){
+   
+  //saveDataInLocalStorage()
+   initializePage()
+   console.log($('#AddTicketButton'))
+
+
+})
 

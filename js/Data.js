@@ -1,6 +1,6 @@
 export const data = {
     guestCart: [],
-    CurrentUser:   {
+    CurrentUser: {
         "_id": "user1",
         "Name": "John Doe",
         "Email": "admin@example.com",
@@ -45,11 +45,8 @@ export const data = {
             "Street": "bla bla blaablaa ",
             "Role": "User",
             "CreatedAt": "2024-11-27T12:36:00Z",
-            "cart" : [
-                { "_id": "prod1", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
-              ],
-        }
+            
+        },
     ],
     Categories: [
         {
@@ -63,13 +60,14 @@ export const data = {
             "Description": "Dining and work tables."
         }
     ],
+    
     Products: [
         {
             "_id": "prod1",
             "Name": "Wooden Chair",
             "Description": "A sturdy wooden chair for dining or work.",
             "Price": 59.99,
-            "Stock": 50,
+            "Stock": 0,
             "CategoryID": "cat1",
             "SellerID": "user2",
             "Images": [
@@ -93,7 +91,8 @@ export const data = {
                 "../assets/tabelswebp.webp"
             ],
             "CreatedAt": "2024-11-27T12:38:00Z",
-            "NumOfSales": 5
+            "NumOfSales": 5,
+            "Approved":true
         },
         {
             "_id": "prod3",
@@ -108,7 +107,8 @@ export const data = {
                 "../assets/kitchen.avif"
             ],
             "CreatedAt": "2024-11-27T12:38:00Z",
-            "NumOfSales": 5
+            "NumOfSales": 5,
+            "Approved":true
         },{
             "_id": "prod4",
             "Name": "master room",
@@ -124,11 +124,44 @@ export const data = {
             "CreatedAt": "2024-11-27T12:38:00Z",
             "NumOfSales": 5
         },
-        ,{
+        {
             "_id": "prod5",
             "Name": "master room",
             "Description": "A stylish master room.",
             "Price": 120.0,
+            "Stock": 20,
+            "CategoryID": "cat4",
+            "SellerID": "user2",
+            "Images": [
+                "../assets/file.png",
+                "../assets/img3.avif"
+            ],
+            "CreatedAt": "2024-11-27T12:38:00Z",
+            "NumOfSales": 5
+        },
+        {
+
+            "_id": "prod6",
+            "Name": "master room",
+            "Description": "A stylish master room.",
+            "Price": 120.0,
+            "Stock": 20,
+            "CategoryID": "cat4",
+            "SellerID": "user2",
+            "Images": [
+                "../assets/file.png",
+                "../assets/img3.avif"
+            ],
+            "CreatedAt": "2024-11-27T12:38:00Z",
+            "NumOfSales": 5
+
+        },
+        {
+
+            "_id": "prod7",
+            "Name": "master room",
+            "Description": "A stylish master room.",
+            "Price": 4000.0,
             "Stock": 20,
             "CategoryID": "cat4",
             "SellerID": "user2",
@@ -138,7 +171,27 @@ export const data = {
             ],
             "CreatedAt": "2024-11-27T12:38:00Z",
             "NumOfSales": 5
+
+        },
+        {
+
+            "_id": "prod8",
+            "Name": "dinning room",
+            "Description": "A stylish master room.",
+            "Price": 16000,
+            "Stock": 20,
+            "CategoryID": "cat4",
+            "SellerID": "user2",
+            "Images": [
+                "../assets/img6.jpg",
+                "../assets/img3.avif"
+            ],
+            "CreatedAt": "2024-11-27T12:38:00Z",
+            "NumOfSales": 5
+
         }
+       
+           
     ],
     Orders: [
         {
@@ -316,9 +369,12 @@ export function saveDataInLocalStorage() {
     }
 
 }
-export function saveInLocalStorage(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
-}
+// export function saveInLocalStorage(key, value) {
+//    for(const key in data){
+//     localStorage.setItem(key,json.stringify(value))
+//    }
+// }
+
 
 export function getCurrentUser() {
     return data.CurrentUser;
@@ -332,12 +388,17 @@ export function getUserById(id) {
     return data.Users.find((user) => user._id === id);
 }
 export function SetUserById(user) {
-    data.Users.find((user) => user._id === id)=user;
+    const index = data.Users.findIndex((u) => u._id === user._id);
+    if (index !== -1) {
+        data.Users[index] = user; // Update the user at the found index
+    } else {
+        console.error(`User with ID ${user._id} not found`);
+    }
 }
 
 export function getUserByEmail(email) {
     return data.Users.find((user) => user.Email === email);
-    console.log("HI");
+    
 }
 
 export function getUsers() {
