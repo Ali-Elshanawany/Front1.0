@@ -12,10 +12,10 @@ export const data = {
             "CreatedAt": "2024-11-27T12:36:00Z" ,
             "cart" : 
             [
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
+                
+                
             ],
-            "orders": ["order1"]
+            "orders": ["order1"],
     },
     Users: [
         {
@@ -181,6 +181,7 @@ export const data = {
         {
             "_id": "prod1",
             "Name": "Wooden Chair",
+            "SellerID": "Seller1",
             "Description": "A sturdy wooden chair for dining or work.",
             "Price": 59.99,
             "Stock": 50,
@@ -199,7 +200,7 @@ export const data = {
             "Description": "This is a brief description for Product 3",
             "Price": 250,
             "Stock": 35,
-            "SellerID": "Seller2",
+            "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
                 "image1_url",
@@ -214,7 +215,7 @@ export const data = {
             "Name": "Glass Table",
             "Description": "A stylish glass-top table.",
             "Price": 120.0,
-            "Stock": 20,
+            "Stock": 20,"SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
                 "../assets/1.png",
@@ -230,7 +231,7 @@ export const data = {
             "Description": "This is a brief description for Product 5",
             "Price": 640,
             "Stock": 10,
-            "SellerID": "Seller3",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -246,7 +247,7 @@ export const data = {
             "Description": "This is a brief description for Product 6",
             "Price": 430,
             "Stock": 30,
-            "SellerID": "Seller3",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -262,7 +263,7 @@ export const data = {
             "Description": "This is a brief description for Product 7",
             "Price": 220,
             "Stock": 35,
-            "SellerID": "Seller2",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -310,7 +311,7 @@ export const data = {
             "Description": "This is a brief description for Product 3",
             "Price": 250,
             "Stock": 35,
-            "SellerID": "Seller2",
+            "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
                 "../assets/1.png",
@@ -326,7 +327,7 @@ export const data = {
             "Description": "This is a brief description for Product 4",
             "Price": 50,
             "Stock": 50,
-            "SellerID": "Seller2",
+            "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
                 "../assets/1.png",
@@ -342,7 +343,7 @@ export const data = {
             "Description": "This is a brief description for Product 5",
             "Price": 640,
             "Stock": 10,
-            "SellerID": "Seller3",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -358,7 +359,7 @@ export const data = {
             "Description": "This is a brief description for Product 6",
             "Price": 430,
             "Stock": 30,
-            "SellerID": "Seller3",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -374,7 +375,7 @@ export const data = {
             "Description": "This is a brief description for Product 7",
             "Price": 220,
             "Stock": 35,
-            "SellerID": "Seller2",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -805,8 +806,12 @@ export function addProduct(product) {
 export function getUserById(id) {
     return data.Users.find((user) => user._id === id);
 }
+
 export function SetUserById(user) {
-    data.Users.find((user) => user._id === id) = user;
+    const index = data.Users.findIndex((u) => u._id === user._id);
+    if (index !== -1) {
+        data.Users[index] = user; // Update the user at the found index
+    }
 }
 
 export function getUserByEmail(email) {

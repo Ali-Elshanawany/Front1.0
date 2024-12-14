@@ -9,7 +9,10 @@ import {
     saveDataInLocalStorage,
     generateRandomId,
     isAuthorized,
+    loadDataFromLocalStorage
   } from "./Data.js";
+
+loadDataFromLocalStorage();
 
 const user = getCurrentUser();
 isAuthorized();
@@ -58,7 +61,7 @@ Array.from(forms).forEach((form) => {
                         text: "Your order has been submitted successfully",
                         icon: "success",
                     }).then(() => {
-                        location.assign("../html/Home.html");
+                        location.assign("../html/homeMain.html");
                     });
                 } else {
                     const uindex = data.Users.findIndex(
