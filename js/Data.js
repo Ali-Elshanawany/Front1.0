@@ -179,16 +179,110 @@ export const data = {
     ],
     Products:[
         {
-            "_id": "pro1",
-            "Name": "Product 1",
-            "Description": "This is a brief description for Product 1",
-            "Price": 100,
-            "Stock": 20,
-            "SellerID": "Seller1",
+            "_id": "prod1",
+            "Name": "Wooden Chair",
+            "Description": "A sturdy wooden chair for dining or work.",
+            "Price": 59.99,
+            "Stock": 50,
             "CategoryID": "cat1",
             "Images": [
                 "../assets/pic3.webp",
                 "../assets/pic3.webp"
+            ],
+            "CreatedAt": "2024-12-12T19:29:27.767Z",
+            "NumOfSales": 12,
+            "Approved": true
+        },
+        {
+            "_id": "pro3",
+            "Name": "Product 3",
+            "Description": "This is a brief description for Product 3",
+            "Price": 250,
+            "Stock": 35,
+            "SellerID": "Seller2",
+            "CategoryID": "cat2",
+            "Images": [
+                "image1_url",
+                "image2_url"
+            ],
+            "CreatedAt": "2024-12-12T19:29:43.865Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "prod2",
+            "Name": "Glass Table",
+            "Description": "A stylish glass-top table.",
+            "Price": 120.0,
+            "Stock": 20,
+            "CategoryID": "cat2",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
+            ],
+            "CreatedAt": "2024-12-12T19:29:56.361Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "pro5",
+            "Name": "Product 5",
+            "Description": "This is a brief description for Product 5",
+            "Price": 640,
+            "Stock": 10,
+            "SellerID": "Seller3",
+            "CategoryID": "cat3",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
+            ],
+            "CreatedAt": "2024-12-12T19:30:15.018Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "pro6",
+            "Name": "Product 6",
+            "Description": "This is a brief description for Product 6",
+            "Price": 430,
+            "Stock": 30,
+            "SellerID": "Seller3",
+            "CategoryID": "cat3",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
+            ],
+            "CreatedAt": "2024-12-12T19:30:29.750Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "pro7",
+            "Name": "Product 7",
+            "Description": "This is a brief description for Product 7",
+            "Price": 220,
+            "Stock": 35,
+            "SellerID": "Seller2",
+            "CategoryID": "cat3",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
+            ],
+            "CreatedAt": "2024-12-12T19:30:42.546Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "pro8",
+            "Name": "Product 8",
+            "Description": "This is a brief description for Product 8",
+            "Price": 360,
+            "Stock": 45,
+            "SellerID": "Seller1",
+            "CategoryID": "cat4",
+            "Images": [
+                "../assets/1.png",
+                "../assets/2.png"
             ],
             "CreatedAt": "2024-12-12T19:29:12.664Z",
             "NumOfSales": 15,
@@ -314,69 +408,6 @@ export const data = {
         {
             "_id": "A",
             "UserID": "User1",
-            "Items": [
-                {
-                    "ProductID": "pro1",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 100
-                },
-                {
-                    "ProductID": "pro2",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 200
-                }
-            ],
-            "TotalAmount": 600,
-            "Status": "Pending",
-            "CreatedAt": "2024-10-27T12:40:00Z"
-        },
-        {
-            "_id": "B",
-            "UserID": "User2",
-            "Items": [
-                {
-                    "ProductID": "pro1",
-                    "SellerId": "Seller1",
-                    "Quantity": 5,
-                    "Price": 500
-                },
-                {
-                    "ProductID": "pro2",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 200
-                }
-            ],
-            "TotalAmount": 900,
-            "Status": "Pending",
-            "CreatedAt": "2024-09-27T12:40:00Z"
-        },
-        {
-            "_id": "C",
-            "UserID": "User1",
-            "Items": [
-                {
-                    "ProductID": "pro8",
-                    "SellerId": "Seller1",
-                    "Quantity": 6,
-                    "Price": 2160
-                },
-                {
-                    "ProductID": "pro2",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 200
-                }
-            ],
-            "TotalAmount": 2560,
-            "Status": "Delivered",
-            "CreatedAt": "2024-08-27T12:40:00Z"
-        },
-        {
-            "_id": "D",
-            "UserID": "User2",
             "Items": [
                 {
                     "ProductID": "pro1",
@@ -689,15 +720,20 @@ export function loadDataFromLocalStorage() {
     for (const key in data) {
         data[key] = JSON.parse(localStorage.getItem(key)) || data[key];
     }
+    return data;
 }
 export function saveDataInLocalStorage() {
     for (const key in data) {
         localStorage.setItem(key, JSON.stringify(data[key]));
     }
+
 }
-export function saveInLocalStorage(key, value) {
-    localStorage.setItem(key, JSON.stringify(value));
-}
+// export function saveInLocalStorage(key, value) {
+//    for(const key in data){
+//     localStorage.setItem(key,json.stringify(value))
+//    }
+// }
+
 
 export function getCurrentUser() {
     return data.CurrentUser;
@@ -775,6 +811,7 @@ export function SetUserById(user) {
 
 export function getUserByEmail(email) {
     return data.Users.find((user) => user.Email === email);
+    
 }
 
 export function getUsers() {
