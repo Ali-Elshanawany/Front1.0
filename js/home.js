@@ -36,7 +36,7 @@ function initializePage() {
 
    // Open profile and cart in new tabs
     $('.profileIcon').on("click", function () {
-        window.open("profile.html", "_blank");
+        window.open("users-profile.html", "_blank");
     });
 
     $('.cartIcon').on("click", function () {

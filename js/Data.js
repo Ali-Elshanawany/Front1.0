@@ -710,7 +710,7 @@ export const data = {
 const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page', 'Products&Orders.html'];
 const UserPages = ['home.page' , 'Cart.html' , 'CheckOut.html'];
 const SellerPages = ['home.page'];
-const GuestPages = ['home.page', 'ProductDetails'];
+const GuestPages = ['home.page', 'ProductDetails','register.html'];
 
 // export default data;
 
