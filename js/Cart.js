@@ -7,14 +7,13 @@ import {
     changeCartItemCount,
     DeleteFromCart,
     isAuthorized,
+    loadDataFromLocalStorage,
 } from "./Data.js";
 
-// isAuthorized();
+isAuthorized();
 
-const user = getCurrentUser();
-if (user && user.Role !== "User") {
-    location.assign("../html/Home.html");
-}
+// Load data from local storage
+loadDataFromLocalStorage();
 
 let usercart = getCurrentCart();
 let cart = usercart.map((item) => ({
@@ -27,7 +26,6 @@ window.addEventListener("load", function () {
     generateCards();
 
     function generateCards() {
-        
         let flag = 0;
         cards.innerHTML = "";
 
@@ -36,10 +34,10 @@ window.addEventListener("load", function () {
             <div class="row">
                 <div class="col-lg-12 text-center emptyCart">
                     <span class="fs-1 fw-bold">Your Cart Is Empty</span>
-                </div>       
-            </div>
-            `;
+                </div>
+            </div>`;
             document.getElementById("CheckOut").style.display = "none";
+            return;
         }
 
         let outOfStockFlag = false;
@@ -76,7 +74,7 @@ window.addEventListener("load", function () {
                                 <p class="card-text card-text1" style="font-size: 1.1rem;font-family: 'Raleway', sans-serif;">${item.product.Description}</p>
                                 <p class="card-text" style="font-size: 1rem;">
                                     <small class="text-body-secondary">
-                                        <span class="badge bg-dark bg-gradient" style="font-size: 0.75rem;">Seller: ${getUserById(item.product.SellerID).Name}</span>
+                                        <span class="badge bg-dark bg-gradient" style="font-size: 0.75rem;">Seller: ${getUserById(item.product.SellerID)?.Name || 'Bob Alice'}</span>
                                         <br>
                                         <span class="badge bg-warning text-dark" style="font-size: 0.75rem;">Only ${item.product.Stock - item.num} left in stock</span>
                                     </small>
@@ -99,8 +97,6 @@ window.addEventListener("load", function () {
                     </div>
                 </div>
                 </div>`;
-
-                
 
                 flag++; // increase the flag to get the next item
             }
@@ -172,6 +168,4 @@ window.addEventListener("load", function () {
             });
         }
     });
-
-    
 });
