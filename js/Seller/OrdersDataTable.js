@@ -175,9 +175,9 @@ function ChangCard() {
     } else {
         NumofDeliveredOrdersCard.innerText = 0
     }
-
-    if (data.CurrentUser.TotalSales) {
-        TotalSalesCard.innerText = data.CurrentUser.TotalSales + '$'
+    let seller=data.Users.find(u=>u._id==data.CurrentUser._id)
+    if (seller) {
+        TotalSalesCard.innerText = seller.TotalSales + '$'
     } else {
         TotalSalesCard.innerText = 0
     }

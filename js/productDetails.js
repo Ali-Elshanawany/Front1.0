@@ -60,7 +60,7 @@ $(document).ready(function () {
         $('#product-details').html('<p>Product not found.</p>');
     }
 
- 
+    $(document).off('click', '.btn-addToCart'); // Remove any existing event listeners
     $(document).on('click', '.btn-addToCart', function () {
        
         addToCart(productID);
@@ -69,6 +69,7 @@ $(document).ready(function () {
 });
 
 // Handle "Go to Home" button click
+
 $('.goToHome').on('click', function () {
     window.location.href = "homeMain.html";  // Navigate to homepage
 });

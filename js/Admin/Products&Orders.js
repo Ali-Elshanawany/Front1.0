@@ -10,8 +10,10 @@ import {
     increaseStock,
     decreaseTotalSales,
     GetOrder,
-    TotalSales
+    TotalSales,
+    getSalesByMonth
 } from "../Data.js";
+import {Draw} from './Chart.js'
 
 // ! Tesing Only Remove For Production
 //saveDataInLocalStorage();
@@ -60,6 +62,9 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
         Orders = getOrders(); 
     });
     paginatedOrders.forEach((order, index) => {
+        // console.log("************************************")
+        // console.log(order)
+        // console.log("************************************")
         const tr = document.createElement("tr");
         let UserName = data.Users.find(user => user._id == order.UserID).Name
         tr.innerHTML = `
@@ -113,13 +118,19 @@ function setupPagination(Orders, rowsPerPage, currentPage) {
         pagination.appendChild(button);
     }
 }
-
+// ! ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // * Event Listeners Load
 window.addEventListener("load", function () {
     // isAuthorized();
+    loadDataFromLocalStorage()
+ 
+    const dataValues = getSalesByMonth();
+    console.log(dataValues);
+
+    Draw(dataValues)
     let Orders = getOrders();
     let Products = PendingProducts();
-    console.log(Products)
+   // console.log(Products)
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;
 
@@ -189,7 +200,7 @@ window.addEventListener("load", function () {
                         CancelOrder(event.target.dataset.order);
                         increaseStock(selectedOrder.Items)
                         decreaseTotalSales(selectedOrder.Items)
-
+                        //Draw()
                         //localStorage.setItem("Orders", JSON.stringify(Orders));
                         // * Load Data From Local To Data Object To Achieve Consistency
                         Orders = getOrders(); 
@@ -374,14 +385,14 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
     const end = start + rowsPerPage;
     const paginatedUsers = Products.slice(start, end);
     paginatedUsers.forEach((product, index) => {
-        console.log("-----------------------1")
-        console.log(product.SellerID)
-        console.log("-----------------------2")
-        console.log(data.Users.find(user => user._id == product.SellerID).Name)
-        console.log("-----------------------3")
+        // console.log("-----------------------1")
+        // console.log(product.SellerID)
+        // console.log("-----------------------2")
+        // console.log(data.Users.find(user => user._id == product.SellerID).Name)
+        // console.log("-----------------------3")
         let SellerName = data.Users.find(user => user._id == product.SellerID).Name
-        console.log("-----------------------4")
-        console.log(SellerName)
+        // console.log("-----------------------4")
+        // console.log(SellerName)
         //console.log(SellerName)
         const tr = document.createElement("tr");
         tr.innerHTML = `
