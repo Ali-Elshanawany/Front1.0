@@ -3,7 +3,6 @@ from './Data.js'
 
 function initializePage() {
  //   Load data from localStorage (if necessary)
- saveDataInLocalStorage()
  loadDataFromLocalStorage();
 
     //Sticky Navbar
@@ -37,10 +36,6 @@ function initializePage() {
    // Open profile and cart in new tabs
     $('.profileIcon').on("click", function () {
         window.open("users-profile.html", "_blank");
-    });
-
-    $('.cartIcon').on("click", function () {
-        window.open("card.html", "_blank");
     });
 
  //   Function to display products
@@ -162,11 +157,11 @@ function initializePage() {
             let userCart = currentUser.cart || []; // If no cart exists, initialize an empty array
 
       //      Find if product already exists in user's cart
-            let existingItem = userCart.find(item => item.ProductID === productID);
+            let existingItem = userCart.find(item => item._id === productID);
             if (existingItem) {
                 existingItem.Quantity += 1;
             } else {
-                userCart.push({ ProductID: productID, Quantity: 1 });
+                userCart.push({ _id: productID, Quantity: 1 });
             }
 
      //       Update user's cart in the data object
@@ -190,11 +185,11 @@ function initializePage() {
                 }];
             }
 
-            let existingItem = guestCart[0].Items.find(item => item.ProductID === productID);
+            let existingItem = guestCart[0].Items.find(item => item._id === productID);
             if (existingItem) {
                 existingItem.Quantity += 1;
             } else {
-                guestCart[0].Items.push({ ProductID: productID, Quantity: 1 });
+                guestCart[0].Items.push({ _id: productID, Quantity: 1 });
             }
 
             guestCart[0].UpdatedAt = new Date().toISOString();

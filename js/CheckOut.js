@@ -9,7 +9,10 @@ import {
     saveDataInLocalStorage,
     generateRandomId,
     isAuthorized,
+    loadDataFromLocalStorage
   } from "./Data.js";
+
+loadDataFromLocalStorage();
 
 const user = getCurrentUser();
 isAuthorized();
@@ -20,7 +23,10 @@ let cart = ucart.map((item) => ({ // mapping the cart to get the product and the
   num: item.Quantity,
 }));
 
-
+// check if the cart is empty to redirect
+if (cart.length === 0) {
+    location.assign("../html/homeMain.html");
+}
 
 const forms = document.querySelectorAll(".needs-validation");
 const form = document.querySelector("#checkoutForm");
@@ -58,7 +64,7 @@ Array.from(forms).forEach((form) => {
                         text: "Your order has been submitted successfully",
                         icon: "success",
                     }).then(() => {
-                        location.assign("../html/Home.html");
+                        location.assign("../html/homeMain.html");
                     });
                 } else {
                     const uindex = data.Users.findIndex(
@@ -112,11 +118,15 @@ Array.from(forms).forEach((form) => {
     };
     data.Orders.push(newOrder); //pushing the order in the list of orders
   
-    const uindex = customerIndexInUsersList(getCurrentUser()._id);
+    const uindex = customerIndexInUsersList();
+
     data.Users[uindex].orders.push(orderID); 
     // push to order list
   
     data.Users[uindex].cart = []; // cart clear
+    user.cart = [];
+    saveDataInLocalStorage(); // save the updated user data
+    
   
     let flagx = 0; // identicator to loop over cart items
   
@@ -139,9 +149,6 @@ Array.from(forms).forEach((form) => {
       flagx++; // to next item
 
     });
-
-    saveDataInLocalStorage();
-
 }
 
 

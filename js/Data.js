@@ -12,10 +12,10 @@ export const data = {
             "CreatedAt": "2024-11-27T12:36:00Z" ,
             "cart" : 
             [
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
+                
+                
             ],
-            "orders": ["order1"]
+            "orders": ["order1"],
     },
     Users: [
         {
@@ -165,6 +165,22 @@ export const data = {
                 { "_id": "prod2", "Quantity": 2 },
             ],
             "orders": ["order1"]
+        },{
+            "_id": "User2",
+            "Name": "User2",
+            "Email": "User2@User.com",
+            "Phone": "01211145011",
+            "City": "Alex",
+            "Street": "bahr",
+            "Password": "asdASD123!@3",
+            "Role": "User",
+            "CreatedAt": "2024-11-28T08:09:00Z",
+            "cart" : 
+            [
+                { "_id": "prod1", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+            ],
+            "orders": ["order1"]
         }
     ],
     Categories: [
@@ -181,13 +197,14 @@ export const data = {
         {
             "_id": "prod1",
             "Name": "Wooden Chair",
+            "SellerID": "Seller1",
             "Description": "A sturdy wooden chair for dining or work.",
             "Price": 59.99,
             "Stock": 50,
             "CategoryID": "cat1",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+                "../assets/pic3.webp",
+                "../assets/pic3.webp"
             ],
             "CreatedAt": "2024-12-12T19:29:27.767Z",
             "NumOfSales": 12,
@@ -199,7 +216,7 @@ export const data = {
             "Description": "This is a brief description for Product 3",
             "Price": 250,
             "Stock": 35,
-            "SellerID": "Seller2",
+            "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
                 "image1_url",
@@ -214,7 +231,7 @@ export const data = {
             "Name": "Glass Table",
             "Description": "A stylish glass-top table.",
             "Price": 120.0,
-            "Stock": 20,
+            "Stock": 20,"SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
                 "../assets/1.png",
@@ -230,7 +247,7 @@ export const data = {
             "Description": "This is a brief description for Product 5",
             "Price": 640,
             "Stock": 10,
-            "SellerID": "Seller3",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -246,7 +263,7 @@ export const data = {
             "Description": "This is a brief description for Product 6",
             "Price": 430,
             "Stock": 30,
-            "SellerID": "Seller3",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -262,7 +279,7 @@ export const data = {
             "Description": "This is a brief description for Product 7",
             "Price": 220,
             "Stock": 35,
-            "SellerID": "Seller2",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -297,8 +314,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat1",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+                "../assets/pic3.webp",
+                "../assets/pic3.webp"
             ],
             "CreatedAt": "2024-12-12T19:29:27.767Z",
             "NumOfSales": 12,
@@ -310,7 +327,7 @@ export const data = {
             "Description": "This is a brief description for Product 3",
             "Price": 250,
             "Stock": 35,
-            "SellerID": "Seller2",
+            "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
                 "../assets/1.png",
@@ -326,7 +343,7 @@ export const data = {
             "Description": "This is a brief description for Product 4",
             "Price": 50,
             "Stock": 50,
-            "SellerID": "Seller2",
+            "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
                 "../assets/1.png",
@@ -342,7 +359,7 @@ export const data = {
             "Description": "This is a brief description for Product 5",
             "Price": 640,
             "Stock": 10,
-            "SellerID": "Seller3",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -358,7 +375,7 @@ export const data = {
             "Description": "This is a brief description for Product 6",
             "Price": 430,
             "Stock": 30,
-            "SellerID": "Seller3",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -374,7 +391,7 @@ export const data = {
             "Description": "This is a brief description for Product 7",
             "Price": 220,
             "Stock": 35,
-            "SellerID": "Seller2",
+            "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
                 "../assets/1.png",
@@ -805,8 +822,12 @@ export function addProduct(product) {
 export function getUserById(id) {
     return data.Users.find((user) => user._id === id);
 }
+
 export function SetUserById(user) {
-    data.Users.find((user) => user._id === id) = user;
+    const index = data.Users.findIndex((u) => u._id === user._id);
+    if (index !== -1) {
+        data.Users[index] = user; // Update the user at the found index
+    }
 }
 
 export function getUserByEmail(email) {
@@ -827,10 +848,15 @@ export function getOrders() {
 // * Will Return array Containg Total Sales of Each Month 
 // * This Will be the Input for the Graph in Admin Dashboard 
 export function getSalesByMonth() {
-    let monthlySalesArr = new Array(12).fill(0)
+    loadDataFromLocalStorage()
+
+    let monthlySalesArr = new Array(12).fill(0);
     data.Orders.forEach(x => {
-        // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
-        monthlySalesArr[new Date(x.CreatedAt).getMonth()] += x.TotalAmount;
+        // Check if the order's status is not "Canceled"
+       if (x.Status !== "Canceled") {
+          // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
+            monthlySalesArr[new Date(x.CreatedAt).getMonth()] += x.TotalAmount;
+       }
     });
     return monthlySalesArr;
 }
