@@ -221,8 +221,9 @@ window.addEventListener("load", function () {
     TicketsearchInput.addEventListener("keyup", function () {
         const searchTerm = this.value.trim().toLowerCase();
         const filteredTickets = Tickets.filter(ticket =>
-            ticket.Comment.toLowerCase().includes(searchTerm) ||
-            ticket.CreatedAt.toLowerCase().includes(searchTerm)
+            ticket.Comment?.toLowerCase().includes(searchTerm) ||
+            ticket.Email?.toString().toLowerCase().includes(searchTerm)||
+            ticket.CreatedAt?.toLowerCase().includes(searchTerm)
         );
         currentPage = 1; // * Reset to the first page
         displayTicketsTable(filteredTickets, currentPage, rowsPerPage);
@@ -284,7 +285,7 @@ function displayTicketsTable(Tickets, currentPage = 1, rowsPerPage = 10) {
     const tr = document.createElement("tr");
     tr.innerHTML = `
     <tr >
-    <th  id="Name" > Name</th>
+    <th  id="Email" > Email</th>
     <th  id="Comment" > Comments</th>
     <th  id="CreatedAt" > CreatedAt</th>
     </tr>   
@@ -312,7 +313,7 @@ function displayTicketsTable(Tickets, currentPage = 1, rowsPerPage = 10) {
         let UserName=data.Users.find(user=>user._id==ticket.UserID)?.Name||"Anonymous"
         const tr = document.createElement("tr");
         tr.innerHTML = `
-            <td >${UserName}</td>
+            <td >${ticket.Email||"Anonymous"}</td>
             <td >${ticket.Comment}</td>
             <td >${ticket.CreatedAt}</td>
             `;
