@@ -712,7 +712,9 @@ export function getSalesByMonth() {
     let monthlySalesArr = new Array(12).fill(0)
     data.Orders.forEach(x => {
         // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
-        monthlySalesArr[new Date(x.CreatedAt).getMonth()] += x.TotalAmount;
+        if(x.Status!=="Canceled"){
+            monthlySalesArr[new Date(x.CreatedAt).getMonth()] += x.TotalAmount;
+        }
     });
     return monthlySalesArr;
 }
