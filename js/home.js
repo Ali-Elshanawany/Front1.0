@@ -87,6 +87,9 @@ function initializePage() {
         }
     });
 
+
+
+
     // Smooth scrolling for sections
     document.querySelectorAll('.navbar a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
@@ -143,6 +146,26 @@ function initializePage() {
             }
         });
     }
+
+    // Function to filter products by category (based on CategoryID)
+    function filterByCategory(categoryID) {
+        let filteredProducts = data.Products.filter(product => {
+            return categoryID === '' || product.CategoryID === categoryID;
+        });
+
+        displayProducts(filteredProducts);
+    }
+
+  //  Function to filter products by search query (ignoring category)
+    function filterBySearch(searchQuery) {
+        let filteredProducts = data.Products.filter(product => {
+            let title = product.Name.toLowerCase();
+            return title.includes(searchQuery.toLowerCase());
+        });
+
+        displayProducts(filteredProducts);
+    }
+
 
     // Handle category filter click event
     $('.nav-link').on('click', function (e) {
@@ -241,6 +264,7 @@ function initializePage() {
 // Run the initializePage function when the document is ready
 $(document).ready(function(){
     initializePage();
+    
 });
 
 
