@@ -1,0 +1,157 @@
+{
+  "Products": [
+    {
+      "_id": "prod1",
+      "Name": "Wooden Chair",
+      "Description": "High density foam cushions The solid wood frame is sturdy and supports a weight capacity of 250 Ibs+Accent pillow included Available in multiple color options ",
+      "Price": 1500,
+      "Stock": 50,
+      "SellerID": "Seller2",
+      "CategoryID": "cat1",
+      "Images": [
+        "../assets/wodden chair 2.jpj.avif",
+        "../assets/wodden chair.jpj.avif",
+        "../assets/chair4.jpj.avif",
+        "../assets/pro-chair2.png"
+      ],
+      "CreatedAt": "2024-12-19T19:29:27.767Z",
+      "NumOfSales": 12,
+      "Approved": true
+    },
+    {
+      "_id": "pro3",
+      "Name": "Tables",
+      "Description": "Add the ultimate multi-functional table to your game room that is ideal for the entire family",
+      "Price": 48000,
+      "Stock": 35,
+      "SellerID": "Seller2",
+      "CategoryID": "cat2",
+      "Images": [
+        "../assets/tabel2.jpg",
+        "../assets/table.jpg",
+        "../assets/table3.jpg",
+        "../assets/table4.jpg"
+      ],
+      "CreatedAt": "2024-12-12T19:28:43.865Z",
+      "NumOfSales": 0,
+      "Approved": false
+    },
+    {
+      "_id": "prod2",
+      "Name": "Master Bedrooms",
+      "Description": "This bed is designed with simple lines to create the peaceful,  and a center support leg to increase stability",
+      "Price": 4000.0,
+      "Stock": 20,
+      "SellerID": "Seller3",
+      "CategoryID": "cat2",
+      "Images": [
+        "../assets/bedroom1.jpg",
+        "../assets/bedroom2.jpg",
+        "../assets/bedroom3.jpg",
+        "../assets/bedroom4.jpg",
+        "../assets/bedrooms90.avif"
+      ],
+      "CreatedAt": "2024-12-17T19:12:50.361Z",
+      "NumOfSales": 6,
+      "Approved": false
+    },
+    {
+      "_id": "pro5",
+      "Name": "Kitchens",
+      "Description": "Southern Enterprises Furniture Sabanti Expandable Freestanding Kitchen Island",
+      "Price": 40000,
+      "Stock": 10,
+      "SellerID": "Seller3",
+      "CategoryID": "cat3",
+      "Images": [
+        "../assets/kitchen1.jpj..avif",
+        "../assets/kitchen-2.jpg",
+        "../assets/kitchen-3.jpg",
+        "../assets/kitchen5.jpg",
+        "../assets/kitchen-4.jpg"
+      ],
+      "CreatedAt": "2024-10-12T19:30:15.018Z",
+      "NumOfSales": 4,
+      "Approved": false
+    },
+    {
+      "_id": "pro6",
+      "Name": "Dinning Rooms",
+      "Description": "Johnelle Dining Bench Made of solid wood Distressed weathered gray finish Polyester upholstery over foam cushioned seatContrasting nailhead trim Assembly required",
+      "Price": 25000,
+      "Stock": 30,
+      "SellerID": "Seller3",
+      "CategoryID": "cat3",
+      "Images": [
+        "../assets/dining-room-2.jpg",
+        "../assets/-dining-room-4.jpg",
+        "../assets/dining-room-3.jpg",
+        "../assets/dining-room-5.jpg",
+        "../assets/dining-table-1.jpg"
+      ],
+      "CreatedAt": "2024-12-12T19:30:29.750Z",
+      "NumOfSales": 0,
+      "Approved": true
+    },
+    {
+      "_id": "pro7",
+      "Name": "Living Rooms",
+      "Description": "TIncludes 4 modular pieces: left-arm facing corner chaise, 2 armless chairs and right-arm facing corner chaise Left-arm and right-arm ",
+
+      "Price": 220,
+      "Stock": 35550,
+      "SellerID": "Seller2",
+      "CategoryID": "cat3",
+      "Images": [
+        "../assets/living-room-11.jpg",
+        "../assets/living-2.avif",
+        "../assets/living-room-1.jpg",
+        "../assets/living-room-3jpg.jpg",
+        "../assets/living-room4.jpg",
+        "../assets/living-room-5.jpg"
+      ],
+      "CreatedAt": "2024-9-12T18:30:42.546Z",
+      "NumOfSales": 0,
+      "Approved": true
+    },
+    {
+      "_id": "pro8",
+      "Name": "Entertainment",
+      "Description": "TModern 3-seat sofa with chic velvet upholstery and tapered wood look plastic legs",
+      "Stock": 45,
+      "SellerID": "Seller1",
+      "CategoryID": "cat4",
+      "Images": [
+        "../assets/entert-1.jpg",
+        "../assets/entertainment-2.jpg",
+        "../assets/enter-3.jpg",
+        "../assets/enter-4.jpg",
+        "../assets/enter-5.jpg"
+      ],
+      "CreatedAt": "2024-6-12T4:28:19.664Z",
+      "NumOfSales": 15,
+      "Approved": true
+    },
+    {
+      "_id": "pro2",
+      "Name": "Dressing Rooms",
+      "Description": "Made of engineered wood (MDF/particleboard) Aged pewter-tone hardware Includes tipover restraint device",
+
+      "Price": 33999,
+      "Stock": 30,
+      "SellerID": "Seller1",
+      "CategoryID": "cat1",
+      "Images": [
+        "../assets/dressing-1.jpg",
+        "../assets/dressing-2.jpg",
+        "../assets/dressing-3.jpg",
+        "../assets/dressing-4.avif",
+        "../assets/dressing-5.jpg"
+      ],
+      "CreatedAt": "2024-4-12T6:29:27.767Z",
+      "NumOfSales": 12,
+      "Approved": true
+    }
+   
+  ]
+}

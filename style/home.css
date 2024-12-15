@@ -1,11 +1,17 @@
- 
+ *{
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+
+ }
 html{
   scroll-behavior: smooth;
 }
 body {
+  overflow-x: hidden;
   font-family: var(--font3);
   background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
-  padding-top: 70px;
+
 }
 :root {
   --font1: "Heebo", sans-serif;
@@ -19,12 +25,16 @@ text-decoration: none;
 i{
   cursor: pointer;
 }
+.navbar-main{
+  max-width: 100%;
+  overflow-x: hidden;
+}
 .sticky-navbar {
  position: sticky;
   top: 0;
   width: 100%;
   z-index: 1030;
-  display: none;
+ display: none;
   transition: all 0.3s ease;
   will-change: transform;
 }
@@ -33,9 +43,7 @@ i{
   display: block;
 
 }
-body {
-  padding-top: 56px;
-}
+
 .nav-item .search{
   border-radius: 30px;
   border: none;
@@ -69,7 +77,7 @@ body {
 .home .carousel-indicators {
   z-index: 11; 
 }
-/* best seller section*/
+
 /* Styling the Section */
 .best-sellers-section {
   padding: 30px 0;
@@ -86,8 +94,7 @@ h1.pro{
   
 }
 
-
-
+/* Best Sellers Section Styles */
 .best-sellers-section {
   height: 600px;
   margin: 0;
@@ -98,6 +105,7 @@ h1.pro{
   justify-items: center;
 }
 
+/* Carousel Container */
 main#carousel {
   grid-row: 1 / 2;
   grid-column: 1 / 8;
@@ -115,6 +123,7 @@ main#carousel {
   pointer-events: none;
 }
 
+/* Carousel Items Styles */
 div.item {
   position: absolute;
   width: 300px;
@@ -123,40 +132,54 @@ div.item {
   --r: calc(var(--position) - var(--offset));
   --abs: max(calc(var(--r) * -1), var(--r));
   transition: all 0.25s linear;
-  transform: rotateY(calc(-10deg * var(--r)))
-    translateX(calc(-300px * var(--r)));
+  transform: rotateY(calc(-10deg * var(--r))) translateX(calc(-300px * var(--r)));
   z-index: calc((var(--position) - var(--abs)));
 }
-div.item img{
-width: 300px;
-height: 400px;
+
+/* Carousel Images Styles */
+div.item img {
+  width: 300px;
+  height: 400px;
+  object-fit: cover;
 }
 
+/* Different Background Colors for Carousel Items */
 div.item:nth-of-type(1) {
   --offset: 1;
   background-color: #90f1ef;
 }
+
 div.item:nth-of-type(2) {
   --offset: 2;
   background-color: #ff70a6;
 }
+
 div.item:nth-of-type(3) {
   --offset: 3;
   background-color: #ff9770;
 }
+
 div.item:nth-of-type(4) {
   --offset: 4;
   background-color: #ffd670;
 }
+
 div.item:nth-of-type(5) {
   --offset: 5;
   background-color: #e9ff70;
+}
+
+/* Radio Buttons Style */
+input[type="radio"] {
+  opacity: 1; /* Hide radio buttons */
+  position: absolute;
 }
 
 input:nth-of-type(1) {
   grid-column: 2 / 3;
   grid-row: 2 / 3;
 }
+
 input:nth-of-type(1):checked ~ main#carousel {
   --position: 1;
 }
@@ -165,14 +188,16 @@ input:nth-of-type(2) {
   grid-column: 3 / 4;
   grid-row: 2 / 3;
 }
+
 input:nth-of-type(2):checked ~ main#carousel {
   --position: 2;
 }
 
 input:nth-of-type(3) {
-  grid-column: 4 /5;
+  grid-column: 4 / 5;
   grid-row: 2 / 3;
 }
+
 input:nth-of-type(3):checked ~ main#carousel {
   --position: 3;
 }
@@ -181,6 +206,7 @@ input:nth-of-type(4) {
   grid-column: 5 / 6;
   grid-row: 2 / 3;
 }
+
 input:nth-of-type(4):checked ~ main#carousel {
   --position: 4;
 }
@@ -189,9 +215,12 @@ input:nth-of-type(5) {
   grid-column: 6 / 7;
   grid-row: 2 / 3;
 }
+
 input:nth-of-type(5):checked ~ main#carousel {
   --position: 5;
 }
+
+
 
 
 
@@ -202,9 +231,6 @@ input:nth-of-type(5):checked ~ main#carousel {
   margin: 20px auto;
   text-align: center;
 }
-
-
-
 
 h2 {
   font-weight: 900;
@@ -453,3 +479,8 @@ height: 300px;
 .footer .rights{
   font-size: calc(10px + (12 - 10) * ((100vw - 360px) / (1600 - 360))) !important; 
 }
+
+
+
+
+

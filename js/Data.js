@@ -12,8 +12,7 @@ export const data = {
             "CreatedAt": "2024-11-27T12:36:00Z" ,
             "cart" : 
             [
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
+               
             ],
             "orders": ["order1"]
     },
@@ -194,7 +193,7 @@ export const data = {
             "Approved": true
         },
         {
-            "_id": "pro3",
+            "_id": "prod2",
             "Name": "Product 3",
             "Description": "This is a brief description for Product 3",
             "Price": 250,
@@ -210,7 +209,7 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "prod2",
+            "_id": "prod3",
             "Name": "Glass Table",
             "Description": "A stylish glass-top table.",
             "Price": 120.0,
@@ -225,7 +224,7 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "pro5",
+            "_id": "prod4",
             "Name": "Product 5",
             "Description": "This is a brief description for Product 5",
             "Price": 640,
@@ -241,7 +240,7 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "pro6",
+            "_id": "pro5",
             "Name": "Product 6",
             "Description": "This is a brief description for Product 6",
             "Price": 430,
@@ -257,7 +256,7 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "pro7",
+            "_id": "prod7",
             "Name": "Product 7",
             "Description": "This is a brief description for Product 7",
             "Price": 220,
@@ -289,7 +288,7 @@ export const data = {
             "Approved": true
         },
         {
-            "_id": "pro2",
+            "_id": "pro9",
             "Name": "Product 2",
             "Description": "This is a brief description for Product 2",
             "Price": 200,
@@ -305,7 +304,7 @@ export const data = {
             "Approved": true
         },
         {
-            "_id": "pro3",
+            "_id": "pro10",
             "Name": "Product 3",
             "Description": "This is a brief description for Product 3",
             "Price": 250,
@@ -321,7 +320,7 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "pro4",
+            "_id": "pro11",
             "Name": "Product 4",
             "Description": "This is a brief description for Product 4",
             "Price": 50,
@@ -337,7 +336,7 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "pro5",
+            "_id": "pro12",
             "Name": "Product 5",
             "Description": "This is a brief description for Product 5",
             "Price": 640,
@@ -353,7 +352,7 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "pro6",
+            "_id": "pro13",
             "Name": "Product 6",
             "Description": "This is a brief description for Product 6",
             "Price": 430,
@@ -369,7 +368,7 @@ export const data = {
             "Approved": false
         },
         {
-            "_id": "pro7",
+            "_id": "pro14",
             "Name": "Product 7",
             "Description": "This is a brief description for Product 7",
             "Price": 220,
@@ -385,7 +384,7 @@ export const data = {
             "Approved": true
         },
         {
-            "_id": "pro8",
+            "_id": "pro15",
             "Name": "Product 8",
             "Description": "This is a brief description for Product 8",
             "Price": 360,
@@ -806,7 +805,10 @@ export function getUserById(id) {
     return data.Users.find((user) => user._id === id);
 }
 export function SetUserById(user) {
-    data.Users.find((user) => user._id === id) = user;
+    const index = data.Users.findIndex((u) => u._id === user._id);
+    if (index !== -1) {
+        data.Users[index] = user; // Update the user at the found index
+    }
 }
 
 export function getUserByEmail(email) {

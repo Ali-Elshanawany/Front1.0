@@ -18,8 +18,9 @@
 
 
     <!-- Product Details Section -->
-
-    <nav class="navbar navbar-expand-lg  text-dark navbar-main  ">
+     <!--navbar navbar-expand-lg fixed-top text-dark navbar-main bg-black-->
+    <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top text-dark navbar-main bg-body  ">
         <div class="container-fluid fw-bold">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,7 +42,7 @@
             </div>
         </div>
     </nav>
-    <div class="product-details" id="product-details">
+    <div class="product-details " id="product-details">
         <!-- Carousel -->
         <div class="carousel-container">
             <div id="carouselExample" class="carousel slide" data-bs-ride="carousel">
@@ -82,10 +83,14 @@
                 <i class="fa-solid fa-star"></i>
                 <i class="fa-regular fa-star"></i>
             </div>
+            <div id="arefDiv" class="text-center my-4">
+                <!-- <a href="#" class="btn-addToCart btn btn-warning" data-product-id="${}">Add to Cart</a> -->
 
+            </div>
             <button class="goToHome mt-4">Go to Home</button>
         </div>
     </div>
+</div>
     <!-- Footer Section -->
     <section class="footer">
         <div class="foot pb-0 mb-0 justify-content-center text-light">
@@ -135,6 +140,9 @@
     <script src="../bootstrapp/bootstrap.bundle.min.js"></script>
     <script src="../jquary/jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <!-- Add SweetAlert JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/productDetails.js" type="module"></script>
 </body>
 
