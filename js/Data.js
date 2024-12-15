@@ -165,6 +165,22 @@ export const data = {
                 { "_id": "prod2", "Quantity": 2 },
             ],
             "orders": ["order1"]
+        },{
+            "_id": "User2",
+            "Name": "User2",
+            "Email": "User2@User.com",
+            "Phone": "01211145011",
+            "City": "Alex",
+            "Street": "bahr",
+            "Password": "asdASD123!@3",
+            "Role": "User",
+            "CreatedAt": "2024-11-28T08:09:00Z",
+            "cart" : 
+            [
+                { "_id": "prod1", "Quantity": 2 },
+                { "_id": "prod2", "Quantity": 2 },
+            ],
+            "orders": ["order1"]
         }
     ],
     Categories: [
@@ -832,12 +848,15 @@ export function getOrders() {
 // * Will Return array Containg Total Sales of Each Month 
 // * This Will be the Input for the Graph in Admin Dashboard 
 export function getSalesByMonth() {
-    let monthlySalesArr = new Array(12).fill(0)
+    loadDataFromLocalStorage()
+
+    let monthlySalesArr = new Array(12).fill(0);
     data.Orders.forEach(x => {
-        // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
-        if(x.Status!=="Canceled"){
+        // Check if the order's status is not "Canceled"
+       if (x.Status !== "Canceled") {
+          // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
             monthlySalesArr[new Date(x.CreatedAt).getMonth()] += x.TotalAmount;
-        }
+       }
     });
     return monthlySalesArr;
 }
