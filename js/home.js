@@ -1,4 +1,4 @@
-import { data, loadDataFromLocalStorage, saveDataInLocalStorage,SetUserById }
+import { data, getCurrentUser, loadDataFromLocalStorage, saveDataInLocalStorage,SetUserById }
 from './Data.js'
 // Add to Cart Function (at the top of your home page script)
  export function addToCart(productID) {
@@ -395,7 +395,19 @@ function initializePage() {
         });
     });
 
+<<<<<<< HEAD
   
+=======
+   // Open profile and cart in new tabs
+    $('.profileIcon').on("click", function () {
+        getCurrentUser();
+        if(data.CurrentUser==null){
+            window.open("login.html", "_blank");
+
+        }
+        window.open("users-profile.html", "_blank");
+    });
+>>>>>>> rawan
 
  //   Function to display products
     function displayProducts(products) {

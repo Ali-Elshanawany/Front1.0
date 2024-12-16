@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/3.5.0/remixicon.css" crossorigin="">
+   <link rel="stylesheet" href="../style/styles.css">
+   <link rel="stylesheet" href="../style/reg.css">
+   <link rel="icon" href="../assets/pic.png" type="image/png">
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   <title>Register</title>
+</head>
+<body>
+   <div class="login">
+      <img src="../assets/bg.jpg" alt="image" class="login__bg">
+
+      <form action="" class="login__form" id="registerForm">
+         <h1 class="login__title">Register</h1>
+
+         <div class="login__inputs">
+            <div class="login__box">
+               <input type="text" placeholder="UserName" id="username" required class="login__input" title="UserName Can't be Empty or Spaces">
+               <i class="bi bi-person-fill"></i>
+            </div>
+            <div class="login__box">
+               <input type="email" placeholder="Email ID" id="email" required class="login__input">
+               <i class="bi bi-envelope-fill"></i>
+            </div>
+            <div class="login__box">
+               <input type="text" placeholder="PhoneNumber" id="phone" required class="login__input" pattern="^\d{11}$" title="Phone number must be 10 digits">
+               <i class="bi bi-telephone-fill"></i>
+            </div>
+
+            <div class="form-row">
+               <div class="login__box">
+                  <select id="city" required class="login__input">
+                     <option value="">Select City</option>
+                     <option value="cairo">Cairo</option>
+                     <option value="alexandria">Alexandria</option>
+                     <option value="giza">Giza</option>
+                     <option value="qalyubia">Qalyubia</option>
+                     <option value="port_said">Port Said</option>
+                     <option value="suez">Suez</option>
+                     <option value="sharqia">Sharqia</option>
+                     <option value="dakahlia">Dakahlia</option>
+                     <option value="aswan">Aswan</option>
+                     <option value="asiyut">Asyut</option>
+                     <option value="beheira">Beheira</option>
+                     <option value="beni_suef">Beni Suef</option>
+                     <option value="fayoum">Fayoum</option>
+                     <option value="gharbia">Gharbia</option>
+                     <option value="ismailia">Ismailia</option>
+                     <option value="kafr_el_sheikh">Kafr El Sheikh</option>
+                     <option value="matruh">Matruh</option>
+                     <option value="minya">Minya</option>
+                     <option value="monufia">Monufia</option>
+                     <option value="new_valley">New Valley</option>
+                     <option value="north_sinai">North Sinai</option>
+                     <option value="qena">Qena</option>
+                     <option value="red_sea">Red Sea</option>
+                     <option value="sohag">Sohag</option>
+                     <option value="south_sinai">South Sinai</option>
+                     <option value="damietta">Damietta</option>
+                     <option value="luxor">Luxor</option>
+                  </select>
+                  <i class="bi bi-geo-alt-fill"></i>
+               </div>
+               <div class="login__box">
+                  <input type="text" placeholder="Street" id="street" required class="login__input">
+                  <i class="bi bi-house-door-fill"></i>
+               </div>
+            </div>
+
+            <div class="login__box">
+               <input type="password" placeholder="Password" id="password" required class="login__input" minlength="6" title='Password must contain at least 6 characters, including an uppercase letter, a lowercase letter, and a special character.'>
+               <i class="bi bi-lock-fill"></i>
+               <i class="bi bi-eye toggle-password" id="togglePassword"></i>
+
+            </div>
+            <div class="login__check-box">
+               <input type="radio" class="login__check-input" id="seller" value="seller" name="user_type" required>
+               <label for="seller" class="login__check-label">Seller</label>
+               
+               <input type="radio" class="login__check-input" id="user" value="user" name="user_type" required>
+               <label for="user" class="login__check-label">User</label>
+               
+
+            </div>
+            
+         </div>
+
+         <button type="submit" class="login__button">Register</button>
+
+         <div class="login__register">
+            Already have an account? <a href="login.html" id="reg">Login</a>
+         </div>
+      </form>
+   </div>
+      <!-- Load crypto-js for encryption -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>
+
+      <!-- Load SweetAlert2 -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+      <!-- Move script to the end of the body for proper DOM loading -->
+      <script src="../js/regester.js" type="module"></script>
+</body>
+</html>
