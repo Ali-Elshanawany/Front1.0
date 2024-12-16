@@ -1,8 +1,17 @@
 import { getCurrentUser, getUsers, saveDataInLocalStorage, loadDataFromLocalStorage, data ,isAuthorized} from './Data.js';
 
+
 document.addEventListener("DOMContentLoaded", function () {
+
+  //saveDataInLocalStorage();
   loadDataFromLocalStorage(); 
-  isAuthorized();
+  console.log("looog")
+  console.log(data.CurrentUser);
+  if(data.CurrentUser==null){
+    console.log("looog")
+    location.assign("../html/homeMain.html")
+  }
+ // isAuthorized();
   loadOverview(); 
   loadOrders(); 
 
@@ -217,6 +226,7 @@ function updatePassword(event) {
 
 function loadOrders() {
   const currentUser = getCurrentUser(); 
+  console.log(currentUser);
   if (!currentUser) {
       console.error("No current user found.");
       return;
@@ -233,6 +243,8 @@ function loadOrders() {
   }
 
   const userOrders = data.Orders.filter(order => order.UserID === currentUser._id);
+  console.log(userOrders);
+  console.log(data.Orders)
 
   if (userOrders.length === 0) {
       ordersTableBody.innerHTML = `<tr><td colspan="3" class="text-center">No orders found.</td></tr>`;
@@ -244,12 +256,14 @@ function loadOrders() {
 
               const row = `
                 <tr>
+                   <td>${order._id}</td>
                   <td>${productName}</td>
                   <td>${item.Quantity}</td>
                   <td>${order.Status || "Unknown Status"}</td>
                 </tr>`;
               ordersTableBody.innerHTML += row;
           });
+
       });
   }
 }

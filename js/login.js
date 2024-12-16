@@ -100,11 +100,19 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 const currentUser = data.CurrentUser; // أو استرجع CurrentUser من localStorage إذا لزم الأمر
 
 if (currentUser) {
+    console.log(currentUser)
     if (currentUser.Role === "Seller") {
-        window.location.href = "SellerProductDashboard.html";
-    } else {
-        window.location.href = "homeMain.html";
+        window.location.assign("../html/SellerProductDashboard.html")
+    } if(currentUser.Role === "Admin"){
+        window.location.assign("../html/AccountsDataTable.html")
     }
+    if(currentUser.Role === "User"){
+        window.location.assign("../html/homeMain.html")
+    }
+
+    // } else{
+    //     window.location.href = "homeMain.html";
+    // }
 }
 
 });

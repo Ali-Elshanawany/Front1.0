@@ -1,21 +1,16 @@
 export const data = {
     guestCart: [],
-    CurrentUser:  {
-        "_id": "user3",
-            "Name": "Bob Buyer",
-            "Email": "buyer@example.com",
-            "Password": "hashed_password3",
-            "Phone": "123987456",
-            "City": "cairo",
-            "Street": "bla bla blaablaa ",
-            "Role": "User",
-            "CreatedAt": "2024-11-27T12:36:00Z" ,
-            "cart" : 
-            [
-                
-                
-            ],
-            "orders": ["order1"],
+    CurrentUser:    {
+        "_id": "Seller1",
+        "Name": "Seller1",
+        "Email": "Seller1@Seller.com",
+        "Phone": "01011145011",
+        "City": "dakahlia",
+        "Street": "second street ",
+        "Password": "asdASD123!@3",
+        "Role": "Seller",
+        "CreatedAt": "2024-11-27T12:35:00Z",
+        "TotalSales": 99999,
     },
     Users: [
         {
@@ -62,7 +57,6 @@ export const data = {
             "Role": "Seller",
             "CreatedAt": "2024-11-27T12:35:00Z",
             "TotalSales": 99999,
-            "orders": ["order1"]
         },
         {
             "_id": "user3",
@@ -76,8 +70,8 @@ export const data = {
             "CreatedAt": "2024-11-27T12:36:00Z",
             "cart" : 
             [
-                { "_id": "prod1", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
             ],
             "orders": ["order1"]
         }, {
@@ -92,8 +86,8 @@ export const data = {
             "CreatedAt": "2024-11-28T08:05:00Z",
             "cart" : 
             [
-                { "_id": "prod1", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
             ],
             "orders": ["order1"]
         },
@@ -108,11 +102,6 @@ export const data = {
             "Role": "Seller",
             "CreatedAt": "2024-11-28T08:06:00Z",
             "TotalSales": 300,
-            "cart" : 
-            [
-                { "_id": "prod1", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
-            ],
             "orders": ["order1"]
         },
         {
@@ -127,8 +116,8 @@ export const data = {
             "CreatedAt": "2024-11-28T08:07:00Z",
             "cart" : 
             [
-                { "_id": "prod1", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
             ],
             "orders": ["order1"]
         },
@@ -144,8 +133,8 @@ export const data = {
             "CreatedAt": "2024-11-28T08:08:00Z",
             "cart" : 
             [
-                { "_id": "prod1", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
             ],
             "orders": ["order1"]
         },
@@ -161,8 +150,8 @@ export const data = {
             "CreatedAt": "2024-11-28T08:09:00Z",
             "cart" : 
             [
-                { "_id": "prod1", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
             ],
             "orders": ["order1"]
         },{
@@ -177,8 +166,8 @@ export const data = {
             "CreatedAt": "2024-11-28T08:09:00Z",
             "cart" : 
             [
-                { "_id": "prod1", "Quantity": 2 },
-                { "_id": "prod2", "Quantity": 2 },
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
             ],
             "orders": ["order1"]
         }
@@ -195,7 +184,7 @@ export const data = {
     ],
     Products:[
         {
-            "_id": "prod1",
+            "_id": "pro1",
             "Name": "Wooden Chair",
             "SellerID": "Seller1",
             "Description": "A sturdy wooden chair for dining or work.",
@@ -219,23 +208,24 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
-                "image1_url",
-                "image2_url"
+                 "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:29:43.865Z",
             "NumOfSales": 0,
             "Approved": false
         },
         {
-            "_id": "prod2",
+            "_id": "pro2",
             "Name": "Glass Table",
             "Description": "A stylish glass-top table.",
             "Price": 120.0,
-            "Stock": 20,"SellerID": "Seller1",
+            "Stock": 20,
+            "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+                  "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:29:56.361Z",
             "NumOfSales": 0,
@@ -250,8 +240,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+              "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:30:15.018Z",
             "NumOfSales": 0,
@@ -266,8 +256,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+             "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:30:29.750Z",
             "NumOfSales": 0,
@@ -282,8 +272,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+               "../assets/pic3.webp",
+                "../assets/pic3.webp"
             ],
             "CreatedAt": "2024-12-12T19:30:42.546Z",
             "NumOfSales": 0,
@@ -298,8 +288,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat4",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+               "../assets/pic3.webp",
+                "../assets/pic3.webp"
             ],
             "CreatedAt": "2024-12-12T19:29:12.664Z",
             "NumOfSales": 15,
@@ -314,7 +304,7 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat1",
             "Images": [
-                "../assets/pic3.webp",
+              "../assets/pic3.webp",
                 "../assets/pic3.webp"
             ],
             "CreatedAt": "2024-12-12T19:29:27.767Z",
@@ -330,8 +320,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+             "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:29:43.865Z",
             "NumOfSales": 0,
@@ -346,8 +336,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+              "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:29:56.361Z",
             "NumOfSales": 0,
@@ -362,8 +352,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+               "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:30:15.018Z",
             "NumOfSales": 0,
@@ -378,8 +368,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+               "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:30:29.750Z",
             "NumOfSales": 0,
@@ -394,8 +384,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+                "../assets/pic3.webp",
+                "../assets/pic3.webp"
             ],
             "CreatedAt": "2024-12-12T19:30:42.546Z",
             "NumOfSales": 0,
@@ -410,8 +400,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat4",
             "Images": [
-                "../assets/1.png",
-                "../assets/2.png"
+              "../assets/pic3.webp",
+                "../assets/pic3.webp"
             ],
             "CreatedAt": "2024-12-12T19:31:00.699Z",
             "NumOfSales": 0,
@@ -753,6 +743,7 @@ export function saveDataInLocalStorage() {
 
 
 export function getCurrentUser() {
+    loadDataFromLocalStorage();
     return data.CurrentUser;
 }
 
@@ -806,7 +797,7 @@ export function DeleteFromCart(id) {
 }
 
 export function generateRandomId() {
-    return Math.floor(Math.random() * 1000000) + 1;
+    return `Order${Date.now()}`;
 }
 
 export function addUser(User) {

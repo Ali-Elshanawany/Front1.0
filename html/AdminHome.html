@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
+    <title>Ali page</title>
     <link rel="stylesheet" href="../bootstrapp/bootstrap.min.css">
     <link rel="stylesheet" href="../style/home.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
@@ -18,7 +18,7 @@
 
 <body>
     <!-- First Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top text-dark navbar-main ">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top text-dark navbar-main bg-body ">
         <div class="container-fluid fw-bold">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -30,67 +30,23 @@
                     <li class="nav-item">
                         <a class="nav-link active category-link" href="#home">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link category-link" href="#product">Product</a>
-                    </li>
+        
                     <li class="nav-item">
                         <a class="nav-link category-link" href="#contact">Contact</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link category-link" href="#about">About</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link category-link" href="./AccountsDataTable.html">Dashboard</a>
+                    </li>
                 </ul>
                 <!-- Icons -->
-                <i class="  profileIcon fa-solid fa-user fa-xl icon-spacing m-2" title="Profile"></i>
-                <a href="./Cart.html"><i class="  cartIcon  fa-solid fa-cart-plus fa-xl icon-spacing" title="Add to Cart"></i></a>
+               
             </div>
         </div>
     </nav>
-    <!-- Sticky Navbar -->
-
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-navbar bg-secondary sticky-navbar ">
-        <div class="container-fluid">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav me-auto ">
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-category="cat1">Chairs</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-category="cat2">Tables</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-category="cat3">Master Bedrooms</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-category="cat4">Kitchens</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-category="cat5">Dining Rooms</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-category="cat6">Living Rooms</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-category="cat7">Entertainment</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#" data-category="cat8">Dressing Rooms</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="homeMain.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <i class="fa fa-search m-3" aria-hidden="true"></i>
-                        <input id="searchInput" type="text" class="search fa-border-none " placeholder="Search">
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+ 
 
 
     <section class="home position-relative" id="home">
@@ -152,43 +108,8 @@
         </div>
     </section>
     <!--end home section-->
-    <!--section best seller-->
-    <h1 class=" line text-center p-3">BEST SELLER</h1>
-    <section class="best-sellers-section my-5">
-        <input type="radio" name="position" checked />
-  <input type="radio" name="position" />
-  <input type="radio" name="position" />
-  <input type="radio" name="position" />
-  <input type="radio" name="position" />
-  <main id="carousel">
-    <div class="item"><img src="../assets/chair2.jpg"></div>
-    <div class="item"><img src="../assets/children-bed.avif"></div>
-    <div class="item"><img src="../assets/bestseller2.jpg"></div>
-    <div class="item"><img src="../assets/bestseller4.jpg"></div>
-    <div class="item"><img src="../assets/bestseller1.avif"></div>
-  </main>
-    </section>
+ 
 
-
-
-
-    <!--end best seller section-->
-    <!-- our product section-->
-    <section class="product" id="product">
-        <h1 class="pro">Our Products</h1>
-        <main>
-            <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
-                <div id="products-container" class=" row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3">
-
-                    </div>
-                   
-                    
-                </div>
-            </div>
-        </main>
-    </section>
-
-    <!--end product section-->
 
     <!--about section-->
     <h1 class="pro">ABOUT</h1>
@@ -289,7 +210,7 @@
 
     <!-- Add SweetAlert JavaScript -->
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="../js/home.js" type="module"></script>
+<!-- <script src="../js/home.js" type="module"></script> -->
    
 </body>
 

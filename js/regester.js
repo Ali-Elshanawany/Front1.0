@@ -6,6 +6,9 @@ function isEmailRegistered(email) {
    const users = JSON.parse(localStorage.getItem("Users")) || [];
    return users.some(user => user.Email === email);
 }
+function encryptPassword(password) {
+   return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); // SHA-256 hash and convert to Base64
+}
 
 document.getElementById('registerForm').addEventListener('submit', function (event) {
    event.preventDefault(); 
@@ -98,21 +101,21 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
    
    
 
-   
-   const newUser = {
-      _id: `user${Date.now()}`,
-      Name: username,
-      Email: email,
-      Phone: phone,
-      City: city,
-      Street: street,
-      Password: password,
-      Role: userType, 
-      CreatedAt: new Date().toISOString(),
-      TotalSales: userType == "Seller" ? 0 : undefined,
-cart: userType == "User" ? [] : undefined
+  const encryptedPassword = encryptPassword(password);
 
-   };
+  const newUser = {
+     _id: `user${Date.now()}`,
+     Name: username,
+     Email: email,
+     Phone: phone,
+     City: city,
+     Street: street,
+     Password: encryptedPassword, // Store encrypted password
+     Role: userType, 
+     CreatedAt: new Date().toISOString(),
+     TotalSales: userType == "Seller" ? 0 : undefined,
+     cart: userType == "User" ? [] : undefined
+  };
 
    addUser(newUser);
    saveDataInLocalStorage();

@@ -1,4 +1,4 @@
-import { data, loadDataFromLocalStorage, saveDataInLocalStorage,SetUserById }
+import { data, getCurrentUser, loadDataFromLocalStorage, saveDataInLocalStorage,SetUserById }
 from './Data.js'
 
 function initializePage() {
@@ -35,6 +35,11 @@ function initializePage() {
 
    // Open profile and cart in new tabs
     $('.profileIcon').on("click", function () {
+        getCurrentUser();
+        if(data.CurrentUser==null){
+            window.open("login.html", "_blank");
+
+        }
         window.open("users-profile.html", "_blank");
     });
 

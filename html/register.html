@@ -96,8 +96,13 @@
          </div>
       </form>
    </div>
-   <script src="https://cdn.jsdelivr.net/npm/bcryptjs@2.4.3/dist/bcrypt.min.js"></script>
-   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-   <script src="../js/regester.js" type="module"></script>
+      <!-- Load crypto-js for encryption -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>
+
+      <!-- Load SweetAlert2 -->
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+   
+      <!-- Move script to the end of the body for proper DOM loading -->
+      <script src="../js/regester.js" type="module"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@ import {
     loadDataFromLocalStorage,
 } from "./Data.js";
 
-isAuthorized();
+//isAuthorized();
 
 // Load data from local storage
 loadDataFromLocalStorage();
@@ -156,7 +156,7 @@ window.addEventListener("load", function () {
     CheckOut.addEventListener("click", function (e) {
         if (data.CurrentUser) {
             if (data.CurrentUser.Role === "User") {
-                location.assign("../html/Checkout.html");
+                window.open("../html/CheckOut.html", "_blank");
             }
         } else {
             Swal.fire({
