@@ -1,17 +1,15 @@
-import { getCurrentUser, getUsers, saveDataInLocalStorage, loadDataFromLocalStorage, data ,isAuthorized} from './Data.js';
-
+import { getCurrentUser, getUsers, saveDataInLocalStorage, loadDataFromLocalStorage, data, isAuthorized } from './Data.js';
 
 document.addEventListener("DOMContentLoaded", function () {
 
-  //saveDataInLocalStorage();
-  loadDataFromLocalStorage(); 
-  console.log("looog")
-  console.log(data.CurrentUser);
-  if(data.CurrentUser==null){
-    console.log("looog")
-    location.assign("../html/homeMain.html")
+  // Load data from localStorage
+  loadDataFromLocalStorage();
+
+  if (data.CurrentUser == null) {
+    location.assign("../html/homeMain.html");
+    return;
   }
- // isAuthorized();
+
   loadOverview(); 
   loadOrders(); 
 
@@ -19,6 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (editProfileForm) {
     editProfileForm.addEventListener("submit", updateCurrentUserProfile);
   }
+
   const changePasswordForm = document.getElementById("changePasswordForm");
   if (changePasswordForm) {
     changePasswordForm.addEventListener("submit", updatePassword);
@@ -31,37 +30,22 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 function loadOverview() {
-  /*  const currentUser = {
-        "_id": "User1", 
-        "Name": "User1",
-        "Email": "User1@User.com",
-        "Phone": "01211145011",
-        "City": "red_sea",
-        "Street": "main street",
-        "Password": "asdASD123!@3",
-        "Role": "User",
-        "cart": [],
-        "Img": ""
-    };*/
   const currentUser = getCurrentUser();
   
   if (!currentUser) {
     console.error("No current user found.");
     return;
   }
-  
+
   document.getElementById("fullName").innerText = currentUser.Name || "Unknown";
   document.getElementById("mail").innerText = currentUser.Email || "Unknown";
   document.getElementById("phone").innerText = currentUser.Phone || "Unknown";
   document.getElementById("street").innerText = currentUser.Street || "Unknown";
   document.getElementById("city").innerText = currentUser.City || "Unknown";
 
-  const profileImage = "../assets/profile.png";
+  const profileImage = currentUser.ProfileImage || "../assets/profile.png";
   document.getElementById("profileImage").src = profileImage;
-
 }
-
-
 
 function updateCurrentUserProfile(event) {
   event.preventDefault();
@@ -77,65 +61,31 @@ function updateCurrentUserProfile(event) {
   const phone = document.getElementById("editPhone").value.trim();
   const city = document.getElementById("editCity").value.trim();
   const street = document.getElementById("editStreet").value.trim();
-  const img=document.getElementById("profileImg").value;
 
-  if (username === "" || username.length < 3) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Invalid Username',
-      text: 'Username must contain at least 3 characters and not be empty.',
-    });
+  const profileImgElement = document.getElementById("profileImg");
+  let profileImagePath = currentUser.ProfileImage || "../assets/profile.png";
+
+  if (profileImgElement.files.length > 0) {
+    const file = profileImgElement.files[0];
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      profileImagePath = e.target.result;
+      document.getElementById("profileImage").src = profileImagePath;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  if (!validateProfileFields(username, email, phone, city, street)) {
     return;
   }
 
-  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-  if (!emailPattern.test(email)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Invalid Email',
-      text: 'Please enter a valid email address.',
-    });
-    return;
-  }
-
-  const phonePattern = /^(011|012|010|015)\d{8}$/;
-  if (!phonePattern.test(phone)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Invalid Phone Number',
-      text: 'Phone number must start with 011, 012, 010, or 015 and contain 11 digits.',
-    });
-    return;
-  }
-
-  if (city === "") {
-    Swal.fire({
-      icon: 'error',
-      title: 'City Not Selected',
-      text: 'Please select a city.',
-    });
-    return;
-  }
-
-  const streetPattern = /[a-zA-Z]/;
-  if (!streetPattern.test(street)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Invalid Street',
-      text: 'Street must contain at least one letter.',
-    });
-    return;
-  }
-  const profileImagePath = CreatePath(profileImg.value)|| "../assets/profile.png";
-
-  
   const updatedData = {
     Name: username || currentUser.Name,
     Email: email || currentUser.Email,
     Phone: phone || currentUser.Phone,
     City: city || currentUser.City,
     Street: street || currentUser.Street,
-    ProfileImage: profileImagePath, 
+    ProfileImage: profileImagePath,
     _id: currentUser._id,
   };
 
@@ -148,18 +98,64 @@ function updateCurrentUserProfile(event) {
     saveDataInLocalStorage("currentUser", data.CurrentUser);
 
     loadOverview();
-
     Swal.fire("Success!", "Profile updated successfully.", "success");
   } else {
     Swal.fire("Error!", "User not found in the users list.", "error");
   }
 }
 
-function CreatePath(imgPath) {
-  if (!imgPath) return "assets/img/profile.png"; 
-  const fileName = imgPath.split("\\").pop(); 
-  return `assets/img/${fileName}`; 
+function validateProfileFields(username, email, phone, city, street) {
+  if (username === "" || username.length < 3) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Invalid Username',
+      text: 'Username must contain at least 3 characters.',
+    });
+    return false;
+  }
+
+  const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailPattern.test(email)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Invalid Email',
+      text: 'Please enter a valid email address.',
+    });
+    return false;
+  }
+
+  const phonePattern = /^(011|012|010|015)\d{8}$/;
+  if (!phonePattern.test(phone)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Invalid Phone Number',
+      text: 'Phone number must start with 011, 012, 010, or 015 and contain 11 digits.',
+    });
+    return false;
+  }
+
+  if (city === "") {
+    Swal.fire({
+      icon: 'error',
+      title: 'City Not Selected',
+      text: 'Please select a city.',
+    });
+    return false;
+  }
+
+  const streetPattern = /[a-zA-Z]/;
+  if (!streetPattern.test(street)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Invalid Street',
+      text: 'Street must contain at least one letter.',
+    });
+    return false;
+  }
+
+  return true;
 }
+
 function updatePassword(event) {
   event.preventDefault();
 
@@ -211,60 +207,53 @@ function updatePassword(event) {
     saveDataInLocalStorage("currentUser", data.CurrentUser);
 
     loadOverview();
-
-    const overviewTab = document.querySelector("[data-bs-target='#profile-overview']");
-    if (overviewTab) {
-      overviewTab.click();
-    }
-
     Swal.fire("Success!", "Password updated successfully.", "success");
   } else {
     Swal.fire("Error!", "User not found in the users list.", "error");
   }
 }
 
-
 function loadOrders() {
-  const currentUser = getCurrentUser(); 
-  console.log(currentUser);
+  const currentUser = getCurrentUser();
   if (!currentUser) {
-      console.error("No current user found.");
-      return;
+    console.error("No current user found.");
+    return;
   }
 
   const ordersTableBody = document.getElementById("ordersTableBody");
-  if (!ordersTableBody) return;
+  if (!ordersTableBody) {
+    console.error("Orders table body not found.");
+    return;
+  }
 
   ordersTableBody.innerHTML = "";
 
   if (!data.Orders || !Array.isArray(data.Orders)) {
-      console.error("Orders data is missing or invalid.");
-      return;
+    console.error("Orders data is missing or invalid.");
+    ordersTableBody.innerHTML = `<tr><td colspan="4" class="text-center">No orders found.</td></tr>`;
+    return;
   }
 
   const userOrders = data.Orders.filter(order => order.UserID === currentUser._id);
-  console.log(userOrders);
-  console.log(data.Orders)
 
   if (userOrders.length === 0) {
-      ordersTableBody.innerHTML = `<tr><td colspan="3" class="text-center">No orders found.</td></tr>`;
+    ordersTableBody.innerHTML = `<tr><td colspan="4" class="text-center">No orders found.</td></tr>`;
   } else {
-      userOrders.forEach(order => {
-          order.Items.forEach(item => {
-              const product = data.Products.find(p => p._id === item.ProductID);
-              const productName = product ? product.Name : "Unknown Product";
+    userOrders.forEach(order => {
+      order.Items.forEach(item => {
+        const product = data.Products.find(p => p._id === item.ProductID);
+        const productName = product ? product.Name : "Unknown Product";
 
-              const row = `
-                <tr>
-                   <td>${order._id}</td>
-                  <td>${productName}</td>
-                  <td>${item.Quantity}</td>
-                  <td>${order.Status || "Unknown Status"}</td>
-                </tr>`;
-              ordersTableBody.innerHTML += row;
-          });
-
+        const row = `
+          <tr>
+            <td>${order._id}</td>
+            <td>${productName}</td>
+            <td>${item.Quantity}</td>
+            <td>${order.Status || "Unknown Status"}</td>
+          </tr>`;
+        ordersTableBody.innerHTML += row;
       });
+    });
   }
 }
 

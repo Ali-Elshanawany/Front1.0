@@ -1,9 +1,17 @@
-import { addUser, saveDataInLocalStorage, loadDataFromLocalStorage,isAuthorized } from './Data.js';
+import { addUser, saveDataInLocalStorage, loadDataFromLocalStorage,isAuthorized, data, } from './Data.js';
 
 loadDataFromLocalStorage();
+data.CurrentUser=null;
+
+if (data.CurrentUser) {
+ //  window.location.href = "homeMain.html"; 
+}
+
+
 //isAuthorized();
 function isEmailRegistered(email) {
-   const users = JSON.parse(localStorage.getItem("Users")) || [];
+   console.log("data");
+   const users = Array.isArray(data.Users) ? data.Users : [];
    return users.some(user => user.Email === email);
 }
 function encryptPassword(password) {
@@ -110,19 +118,39 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
      Phone: phone,
      City: city,
      Street: street,
-     Password: encryptedPassword, // Store encrypted password
+     Password: encryptedPassword, 
      Role: userType, 
      CreatedAt: new Date().toISOString(),
      TotalSales: userType == "Seller" ? 0 : undefined,
-     cart: userType == "User" ? [] : undefined
+     cart: userType == "User" ? [] : undefined,
+     orders:userType=="User" ? [] : undefined
   };
 
+  function setCurrentUser(user) {
+   if (user && typeof user === "object") {
+       data.CurrentUser = user;  
+       const userIndex = data.Users.findIndex((u) => u._id === user._id);
+       if (userIndex !== -1) {
+           data.Users[userIndex] = user;  
+       } else {
+           console.error("User not found in Users array.");
+       }
+       saveDataInLocalStorage();  
+       console.log("Current user has been set successfully:", user);
+   } else {
+       console.error("Invalid user data provided to setCurrentUser.");
+   }
+}
    addUser(newUser);
-   saveDataInLocalStorage();
+
+   setCurrentUser(newUser);
+   //saveDataInLocalStorage();
    console.log("User added successfully!");
    console.log(newUser);
 
    Swal.fire('Success', 'User registered successfully!', 'success').then(() => {
+      console.log('Redirecting to login page...');
+
       window.location.href = 'login.html';
    });
 });

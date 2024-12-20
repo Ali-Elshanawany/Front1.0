@@ -78,10 +78,10 @@
 
             </div>
             <div class="login__check-box">
-               <input type="radio" class="login__check-input" id="seller" value="seller" name="user_type" required>
+               <input type="radio" class="login__check-input" id="seller" value="Seller" name="user_type" required>
                <label for="seller" class="login__check-label">Seller</label>
                
-               <input type="radio" class="login__check-input" id="user" value="user" name="user_type" required>
+               <input type="radio" class="login__check-input" id="user" value="User" name="user_type" required>
                <label for="user" class="login__check-label">User</label>
                
 
@@ -96,13 +96,14 @@
          </div>
       </form>
    </div>
-      <!-- Load crypto-js for encryption -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
       <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>
 
-      <!-- Load SweetAlert2 -->
       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    
-      <!-- Move script to the end of the body for proper DOM loading -->
       <script src="../js/regester.js" type="module"></script>
 </body>
 </html>

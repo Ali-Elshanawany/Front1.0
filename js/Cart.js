@@ -156,7 +156,7 @@ window.addEventListener("load", function () {
     CheckOut.addEventListener("click", function (e) {
         if (data.CurrentUser) {
             if (data.CurrentUser.Role === "User") {
-                window.open("../html/CheckOut.html", "_blank");
+                location.assign("../html/Checkout.html");
             }
         } else {
             Swal.fire({

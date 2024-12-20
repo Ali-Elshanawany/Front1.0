@@ -216,11 +216,7 @@ export const data = {
             "Approved": false
         },
         {
-<<<<<<< HEAD
             "_id": "prod3",
-=======
-            "_id": "pro2",
->>>>>>> rawan
             "Name": "Glass Table",
             "Description": "A stylish glass-top table.",
             "Price": 120.0,
