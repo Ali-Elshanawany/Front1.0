@@ -14,7 +14,7 @@ function isEmailRegistered(email) {
    const users = Array.isArray(data.Users) ? data.Users : [];
    return users.some(user => user.Email === email);
 }
-function encryptPassword(password) {
+ function encryptPassword(password) {
    return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); // SHA-256 hash and convert to Base64
 }
 

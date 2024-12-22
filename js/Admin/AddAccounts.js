@@ -1,7 +1,11 @@
 import { data, addUser, loadDataFromLocalStorage, DeleteUserByEmail, TotalSales,saveDataInLocalStorage } from "../Data.js";
 
 export function AddAccounts(isUpdate, selecteduser) {
-
+  
+   function encryptPassword(password) {
+      return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); // SHA-256 hash and convert to Base64
+   }
+   
    console.log(`This is ${isUpdate}`)
 
    const email = $("#in-email").val();
@@ -96,6 +100,8 @@ export function AddAccounts(isUpdate, selecteduser) {
       }
    }
 
+   const encryptedPassword = encryptPassword(password);
+
 
 
    if (!isUpdate) {
@@ -106,7 +112,7 @@ export function AddAccounts(isUpdate, selecteduser) {
          Phone: phone,
          City: city,
          Street: street,
-         Password: password,
+         Password: encryptedPassword,
          Role: role,
          CreatedAt: new Date().toISOString(),
          TotalSales: role === "Seller" ? 0 : undefined,
