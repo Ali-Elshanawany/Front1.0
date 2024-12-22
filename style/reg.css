@@ -1,0 +1,58 @@
+form {
+    padding: 0;
+ }
+
+ .login__button {
+    opacity: 0.7;
+    color: burlywood;
+    font-weight: bold;
+ }
+
+ .login__button:hover {
+    opacity: 1;
+    background: transparent;
+    border: 1px solid whitesmoke;
+ }
+
+ #reg {
+    color: burlywood;
+ }
+
+ .form-row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
+ }
+
+ .login__box {
+    flex: 1;
+ }
+
+ option {
+    color: burlywood;
+ }
+
+ .login__check-box {
+    display: flex;
+    align-items: center; 
+    margin-top: 10px; 
+ }
+
+ .login__check-input {
+    margin: 0 5px 0 0;
+ }
+
+ .login__check-label {
+    font-size: 14px;
+    color: burlywood;
+ }
+
+ .toggle-password {
+    cursor: pointer;
+    position: absolute;
+    right: 90px;
+    top: 69%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: whitesmoke;
+ }

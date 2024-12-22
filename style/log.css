@@ -1,0 +1,33 @@
+input {
+    background: transparent;
+ }
+ .login__button {
+    opacity: .7;
+    color: burlywood;
+    font-weight: bold;
+ }
+ .login__button:hover {
+    opacity: 1;
+    background: transparent;
+    border: 1px solid whitesmoke;
+ }
+ #reg {
+    color: burlywood;
+ }
+ .error-message {
+    color: red;
+    font-size: 10px;
+    margin-top: 5px;
+ }
+ .toggle-password {
+    cursor: pointer;
+    position: absolute;
+    right: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 18px;
+    color: whitesmoke;
+ }
+ .login__box {
+    position: relative;
+ }

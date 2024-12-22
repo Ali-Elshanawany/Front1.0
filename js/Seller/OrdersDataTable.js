@@ -4,11 +4,13 @@ import {
     saveDataInLocalStorage,
     data,
     isAuthorized,
-    SellerOrders
+    SellerOrders,
+    getSalesByMonth
 } from "../Data.js";
+// import {Draw} from '../Admin/Chart.js'
 
 // ! Tesing Only Remove For Production
-//saveDataInLocalStorage();
+// saveDataInLocalStorage();
 // ! Note ----------------- Remove All Console.log() in Production
 
 // * Function to Display the User Table
@@ -105,6 +107,40 @@ function setupPagination(Orders, rowsPerPage, currentPage) {
 // * Event Listeners Load
 window.addEventListener("load", function () {
  //   isAuthorized();
+//  const dataValues = getSalesByMonth();
+//  console.log(dataValues);
+
+//  Draw(dataValues)
+//LogOut
+const logoutButton = document.getElementById("logoutButton");
+if (logoutButton) {
+  logoutButton.addEventListener("click", confirmLogout);
+}
+
+function confirmLogout() {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "Do you want to log out?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Logout",
+      cancelButtonText: "Cancel",
+      reverseButtons: true,
+    }).then(result => {
+      if (result.isConfirmed) {
+        data.CurrentUser = null;
+        saveDataInLocalStorage("currentUser", null);
+        redirectToHome();
+      }
+    });
+  }
+  
+  function redirectToHome() {
+    window.location.href = "login.html";
+  }
+//End Logout
+
+
  ChangCard()
     let Orders = SellerOrders();
     console.log(Orders)

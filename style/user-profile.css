@@ -1,0 +1,27 @@
+img {
+    margin-top:5vw;
+    width: 400px;
+    height: 440px;
+  }
+  #sectionprofile{
+    margin: 2vw .5vw;
+    
+  }
+
+
+  .logout-btn {
+    background-color: #dc3545;
+    color: white;
+    width: 20%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px auto;
+    display: block;
+  
+  }
+
+  .logout-btn:hover {
+    background-color: #c82333;
+  }
