@@ -241,7 +241,7 @@ function loadOrders() {
   } else {
     userOrders.forEach(order => {
       order.Items.forEach(item => {
-        const product = data.Products.find(p => p._id === item.ProductID);
+        const product = data.Products.find(p => p._id === item._id);
         const productName = product ? product.Name : "Unknown Product";
 
         const row = `

@@ -116,7 +116,8 @@ export function AddAccounts(isUpdate, selecteduser) {
          Role: role,
          CreatedAt: new Date().toISOString(),
          TotalSales: role === "Seller" ? 0 : undefined,
-         cart: role === "User" ? [] : undefined
+         cart: role === "User" ? [] : undefined,
+         orders: role === "User" ? [] : undefined
       }
       addUser(newUser);
    } else {
