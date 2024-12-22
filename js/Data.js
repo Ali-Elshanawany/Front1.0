@@ -1,17 +1,6 @@
 export const data = {
     guestCart: [],
-    CurrentUser:    {
-        "_id": "Seller1",
-        "Name": "Seller1",
-        "Email": "Seller1@Seller.com",
-        "Phone": "01011145011",
-        "City": "dakahlia",
-        "Street": "second street ",
-        "Password": "asdASD123!@3",
-        "Role": "Seller",
-        "CreatedAt": "2024-11-27T12:35:00Z",
-        "TotalSales": 99999,
-    },
+    CurrentUser:   null,
     Users: [
         {
             "_id": "Admin1",

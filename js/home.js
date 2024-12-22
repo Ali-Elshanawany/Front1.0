@@ -43,22 +43,13 @@ from './Data.js'
         // User is NOT logged in: Add to guest cart
         let guestCart = JSON.parse(localStorage.getItem('guestCart')) || [];
 
-        if (guestCart.length === 0) {
-            guestCart = [{
-                UserID: 'guest',
-                Items: [],
-                UpdatedAt: new Date().toISOString()
-            }];
-        }
-
-        let existingItem = guestCart[0].Items.find(item => item._id === productID);
+        let existingItem = guestCart.find(item => item._id === productID);
         if (existingItem) {
             existingItem.Quantity += 1;
         } else {
-            guestCart[0].Items.push({ _id: productID, Quantity: 1 });
+            guestCart.push({ _id: productID, Quantity: 1 });
         }
 
-        guestCart[0].UpdatedAt = new Date().toISOString();
         localStorage.setItem('guestCart', JSON.stringify(guestCart));
 
         Swal.fire({
@@ -395,9 +386,6 @@ function initializePage() {
         });
     });
 
-<<<<<<< HEAD
-  
-=======
    // Open profile and cart in new tabs
     $('.profileIcon').on("click", function () {
         getCurrentUser();
@@ -407,7 +395,6 @@ function initializePage() {
         }
         window.open("users-profile.html", "_blank");
     });
->>>>>>> rawan
 
  //   Function to display products
     function displayProducts(products) {
