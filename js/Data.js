@@ -1,21 +1,18 @@
 export const data = {
     guestCart: [],
     CurrentUser:  {
-        "_id": "user3",
-        "Name": "Bob Buyer",
-        "Email": "buyer@example.com",
-        "Password": "hashed_password3",
-        "Phone": "123987456",
+        "_id": "User1",
+        "Name": "User1",
+        "Email": "User1@User.com",
+        "Phone": "01011145011",
         "City": "cairo",
-        "Street": "bla bla blaablaa ",
+        "Street": "El-Rehab",
+        "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
         "Role": "User",
-        "CreatedAt": "2024-11-27T12:36:00Z",
-        "cart" : 
-        [
-            { "_id": "pro10", "Quantity": 2 }
-        ],
+        "CreatedAt": "2024-12-23T14:38:05.385Z",
+        "cart": [],
         "orders": []
-            },
+    } ,
     Users: [
     {
         "_id": "User1",
