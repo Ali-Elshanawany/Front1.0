@@ -1,6 +1,7 @@
 export const data = {
     guestCart: [],
     CurrentUser: null,
+       
     Users: [
     {
         "_id": "User1",
