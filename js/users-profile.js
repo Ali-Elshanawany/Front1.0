@@ -1,5 +1,8 @@
 import { getCurrentUser, getUsers, saveDataInLocalStorage, loadDataFromLocalStorage, data, isAuthorized } from './Data.js';
 
+function encryptPassword(password) {
+  return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
+}
 document.addEventListener("DOMContentLoaded", function () {
 
   // Load data from localStorage
@@ -12,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   loadOverview(); 
   loadOrders(); 
-
+ 
   const editProfileForm = document.getElementById("editProfileForm");
   if (editProfileForm) {
     editProfileForm.addEventListener("submit", updateCurrentUserProfile);
@@ -23,11 +26,90 @@ document.addEventListener("DOMContentLoaded", function () {
     changePasswordForm.addEventListener("submit", updatePassword);
   }
 
-  const logoutButton = document.getElementById("logoutButton");
-  if (logoutButton) {
-    logoutButton.addEventListener("click", confirmLogout);
-  }
+  loadDataFromLocalStorage();
+
+const table = document.querySelector(".table");
+const headers = table.querySelectorAll("th");
+let currentSortColumn = null;
+let sortDirection = true; // true for ascending, false for descending
+
+// Sorting headers
+headers.forEach((header, index) => {
+    header.addEventListener("click", () => {
+        sortDirection = currentSortColumn === index ? !sortDirection : true;
+        currentSortColumn = index;
+        sortTable(index, sortDirection);
+    });
 });
+
+// Sort Table Function
+function sortTable(columnIndex, ascending) {
+    const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+    rows.sort((rowA, rowB) => {
+        const cellA = rowA.children[columnIndex]?.innerText.trim() || "";
+        const cellB = rowB.children[columnIndex]?.innerText.trim() || "";
+
+        
+        const a = isNaN(cellA) ? cellA : parseFloat(cellA);
+        const b = isNaN(cellB) ? cellB : parseFloat(cellB);
+
+        if (a < b) return ascending ? -1 : 1;
+        if (a > b) return ascending ? 1 : -1;
+        return 0;
+    });
+
+    // Append sorted rows 
+    const tbody = table.querySelector("tbody");
+    tbody.innerHTML = "";
+    rows.forEach(row => tbody.appendChild(row));
+}
+
+
+if (data.CurrentUser == null) {
+    location.assign("../html/homeMain.html");
+    return;
+}
+
+// Load user data
+loadOverview();
+loadOrders();
+
+// showing data 
+const showDataButton = document.querySelector("button[data-bs-target='#dataModal']");
+    
+if (showDataButton) {
+  showDataButton.addEventListener("click", function () {
+    const ordersTableBody = document.querySelector("#ordersTableBody");
+    const rows = ordersTableBody.querySelectorAll("tr");
+    let tableRows = "";
+    
+    if (rows.length === 0) {
+      tableRows = "<p>No products found.</p>";
+    } else {
+      rows.forEach(row => {
+        const columns = row.querySelectorAll("td");
+        if (columns.length > 0) {
+          tableRows += `
+            <div>
+              <h5>Product Name: ${columns[2].innerText}</h5>
+              <p>Product ID: ${columns[1].innerText}</p>
+              <p>Stock: ${columns[3].innerText}</p>
+              <p>Price: ${columns[4].innerText}</p>
+            </div>
+            <hr>`;
+        }
+      });
+    }
+    document.getElementById("modalBody").innerHTML = tableRows;
+  });
+}
+});
+// Logout Functionality
+const logoutButton = document.getElementById("logoutButton");
+if (logoutButton) {
+    logoutButton.addEventListener("click", confirmLogout);
+}
 
 function loadOverview() {
   const currentUser = getCurrentUser();
@@ -169,13 +251,14 @@ function updatePassword(event) {
   const newPassword = document.getElementById("newPassword").value.trim();
   const renewPassword = document.getElementById("renewPassword").value.trim();
 
-  if (currentPassword !== currentUser.Password) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Incorrect Password',
-      text: 'The current password you entered is incorrect.',
-    });
-    return;
+  const encryptedCurrentPassword = encryptPassword(currentPassword);
+  if (encryptedCurrentPassword !== currentUser.Password) {
+      Swal.fire({
+          icon: 'error',
+          title: 'Incorrect Password',
+          text: 'The current password you entered is incorrect.',
+      });
+      return;
   }
 
   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
@@ -197,84 +280,87 @@ function updatePassword(event) {
     return;
   }
 
-  const users = getUsers();
-  const userIndex = users.findIndex(user => user._id === currentUser._id);
-  if (userIndex !== -1) {
-    users[userIndex].Password = newPassword;
-    data.CurrentUser.Password = newPassword;
+const encryptedPassword = encryptPassword(newPassword);
+
+const users = getUsers();
+const userIndex = users.findIndex(user => user._id === currentUser._id);
+if (userIndex !== -1) {
+    users[userIndex].Password = encryptedPassword;
+    data.CurrentUser.Password = encryptedPassword;
 
     saveDataInLocalStorage("users", users);
     saveDataInLocalStorage("currentUser", data.CurrentUser);
 
     loadOverview();
     Swal.fire("Success!", "Password updated successfully.", "success");
-  } else {
+} else {
     Swal.fire("Error!", "User not found in the users list.", "error");
-  }
+}
 }
 
 function loadOrders() {
-  const currentUser = getCurrentUser();
-  if (!currentUser) {
-    console.error("No current user found.");
-    return;
-  }
-
-  const ordersTableBody = document.getElementById("ordersTableBody");
-  if (!ordersTableBody) {
-    console.error("Orders table body not found.");
-    return;
-  }
-
-  ordersTableBody.innerHTML = "";
-
-  if (!data.Orders || !Array.isArray(data.Orders)) {
-    console.error("Orders data is missing or invalid.");
-    ordersTableBody.innerHTML = `<tr><td colspan="4" class="text-center">No orders found.</td></tr>`;
-    return;
-  }
-
-  const userOrders = data.Orders.filter(order => order.UserID === currentUser._id);
-
-  if (userOrders.length === 0) {
-    ordersTableBody.innerHTML = `<tr><td colspan="4" class="text-center">No orders found.</td></tr>`;
-  } else {
-    userOrders.forEach(order => {
-      order.Items.forEach(item => {
-        const product = data.Products.find(p => p._id === item.ProductID);
-        const productName = product ? product.Name : "Unknown Product";
-
-        const row = `
-          <tr>
-            <td>${order._id}</td>
-            <td>${productName}</td>
-            <td>${item.Quantity}</td>
-            <td>${order.Status || "Unknown Status"}</td>
-          </tr>`;
-        ordersTableBody.innerHTML += row;
-      });
-    });
-  }
-}
-
-function confirmLogout() {
-  Swal.fire({
-    title: "Are you sure?",
-    text: "Do you want to log out?",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonText: "Yes, Logout",
-    cancelButtonText: "Cancel",
-    reverseButtons: true,
-  }).then(result => {
-    if (result.isConfirmed) {
-      data.CurrentUser = null;
-      saveDataInLocalStorage("currentUser", null);
-      redirectToHome();
+    const currentUser = getCurrentUser();
+    if (!currentUser) {
+        console.error("No current user found.");
+        return;
     }
+
+    const ordersTableBody = document.getElementById("ordersTableBody");
+    if (!ordersTableBody) {
+        console.error("Orders table body not found.");
+        return;
+    }
+
+    ordersTableBody.innerHTML = "";
+
+    if (!data.Orders || !Array.isArray(data.Orders)) {
+        console.error("Orders data is missing or invalid.");
+        ordersTableBody.innerHTML = `<tr><td colspan="4" class="text-center">No orders found.</td></tr>`;
+        return;
+    }
+
+    const userOrders = data.Orders.filter(order => order.UserID === currentUser._id);
+
+    if (userOrders.length === 0) {
+      ordersTableBody.innerHTML = `<tr><td colspan="4" class="text-center">No orders found.</td></tr>`;
+      return;
+  }
+
+  userOrders.forEach(order => {
+      const row = document.createElement("tr");
+
+      row.innerHTML = `
+          <td>${order.OrderID}</td>
+          <td>${order.ProductName}</td>
+          <td>${order.Quantity}</td>
+          <td>${order.Status}</td>
+      `;
+
+      ordersTableBody.appendChild(row);
   });
 }
 
+
+
+// Confirm logout
+function confirmLogout() {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to log out?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Logout",
+        cancelButtonText: "Cancel",
+        reverseButtons: true,
+    }).then(result => {
+        if (result.isConfirmed) {
+            data.CurrentUser = null;
+            saveDataInLocalStorage("currentUser", null);
+            redirectToHome();
+        }
+    });
+}
+
 function redirectToHome() {
-  window.location.href = "homeMain.html";
+    window.location.href = "homeMain.html";
 }
