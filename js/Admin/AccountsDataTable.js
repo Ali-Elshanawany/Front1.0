@@ -99,7 +99,7 @@ function setupPagination(Users, rowsPerPage, currentPage) {
 
 // * Event Listeners Load 
 window.addEventListener("load", function () {
-   // isAuthorized();
+    //isAuthorized();
     let isUpdate=false;
 
     let Users = getUsers();
@@ -143,7 +143,7 @@ window.addEventListener("load", function () {
         if (event.target.id == "Del") {
             const userid = event.target.dataset.userid;
             const user = data.Users.find(u=>u._id==userid)
-            if(user._id!==data.CurrentUser._id){
+            if(user._id!==data.CurrentUser?._id){
                 // * Start Sweet Alert
                 Swal.fire({
                     title: "Are you sure?",

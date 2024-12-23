@@ -20,7 +20,7 @@ import { AddProducts } from "../Seller/AddProducts.js";
 
 // * Event Listeners Load
 window.addEventListener("load", function () {
-    //   isAuthorized();
+       isAuthorized();
     ChangCard();
     let Products = SellerProducts();
     let isUpdate = true;
@@ -192,7 +192,7 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
     paginatedUsers.forEach((product, index) => {
         let SellerName = data.Users.find(
             (user) => user._id == product.SellerID
-        ).Name;
+        )?.Name||"john doe";
         //console.log(SellerName)
         const tr = document.createElement("tr");
         tr.innerHTML = `
@@ -299,7 +299,7 @@ function ChangCard() {
     const TotalSalesCard = document.getElementById("TotalSalesCard");
 
     if (data.Orders.filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id)).length) {
-        NumofOrdersCard.innerText = data.Orders.filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id)).length
+        NumofOrdersCard.innerText = data.Orders.filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id)).length
 
     } else {
         NumofOrdersCard.innerText = 0
@@ -317,7 +317,7 @@ function ChangCard() {
         NumofPendingProductssCard.innerText = 0
     }
 
-    let seller=data.Users.find(u=>u._id==data.CurrentUser._id)
+    let seller=data.Users.find(u=>u._id==data.CurrentUser?._id)
     if (seller) {
         TotalSalesCard.innerText = seller.TotalSales + '$'
     } else {

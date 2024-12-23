@@ -120,35 +120,42 @@ Array.from(forms).forEach((form) => {
   
     const uindex = customerIndexInUsersList();
 
-    data.Users[uindex].orders.push(orderID); 
-    // push to order list
+    data.Users[uindex].orders.push(orderID); // push to order list
   
-    data.Users[uindex].cart = []; // cart clear
+    // cart clear of user
+    data.Users[uindex].cart = [];
+    data.CurrentUser.cart = [];
     user.cart = [];
     saveDataInLocalStorage(); // save the updated user data
     
   
     let flagx = 0; // identicator to loop over cart items
   
-    let sellers = []; // different sellers will be notified with the order id if they sell a product in this order
-  
-    // Items.forEach((item) => {
-    //   // loop to update the stock of each product
-  
-    //   const index = productIndexInProductsList(item._id); // getting the index of the product
-    //   const sellerIndex = sellerIndexInUsersList(item.SellerID); // getting the index of the seller in users list from product list
-  
-    //   data.Products[index].Stock -= cart[flagx].num; /// update stock from prdlist
-    //   data.Products[index].NumOfSales += cart[flagx].num; /// update sales num
+    // let sellers = []; // different sellers will be notified with the order id if they sell a product in this order
+    let sellers = data.Users.filter(user => user.Role === "Seller").map(seller => seller._id);
 
-    //   if (!sellers.includes(item.SellerID)) { // validate if the seller is already there in array and if not, push the order id to the seller
-    //     sellers.push(item.SellerID);
-    //     data.Users[sellerIndex].orders.push(orderID); // push to order list of seller
-    //   }
+    Items.forEach((item) => {
+    // loop to update the stock of each product
+  
+    const index = productIndexInProductsList(item._id); // getting the index of the product
+    const sellerIndex = sellerIndexInUsersList(item.SellerID); // getting the index of the seller in users list from product list
 
-    //   flagx++; // to next item
+    data.Products[index].Stock -= cart[flagx].num; /// update stock from prdlist
+    data.Products[index].NumOfSales += cart[flagx].num; /// update sales num
 
-    // });
+
+      if (sellers.includes(item.SellerID)) { // validate if the seller is already there in array and if not, push the order id to the seller
+
+        const totalSalesAmount = cart[flagx].num * data.Products[index].Price; // calculate total sales amount
+        data.Users[sellerIndex].TotalSales = (data.Users[sellerIndex].TotalSales || 0) + totalSalesAmount;
+
+        // data.Users[sellerIndex].orders.push(orderID); // push to order list of seller
+      }
+
+      flagx++; // to next item
+
+    });
+    saveDataInLocalStorage();
 }
 
 

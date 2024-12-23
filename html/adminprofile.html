@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>User Profile</title>
+  <title>Admin Profile</title>
   <link rel="icon" href="../assets/pic.png" type="image/png">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
   <link rel="stylesheet" href="../style/user/vendor/bootstrap/css/bootstrap.min.css">
@@ -138,52 +138,47 @@
             <div class="container mt-4 text-center"> 
               <button class="logout-btn" id="logoutButton">Logout</button>
             </div>
-            <div class="container mt-4 text-center"> 
-              <button class="btn btn-primary" id="showData" data-bs-toggle="modal" data-bs-target="#dataModal">Show All Data</button>
-            </div>
+            
           </div>
         </div>
       </div>
-      
-    </div>
-    <div class="card mt-3">
-      <div class="card-body">
-        <h5 class="card-title">Your Orders</h5>
-        <table class="table table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">Order ID</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Order Status</th>
-            </tr>
-          </thead>
-          <tbody id="ordersTableBody">
-          </tbody>
-        </table>
+      <div class="card mt-3">
+        <div class="card-body">
+          <h5 class="card-title">Your Actors</h5>
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th scope="col" colspan="2" align="text-center">Users Accounts</th>
+                <th scope="col" colspan="2" align="text-center">Seller Accounts</th>
+              </tr>
+              <tr>
+                <th>
+                  UserName
+                </th>
+                <th>
+                  UserMail
+                </th>
+                <th>
+                  UserName
+                </th>
+                <th>
+                  UserMail
+                </th>
+              </tr>
+            </thead>
+            <tbody id="ordersTableBody">
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
-    <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="dataModalLabel">Column Data</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body" id="modalBody">
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
-          </div>
-      </div>
-  </div>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
-  <script src="../style/user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+    <script src="../style/user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/users-profile.js" type="module">
-      
+    <script src="../js/admin-profile.js" type="module">
+  
     </script>
 </body>
 

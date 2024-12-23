@@ -106,7 +106,7 @@ function setupPagination(Orders, rowsPerPage, currentPage) {
 
 // * Event Listeners Load
 window.addEventListener("load", function () {
- //   isAuthorized();
+    isAuthorized();
 //  const dataValues = getSalesByMonth();
 //  console.log(dataValues);
 
@@ -193,21 +193,21 @@ function ChangCard() {
     const NumofDeliveredOrdersCard = document.getElementById("DeliveredOrdersCard");
     const TotalSalesCard = document.getElementById("TotalSalesCard");
 
-    if ((data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id)).length) {
-        NumofOrdersCard.innerText = (data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id)).length
+    if ((data.Orders || []).filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id)).length) {
+        NumofOrdersCard.innerText = (data.Orders || []).filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id)).length
 
     } else {
         NumofOrdersCard.innerText = 0
     }
 
-    if ((data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id) && o.Status=="Canceled").length) {
-        NumOfCanceledOrdersCard.innerText =(data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id) && o.Status=="Canceled").length
+    if ((data.Orders || []).filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id) && o.Status=="Canceled").length) {
+        NumOfCanceledOrdersCard.innerText =(data.Orders || []).filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id) && o.Status=="Canceled").length
     } else {
         NumOfCanceledOrdersCard.innerText = 0
     }
 
-    if ((data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id) && o.Status=="Delivered").length) {
-        NumofDeliveredOrdersCard.innerText = (data.Orders || []).filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id) && o.Status=="Delivered").length
+    if ((data.Orders || []).filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id) && o.Status=="Delivered").length) {
+        NumofDeliveredOrdersCard.innerText = (data.Orders || []).filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id) && o.Status=="Delivered").length
     } else {
         NumofDeliveredOrdersCard.innerText = 0
     }

@@ -10,10 +10,10 @@ import {
     loadDataFromLocalStorage,
 } from "./Data.js";
 
-//isAuthorized();
-
 // Load data from local storage
 loadDataFromLocalStorage();
+
+isAuthorized();
 
 let usercart = getCurrentCart();
 let cart = usercart.map((item) => ({
