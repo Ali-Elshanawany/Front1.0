@@ -94,7 +94,7 @@ export function AddProducts(isUpdate,SelectedProduct) {
          Description: Desc,
          Price: +Price,
          Stock: +Stock,
-         SellerID:data.CurrentUser._id,
+         SellerID:data.CurrentUser?._id,
          CategoryID: Cat,
          Images: [img1,img2],
          CreatedAt: new Date().toISOString(),

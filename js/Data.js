@@ -2,177 +2,115 @@ export const data = {
     guestCart: [],
     CurrentUser:  null,
     Users: [
-        {
-            "_id": "Admin1",
-            "Name": "Admin1",
-            "Email": "Admin1@Admin.com",
-            "Phone": "01011145011",
-            "City": "cairo",
-            "Street": "Tanta",
-            "Password": "asdASD123!@3",
-            "Role": "Admin",
-            "CreatedAt": "2024-12-12T19:15:45.450Z"
-        },
-        {
-            "_id": "Admin2",
-            "Name": "Admin2",
-            "Email": "Admin2@Admin.com",
-            "Phone": "01011145011",
-            "City": "gharbia",
-            "Street": "al-ashraf",
-            "Password": "asdASD123!@3",
-            "Role": "Admin",
-            "CreatedAt": "2024-12-12T19:16:10.403Z"
-        },
-        {
-            "_id": "Admin3",
-            "Name": "Admin3",
-            "Email": "Admin3@Admin.com",
-            "Phone": "01011145011",
-            "City": "alexandria",
-            "Street": "miami",
-            "Password": "asdASD123!@3",
-            "Role": "Admin",
-            "CreatedAt": "2024-12-12T19:18:25.369Z"
-        },
-        {
-            "_id": "Seller1",
-            "Name": "Seller1",
-            "Email": "Seller1@Seller.com",
-            "Phone": "01011145011",
-            "City": "dakahlia",
-            "Street": "second street ",
-            "Password": "asdASD123!@3",
-            "Role": "Seller",
-            "CreatedAt": "2024-11-27T12:35:00Z",
-            "TotalSales": 99999,
-        },
-        {
-            "_id": "user3",
-            "Name": "Bob Buyer",
-            "Email": "buyer@example.com",
-            "Password": "hashed_password3",
-            "Phone": "123987456",
-            "City": "cairo",
-            "Street": "bla bla blaablaa ",
-            "Role": "User",
-            "CreatedAt": "2024-11-27T12:36:00Z",
-            "cart" : 
-            [
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-            ],
-            "orders": ["order1"]
-        }, {
-            "_id": "user6",
-            "Name": "Emma User",
-            "Email": "user2@example.com",
-            "Password": "hashed_password6",
-            "Phone": "01245678901",
-            "City": "Alexandria",
-            "Street": "678 User Blvd",
-            "Role": "User",
-            "CreatedAt": "2024-11-28T08:05:00Z",
-            "cart" : 
-            [
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-            ],
-            "orders": ["order1"]
-        },
-        {
-            "_id": "Seller3",
-            "Name": "Seller3",
-            "Email": "Seller3@Seller.com",
-            "Phone": "01211145011",
-            "City": "gharbia",
-            "Street": "El-Helw",
-            "Password": "asdASD123!@3",
-            "Role": "Seller",
-            "CreatedAt": "2024-11-28T08:06:00Z",
-            "TotalSales": 300,
-            "orders": ["order1"]
-        },
-        {
-            "_id": "User1",
-            "Name": "User1",
-            "Email": "User1@User.com",
-            "Phone": "01211145011",
-            "City": "red_sea",
-            "Street": "main street",
-            "Password": "asdASD123!@3",
-            "Role": "User",
-            "CreatedAt": "2024-11-28T08:07:00Z",
-            "cart" : 
-            [
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-            ],
-            "orders": ["order1"]
-        },
-        {
-            "_id": "user9",
-            "Name": "Michael Admin",
-            "Email": "admin3@example.com",
-            "Password": "hashed_password9",
-            "Phone": "01087654321",
-            "City": "Alexandria",
-            "Street": "555 Admin Blvd",
-            "Role": "Admin",
-            "CreatedAt": "2024-11-28T08:08:00Z",
-            "cart" : 
-            [
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-            ],
-            "orders": ["order1"]
-        },
-        {
-            "_id": "User3",
-            "Name": "User3",
-            "Email": "User3@User.com",
-            "Phone": "01211145011",
-            "City": "sharqia",
-            "Street": "bahr",
-            "Password": "asdASD123!@3",
-            "Role": "User",
-            "CreatedAt": "2024-11-28T08:09:00Z",
-            "cart" : 
-            [
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-            ],
-            "orders": ["order1"]
-        },{
-            "_id": "User2",
-            "Name": "User2",
-            "Email": "User2@User.com",
-            "Phone": "01211145011",
-            "City": "Alex",
-            "Street": "bahr",
-            "Password": "asdASD123!@3",
-            "Role": "User",
-            "CreatedAt": "2024-11-28T08:09:00Z",
-            "cart" : 
-            [
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-                { "_id": "pro1", "Quantity": 2 },
-                { "_id": "pro2", "Quantity": 2 },
-            ],
-            "orders": ["order1"]
-        }
-    ],
+    {
+        "_id": "User1",
+        "Name": "User1",
+        "Email": "User1@User.com",
+        "Phone": "01011145011",
+        "City": "cairo",
+        "Street": "El-Rehab",
+        "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
+        "Role": "User",
+        "CreatedAt": "2024-12-23T14:38:05.385Z",
+        "cart": [],
+        "orders": []
+    },
+    {
+        "_id": "User2",
+        "Name": "User2",
+        "Email": "User2@User.com",
+        "Phone": "01211145011",
+        "City": "gharbia",
+        "Street": "El-Ashraf",
+        "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
+        "Role": "User",
+        "CreatedAt": "2024-12-23T14:38:29.535Z",
+        "cart": [],
+        "orders": []
+    },
+    {
+        "_id": "User3",
+        "Name": "User3",
+        "Email": "User3@User.com",
+        "Phone": "01211145011",
+        "City": "alexandria",
+        "Street": "Sporting",
+        "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
+        "Role": "User",
+        "CreatedAt": "2024-12-23T14:38:51.366Z",
+        "cart": [],
+        "orders": []
+    },
+    {
+        "_id": "Seller1",
+        "Name": "Seller1",
+        "Email": "Seller1@Seller.com",
+        "Phone": "01511145011",
+        "City": "aswan",
+        "Street": "Nile Way",
+        "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
+        "Role": "Seller",
+        "CreatedAt": "2024-12-23T14:39:44.303Z",
+        "TotalSales": 0
+    },
+    {
+        "_id": "Seller2",
+        "Name": "Seller2",
+        "Email": "Seller2@Seller.com",
+        "Phone": "01009117927",
+        "City": "minya",
+        "Street": "Bahr",
+        "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
+        "Role": "Seller",
+        "CreatedAt": "2024-12-23T14:40:51.271Z",
+        "TotalSales": 0
+    },
+    {
+        "_id": "Seller3",
+        "Name": "Seller3",
+        "Email": "Seller3@Seller.com",
+        "Phone": "01009117927",
+        "City": "red_sea",
+        "Street": "Sahl",
+        "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
+        "Role": "Seller",
+        "CreatedAt": "2024-12-23T14:41:08.430Z",
+        "TotalSales": 0
+    },
+    {
+        "_id": "Admin1",
+        "Name": "Admin1",
+        "Email": "Admin1@Admin.com",
+        "Phone": "01109117927",
+        "City": "gharbia",
+        "Street": "El-Sultan Mourad",
+        "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
+        "Role": "Admin",
+        "CreatedAt": "2024-12-23T14:41:42.631Z"
+    },
+    {
+        "_id": "Admin2",
+        "Name": "Admin2",
+        "Email": "Admin2@Admin.com",
+        "Phone": "01209117927",
+        "City": "kafr_el_sheikh",
+        "Street": "Al-Estad",
+        "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
+        "Role": "Admin",
+        "CreatedAt": "2024-12-23T14:42:12.263Z"
+    },
+    {
+        "_id": "Admin3",
+        "Name": "Admin3",
+        "Email": "Admin3@Admin.com",
+        "Phone": "01209117927",
+        "City": "dakahlia",
+        "Street": "Al-Estad",
+        "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
+        "Role": "Admin",
+        "CreatedAt": "2024-12-23T14:42:29.623Z"
+    }
+],
     Categories: [
         { "_id": "cat1", "Name": "Chairs", "Description": "Various types of chairs for different purposes." },
         { "_id": "cat2", "Name": "Tables", "Description": "Dining, work, and coffee tables." },
@@ -185,254 +123,516 @@ export const data = {
     ],
     Products:[
         {
-            "_id": "pro1",
-            "_id": "pro1",
-            "Name": "Wooden Chair",
-            "SellerID": "Seller1",
-            "Description": "A sturdy wooden chair for dining or work.",
-            "Price": 59.99,
+            "_id": "Product1734965600608",
+            "Name": "Chair1",
+            "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+            "Price": 500,
             "Stock": 50,
-            "CategoryID": "cat1",
-            "Images": [
-                "../assets/pic3.webp",
-                "../assets/pic3.webp"
-            ],
-            "CreatedAt": "2024-12-12T19:29:27.767Z",
-            "NumOfSales": 12,
-            "Approved": true
-        },
-        {
-            "_id": "prod2",
-            "Name": "Product 3",
-            "Description": "This is a brief description for Product 3",
-            "Price": 250,
-            "Stock": 35,
-            "SellerID": "Seller1",
-            "CategoryID": "cat2",
-            "Images": [
-                 "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg",
-                 "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg"
-            ],
-            "CreatedAt": "2024-12-12T19:29:43.865Z",
-            "NumOfSales": 0,
-            "Approved": false
-        },
-        {
-            "_id": "prod3",
-            "Name": "Glass Table",
-            "Description": "A stylish glass-top table.",
-            "Price": 120.0,
-            "Stock": 20,
-            "SellerID": "Seller1",
-            "Stock": 20,
-            "SellerID": "Seller1",
-            "CategoryID": "cat2",
-            "Images": [
-                  "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg",
-                  "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg"
-            ],
-            "CreatedAt": "2024-12-12T19:29:56.361Z",
-            "NumOfSales": 0,
-            "Approved": false
-        },
-        {
-            "_id": "prod4",
-            "Name": "Product 5",
-            "Description": "This is a brief description for Product 5",
-            "Price": 640,
-            "Stock": 10,
-            "SellerID": "Seller1",
-            "CategoryID": "cat3",
-            "Images": [
-              "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg",
-              "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg"
-            ],
-            "CreatedAt": "2024-12-12T19:30:15.018Z",
-            "NumOfSales": 0,
-            "Approved": false
-        },
-        {
-            "_id": "pro5",
-            "Name": "Product 6",
-            "Description": "This is a brief description for Product 6",
-            "Price": 430,
-            "Stock": 30,
-            "SellerID": "Seller1",
-            "CategoryID": "cat3",
-            "Images": [
-             "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg",
-             "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg"
-            ],
-            "CreatedAt": "2024-12-12T19:30:29.750Z",
-            "NumOfSales": 0,
-            "Approved": false
-        },
-        {
-            "_id": "prod7",
-            "Name": "Product 7",
-            "Description": "This is a brief description for Product 7",
-            "Price": 220,
-            "Stock": 35,
-            "SellerID": "Seller1",
-            "CategoryID": "cat3",
-            "Images": [
-               "../assets/pic3.webp",
-                "../assets/pic3.webp",
-               "../assets/pic3.webp",
-                "../assets/pic3.webp"
-            ],
-            "CreatedAt": "2024-12-12T19:30:42.546Z",
-            "NumOfSales": 0,
-            "Approved": true
-        },
-        {
-            "_id": "pro8",
-            "Name": "Product 8",
-            "Description": "This is a brief description for Product 8",
-            "Price": 360,
-            "Stock": 45,
-            "SellerID": "Seller1",
-            "CategoryID": "cat4",
-            "Images": [
-               "../assets/pic3.webp",
-                "../assets/pic3.webp",
-               "../assets/pic3.webp",
-                "../assets/pic3.webp"
-            ],
-            "CreatedAt": "2024-12-12T19:29:12.664Z",
-            "NumOfSales": 15,
-            "Approved": true
-        },
-        {
-            "_id": "pro9",
-            "Name": "Product 2",
-            "Description": "This is a brief description for Product 2",
-            "Price": 200,
-            "Stock": 30,
             "SellerID": "Seller1",
             "CategoryID": "cat1",
             "Images": [
-              "../assets/pic3.webp",
-              "../assets/pic3.webp",
-                "../assets/pic3.webp"
+                "../assets/chair.jpg",
+                "../assets/chair2.jpg"
             ],
-            "CreatedAt": "2024-12-12T19:29:27.767Z",
-            "NumOfSales": 12,
-            "Approved": true
-        },
-        {
-            "_id": "pro10",
-            "Name": "Product 3",
-            "Description": "This is a brief description for Product 3",
-            "Price": 250,
-            "Stock": 35,
-            "SellerID": "Seller1",
-            "CategoryID": "cat2",
-            "Images": [
-             "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg",
-             "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg"
-            ],
-            "CreatedAt": "2024-12-12T19:29:43.865Z",
+            "CreatedAt": "2024-12-23T14:53:20.608Z",
             "NumOfSales": 0,
             "Approved": false
         },
         {
-            "_id": "pro11",
-            "Name": "Product 4",
-            "Description": "This is a brief description for Product 4",
-            "Price": 50,
+            "_id": "Product1734965622808",
+            "Name": "Chair2",
+            "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+            "Price": 750,
+            "Stock": 50,
+            "SellerID": "Seller1",
+            "CategoryID": "cat1",
+            "Images": [
+                "../assets/chair pro4.avif",
+                "../assets/chair4.jpj.avif"
+            ],
+            "CreatedAt": "2024-12-23T14:53:42.808Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734965817288",
+            "Name": "Tabel1",
+            "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+            "Price": 1500,
             "Stock": 50,
             "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
-              "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg",
-              "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg"
+                "../assets/table4.jpg",
+                "../assets/table.jpg"
             ],
-            "CreatedAt": "2024-12-12T19:29:56.361Z",
+            "CreatedAt": "2024-12-23T14:56:57.288Z",
             "NumOfSales": 0,
             "Approved": false
         },
         {
-            "_id": "pro12",
-            "Name": "Product 5",
-            "Description": "This is a brief description for Product 5",
-            "Price": 640,
-            "Stock": 10,
+            "_id": "Product1734965852399",
+            "Name": "Tabel2",
+            "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+            "Price": 1500,
+            "Stock": 50,
             "SellerID": "Seller1",
-            "CategoryID": "cat3",
+            "CategoryID": "cat2",
             "Images": [
-               "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg",
-               "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg"
+                "../assets/table2.jpg",
+                "../assets/table3.jpg"
             ],
-            "CreatedAt": "2024-12-12T19:30:15.018Z",
+            "CreatedAt": "2024-12-23T14:57:32.399Z",
             "NumOfSales": 0,
             "Approved": false
         },
         {
-            "_id": "pro13",
-            "Name": "Product 6",
-            "Description": "This is a brief description for Product 6",
-            "Price": 430,
-            "Stock": 30,
+            "_id": "Product1734966041039",
+            "Name": "Master Bedroom1",
+            "Description": "Create your dream sanctuary with our elegant collection of master bedroom furniture. Designed for comfort and sophistication, our range includes luxurious beds, spacious wardrobes, stylish dressers, and bedside tables that perfectly blend form and function.",
+            "Price": 15000,
+            "Stock": 50,
             "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
-               "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg",
-               "../assets/dinningroom.jpg",
-                "../assets/dinningroom.jpg"
+                "../assets/bedroom1.jpg",
+                "../assets/bedroom2.jpg"
             ],
-            "CreatedAt": "2024-12-12T19:30:29.750Z",
+            "CreatedAt": "2024-12-23T15:00:41.039Z",
             "NumOfSales": 0,
             "Approved": false
         },
         {
-            "_id": "pro14",
-            "Name": "Product 7",
-            "Description": "This is a brief description for Product 7",
-            "Price": 220,
-            "Stock": 35,
+            "_id": "Product1734966054247",
+            "Name": "Master Bedroom2",
+            "Description": "Create your dream sanctuary with our elegant collection of master bedroom furniture. Designed for comfort and sophistication, our range includes luxurious beds, spacious wardrobes, stylish dressers, and bedside tables that perfectly blend form and function.",
+            "Price": 25000,
+            "Stock": 50,
             "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
-                "../assets/pic3.webp",
-                "../assets/pic3.webp",
-                "../assets/pic3.webp",
-                "../assets/pic3.webp"
+                "../assets/bedroom4.jpg",
+                "../assets/bedroom-blackjpg.jpg"
             ],
-            "CreatedAt": "2024-12-12T19:30:42.546Z",
+            "CreatedAt": "2024-12-23T15:00:54.247Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734966138584",
+            "Name": "Kitchens",
+            "Description": "Upgrade your kitchen with our stylish and functional furniture and accessories, designed to make cooking and dining a joy. Our collection features versatile dining sets, sturdy kitchen islands, sleek storage cabinets, and ergonomic bar stools to meet your every need.",
+            "Price": 12000,
+            "Stock": 50,
+            "SellerID": "Seller1",
+            "CategoryID": "cat4",
+            "Images": [
+                "../assets/kitchen1.jpj..avif",
+                "../assets/kitchen.avif"
+            ],
+            "CreatedAt": "2024-12-23T15:02:18.584Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734966156535",
+            "Name": "Kitchen2",
+            "Description": "Upgrade your kitchen with our stylish and functional furniture and accessories, designed to make cooking and dining a joy. Our collection features versatile dining sets, sturdy kitchen islands, sleek storage cabinets, and ergonomic bar stools to meet your every need.",
+            "Price": 12000,
+            "Stock": 50,
+            "SellerID": "Seller1",
+            "CategoryID": "cat4",
+            "Images": [
+                "../assets/kitchen-3.jpg",
+                "../assets/kitchen-4.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:02:36.535Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734966215191",
+            "Name": "Dining Room1",
+            "Description": "Bring your family and friends together with our exquisite collection of dining room furniture. Featuring elegant dining tables, comfortable chairs, spacious sideboards, and stylish display cabinets, our range is designed to enhance your dining experience.",
+            "Price": 8000,
+            "Stock": 50,
+            "SellerID": "Seller1",
+            "CategoryID": "cat5",
+            "Images": [
+                "../assets/-dining-room-4.jpg",
+                "../assets/dining-room-3.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:03:35.191Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734966238751",
+            "Name": "Dining Room2",
+            "Description": "Bring your family and friends together with our exquisite collection of dining room furniture. Featuring elegant dining tables, comfortable chairs, spacious sideboards, and stylish display cabinets, our range is designed to enhance your dining experience.",
+            "Price": 10000,
+            "Stock": 50,
+            "SellerID": "Seller1",
+            "CategoryID": "cat5",
+            "Images": [
+                "../assets/dinningroom1.jpg",
+                "../assets/dining-table-1.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:03:58.751Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734966302135",
+            "Name": "Living Room",
+            "Description": "Transform your living room into the heart of your home with our stunning collection of furniture and décor. From cozy sofas and elegant coffee tables to practical TV stands and stylish shelving units, our range is designed to blend comfort, functionality, and style.",
+            "Price": 16000,
+            "Stock": 50,
+            "SellerID": "Seller1",
+            "CategoryID": "cat6",
+            "Images": [
+                "../assets/living-room-3jpg.jpg",
+                "../assets/dining-room-2.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:05:02.135Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734966355887",
+            "Name": "Living Room2",
+            "Description": "Transform your living room into the heart of your home with our stunning collection of furniture and décor. From cozy sofas and elegant coffee tables to practical TV stands and stylish shelving units, our range is designed to blend comfort, functionality, and style.",
+            "Price": 16000,
+            "Stock": 50,
+            "SellerID": "Seller1",
+            "CategoryID": "cat6",
+            "Images": [
+                "../assets/living-room-11.jpg",
+                "../assets/living-room-1.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:05:55.887Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734966430550",
+            "Name": "Entertainment1",
+            "Description": "Elevate your entertainment experience with our premium range of furniture designed to enhance both functionality and style. Whether you're looking for sleek TV stands, versatile media consoles, or spacious entertainment centers, our collection offers the perfect solutions to organize your devices and accessories.",
+            "Price": 23000,
+            "Stock": 50,
+            "SellerID": "Seller1",
+            "CategoryID": "cat7",
+            "Images": [
+                "../assets/entertainment.jpeg",
+                "../assets/entertainment-2.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:07:10.550Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734966461759",
+            "Name": "Entertainment2",
+            "Description": "Elevate your entertainment experience with our premium range of furniture designed to enhance both functionality and style. Whether you're looking for sleek TV stands, versatile media consoles, or spacious entertainment centers, our collection offers the perfect solutions to organize your devices and accessories.",
+            "Price": 30000,
+            "Stock": 50,
+            "SellerID": "Seller1",
+            "CategoryID": "cat7",
+            "Images": [
+                "../assets/enter-4.jpg",
+                "../assets/enter-3.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:07:41.759Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734966645319",
+            "Name": "Dressing Room1",
+            "Description": "Design a stylish and functional dressing room with our curated selection of furniture and storage solutions. From spacious wardrobes and elegant dressers to chic vanity tables and full-length mirrors, our collection helps you create an organized and luxurious personal retreat.",
+            "Price": 14000,
+            "Stock": 50,
+            "SellerID": "Seller1",
+            "CategoryID": "cat8",
+            "Images": [
+                "../assets/dressing-2.jpg",
+                "../assets/dressing-1.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:10:45.319Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        {
+            "_id": "Product1734966659326",
+            "Name": "Dressing Room2",
+            "Description": "Design a stylish and functional dressing room with our curated selection of furniture and storage solutions. From spacious wardrobes and elegant dressers to chic vanity tables and full-length mirrors, our collection helps you create an organized and luxurious personal retreat.",
+            "Price": 14000,
+            "Stock": 50,
+            "SellerID": "Seller1",
+            "CategoryID": "cat8",
+            "Images": [
+                "../assets/dressing-3.jpg",
+                "../assets/dressing-4.avif"
+            ],
+            "CreatedAt": "2024-12-23T15:10:59.326Z",
+            "NumOfSales": 0,
+            "Approved": false
+        },
+        //Seller2
+        {
+            "_id": "Product1734965600608",
+            "Name": "Chair1",
+            "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+            "Price": 500,
+            "SellerID": "Seller2",
+            "Stock": 50,
+            "CategoryID": "cat1",
+            "Images": [
+                "../assets/chair.jpg",
+                "../assets/chair2.jpg"
+            ],
+            "CreatedAt": "2024-12-23T14:53:20.608Z",
             "NumOfSales": 0,
             "Approved": true
         },
         {
-            "_id": "pro15",
-            "Name": "Product 8",
-            "Description": "This is a brief description for Product 8",
-            "Price": 360,
-            "Stock": 45,
-            "SellerID": "Seller1",
+            "_id": "Product1734965622808",
+            "Name": "Chair2",
+            "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+            "Price": 750,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat1",
+            "Images": [
+                "../assets/chair pro4.avif",
+                "../assets/chair4.jpj.avif"
+            ],
+            "CreatedAt": "2024-12-23T14:53:42.808Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734965817288",
+            "Name": "Tabel1",
+            "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+            "Price": 1500,
+            "Stock": 50,
+            
+            "SellerID": "Seller2",
+            "CategoryID": "cat2",
+            "Images": [
+                "../assets/table4.jpg",
+                "../assets/table.jpg"
+            ],
+            "CreatedAt": "2024-12-23T14:56:57.288Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734965852399",
+            "Name": "Tabel2",
+            "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+            "Price": 1500,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat2",
+            "Images": [
+                "../assets/table2.jpg",
+                "../assets/table3.jpg"
+            ],
+            "CreatedAt": "2024-12-23T14:57:32.399Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966041039",
+            "Name": "Master Bedroom1",
+            "Description": "Create your dream sanctuary with our elegant collection of master bedroom furniture. Designed for comfort and sophistication, our range includes luxurious beds, spacious wardrobes, stylish dressers, and bedside tables that perfectly blend form and function.",
+            "Price": 15000,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat3",
+            "Images": [
+                "../assets/bedroom1.jpg",
+                "../assets/bedroom2.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:00:41.039Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966054247",
+            "Name": "Master Bedroom2",
+            "Description": "Create your dream sanctuary with our elegant collection of master bedroom furniture. Designed for comfort and sophistication, our range includes luxurious beds, spacious wardrobes, stylish dressers, and bedside tables that perfectly blend form and function.",
+            "Price": 25000,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat3",
+            "Images": [
+                "../assets/bedroom4.jpg",
+                "../assets/bedroom-blackjpg.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:00:54.247Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966138584",
+            "Name": "Kitchens",
+            "Description": "Upgrade your kitchen with our stylish and functional furniture and accessories, designed to make cooking and dining a joy. Our collection features versatile dining sets, sturdy kitchen islands, sleek storage cabinets, and ergonomic bar stools to meet your every need.",
+            "Price": 12000,
+            "Stock": 50,
+            "SellerID": "Seller2",
             "CategoryID": "cat4",
             "Images": [
-              "../assets/pic3.webp",
-                "../assets/pic3.webp",
-              "../assets/pic3.webp",
-                "../assets/pic3.webp"
+                "../assets/kitchen1.jpj..avif",
+                "../assets/kitchen.avif"
             ],
-            "CreatedAt": "2024-12-12T19:31:00.699Z",
+            "CreatedAt": "2024-12-23T15:02:18.584Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966156535",
+            "Name": "Kitchen2",
+            "Description": "Upgrade your kitchen with our stylish and functional furniture and accessories, designed to make cooking and dining a joy. Our collection features versatile dining sets, sturdy kitchen islands, sleek storage cabinets, and ergonomic bar stools to meet your every need.",
+            "Price": 12000,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat4",
+            "Images": [
+                "../assets/kitchen-3.jpg",
+                "../assets/kitchen-4.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:02:36.535Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966215191",
+            "Name": "Dining Room1",
+            "Description": "Bring your family and friends together with our exquisite collection of dining room furniture. Featuring elegant dining tables, comfortable chairs, spacious sideboards, and stylish display cabinets, our range is designed to enhance your dining experience.",
+            "Price": 8000,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat5",
+            "Images": [
+                "../assets/-dining-room-4.jpg",
+                "../assets/dining-room-3.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:03:35.191Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966238751",
+            "Name": "Dining Room2",
+            "Description": "Bring your family and friends together with our exquisite collection of dining room furniture. Featuring elegant dining tables, comfortable chairs, spacious sideboards, and stylish display cabinets, our range is designed to enhance your dining experience.",
+            "Price": 10000,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat5",
+            "Images": [
+                "../assets/dinningroom1.jpg",
+                "../assets/dining-table-1.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:03:58.751Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966302135",
+            "Name": "Living Room",
+            "Description": "Transform your living room into the heart of your home with our stunning collection of furniture and décor. From cozy sofas and elegant coffee tables to practical TV stands and stylish shelving units, our range is designed to blend comfort, functionality, and style.",
+            "Price": 16000,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat6",
+            "Images": [
+                "../assets/living-room-3jpg.jpg",
+                "../assets/dining-room-2.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:05:02.135Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966355887",
+            "Name": "Living Room2",
+            "Description": "Transform your living room into the heart of your home with our stunning collection of furniture and décor. From cozy sofas and elegant coffee tables to practical TV stands and stylish shelving units, our range is designed to blend comfort, functionality, and style.",
+            "Price": 16000,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat6",
+            "Images": [
+                "../assets/living-room-11.jpg",
+                "../assets/living-room-1.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:05:55.887Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966430550",
+            "Name": "Entertainment1",
+            "Description": "Elevate your entertainment experience with our premium range of furniture designed to enhance both functionality and style. Whether you're looking for sleek TV stands, versatile media consoles, or spacious entertainment centers, our collection offers the perfect solutions to organize your devices and accessories.",
+            "Price": 23000,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat7",
+            "Images": [
+                "../assets/entertainment.jpeg",
+                "../assets/entertainment-2.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:07:10.550Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966461759",
+            "Name": "Entertainment2",
+            "Description": "Elevate your entertainment experience with our premium range of furniture designed to enhance both functionality and style. Whether you're looking for sleek TV stands, versatile media consoles, or spacious entertainment centers, our collection offers the perfect solutions to organize your devices and accessories.",
+            "Price": 30000,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat7",
+            "Images": [
+                "../assets/enter-4.jpg",
+                "../assets/enter-3.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:07:41.759Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966645319",
+            "Name": "Dressing Room1",
+            "Description": "Design a stylish and functional dressing room with our curated selection of furniture and storage solutions. From spacious wardrobes and elegant dressers to chic vanity tables and full-length mirrors, our collection helps you create an organized and luxurious personal retreat.",
+            "Price": 14000,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat8",
+            "Images": [
+                "../assets/dressing-2.jpg",
+                "../assets/dressing-1.jpg"
+            ],
+            "CreatedAt": "2024-12-23T15:10:45.319Z",
+            "NumOfSales": 0,
+            "Approved": true
+        },
+        {
+            "_id": "Product1734966659326",
+            "Name": "Dressing Room2",
+            "Description": "Design a stylish and functional dressing room with our curated selection of furniture and storage solutions. From spacious wardrobes and elegant dressers to chic vanity tables and full-length mirrors, our collection helps you create an organized and luxurious personal retreat.",
+            "Price": 14000,
+            "Stock": 50,
+            "SellerID": "Seller2",
+            "CategoryID": "cat8",
+            "Images": [
+                "../assets/dressing-3.jpg",
+                "../assets/dressing-4.avif"
+            ],
+            "CreatedAt": "2024-12-23T15:10:59.326Z",
             "NumOfSales": 0,
             "Approved": true
         }
@@ -442,260 +642,1093 @@ export const data = {
     ,
     Orders:[
         {
-            "_id": "A",
+            "_id": "Order1734968292230",
             "UserID": "User1",
             "Items": [
                 {
-                    "ProductID": "pro1",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 100
+                    "_id": "Product1734965600608",
+                    "Name": "Chair1",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair.jpg",
+                        "../assets/chair2.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:20.608Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 5
                 },
                 {
-                    "ProductID": "pro2",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 200
+                    "_id": "Product1734965817288",
+                    "Name": "Tabel1",
+                    "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                    "Price": 1500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat2",
+                    "Images": [
+                        "../assets/table4.jpg",
+                        "../assets/table.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:56:57.288Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 2
                 }
             ],
-            "TotalAmount": 600,
+            "TotalAmount": 5500,
             "Status": "Pending",
-            "CreatedAt": "2024-11-27T12:40:00Z",
-            "customerInfo": {
-                "streetAddress": "El-Estaad St.",
-                "AddPNum": "01090300219",
-                "City": "Mansoura",
-                "Zip": "35511",
-              },
+            "CreatedAt": "2024-01-23T15:38:12.230Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
         },
         {
-            "_id": "E",
-            "UserID": "User3",
+            "_id": "Order1734969331486",
+            "UserID": "User1",
             "Items": [
                 {
-                    "ProductID": "pro1",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 100
+                    "_id": "Product1734965600608",
+                    "Name": "Chair1",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair.jpg",
+                        "../assets/chair2.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:20.608Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 5
                 },
                 {
-                    "ProductID": "pro2",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 200
+                    "_id": "Product1734965817288",
+                    "Name": "Tabel1",
+                    "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                    "Price": 1500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat2",
+                    "Images": [
+                        "../assets/table4.jpg",
+                        "../assets/table.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:56:57.288Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 2
+                },
+                {
+                    "_id": "Product1734966041039",
+                    "Name": "Master Bedroom1",
+                    "Description": "Create your dream sanctuary with our elegant collection of master bedroom furniture. Designed for comfort and sophistication, our range includes luxurious beds, spacious wardrobes, stylish dressers, and bedside tables that perfectly blend form and function.",
+                    "Price": 15000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat3",
+                    "Images": [
+                        "../assets/bedroom1.jpg",
+                        "../assets/bedroom2.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T15:00:41.039Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
+                },
+                {
+                    "_id": "Product1734965852399",
+                    "Name": "Tabel2",
+                    "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                    "Price": 1500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat2",
+                    "Images": [
+                        "../assets/table2.jpg",
+                        "../assets/table3.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:57:32.399Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
+                },
+                {
+                    "_id": "Product1734966156535",
+                    "Name": "Kitchen2",
+                    "Description": "Upgrade your kitchen with our stylish and functional furniture and accessories, designed to make cooking and dining a joy. Our collection features versatile dining sets, sturdy kitchen islands, sleek storage cabinets, and ergonomic bar stools to meet your every need.",
+                    "Price": 12000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat4",
+                    "Images": [
+                        "../assets/kitchen-3.jpg",
+                        "../assets/kitchen-4.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T15:02:36.535Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
                 }
             ],
-            "TotalAmount": 600,
+            "TotalAmount": 34000,
             "Status": "Pending",
-            "CreatedAt": "2024-10-27T12:40:00Z"
+            "CreatedAt": "2024-02-23T15:55:31.487Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
         },
         {
-            "_id": "F",
+            "_id": "Order1734969356814",
+            "UserID": "User1",
+            "Items": [
+                {
+                    "_id": "Product1734966156535",
+                    "Name": "Kitchen2",
+                    "Description": "Upgrade your kitchen with our stylish and functional furniture and accessories, designed to make cooking and dining a joy. Our collection features versatile dining sets, sturdy kitchen islands, sleek storage cabinets, and ergonomic bar stools to meet your every need.",
+                    "Price": 12000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat4",
+                    "Images": [
+                        "../assets/kitchen-3.jpg",
+                        "../assets/kitchen-4.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T15:02:36.535Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
+                },
+                {
+                    "_id": "Product1734966355887",
+                    "Name": "Living Room2",
+                    "Description": "Transform your living room into the heart of your home with our stunning collection of furniture and décor. From cozy sofas and elegant coffee tables to practical TV stands and stylish shelving units, our range is designed to blend comfort, functionality, and style.",
+                    "Price": 16000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat6",
+                    "Images": [
+                        "../assets/living-room-11.jpg",
+                        "../assets/living-room-1.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T15:05:55.887Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
+                },
+                {
+                    "_id": "Product1734966659326",
+                    "Name": "Dressing Room2",
+                    "Description": "Design a stylish and functional dressing room with our curated selection of furniture and storage solutions. From spacious wardrobes and elegant dressers to chic vanity tables and full-length mirrors, our collection helps you create an organized and luxurious personal retreat.",
+                    "Price": 14000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat8",
+                    "Images": [
+                        "../assets/dressing-3.jpg",
+                        "../assets/dressing-4.avif"
+                    ],
+                    "CreatedAt": "2024-12-23T15:10:59.326Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
+                }
+            ],
+            "TotalAmount": 42000,
+            "Status": "Pending",
+            "CreatedAt": "2024-03-23T15:55:56.815Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
+        },
+        {
+            "_id": "Order1734969370158",
+            "UserID": "User1",
+            "Items": [
+                {
+                    "_id": "Product1734966355887",
+                    "Name": "Living Room2",
+                    "Description": "Transform your living room into the heart of your home with our stunning collection of furniture and décor. From cozy sofas and elegant coffee tables to practical TV stands and stylish shelving units, our range is designed to blend comfort, functionality, and style.",
+                    "Price": 16000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat6",
+                    "Images": [
+                        "../assets/living-room-11.jpg",
+                        "../assets/living-room-1.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T15:05:55.887Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 2
+                }
+            ],
+            "TotalAmount": 32000,
+            "Status": "Pending",
+            "CreatedAt": "2024-05-23T15:56:10.159Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
+        },
+        {
+            "_id": "Order1734969393718",
+            "UserID": "User1",
+            "Items": [
+                {
+                    "_id": "Product1734965817288",
+                    "Name": "Tabel1",
+                    "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                    "Price": 1500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat2",
+                    "Images": [
+                        "../assets/table4.jpg",
+                        "../assets/table.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:56:57.288Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 1
+                },
+                {
+                    "_id": "Product1734965622808",
+                    "Name": "Chair2",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 750,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair pro4.avif",
+                        "../assets/chair4.jpj.avif"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:42.808Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
+                },
+                {
+                    "_id": "Product1734965600608",
+                    "Name": "Chair1",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair.jpg",
+                        "../assets/chair2.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:20.608Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 1
+                }
+            ],
+            "TotalAmount": 2750,
+            "Status": "Pending",
+            "CreatedAt": "2024-06-23T15:56:33.718Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
+        },
+        {
+            "_id": "Order1734969409622",
+            "UserID": "User1",
+            "Items": [
+                {
+                    "_id": "Product1734965622808",
+                    "Name": "Chair2",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 750,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair pro4.avif",
+                        "../assets/chair4.jpj.avif"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:42.808Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 5
+                },
+                {
+                    "_id": "Product1734965600608",
+                    "Name": "Chair1",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair.jpg",
+                        "../assets/chair2.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:20.608Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 3
+                }
+            ],
+            "TotalAmount": 5250,
+            "Status": "Pending",
+            "CreatedAt": "2024-07-23T15:56:49.622Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
+        },
+        //User 2
+        {
+            "_id": "Order1734968292230",
             "UserID": "User2",
             "Items": [
                 {
-                    "ProductID": "pro7",
-                    "SellerId": "Seller2",
-                    "Quantity": 2,
-                    "Price": 440
+                    "_id": "Product1734965600608",
+                    "Name": "Chair1",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair.jpg",
+                        "../assets/chair2.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:20.608Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 5
+                },
+                {
+                    "_id": "Product1734965817288",
+                    "Name": "Tabel1",
+                    "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                    "Price": 1500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat2",
+                    "Images": [
+                        "../assets/table4.jpg",
+                        "../assets/table.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:56:57.288Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 2
                 }
             ],
-            "TotalAmount": 400,
+            "TotalAmount": 5500,
             "Status": "Pending",
-            "CreatedAt": "2024-11-27T12:40:00Z",
-            "customerInfo": {
-                "streetAddress": "El-Estaad St.",
-                "AddPNum": "01090300219",
-                "City": "Mansoura",
-                "Zip": "35511",
-              },
+            "CreatedAt": "2024-11-23T15:38:12.230Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
         },
         {
-            "_id": "WQ",
-            "UserID": "User3",
-            "Items": [
-                {
-                    "ProductID": "pro1",
-                    "SellerId": "Seller1",
-                    "Quantity": 10,
-                    "Price": 1000
-                },
-                {
-                    "ProductID": "pro7",
-                    "SellerId": "Seller2",
-                    "Quantity": 2,
-                    "Price": 440
-                }
-            ],
-            "TotalAmount": 1400,
-            "Status": "Shipped",
-            "CreatedAt": "2024-10-27T12:40:00Z"
-        },
-        {
-            "_id": "AA",
-            "UserID": "User1",
-            "Items": [
-                {
-                    "ProductID": "pro1",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 100
-                },
-                {
-                    "ProductID": "pro2",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 200
-                }
-            ],
-            "TotalAmount": 600,
-            "Status": "Pending",
-            "CreatedAt": "2024-01-27T12:40:00Z",
-            "customerInfo": {
-                "streetAddress": "El-Estaad St.",
-                "AddPNum": "01090300219",
-                "City": "Mansoura",
-                "Zip": "35511",
-              },
-        },
-        {
-            "_id": "BA",
-            "UserID": "User3",
-            "Items": [
-                {
-                    "ProductID": "pro1",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 100
-                },
-                {
-                    "ProductID": "pro2",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 200
-                }
-            ],
-            "TotalAmount": 239.98,
-            "Status": "Shipped",
-            "CreatedAt": "2024-12-27T12:40:00Z",
-            "customerInfo": {
-                "streetAddress": "El-Estaad St.",
-                "AddPNum": "01090300219",
-                "City": "Mansoura",
-                "Zip": "35511",
-              },
-        },
-        {
-            "_id": "CA",
+            "_id": "Order1734969331486",
             "UserID": "User2",
             "Items": [
                 {
-                    "ProductID": "pro1",
-                    "SellerId": "Seller1",
-                    "Quantity": 5,
-                    "Price": 500
-                }
-            ],
-            "TotalAmount": 500,
-            "Status": "Pending",
-            "CreatedAt": "2024-10-27T12:40:00Z"
-        },
-        {
-            "_id": "ZA",
-            "UserID": "User3",
-            "Items": [
-                {
-                    "ProductID": "pro7",
-                    "SellerId": "Seller2",
-                    "Quantity": 2,
-                    "Price": 440
+                    "_id": "Product1734965600608",
+                    "Name": "Chair1",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair.jpg",
+                        "../assets/chair2.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:20.608Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 5
                 },
                 {
-                    "ProductID": "pro2",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 200
-                }
-            ],
-            "TotalAmount": 640,
-            "Status": "Pending",
-            "CreatedAt": "2024-05-27T12:40:00Z"
-        },
-        {
-            "_id": "VFA",
-            "UserID": "User1",
-            "Items": [
-                {
-                    "ProductID": "pro1",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 100
+                    "_id": "Product1734965817288",
+                    "Name": "Tabel1",
+                    "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                    "Price": 1500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat2",
+                    "Images": [
+                        "../assets/table4.jpg",
+                        "../assets/table.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:56:57.288Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 2
                 },
                 {
-                    "ProductID": "pro2",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 200
+                    "_id": "Product1734966041039",
+                    "Name": "Master Bedroom1",
+                    "Description": "Create your dream sanctuary with our elegant collection of master bedroom furniture. Designed for comfort and sophistication, our range includes luxurious beds, spacious wardrobes, stylish dressers, and bedside tables that perfectly blend form and function.",
+                    "Price": 15000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat3",
+                    "Images": [
+                        "../assets/bedroom1.jpg",
+                        "../assets/bedroom2.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T15:00:41.039Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
+                },
+                {
+                    "_id": "Product1734965852399",
+                    "Name": "Tabel2",
+                    "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                    "Price": 1500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat2",
+                    "Images": [
+                        "../assets/table2.jpg",
+                        "../assets/table3.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:57:32.399Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
+                },
+                {
+                    "_id": "Product1734966156535",
+                    "Name": "Kitchen2",
+                    "Description": "Upgrade your kitchen with our stylish and functional furniture and accessories, designed to make cooking and dining a joy. Our collection features versatile dining sets, sturdy kitchen islands, sleek storage cabinets, and ergonomic bar stools to meet your every need.",
+                    "Price": 12000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat4",
+                    "Images": [
+                        "../assets/kitchen-3.jpg",
+                        "../assets/kitchen-4.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T15:02:36.535Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
                 }
             ],
-            "TotalAmount": 600,
+            "TotalAmount": 34000,
             "Status": "Pending",
-            "CreatedAt": "2024-03-27T12:40:00Z"
+            "CreatedAt": "2024-10-23T15:55:31.487Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
         },
         {
-            "_id": "EWA",
+            "_id": "Order1734969356814",
             "UserID": "User2",
             "Items": [
                 {
-                    "ProductID": "pro1",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 100
+                    "_id": "Product1734966156535",
+                    "Name": "Kitchen2",
+                    "Description": "Upgrade your kitchen with our stylish and functional furniture and accessories, designed to make cooking and dining a joy. Our collection features versatile dining sets, sturdy kitchen islands, sleek storage cabinets, and ergonomic bar stools to meet your every need.",
+                    "Price": 12000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat4",
+                    "Images": [
+                        "../assets/kitchen-3.jpg",
+                        "../assets/kitchen-4.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T15:02:36.535Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
                 },
                 {
-                    "ProductID": "pro2",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 200
+                    "_id": "Product1734966355887",
+                    "Name": "Living Room2",
+                    "Description": "Transform your living room into the heart of your home with our stunning collection of furniture and décor. From cozy sofas and elegant coffee tables to practical TV stands and stylish shelving units, our range is designed to blend comfort, functionality, and style.",
+                    "Price": 16000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat6",
+                    "Images": [
+                        "../assets/living-room-11.jpg",
+                        "../assets/living-room-1.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T15:05:55.887Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
+                },
+                {
+                    "_id": "Product1734966659326",
+                    "Name": "Dressing Room2",
+                    "Description": "Design a stylish and functional dressing room with our curated selection of furniture and storage solutions. From spacious wardrobes and elegant dressers to chic vanity tables and full-length mirrors, our collection helps you create an organized and luxurious personal retreat.",
+                    "Price": 14000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat8",
+                    "Images": [
+                        "../assets/dressing-3.jpg",
+                        "../assets/dressing-4.avif"
+                    ],
+                    "CreatedAt": "2024-12-23T15:10:59.326Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
                 }
             ],
-            "TotalAmount": 239.98,
-            "Status": "Delivered",
-            "CreatedAt": "2024-08-27T12:40:00Z",
-            "customerInfo": {
-                "streetAddress": "El-Estaad St.",
-                "AddPNum": "01090300219",
-                "City": "Mansoura",
-                "Zip": "35511",
-              },
+            "TotalAmount": 42000,
+            "Status": "Pending",
+            "CreatedAt": "2024-09-23T15:55:56.815Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
         },
         {
-            "_id": "QWEA",
-            "UserID": "User1",
+            "_id": "Order1734969370158",
+            "UserID": "User2",
             "Items": [
                 {
-                    "ProductID": "pro1",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 100
-                },
-                {
-                    "ProductID": "pro2",
-                    "SellerId": "Seller1",
-                    "Quantity": 2,
-                    "Price": 200
+                    "_id": "Product1734966355887",
+                    "Name": "Living Room2",
+                    "Description": "Transform your living room into the heart of your home with our stunning collection of furniture and décor. From cozy sofas and elegant coffee tables to practical TV stands and stylish shelving units, our range is designed to blend comfort, functionality, and style.",
+                    "Price": 16000,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat6",
+                    "Images": [
+                        "../assets/living-room-11.jpg",
+                        "../assets/living-room-1.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T15:05:55.887Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 2
                 }
             ],
-            "TotalAmount": 239.98,
-            "Status": "Canceled",
-            "CreatedAt": "2024-09-27T12:40:00Z",
-            "customerInfo": {
-                "streetAddress": "El-Estaad St.",
-                "AddPNum": "01090300219", 
-                "City": "Mansoura",
-                "Zip": "35511",
-              },
-        }
+            "TotalAmount": 32000,
+            "Status": "Pending",
+            "CreatedAt": "2024-06-23T15:56:10.159Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
+        },
+        {
+            "_id": "Order1734969393718",
+            "UserID": "User2",
+            "Items": [
+                {
+                    "_id": "Product1734965817288",
+                    "Name": "Tabel1",
+                    "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                    "Price": 1500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat2",
+                    "Images": [
+                        "../assets/table4.jpg",
+                        "../assets/table.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:56:57.288Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 1
+                },
+                {
+                    "_id": "Product1734965622808",
+                    "Name": "Chair2",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 750,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair pro4.avif",
+                        "../assets/chair4.jpj.avif"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:42.808Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 1
+                },
+                {
+                    "_id": "Product1734965600608",
+                    "Name": "Chair1",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair.jpg",
+                        "../assets/chair2.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:20.608Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 1
+                }
+            ],
+            "TotalAmount": 2750,
+            "Status": "Pending",
+            "CreatedAt": "2024-01-23T15:56:33.718Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
+        },
+        {
+            "_id": "Order1734969409622",
+            "UserID": "User2",
+            "Items": [
+                {
+                    "_id": "Product1734965622808",
+                    "Name": "Chair2",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 750,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair pro4.avif",
+                        "../assets/chair4.jpj.avif"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:42.808Z",
+                    "NumOfSales": 0,
+                    "Approved": false,
+                    "Quantity": 5
+                },
+                {
+                    "_id": "Product1734965600608",
+                    "Name": "Chair1",
+                    "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                    "Price": 500,
+                    "Stock": 50,
+                    "SellerID": "Seller1",
+                    "CategoryID": "cat1",
+                    "Images": [
+                        "../assets/chair.jpg",
+                        "../assets/chair2.jpg"
+                    ],
+                    "CreatedAt": "2024-12-23T14:53:20.608Z",
+                    "NumOfSales": 0,
+                    "Approved": true,
+                    "Quantity": 3
+                }
+            ],
+            "TotalAmount": 5250,
+            "Status": "Pending",
+            "CreatedAt": "2024-03-23T15:56:49.622Z",
+            "customerDetails": {
+                "streetAddress": "Tantaaaa",
+                "additionalPhoneNumber": "01011145011",
+                "City": "Tanta",
+                "Zip": "31511"
+            }
+        },
+            //User 3
+            {
+                "_id": "Order1734968292230",
+                "UserID": "User3",
+                "Items": [
+                    {
+                        "_id": "Product1734965600608",
+                        "Name": "Chair1",
+                        "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                        "Price": 500,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat1",
+                        "Images": [
+                            "../assets/chair.jpg",
+                            "../assets/chair2.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T14:53:20.608Z",
+                        "NumOfSales": 0,
+                        "Approved": true,
+                        "Quantity": 5
+                    },
+                    {
+                        "_id": "Product1734965817288",
+                        "Name": "Tabel1",
+                        "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                        "Price": 1500,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat2",
+                        "Images": [
+                            "../assets/table4.jpg",
+                            "../assets/table.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T14:56:57.288Z",
+                        "NumOfSales": 0,
+                        "Approved": true,
+                        "Quantity": 2
+                    }
+                ],
+                "TotalAmount": 5500,
+                "Status": "Pending",
+                "CreatedAt": "2024-09-23T15:38:12.230Z",
+                "customerDetails": {
+                    "streetAddress": "Tantaaaa",
+                    "additionalPhoneNumber": "01011145011",
+                    "City": "Tanta",
+                    "Zip": "31511"
+                }
+            },
+            {
+                "_id": "Order1734969331486",
+                "UserID": "User3",
+                "Items": [
+                    {
+                        "_id": "Product1734965600608",
+                        "Name": "Chair1",
+                        "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                        "Price": 500,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat1",
+                        "Images": [
+                            "../assets/chair.jpg",
+                            "../assets/chair2.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T14:53:20.608Z",
+                        "NumOfSales": 0,
+                        "Approved": true,
+                        "Quantity": 5
+                    },
+                    {
+                        "_id": "Product1734965817288",
+                        "Name": "Tabel1",
+                        "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                        "Price": 1500,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat2",
+                        "Images": [
+                            "../assets/table4.jpg",
+                            "../assets/table.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T14:56:57.288Z",
+                        "NumOfSales": 0,
+                        "Approved": true,
+                        "Quantity": 2
+                    },
+                    {
+                        "_id": "Product1734966041039",
+                        "Name": "Master Bedroom1",
+                        "Description": "Create your dream sanctuary with our elegant collection of master bedroom furniture. Designed for comfort and sophistication, our range includes luxurious beds, spacious wardrobes, stylish dressers, and bedside tables that perfectly blend form and function.",
+                        "Price": 15000,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat3",
+                        "Images": [
+                            "../assets/bedroom1.jpg",
+                            "../assets/bedroom2.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T15:00:41.039Z",
+                        "NumOfSales": 0,
+                        "Approved": false,
+                        "Quantity": 1
+                    },
+                    {
+                        "_id": "Product1734965852399",
+                        "Name": "Tabel2",
+                        "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                        "Price": 1500,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat2",
+                        "Images": [
+                            "../assets/table2.jpg",
+                            "../assets/table3.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T14:57:32.399Z",
+                        "NumOfSales": 0,
+                        "Approved": false,
+                        "Quantity": 1
+                    },
+                    {
+                        "_id": "Product1734966156535",
+                        "Name": "Kitchen2",
+                        "Description": "Upgrade your kitchen with our stylish and functional furniture and accessories, designed to make cooking and dining a joy. Our collection features versatile dining sets, sturdy kitchen islands, sleek storage cabinets, and ergonomic bar stools to meet your every need.",
+                        "Price": 12000,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat4",
+                        "Images": [
+                            "../assets/kitchen-3.jpg",
+                            "../assets/kitchen-4.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T15:02:36.535Z",
+                        "NumOfSales": 0,
+                        "Approved": false,
+                        "Quantity": 1
+                    }
+                ],
+                "TotalAmount": 34000,
+                "Status": "Pending",
+                "CreatedAt": "2024-02-23T15:55:31.487Z",
+                "customerDetails": {
+                    "streetAddress": "Tantaaaa",
+                    "additionalPhoneNumber": "01011145011",
+                    "City": "Tanta",
+                    "Zip": "31511"
+                }
+            },
+            {
+                "_id": "Order1734969356814",
+                "UserID": "User3",
+                "Items": [
+                    {
+                        "_id": "Product1734966156535",
+                        "Name": "Kitchen2",
+                        "Description": "Upgrade your kitchen with our stylish and functional furniture and accessories, designed to make cooking and dining a joy. Our collection features versatile dining sets, sturdy kitchen islands, sleek storage cabinets, and ergonomic bar stools to meet your every need.",
+                        "Price": 12000,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat4",
+                        "Images": [
+                            "../assets/kitchen-3.jpg",
+                            "../assets/kitchen-4.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T15:02:36.535Z",
+                        "NumOfSales": 0,
+                        "Approved": false,
+                        "Quantity": 1
+                    },
+                    {
+                        "_id": "Product1734966355887",
+                        "Name": "Living Room2",
+                        "Description": "Transform your living room into the heart of your home with our stunning collection of furniture and décor. From cozy sofas and elegant coffee tables to practical TV stands and stylish shelving units, our range is designed to blend comfort, functionality, and style.",
+                        "Price": 16000,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat6",
+                        "Images": [
+                            "../assets/living-room-11.jpg",
+                            "../assets/living-room-1.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T15:05:55.887Z",
+                        "NumOfSales": 0,
+                        "Approved": false,
+                        "Quantity": 1
+                    },
+                    {
+                        "_id": "Product1734966659326",
+                        "Name": "Dressing Room2",
+                        "Description": "Design a stylish and functional dressing room with our curated selection of furniture and storage solutions. From spacious wardrobes and elegant dressers to chic vanity tables and full-length mirrors, our collection helps you create an organized and luxurious personal retreat.",
+                        "Price": 14000,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat8",
+                        "Images": [
+                            "../assets/dressing-3.jpg",
+                            "../assets/dressing-4.avif"
+                        ],
+                        "CreatedAt": "2024-12-23T15:10:59.326Z",
+                        "NumOfSales": 0,
+                        "Approved": false,
+                        "Quantity": 1
+                    }
+                ],
+                "TotalAmount": 42000,
+                "Status": "Pending",
+                "CreatedAt": "2024-03-23T15:55:56.815Z",
+                "customerDetails": {
+                    "streetAddress": "Tantaaaa",
+                    "additionalPhoneNumber": "01011145011",
+                    "City": "Tanta",
+                    "Zip": "31511"
+                }
+            },
+            {
+                "_id": "Order1734969370158",
+                "UserID": "User3",
+                "Items": [
+                    {
+                        "_id": "Product1734966355887",
+                        "Name": "Living Room2",
+                        "Description": "Transform your living room into the heart of your home with our stunning collection of furniture and décor. From cozy sofas and elegant coffee tables to practical TV stands and stylish shelving units, our range is designed to blend comfort, functionality, and style.",
+                        "Price": 16000,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat6",
+                        "Images": [
+                            "../assets/living-room-11.jpg",
+                            "../assets/living-room-1.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T15:05:55.887Z",
+                        "NumOfSales": 0,
+                        "Approved": false,
+                        "Quantity": 2
+                    }
+                ],
+                "TotalAmount": 32000,
+                "Status": "Pending",
+                "CreatedAt": "2024-08-23T15:56:10.159Z",
+                "customerDetails": {
+                    "streetAddress": "Tantaaaa",
+                    "additionalPhoneNumber": "01011145011",
+                    "City": "Tanta",
+                    "Zip": "31511"
+                }
+            },
+            {
+                "_id": "Order1734969393718",
+                "UserID": "User3",
+                "Items": [
+                    {
+                        "_id": "Product1734965817288",
+                        "Name": "Tabel1",
+                        "Description": "Transform your spaces with our stunning collection of tables, crafted to combine functionality and aesthetic appeal. From sleek coffee tables that serve as the centerpiece of your living room to sturdy dining tables perfect for family gatherings, we offer designs to suit every need and style.",
+                        "Price": 1500,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat2",
+                        "Images": [
+                            "../assets/table4.jpg",
+                            "../assets/table.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T14:56:57.288Z",
+                        "NumOfSales": 0,
+                        "Approved": true,
+                        "Quantity": 1
+                    },
+                    {
+                        "_id": "Product1734965622808",
+                        "Name": "Chair2",
+                        "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                        "Price": 750,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat1",
+                        "Images": [
+                            "../assets/chair pro4.avif",
+                            "../assets/chair4.jpj.avif"
+                        ],
+                        "CreatedAt": "2024-12-23T14:53:42.808Z",
+                        "NumOfSales": 0,
+                        "Approved": false,
+                        "Quantity": 1
+                    },
+                    {
+                        "_id": "Product1734965600608",
+                        "Name": "Chair1",
+                        "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                        "Price": 500,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat1",
+                        "Images": [
+                            "../assets/chair.jpg",
+                            "../assets/chair2.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T14:53:20.608Z",
+                        "NumOfSales": 0,
+                        "Approved": true,
+                        "Quantity": 1
+                    }
+                ],
+                "TotalAmount": 2750,
+                "Status": "Pending",
+                "CreatedAt": "2024-12-23T15:56:33.718Z",
+                "customerDetails": {
+                    "streetAddress": "Tantaaaa",
+                    "additionalPhoneNumber": "01011145011",
+                    "City": "Tanta",
+                    "Zip": "31511"
+                }
+            },
+            {
+                "_id": "Order1734969409622",
+                "UserID": "User3",
+                "Items": [
+                    {
+                        "_id": "Product1734965622808",
+                        "Name": "Chair2",
+                        "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                        "Price": 750,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat1",
+                        "Images": [
+                            "../assets/chair pro4.avif",
+                            "../assets/chair4.jpj.avif"
+                        ],
+                        "CreatedAt": "2024-12-23T14:53:42.808Z",
+                        "NumOfSales": 0,
+                        "Approved": false,
+                        "Quantity": 5
+                    },
+                    {
+                        "_id": "Product1734965600608",
+                        "Name": "Chair1",
+                        "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
+                        "Price": 500,
+                        "Stock": 50,
+                        "SellerID": "Seller1",
+                        "CategoryID": "cat1",
+                        "Images": [
+                            "../assets/chair.jpg",
+                            "../assets/chair2.jpg"
+                        ],
+                        "CreatedAt": "2024-12-23T14:53:20.608Z",
+                        "NumOfSales": 0,
+                        "Approved": true,
+                        "Quantity": 3
+                    }
+                ],
+                "TotalAmount": 5250,
+                "Status": "Pending",
+                "CreatedAt": "2024-12-23T15:56:49.622Z",
+                "customerDetails": {
+                    "streetAddress": "Tantaaaa",
+                    "additionalPhoneNumber": "01011145011",
+                    "City": "Tanta",
+                    "Zip": "31511"
+                }
+            }
     ],
     Tickets: [
         {
@@ -1017,7 +2050,7 @@ export function ApproveProducts(ProductId) {
 // * View Products Specefic for Current Seller 
 export function SellerProducts() {
     loadDataFromLocalStorage()
-    return data.Products.filter(p => p.SellerID === data.CurrentUser._id);
+    return data.Products.filter(p => p.SellerID === data.CurrentUser?._id);
 }
 export function SellerOrders() {
     loadDataFromLocalStorage()
