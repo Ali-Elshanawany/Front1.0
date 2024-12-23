@@ -20,7 +20,7 @@ import { AddProducts } from "../Seller/AddProducts.js";
 
 // * Event Listeners Load
 window.addEventListener("load", function () {
-    //   isAuthorized();
+       isAuthorized();
     ChangCard();
     let Products = SellerProducts();
     let isUpdate = true;
@@ -299,7 +299,7 @@ function ChangCard() {
     const TotalSalesCard = document.getElementById("TotalSalesCard");
 
     if (data.Orders.filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id)).length) {
-        NumofOrdersCard.innerText = data.Orders.filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id)).length
+        NumofOrdersCard.innerText = data.Orders.filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id)).length
 
     } else {
         NumofOrdersCard.innerText = 0

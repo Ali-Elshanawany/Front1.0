@@ -121,7 +121,7 @@ function setupPagination(Orders, rowsPerPage, currentPage) {
 // ! ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // * Event Listeners Load
 window.addEventListener("load", function () {
-    // isAuthorized();
+     isAuthorized();
     loadDataFromLocalStorage()
  
 //LogOut
