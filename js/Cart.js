@@ -10,7 +10,7 @@ import {
     loadDataFromLocalStorage,
 } from "./Data.js";
 
-//isAuthorized();
+isAuthorized();
 
 // Load data from local storage
 loadDataFromLocalStorage();
