@@ -61,6 +61,8 @@ export const data = {
             [
                 { "_id": "pro1", "Quantity": 2 },
                 { "_id": "pro2", "Quantity": 2 },
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
             ],
             "orders": ["order1"]
         }, {
@@ -75,6 +77,8 @@ export const data = {
             "CreatedAt": "2024-11-28T08:05:00Z",
             "cart" : 
             [
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
                 { "_id": "pro1", "Quantity": 2 },
                 { "_id": "pro2", "Quantity": 2 },
             ],
@@ -107,6 +111,8 @@ export const data = {
             [
                 { "_id": "pro1", "Quantity": 2 },
                 { "_id": "pro2", "Quantity": 2 },
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
             ],
             "orders": ["order1"]
         },
@@ -122,6 +128,8 @@ export const data = {
             "CreatedAt": "2024-11-28T08:08:00Z",
             "cart" : 
             [
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
                 { "_id": "pro1", "Quantity": 2 },
                 { "_id": "pro2", "Quantity": 2 },
             ],
@@ -141,6 +149,8 @@ export const data = {
             [
                 { "_id": "pro1", "Quantity": 2 },
                 { "_id": "pro2", "Quantity": 2 },
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
             ],
             "orders": ["order1"]
         },{
@@ -155,6 +165,8 @@ export const data = {
             "CreatedAt": "2024-11-28T08:09:00Z",
             "cart" : 
             [
+                { "_id": "pro1", "Quantity": 2 },
+                { "_id": "pro2", "Quantity": 2 },
                 { "_id": "pro1", "Quantity": 2 },
                 { "_id": "pro2", "Quantity": 2 },
             ],
@@ -173,6 +185,7 @@ export const data = {
     ],
     Products:[
         {
+            "_id": "pro1",
             "_id": "pro1",
             "Name": "Wooden Chair",
             "SellerID": "Seller1",
@@ -198,6 +211,8 @@ export const data = {
             "CategoryID": "cat2",
             "Images": [
                  "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg",
+                 "../assets/dinningroom.jpg",
                 "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:29:43.865Z",
@@ -211,8 +226,12 @@ export const data = {
             "Price": 120.0,
             "Stock": 20,
             "SellerID": "Seller1",
+            "Stock": 20,
+            "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
+                  "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg",
                   "../assets/dinningroom.jpg",
                 "../assets/dinningroom.jpg"
             ],
@@ -230,6 +249,8 @@ export const data = {
             "CategoryID": "cat3",
             "Images": [
               "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg",
+              "../assets/dinningroom.jpg",
                 "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:30:15.018Z",
@@ -245,6 +266,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
+             "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg",
              "../assets/dinningroom.jpg",
                 "../assets/dinningroom.jpg"
             ],
@@ -262,6 +285,8 @@ export const data = {
             "CategoryID": "cat3",
             "Images": [
                "../assets/pic3.webp",
+                "../assets/pic3.webp",
+               "../assets/pic3.webp",
                 "../assets/pic3.webp"
             ],
             "CreatedAt": "2024-12-12T19:30:42.546Z",
@@ -277,6 +302,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat4",
             "Images": [
+               "../assets/pic3.webp",
+                "../assets/pic3.webp",
                "../assets/pic3.webp",
                 "../assets/pic3.webp"
             ],
@@ -294,6 +321,7 @@ export const data = {
             "CategoryID": "cat1",
             "Images": [
               "../assets/pic3.webp",
+              "../assets/pic3.webp",
                 "../assets/pic3.webp"
             ],
             "CreatedAt": "2024-12-12T19:29:27.767Z",
@@ -309,6 +337,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat2",
             "Images": [
+             "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg",
              "../assets/dinningroom.jpg",
                 "../assets/dinningroom.jpg"
             ],
@@ -326,6 +356,8 @@ export const data = {
             "CategoryID": "cat2",
             "Images": [
               "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg",
+              "../assets/dinningroom.jpg",
                 "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:29:56.361Z",
@@ -341,6 +373,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat3",
             "Images": [
+               "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg",
                "../assets/dinningroom.jpg",
                 "../assets/dinningroom.jpg"
             ],
@@ -358,6 +392,8 @@ export const data = {
             "CategoryID": "cat3",
             "Images": [
                "../assets/dinningroom.jpg",
+                "../assets/dinningroom.jpg",
+               "../assets/dinningroom.jpg",
                 "../assets/dinningroom.jpg"
             ],
             "CreatedAt": "2024-12-12T19:30:29.750Z",
@@ -374,6 +410,8 @@ export const data = {
             "CategoryID": "cat3",
             "Images": [
                 "../assets/pic3.webp",
+                "../assets/pic3.webp",
+                "../assets/pic3.webp",
                 "../assets/pic3.webp"
             ],
             "CreatedAt": "2024-12-12T19:30:42.546Z",
@@ -389,6 +427,8 @@ export const data = {
             "SellerID": "Seller1",
             "CategoryID": "cat4",
             "Images": [
+              "../assets/pic3.webp",
+                "../assets/pic3.webp",
               "../assets/pic3.webp",
                 "../assets/pic3.webp"
             ],
@@ -730,6 +770,7 @@ export function saveDataInLocalStorage() {
 
 export function getCurrentUser() {
     loadDataFromLocalStorage();
+    loadDataFromLocalStorage();
     return data.CurrentUser;
 }
 
@@ -783,6 +824,7 @@ export function DeleteFromCart(id) {
 }
 
 export function generateRandomId() {
+    return `Order${Date.now()}`;
     return `Order${Date.now()}`;
 }
 
