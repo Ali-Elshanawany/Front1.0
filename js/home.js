@@ -295,7 +295,7 @@ function initializePage() {
                 saveDataInLocalStorage();
     
                 //console.log("User logged out. Current User:", data.CurrentUser);
-    
+                
               
                 isLogin = false;
     

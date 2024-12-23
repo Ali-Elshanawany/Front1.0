@@ -322,22 +322,25 @@ function loadOrders() {
     const userOrders = data.Orders.filter(order => order.UserID === currentUser._id);
 
     if (userOrders.length === 0) {
-      ordersTableBody.innerHTML = `<tr><td colspan="4" class="text-center">No orders found.</td></tr>`;
-      return;
+    ordersTableBody.innerHTML = `<tr><td colspan="4" class="text-center">No orders found.</td></tr>`;
+  } else {
+    userOrders.forEach(order => {
+      order.Items.forEach(item => {
+        const product = data.Products.find(p => p._id === item._id);
+        const productName = product ? product.Name : "Unknown Product";
+        const row = `
+          <tr>
+            <td>${order._id}</td>
+            <td>${productName}</td>
+            <td>${item.Quantity}</td>
+            <td>${order.Status || "Unknown Status"}</td>
+          </tr>`;
+        ordersTableBody.innerHTML += row;
+      });
+    });
   }
 
-  userOrders.forEach(order => {
-      const row = document.createElement("tr");
-
-      row.innerHTML = `
-          <td>${order.OrderID}</td>
-          <td>${order.ProductName}</td>
-          <td>${order.Quantity}</td>
-          <td>${order.Status}</td>
-      `;
-
-      ordersTableBody.appendChild(row);
-  });
+  
 }
 
 
