@@ -1934,7 +1934,7 @@ export function getSellerSalesByMonth() {
 const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page', 'products&orders.html'];
 const UserPages = ['Cart.html' , 'CheckOut.html'];
 const SellerPages = ["SellerProductDashboard.html","OrdersDataTable.html"];
-const GuestPages = ['ProductDetails','register.html'];
+const GuestPages = ['ProductDetails','register.html' , 'Cart.html'];
 
 
 
