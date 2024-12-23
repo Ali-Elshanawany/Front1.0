@@ -151,7 +151,7 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
    Swal.fire('Success', 'User registered successfully!', 'success').then(() => {
       console.log('Redirecting to login page...');
 
-      window.location.href = 'login.html';
+      window.location.href = 'homeMain.html';
    });
 });
 
