@@ -1,10 +1,10 @@
-import { data, getCurrentUser, loadDataFromLocalStorage, saveDataInLocalStorage,SetUserById}
-from './Data.js';
+import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser}
+    from './Data.js';
 
 
 // Add to Cart Function 
- export function addToCart(productID) {
-    let product = data.Products.find((p) => p._id === productID); 
+export function addToCart(productID) {
+    let product = data.Products.find((p) => p._id === productID);
 
     if (!product) {
         Swal.fire({
@@ -16,11 +16,11 @@ from './Data.js';
     }
 
     // Check if the user is logged in
-    let currentUser = (data.CurrentUser && data.CurrentUser._id && data.CurrentUser._id !== '') ? data.CurrentUser : null;
+    let currentUser = (data.CurrentUser && data.CurrentUser._id ) ? data.CurrentUser : null;
 
     if (currentUser) {
         // User is logged in: Add to their cart
-    
+
         let userCart = currentUser.cart || []; // If no cart exists, initialize an empty array
 
         let existingItem = userCart.find(item => item._id === productID);
@@ -32,9 +32,9 @@ from './Data.js';
 
         currentUser.cart = userCart;
 
-       
-        SetUserById(currentUser); 
-        saveDataInLocalStorage(); 
+
+        //SetUserById(currentUser);
+        saveDataInLocalStorage();
 
         Swal.fire({
             icon: 'success',
@@ -44,7 +44,7 @@ from './Data.js';
 
     } else {
         // User is NOT logged in: Add to guest cart
-       
+
         let guestCart = JSON.parse(localStorage.getItem('guestCart')) || [];
 
         let existingItem = guestCart.find(item => item._id === productID);
@@ -101,11 +101,42 @@ function initializePage() {
             }
         });
     });
+    console.log("CurrentUser ID:", data.CurrentUser);
+
+
+    // profile 
+    $(".profileIcon").on("click", function () {
+
+        if (!data.CurrentUser) {
+            window.location.href = "homeMain.html"
+            return;
+        }
+
+        // check the role
+        switch (data.CurrentUser.Role) {
+            case "Admin":
+                window.location.href = "../html/adminprofile.html";
+                break;
+            case "User":
+                window.location.href = "../html/users-profile.html";
+                break;
+            case "Seller":
+                window.location.href = "../html/sellerprofile.html";
+                break;
+            default:
+                window.location.href = "homeMain.html";
+                break;
+        }
+
+
+    })
+
+
 
     // Function to display products
     function displayProducts(products) {
         let $productSection = $('#products-container');
-        $productSection.empty(); 
+        $productSection.empty();
 
         if (!products || products.length === 0) {
             $productSection.html("<p class='notAvalible' style='font-weight: bold; font-size: 22px; color: red;'>No products available.</p>");
@@ -136,7 +167,7 @@ function initializePage() {
                     </div>
                    
                 `;
-                
+
                 $productSection.append(productCard);
             } else {
                 //console.log(`Product "${product.Name}" is not approved and will not be displayed.`);
@@ -153,7 +184,7 @@ function initializePage() {
         displayProducts(filteredProducts);
     }
 
-  //  Function to filter products by search query 
+    //  Function to filter products by search query 
     function filterBySearch(searchQuery) {
         let filteredProducts = data.Products.filter(product => {
             let title = product.Name.toLowerCase();
@@ -167,7 +198,7 @@ function initializePage() {
     // category filter 
     $('.nav-link').on('click', function (e) {
         e.preventDefault();
-        
+
         $('.nav-link').removeClass('active');
         $(this).addClass('active');
 
@@ -176,21 +207,21 @@ function initializePage() {
 
         filterByCategory(categoryID);
 
-       
+
         $('#searchInput').val('');
     });
 
-   
+
     $('#searchInput').on('keyup', function () {
         let searchText = $(this).val().toLowerCase();
         filterBySearch(searchText);
         $('.nav-link').removeClass('active');
     });
 
-  
+
     displayProducts(data.Products);
 
-   
+
     $(document).on('click', '.btn-addToCart', function (event) {
         event.preventDefault();
         let productID = $(this).data('product-id'); // Get product ID
@@ -210,7 +241,7 @@ function initializePage() {
     //  comment 
     $('#AddTicketButton').on("click", function (e) {
         let comment = $('#textarea').val();
-        
+
         console.log("User comment:", comment);
         if (data.CurrentUser) {
             const ticket = {
@@ -222,6 +253,12 @@ function initializePage() {
             data.Tickets.push(ticket);
             saveDataInLocalStorage();
             console.log("User Ticket:", ticket);
+            Swal.fire({
+                icon: 'success',
+                title: 'Your comment sent',
+                text: 'Thanks your comment ',
+            });
+            $('#textarea').val(' ');
         }
     });
 
@@ -249,25 +286,26 @@ function initializePage() {
 
     best += `</main>`;
 
-    
+
     bestSellersSection.append(best);
 
 
     // login/logout
-    let isLogin = !!(data && data.CurrentUser && data.CurrentUser._id);
-
+    /*
+    let isLogin = !!(data && data.CurrentUser && data.CurrentUser._id) ;
+    //console.log("Initial isLogin value:", isLogin);
     function setupLoginButton() {
         const $loginButton = $('#login');
         if (!$loginButton.length) {
             console.error("Login button not found in the DOM.");
             return;
         }
-    
+        //console.log("Setting up login button. isLogin:", isLogin); 
         if (isLogin) {
             $loginButton
                 .text("Logout")
                 .off("click")
-                .on("click", confirmLogout);
+                .on("click",  confirmLogout );
         } else {
             $loginButton
                 .text("Login")
@@ -278,9 +316,10 @@ function initializePage() {
                 });
         }
     }
-    
-  
+
+
     function confirmLogout() {
+        console.log("Logout function called.");
         Swal.fire({
             title: "Are you sure?",
             text: "Do you want to log out?",
@@ -290,35 +329,173 @@ function initializePage() {
             cancelButtonText: "Cancel",
         }).then(result => {
             if (result.isConfirmed) {
-               
+                console.log("Logging out...");
                 data.CurrentUser = null;
+                //console.log("CurrentUser after logout:", data.CurrentUser);
                 saveDataInLocalStorage();
-    
+
                 //console.log("User logged out. Current User:", data.CurrentUser);
-    
-              
                 isLogin = false;
-    
-              
                 setupLoginButton();
-    
-              
-                window.location.href = "../html/homeMain.html";
+                //window.location.href = "../html/homeMain.html";
             }
         });
     }
-    
-  
-    
-    setupLoginButton() 
-    
+
+
+
+    setupLoginButton()
+*/
+
+/******************************************************** */
+
+// Check if the user is logged in
+/*
+function setupLoginButton() {
+    const $loginButton = $('#login');
+    if (!$loginButton.length) {
+        console.error("Login button not found in the DOM.");
+        return;
+    }
+
+    // Load data from localStorage to get the latest `CurrentUser` info
+    loadDataFromLocalStorage();
+
+    const currentUser = getCurrentUser();
+
+    if (currentUser && currentUser._id) {
+        console.log("User is logged in:", currentUser);
+        $loginButton
+            .text("Logout")
+            .off("click")
+            .on("click", confirmLogout); // Attach the logout function
+    } else {
+        console.log("User is not logged in.");
+        $loginButton
+            .text("Login")
+            .off("click")
+            .on("click", () => {
+                window.location.href = "../html/login.html";  // Redirect to the login page
+            });
+    }
 }
-    $(document).ready(function () {
-        initializePage();
-        console.log("Page initialized.");
-        
+
+// Confirm logout and reset the `CurrentUser` in localStorage
+function confirmLogout() {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to log out?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Logout",
+        cancelButtonText: "Cancel",
+    }).then(result => {
+        if (result.isConfirmed) {
+            // Log out the user by setting CurrentUser to null
+            console.log("Logging out...");
+
+            // Set CurrentUser to null and update both memory and localStorage
+            loadDataFromLocalStorage();  // Ensure the data is loaded from localStorage
+            data.CurrentUser = null;
+
+            // Save updated data to localStorage
+            saveDataInLocalStorage();
+
+            // Log after logout to verify
+            console.log("Logged out. CurrentUser:", data.CurrentUser);
+
+            // Update login button UI
+            setupLoginButton();
+
+            // Redirect to the home page after logout
+            window.location.href = "../html/homeMain.html";
+        }
     });
+}
+
+// Run the login button setup function
+setupLoginButton();
+
+
+
+
+
+*/
+
+function setupLoginButton() {
+    const $loginButton = $('#login');
+    if (!$loginButton.length) {
+        console.error("Login button not found in the DOM.");
+        return;
+    }
+
     
+    loadDataFromLocalStorage();
+
+    const currentUser = getCurrentUser();
+
+    if (currentUser && currentUser._id) {
+        console.log("User is logged in:", currentUser);
+        $loginButton
+            .text("Logout")
+            .off("click")
+            .on("click", confirmLogout); 
+    } else {
+        console.log("User is not logged in.");
+        $loginButton
+            .text("Login")
+            .off("click")
+            .on("click", () => {
+                window.location.href = "../html/login.html";  
+            });
+    }
+}
+
+// Confirm logout and reset the `CurrentUser` in localStorage
+function confirmLogout() {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to log out?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Logout",
+        cancelButtonText: "Cancel",
+    }).then(result => {
+        if (result.isConfirmed) {
+            console.log("Logging out...");
+
+            
+            loadDataFromLocalStorage();  // Ensure data is loaded from localStorage
+
+            // Set CurrentUser to null and save it in localStorage and memory
+            data.CurrentUser = null;
+            saveDataInLocalStorage();  // Save updated data
+
+            console.log("Logged out. CurrentUser:", data.CurrentUser);
+
+            // Update login button UI to show login
+            setupLoginButton();
+
+            // Redirect to the home page after logout
+            window.location.href = "../html/homeMain.html";
+        }
+    });
+}
+
+// Run the login button setup function on page load
+setupLoginButton();
+
+
+
+}
+$(document).ready(function () {
+    initializePage();
+    console.log("Page initialized.");
+  
+   
+   
+});
+
 
 
 
