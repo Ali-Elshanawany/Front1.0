@@ -1,6 +1,21 @@
 export const data = {
     guestCart: [],
-    CurrentUser:  null,
+    CurrentUser:  {
+        "_id": "user3",
+        "Name": "Bob Buyer",
+        "Email": "buyer@example.com",
+        "Password": "hashed_password3",
+        "Phone": "123987456",
+        "City": "cairo",
+        "Street": "bla bla blaablaa ",
+        "Role": "User",
+        "CreatedAt": "2024-11-27T12:36:00Z",
+        "cart" : 
+        [
+            { "_id": "pro10", "Quantity": 2 }
+        ],
+        "orders": []
+            },
     Users: [
     {
         "_id": "User1",
