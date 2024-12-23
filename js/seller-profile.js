@@ -1,14 +1,83 @@
-import { getUsers, saveDataInLocalStorage, loadDataFromLocalStorage, data, isAuthorized,getCurrentUser } from './Data.js';
+import { getUsers, saveDataInLocalStorage, loadDataFromLocalStorage, data, isAuthorized, getCurrentUser } from './Data.js';
 
-let Seller;
 function encryptPassword(password) {
     return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
-  }
+}
+
 document.addEventListener("DOMContentLoaded", function () {
     loadDataFromLocalStorage(); 
     loadOverview(); 
     loadSellerProducts();
-    
+
+    const editProfileForm = document.getElementById("editProfileForm");
+    if (editProfileForm) {
+        editProfileForm.addEventListener("submit", updateAdminProfile);
+    }
+
+    const changePasswordForm = document.getElementById("changePasswordForm");
+    if (changePasswordForm) {
+        changePasswordForm.addEventListener("submit", updatePassword);
+    }
+
+    const logoutButton = document.getElementById("logoutButton");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", confirmLogout);
+    }
+
+    const showDataButton = document.querySelector("button[data-bs-target='#dataModal']");
+    if (showDataButton) {
+        showDataButton.addEventListener("click", function () {
+            const rows = document.querySelectorAll("#ordersTableBody tr");
+            let tableRows = "";
+            rows.forEach(row => {
+                const columns = row.querySelectorAll("td");
+                if (columns.length > 0) {
+                    tableRows += `
+                        <div>
+                            <h5>Product Name: ${columns[2].innerText}</h5>
+                            <p>Product ID: ${columns[1].innerText}</p>
+                            <p>Stock: ${columns[3].innerText}</p>
+                            <p>Price: ${columns[4].innerText}</p>
+                        </div>
+                        <hr>`;
+                }
+            });
+            document.getElementById("modalBody").innerHTML = tableRows;
+        });
+    }
+
+    const table = document.querySelector(".table");
+    const headers = table.querySelectorAll("th");
+    let sortDirection = true; 
+
+    headers.forEach((header, index) => {
+        header.addEventListener("click", () => {
+            sortTable(index, sortDirection);
+            sortDirection = !sortDirection;
+        });
+    });
+
+    function sortTable(columnIndex, ascending) {
+        const rows = Array.from(table.querySelectorAll("tbody tr"));
+
+        rows.sort((rowA, rowB) => {
+            const cellA = rowA.children[columnIndex].innerText.trim();
+            const cellB = rowB.children[columnIndex].innerText.trim();
+
+            const a = isNaN(cellA) ? cellA : parseFloat(cellA);
+            const b = isNaN(cellB) ? cellB : parseFloat(cellB);
+
+            if (a < b) return ascending ? -1 : 1;
+            if (a > b) return ascending ? 1 : -1;
+            return 0;
+        });
+
+        const tbody = table.querySelector("tbody");
+        tbody.innerHTML = "";
+        rows.forEach(row => tbody.appendChild(row));
+    }
+});
+
 function loadOverview() {
     const Seller = getCurrentUser();
     if (!Seller) {
@@ -29,11 +98,50 @@ function loadOverview() {
     document.getElementById("profileImage").src = profileImage;
 }
 
-document.addEventListener("DOMContentLoaded", function () {
-    loadDataFromLocalStorage();
-    loadOverview();  
-    loadSellerProducts();
-});
+function loadSellerProducts() {
+    const Seller = getCurrentUser();
+    if (!Seller || !Seller._id) {
+        console.error("Seller not defined or Seller ID missing.");
+        return;
+    }
+
+    const sellerID = Seller._id;
+    const sellerProducts = data.Products.filter(product => product.SellerID === sellerID);
+
+    console.log(sellerProducts);
+
+    const ordersTableBody = document.getElementById("ordersTableBody");
+    if (!ordersTableBody) {
+        console.error("Orders table body not found.");
+        return;
+    }
+
+    ordersTableBody.innerHTML = "";
+
+    if (!data.Products || !Array.isArray(data.Products)) {
+        console.error("Product data is missing or invalid.");
+        ordersTableBody.innerHTML = `<tr><td colspan="5" class="text-center">No Products found.</td></tr>`;
+        return;
+    }
+
+    if (sellerProducts.length === 0) {
+        ordersTableBody.innerHTML = `<tr><td colspan="5" class="text-center">No products found for this seller.</td></tr>`;
+    } else {
+        sellerProducts.forEach(product => {
+            const firstImage = product.Images && product.Images.length > 0 ? product.Images[0] : "../assets/default-image.jpg";
+
+            const row = `
+                <tr>
+                    <td><img src="${firstImage}" alt="${product.Name}" style="width: 80px; height: 80px; object-fit: cover;"></td>
+                    <td>${product._id}</td>
+                    <td>${product.Name}</td>
+                    <td>${product.Stock}</td>
+                    <td>${product.Price}</td>
+                </tr>`;
+            ordersTableBody.innerHTML += row;
+        });
+    }
+}
 
 function updateAdminProfile(event) {
     event.preventDefault();
@@ -99,125 +207,6 @@ function updateAdminProfile(event) {
     }
 }
 
-
-    const table = document.querySelector(".table");
-    const headers = table.querySelectorAll("th");
-    let sortDirection = true; 
-
-    headers.forEach((header, index) => {
-        header.addEventListener("click", () => {
-            sortTable(index, sortDirection);
-            sortDirection = !sortDirection;
-        });
-    });
-
-    function sortTable(columnIndex, ascending) {
-        const rows = Array.from(table.querySelectorAll("tbody tr"));
-
-        rows.sort((rowA, rowB) => {
-            const cellA = rowA.children[columnIndex].innerText.trim();
-            const cellB = rowB.children[columnIndex].innerText.trim();
-
-            const a = isNaN(cellA) ? cellA : parseFloat(cellA);
-            const b = isNaN(cellB) ? cellB : parseFloat(cellB);
-
-            if (a < b) return ascending ? -1 : 1;
-            if (a > b) return ascending ? 1 : -1;
-            return 0;
-        });
-
-        const tbody = table.querySelector("tbody");
-        tbody.innerHTML = "";
-        rows.forEach(row => tbody.appendChild(row));
-    }
-
-    function loadSellerProducts() {
-        if (!Seller || !Seller._id) {
-            console.error("Seller not defined or Seller ID missing.");
-            return;
-        }
-
-        const sellerID = Seller._id;
-        const sellerProducts = data.Products.filter(product => product.SellerID === sellerID);
-
-        console.log(sellerProducts);
-
-        const ordersTableBody = document.getElementById("ordersTableBody");
-        if (!ordersTableBody) {
-            console.error("Orders table body not found.");
-            return;
-        }
-
-        ordersTableBody.innerHTML = "";
-
-        if (!data.Products || !Array.isArray(data.Products)) {
-            console.error("Product data is missing or invalid.");
-            ordersTableBody.innerHTML = `<tr><td colspan="5" class="text-center">No Products found.</td></tr>`;
-            return;
-        }
-
-        if (sellerProducts.length === 0) {
-            ordersTableBody.innerHTML = `<tr><td colspan="5" class="text-center">No products found for this seller.</td></tr>`;
-        } else {
-            sellerProducts.forEach(product => {
-                const firstImage = product.Images && product.Images.length > 0 ? product.Images[0] : "../assets/default-image.jpg";
-
-                const row = `
-                    <tr>
-                        <td><img src="${firstImage}" alt="${product.Name}" style="width: 80px; height: 80px; object-fit: cover;"></td>
-                        <td>${product._id}</td>
-                        <td>${product.Name}</td>
-                        <td>${product.Stock}</td>
-                        <td>${product.Price}</td>
-                    </tr>`;
-                ordersTableBody.innerHTML += row;
-            });
-        }
-        if (!tableRows) {
-            tableRows = `<p>No products found.</p>`;
-        }
-
-    }
-
-    const showDataButton = document.querySelector("button[data-bs-target='#dataModal']");
-    if (showDataButton) {
-        showDataButton.addEventListener("click", function () {
-            const rows = document.querySelectorAll("#ordersTableBody tr");
-            let tableRows = "";
-            rows.forEach(row => {
-                const columns = row.querySelectorAll("td");
-                if (columns.length > 0) {
-                    tableRows += `
-                        <div>
-                            <h5>Product Name: ${columns[2].innerText}</h5>
-                            <p>Product ID: ${columns[1].innerText}</p>
-                            <p>Stock: ${columns[3].innerText}</p>
-                            <p>Price: ${columns[4].innerText}</p>
-                        </div>
-                        <hr>`;
-                }
-            });
-            document.getElementById("modalBody").innerHTML = tableRows;
-        });
-    }
-
-    const editProfileForm = document.getElementById("editProfileForm");
-    if (editProfileForm) {
-        editProfileForm.addEventListener("submit", updateAdminProfile);
-    }
-
-    const changePasswordForm = document.getElementById("changePasswordForm");
-    if (changePasswordForm) {
-        changePasswordForm.addEventListener("submit", updatePassword);
-    }
-
-    const logoutButton = document.getElementById("logoutButton");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", confirmLogout);
-    }
-});
-
-
 function validateProfileFields(username, email, phone, city, street) {
     if (username === "" || username.length < 3) {
         Swal.fire({
@@ -273,6 +262,12 @@ function validateProfileFields(username, email, phone, city, street) {
 function updatePassword(event) {
     event.preventDefault();
 
+    const Seller = getCurrentUser();
+    if (!Seller) {
+        Swal.fire("Error!", "Current user not found.", "error");
+        return;
+    }
+
     const oldPassword = document.getElementById("oldPassword").value.trim();
     const newPassword = document.getElementById("newPassword").value.trim();
     const confirmPassword = document.getElementById("confirmPassword").value.trim();
@@ -322,15 +317,14 @@ function confirmLogout() {
         cancelButtonText: 'No, cancel',
     }).then((result) => {
         if (result.isConfirmed) {
-          data.CurrentUser = null;
-            Seller = null;
+            data.CurrentUser = null;
             saveDataInLocalStorage("currentUser", null);
-            saveDataInLocalStorage("Seller", null); 
-            saveDataInLocalStorage("Admin", null); 
-            saveDataInLocalStorage("products", null); 
-            
             redirectToHome(); 
             console.log("Logged out");
         }
     });
+}
+
+function redirectToHome() {
+    window.location.href = "homeMain.html";
 }
