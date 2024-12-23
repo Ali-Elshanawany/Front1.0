@@ -240,6 +240,7 @@ function loadOrders() {
     ordersTableBody.innerHTML = `<tr><td colspan="4" class="text-center">No orders found.</td></tr>`;
   } else {
     userOrders.forEach(order => {
+      console.log(order)
       order.Items.forEach(item => {
         const product = data.Products.find(p => p._id === item._id);
         const productName = product ? product.Name : "Unknown Product";
