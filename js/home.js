@@ -243,7 +243,7 @@ function initializePage() {
         let comment = $('#textarea').val();
 
         console.log("User comment:", comment);
-        if (data.CurrentUser) {
+        if (data.CurrentUser !=null) {
             const ticket = {
                 "_id": "ticket" + Date.now(),
                 "Email": data.CurrentUser.Email,
@@ -259,6 +259,18 @@ function initializePage() {
                 text: 'Thanks your comment ',
             });
             $('#textarea').val(' ');
+        }else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Your Comment Cannot Be Sent',
+                text: 'Please Login First To Send Your Comments',
+            }).then(()=>{
+            location.assign("../html/Login.html");
+            })
+            $('#textarea').val(' ');
+
+
+
         }
     });
 
