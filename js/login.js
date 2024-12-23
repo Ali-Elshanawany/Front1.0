@@ -100,7 +100,10 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
                 timer: 2000
             }).then(() => {
                 if(user.Role=="Seller"){
-                window.location.href = 'SellerProductDashboard.html'
+                window.location.assign("../html/SellerHome.html");
+            }
+            else if(user.Role=="Admin"){
+                window.location.assign("../html/AdminHome.html");
             }else
                 window.location.href = 'homeMain.html';
             });

@@ -1,17 +1,6 @@
 export const data = {
     guestCart: [],
-    CurrentUser:    {
-        "_id": "Seller1",
-        "Name": "Seller1",
-        "Email": "Seller1@Seller.com",
-        "Phone": "01011145011",
-        "City": "dakahlia",
-        "Street": "second street ",
-        "Password": "asdASD123!@3",
-        "Role": "Seller",
-        "CreatedAt": "2024-11-27T12:35:00Z",
-        "TotalSales": 99999,
-    },
+    CurrentUser:  null,
     Users: [
         {
             "_id": "Admin1",
@@ -714,10 +703,7 @@ export const data = {
     ]
 }
 
-const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page', 'Products&Orders.html'];
-const UserPages = ['home.page' , 'Cart.html' , 'CheckOut.html'];
-const SellerPages = ['home.page'];
-const GuestPages = ['home.page', 'ProductDetails','register.html'];
+
 
 // export default data;
 
@@ -852,11 +838,17 @@ export function getSalesByMonth() {
     return monthlySalesArr;
 }
 export function getSellerSalesByMonth() {
+    loadDataFromLocalStorage()
     let monthlySalesArr = new Array(12).fill(0)
     data.Orders.forEach(x => {
         // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
         x.Items.forEach(i => {
-            if (i.SellerId == data.CurrentUser._id) {
+            console.log("-------------------------");
+            console.log(data.CurrentUser);
+            console.log(x);
+            console.log("-------------------------");
+            console.log(i.SellerId == data.CurrentUser?._id);
+            if (i.SellerID == data.CurrentUser?._id) {
                 monthlySalesArr[new Date(x.CreatedAt).getMonth()] += (i.Price * i.Quantity)
             }
         })
@@ -864,16 +856,26 @@ export function getSellerSalesByMonth() {
     return monthlySalesArr;
 }
 
+const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page', 'products&orders.html'];
+const UserPages = ['Cart.html' , 'CheckOut.html'];
+const SellerPages = ["SellerProductDashboard.html","OrdersDataTable.html"];
+const GuestPages = ['ProductDetails','register.html'];
+
+
+
 export function isAuthorized() {
+    loadDataFromLocalStorage()
     console.log("Authorization Check Started");
 
     const host = window.location.origin;
     const webPage = location.href.split('/').pop().toLowerCase(); //* Get the current page
     let isAuthorized = false;
+    console.log("***************************")
+    console.log(webPage)
 
     // Define a reusable function to check authorization
     const checkAuthorization = (pages) => {
-        return pages.some(page => page.toLowerCase() === webPage);
+        return pages.some(page => page.toLocaleLowerCase() === webPage.toLocaleLowerCase());
     };
 
     if (!data.CurrentUser) {
@@ -900,9 +902,12 @@ export function isAuthorized() {
         }
 
     }
+    console.log("******************************");
+    console.log(isAuthorized);
     if (!isAuthorized) {
         console.log("Access Denied");
-        window.location.replace(host + "/../html/403.html");
+        //window.location.replace(host + "/../html/403.html");
+        window.location.assign("../html/403.html");
     } else {
         console.log("Access Granted");
     }
@@ -976,7 +981,7 @@ export function SellerOrders() {
     loadDataFromLocalStorage()
     return data.Orders.filter(function (o) {
         return o.Items.some(function (i) {
-            return i.SellerId == data.CurrentUser._id;
+            return i.SellerID == data.CurrentUser._id;
         });
     });
 }
