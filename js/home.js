@@ -15,8 +15,18 @@ export function addToCart(productID) {
         return;
     }
 
+    // Check if the product is in stock
+    if (product.Stock <= 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Out of Stock',
+            text: 'This product is currently out of stock.',
+        });
+        return;
+    }
+
     // Check if the user is logged in
-    let currentUser = (data.CurrentUser && data.CurrentUser._id ) ? data.CurrentUser : null;
+    let currentUser = (data.CurrentUser && data.CurrentUser._id) ? data.CurrentUser : null;
 
     if (currentUser) {
         // User is logged in: Add to their cart
@@ -25,13 +35,20 @@ export function addToCart(productID) {
 
         let existingItem = userCart.find(item => item._id === productID);
         if (existingItem) {
+            if (existingItem.Quantity >= product.Stock) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Not Enough Stock',
+                    text: 'There is not enough stock to add more of this product to your cart.',
+                });
+                return;
+            }
             existingItem.Quantity += 1;
         } else {
             userCart.push({ _id: productID, Quantity: 1 });
         }
 
         currentUser.cart = userCart;
-
 
         SetUserById(currentUser);
         saveDataInLocalStorage();
@@ -49,6 +66,14 @@ export function addToCart(productID) {
 
         let existingItem = guestCart.find(item => item._id === productID);
         if (existingItem) {
+            if (existingItem.Quantity >= product.Stock) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Not Enough Stock',
+                    text: 'There is not enough stock to add more of this product to your cart.',
+                });
+                return;
+            }
             existingItem.Quantity += 1;
         } else {
             guestCart.push({ _id: productID, Quantity: 1 });
