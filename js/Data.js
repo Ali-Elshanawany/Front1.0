@@ -1,6 +1,6 @@
 export const data = {
     guestCart: [],
-    CurrentUser: null,
+    CurrentUser:null,
        
     Users: [
     {
@@ -128,7 +128,7 @@ export const data = {
             "Name": "Chair1",
             "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
             "Price": 500,
-            "Stock": 50,
+            "Stock": 4,
             "SellerID": "Seller1",
             "CategoryID": "cat1",
             "Images": [

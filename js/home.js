@@ -15,9 +15,13 @@ export function addToCart(productID) {
         return;
     }
 
-    // Check if the user is logged in
-    let currentUser = (data.CurrentUser && data.CurrentUser._id ) ? data.CurrentUser : null;
+    
+    
+ 
 
+    // Check if the user is logged in
+    let currentUser = (data.CurrentUser && data.CurrentUser._id) ? data.CurrentUser : null;
+let requestedQuantity =1;
     if (currentUser) {
         // User is logged in: Add to their cart
 
@@ -25,15 +29,15 @@ export function addToCart(productID) {
 
         let existingItem = userCart.find(item => item._id === productID);
         if (existingItem) {
-            existingItem.Quantity += 1;
+          
+            existingItem.Quantity += requestedQuantity;
         } else {
-            userCart.push({ _id: productID, Quantity: 1 });
+           
+            userCart.push({ _id: productID, Quantity: requestedQuantity });
         }
 
         currentUser.cart = userCart;
 
-
-        //SetUserById(currentUser);
         saveDataInLocalStorage();
 
         Swal.fire({
@@ -49,9 +53,11 @@ export function addToCart(productID) {
 
         let existingItem = guestCart.find(item => item._id === productID);
         if (existingItem) {
-            existingItem.Quantity += 1;
+            
+            existingItem.Quantity += requestedQuantity;
         } else {
-            guestCart.push({ _id: productID, Quantity: 1 });
+            
+            guestCart.push({ _id: productID, Quantity: requestedQuantity });
         }
 
         localStorage.setItem('guestCart', JSON.stringify(guestCart));
@@ -82,18 +88,17 @@ function initializePage() {
         }
     });
 
+// smooth navbar
 
-
-
-    // Smooth scrolling for sections
     document.querySelectorAll('.navbar a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').slice(1);
+            e.preventDefault(); 
+            const targetId = this.getAttribute('href').slice(1); 
             const targetElement = document.getElementById(targetId);
+    
             if (targetElement) {
-                const offset = document.querySelector('.navbar-main').offsetHeight; // Adjust for navbar height
-                const position = targetElement.offsetTop - offset;
+                const offset = document.querySelector('.navbar').offsetHeight; //  navbar height
+                const position = targetElement.offsetTop - offset; // Position for scroll
                 window.scrollTo({
                     top: position,
                     behavior: 'smooth'
@@ -101,15 +106,23 @@ function initializePage() {
             }
         });
     });
-    console.log("CurrentUser ID:", data.CurrentUser);
+    
+
+   
+    //console.log("CurrentUser ID:", data.CurrentUser);
 
 
     // profile 
     $(".profileIcon").on("click", function () {
 
         if (!data.CurrentUser) {
-            window.location.href = "homeMain.html"
-            return;
+            Swal.fire({
+                title: "Can not Enter Your Profile",
+                text: "You Should Make Login First",
+                icon: "warning",
+           
+            
+            }).then(()=>{ location.assign("login.html")})
         }
 
         // check the role
@@ -303,141 +316,13 @@ function initializePage() {
 
 
     // login/logout
-    /*
-    let isLogin = !!(data && data.CurrentUser && data.CurrentUser._id) ;
-    //console.log("Initial isLogin value:", isLogin);
-    function setupLoginButton() {
-        const $loginButton = $('#login');
-        if (!$loginButton.length) {
-            console.error("Login button not found in the DOM.");
-            return;
-        }
-        //console.log("Setting up login button. isLogin:", isLogin); 
-        if (isLogin) {
-            $loginButton
-                .text("Logout")
-                .off("click")
-                .on("click",  confirmLogout );
-        } else {
-            $loginButton
-                .text("Login")
-                .off("click")
-                .on("click", () => {
-                    //alert("Redirecting to login page...");
-                    window.location.href = "../html/login.html";
-                });
-        }
-    }
 
 
-    function confirmLogout() {
-        console.log("Logout function called.");
-        Swal.fire({
-            title: "Are you sure?",
-            text: "Do you want to log out?",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonText: "Yes, Logout",
-            cancelButtonText: "Cancel",
-        }).then(result => {
-            if (result.isConfirmed) {
-                console.log("Logging out...");
-                data.CurrentUser = null;
-                //console.log("CurrentUser after logout:", data.CurrentUser);
-                saveDataInLocalStorage();
-
-                //console.log("User logged out. Current User:", data.CurrentUser);
-                isLogin = false;
-                setupLoginButton();
-                //window.location.href = "../html/homeMain.html";
-            }
-        });
-    }
-
-
-
-    setupLoginButton()
-*/
-
-/******************************************************** */
-
-// Check if the user is logged in
-/*
-function setupLoginButton() {
-    const $loginButton = $('#login');
-    if (!$loginButton.length) {
-        console.error("Login button not found in the DOM.");
-        return;
-    }
-
-    // Load data from localStorage to get the latest `CurrentUser` info
-    loadDataFromLocalStorage();
-
-    const currentUser = getCurrentUser();
-
-    if (currentUser && currentUser._id) {
-        console.log("User is logged in:", currentUser);
-        $loginButton
-            .text("Logout")
-            .off("click")
-            .on("click", confirmLogout); // Attach the logout function
-    } else {
-        console.log("User is not logged in.");
-        $loginButton
-            .text("Login")
-            .off("click")
-            .on("click", () => {
-                window.location.href = "../html/login.html";  // Redirect to the login page
-            });
-    }
-}
-
-// Confirm logout and reset the `CurrentUser` in localStorage
-function confirmLogout() {
-    Swal.fire({
-        title: "Are you sure?",
-        text: "Do you want to log out?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes, Logout",
-        cancelButtonText: "Cancel",
-    }).then(result => {
-        if (result.isConfirmed) {
-            // Log out the user by setting CurrentUser to null
-            console.log("Logging out...");
-
-            // Set CurrentUser to null and update both memory and localStorage
-            loadDataFromLocalStorage();  // Ensure the data is loaded from localStorage
-            data.CurrentUser = null;
-
-            // Save updated data to localStorage
-            saveDataInLocalStorage();
-
-            // Log after logout to verify
-            console.log("Logged out. CurrentUser:", data.CurrentUser);
-
-            // Update login button UI
-            setupLoginButton();
-
-            // Redirect to the home page after logout
-            window.location.href = "../html/homeMain.html";
-        }
-    });
-}
-
-// Run the login button setup function
-setupLoginButton();
-
-
-
-
-
-*/
 
 function setupLoginButton() {
     const $loginButton = $('#login');
     if (!$loginButton.length) {
-        console.error("Login button not found in the DOM.");
+        //console.error("Login button not found in the DOM.");
         return;
     }
 
@@ -474,28 +359,26 @@ function confirmLogout() {
         cancelButtonText: "Cancel",
     }).then(result => {
         if (result.isConfirmed) {
-            console.log("Logging out...");
+          
+            //loadDataFromLocalStorage();  
 
-            
-            loadDataFromLocalStorage();  // Ensure data is loaded from localStorage
-
-            // Set CurrentUser to null and save it in localStorage and memory
+           
             data.CurrentUser = null;
             saveDataInLocalStorage();  // Save updated data
 
-            console.log("Logged out. CurrentUser:", data.CurrentUser);
-
-            // Update login button UI to show login
+            console.log("Logged out. CurrentUser:", data.CurrentUser)
+           
             setupLoginButton();
 
             // Redirect to the home page after logout
-            window.location.href = "../html/homeMain.html";
+            window.location.href = "../html/login.html";
         }
     });
 }
 
-// Run the login button setup function on page load
+
 setupLoginButton();
+
 
 
 
@@ -503,64 +386,10 @@ setupLoginButton();
 $(document).ready(function () {
     initializePage();
     console.log("Page initialized.");
-  
+   
    
    
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
