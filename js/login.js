@@ -150,11 +150,11 @@ const currentUser = data.CurrentUser;
 if (currentUser) {
     console.log(currentUser);
     switch (currentUser.Role) {
+        case "Admin":
+            window.location.assign("../html/AdminHome.html");
+            break;
         case "Seller":
             window.location.assign("../html/SellerProductDashboard.html");
-            break;
-        case "Admin":
-            window.location.assign("../html/AccountsDataTable.html");
             break;
         case "User":
             window.location.assign("../html/homeMain.html");

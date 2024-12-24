@@ -3,7 +3,7 @@ import { data, addUser, loadDataFromLocalStorage, DeleteUserByEmail, TotalSales,
 export function AddAccounts(isUpdate, selecteduser) {
   
    function encryptPassword(password) {
-      return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); // SHA-256 hash and convert to Base64
+      return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
    }
    
    console.log(`This is ${isUpdate}`)
@@ -131,7 +131,9 @@ export function AddAccounts(isUpdate, selecteduser) {
          Password: password,
          Role: selecteduser.Role,
          CreatedAt: selecteduser.CreatedAt,
-         TotalSales: role === "Seller" ? 0 : undefined
+         TotalSales: role === "Seller" ? 0 : undefined,
+         orders:userType=="User" ? [] : undefined
+
       }
       const index = data.Users.findIndex(u => u._id === selecteduser._id);
       if (index !== -1) {

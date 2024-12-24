@@ -1,6 +1,6 @@
 export const data = {
     guestCart: [],
-    CurrentUser:  {
+    CurrentUser: {
         "_id": "User1",
         "Name": "User1",
         "Email": "User1@User.com",
@@ -12,7 +12,8 @@ export const data = {
         "CreatedAt": "2024-12-23T14:38:05.385Z",
         "cart": [],
         "orders": []
-    } ,
+    },
+       
     Users: [
     {
         "_id": "User1",

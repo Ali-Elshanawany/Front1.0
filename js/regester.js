@@ -1,4 +1,4 @@
-import { addUser, saveDataInLocalStorage, loadDataFromLocalStorage,isAuthorized, data, } from './Data.js';
+import { addUser, saveDataInLocalStorage, loadDataFromLocalStorage,isAuthorized, data, SetUserById } from './Data.js';
 
 loadDataFromLocalStorage();
 data.CurrentUser=null;
@@ -17,6 +17,8 @@ function isEmailRegistered(email) {
  function encryptPassword(password) {
    return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); // SHA-256 hash and convert to Base64
 }
+
+
 
 document.getElementById('registerForm').addEventListener('submit', function (event) {
    event.preventDefault(); 
@@ -144,6 +146,7 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
    addUser(newUser);
 
    setCurrentUser(newUser);
+   transferGuestCartToUserCart()
    //saveDataInLocalStorage();
    console.log("User added successfully!");
    console.log(newUser);
@@ -151,9 +154,41 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
    Swal.fire('Success', 'User registered successfully!', 'success').then(() => {
       console.log('Redirecting to login page...');
 
-      window.location.href = 'login.html';
+      window.location.href = 'homeMain.html';
    });
 });
+
+
+function transferGuestCartToUserCart() {
+   const guestCart = data.guestCart || [];
+   if (guestCart.length > 0) {
+       const currentUser = data.CurrentUser;
+       if (!currentUser) {
+           console.error("No user is logged in to transfer the cart.");
+           return;
+       }
+
+       const userCart = currentUser.cart || [];
+       guestCart.forEach(item => {
+           const existingItem = userCart.find(uItem => uItem._id === item._id);
+           if (existingItem) {
+               existingItem.Quantity += item.Quantity;
+           } else {
+               userCart.push(item);
+           }
+       });
+
+       currentUser.cart = userCart;
+       data.guestCart = [];
+
+       SetUserById(currentUser);
+       saveDataInLocalStorage();
+
+       console.log("Guest cart transferred to user cart successfully.");
+   } else {
+       console.log("Guest cart is empty. No items to transfer.");
+   }
+}
 
 const togglePassword = document.getElementById('togglePassword');
 const passwordField = document.getElementById('password');
