@@ -77,6 +77,7 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
             <td >
             <button type="button" 
             id="StatusBtn"
+            data-order="${order._id}"
         data-index="${start + index}" 
         data-Orderstatus="${order.Status}" 
         class="btn form-control status-btn ${order.Status === "Pending" ? "btn-warning"
@@ -258,12 +259,13 @@ function confirmLogout() {
                             title: "Updated Successfully!",
                             icon: "success",
                         });
-                        switch (data.Orders[event.target.dataset.index].Status) {
+                        const selectedorder=data.Orders.find(o=>o._id==event.target.dataset.order) || "NoData"
+                        switch (selectedorder.Status) {
                             case "Pending":
-                                data.Orders[event.target.dataset.index].Status = "Shipped";
+                                data.Orders.find(o=>o._id==event.target.dataset.order).Status = "Shipped";
                                 break;
                             case "Shipped":
-                                data.Orders[event.target.dataset.index].Status = "Delivered";
+                                data.Orders.find(o=>o._id==event.target.dataset.order).Status = "Delivered";
                         }
                         saveDataInLocalStorage();
                         Orders = getOrders();
@@ -315,13 +317,13 @@ function confirmLogout() {
                         icon: "success"
                     });
 
-                    const index = +event.target.dataset.index;
+                 //   const index = +event.target.dataset.index;
                     const id = event.target.dataset.productid;
-                    console.log(index);
+                 //   console.log(index);
                     console.log(id);
                     ApproveProducts(id);
                     Products = PendingProducts();
-                    loadDataFromLocalStorage()
+               //     loadDataFromLocalStorage()
                     ChangCard()
                     displayProductsTable(Products, currentPage, rowsPerPage)
                 }

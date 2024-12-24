@@ -146,7 +146,7 @@ Array.from(forms).forEach((form) => {
 
       if (sellers.includes(item.SellerID)) { // validate if the seller is already there in array and if not, push the order id to the seller
 
-        const totalSalesAmount = cart[flagx].num * data.Products[index].Price; // calculate total sales amount
+        const totalSalesAmount = cart[flagx].num * data.Products[index].Price; // calculate total sales amount for each seller per order
         data.Users[sellerIndex].TotalSales = (data.Users[sellerIndex].TotalSales || 0) + totalSalesAmount;
 
         // data.Users[sellerIndex].orders.push(orderID); // push to order list of seller

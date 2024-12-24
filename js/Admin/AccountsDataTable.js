@@ -10,7 +10,7 @@ import { DeleteSeller } from "./DeleteSellerAccount.js";
 // ! Note ----------------- Remove All Console.log() in Production
 
 // * Function to Display the User Table
-function displayTable(Users, currentPage = 1, rowsPerPage = 5) {
+function displayTable(Users, currentPage = 1, rowsPerPage = 10) {
     const table = document.getElementsByTagName("table")[0];
     const tbody = document.querySelector("tbody");
     const thead = document.querySelector("thead");

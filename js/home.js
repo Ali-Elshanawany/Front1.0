@@ -15,13 +15,19 @@ export function addToCart(productID) {
         return;
     }
 
-    
-    
- 
+    // Check if the product is in stock
+    if (product.Stock <= 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Out of Stock',
+            text: 'This product is currently out of stock.',
+        });
+        return;
+    }
 
     // Check if the user is logged in
     let currentUser = (data.CurrentUser && data.CurrentUser._id) ? data.CurrentUser : null;
-let requestedQuantity =1;
+
     if (currentUser) {
         // User is logged in: Add to their cart
 
@@ -29,15 +35,22 @@ let requestedQuantity =1;
 
         let existingItem = userCart.find(item => item._id === productID);
         if (existingItem) {
-          
-            existingItem.Quantity += requestedQuantity;
+            if (existingItem.Quantity >= product.Stock) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Not Enough Stock',
+                    text: 'There is not enough stock to add more of this product to your cart.',
+                });
+                return;
+            }
+            existingItem.Quantity += 1;
         } else {
-           
-            userCart.push({ _id: productID, Quantity: requestedQuantity });
+            userCart.push({ _id: productID, Quantity: 1 , Name: product.Name });
         }
 
         currentUser.cart = userCart;
 
+        SetUserById(currentUser);
         saveDataInLocalStorage();
 
         Swal.fire({
@@ -53,11 +66,17 @@ let requestedQuantity =1;
 
         let existingItem = guestCart.find(item => item._id === productID);
         if (existingItem) {
-            
-            existingItem.Quantity += requestedQuantity;
+            if (existingItem.Quantity >= product.Stock) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Not Enough Stock',
+                    text: 'There is not enough stock to add more of this product to your cart.',
+                });
+                return;
+            }
+            existingItem.Quantity += 1;
         } else {
-            
-            guestCart.push({ _id: productID, Quantity: requestedQuantity });
+            guestCart.push({ _id: productID, Quantity: 1 , Name: product.Name });
         }
 
         localStorage.setItem('guestCart', JSON.stringify(guestCart));
@@ -315,14 +334,10 @@ function initializePage() {
     bestSellersSection.append(best);
 
 
-    // login/logout
-
-
-
 function setupLoginButton() {
     const $loginButton = $('#login');
     if (!$loginButton.length) {
-        //console.error("Login button not found in the DOM.");
+        console.error("Login button not found in the DOM.");
         return;
     }
 
@@ -370,8 +385,6 @@ function confirmLogout() {
            
             setupLoginButton();
 
-            // Redirect to the home page after logout
-            window.location.href = "../html/login.html";
         }
     });
 }
@@ -379,53 +392,8 @@ function confirmLogout() {
 
 setupLoginButton();
 
-
-
-
 }
 $(document).ready(function () {
     initializePage();
     console.log("Page initialized.");
-   
-   
-   
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
