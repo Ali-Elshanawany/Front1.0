@@ -45,7 +45,7 @@ export function addToCart(productID) {
             }
             existingItem.Quantity += 1;
         } else {
-            userCart.push({ _id: productID, Quantity: 1 });
+            userCart.push({ _id: productID, Quantity: 1 , Name: product.Name });
         }
 
         currentUser.cart = userCart;
@@ -76,7 +76,7 @@ export function addToCart(productID) {
             }
             existingItem.Quantity += 1;
         } else {
-            guestCart.push({ _id: productID, Quantity: 1 });
+            guestCart.push({ _id: productID, Quantity: 1 , Name: product.Name });
         }
 
         localStorage.setItem('guestCart', JSON.stringify(guestCart));
