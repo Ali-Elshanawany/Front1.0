@@ -107,18 +107,17 @@ function initializePage() {
         }
     });
 
+// smooth navbar
 
-
-
-    // Smooth scrolling for sections
     document.querySelectorAll('.navbar a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').slice(1);
+            e.preventDefault(); 
+            const targetId = this.getAttribute('href').slice(1); 
             const targetElement = document.getElementById(targetId);
+    
             if (targetElement) {
-                const offset = document.querySelector('.navbar-main').offsetHeight; // Adjust for navbar height
-                const position = targetElement.offsetTop - offset;
+                const offset = document.querySelector('.navbar').offsetHeight; //  navbar height
+                const position = targetElement.offsetTop - offset; // Position for scroll
                 window.scrollTo({
                     top: position,
                     behavior: 'smooth'
@@ -126,15 +125,23 @@ function initializePage() {
             }
         });
     });
-    console.log("CurrentUser ID:", data.CurrentUser);
+    
+
+   
+    //console.log("CurrentUser ID:", data.CurrentUser);
 
 
     // profile 
     $(".profileIcon").on("click", function () {
 
         if (!data.CurrentUser) {
-            window.location.href = "homeMain.html"
-            return;
+            Swal.fire({
+                title: "Can not Enter Your Profile",
+                text: "You Should Make Login First",
+                icon: "warning",
+           
+            
+            }).then(()=>{ location.assign("login.html")})
         }
 
         // check the role
@@ -367,25 +374,22 @@ function confirmLogout() {
         cancelButtonText: "Cancel",
     }).then(result => {
         if (result.isConfirmed) {
-            console.log("Logging out...");
+          
+            //loadDataFromLocalStorage();  
 
-            
-            loadDataFromLocalStorage();  // Ensure data is loaded from localStorage
-
-            // Set CurrentUser to null and save it in localStorage and memory
+           
             data.CurrentUser = null;
             saveDataInLocalStorage();  // Save updated data
 
-            console.log("Logged out. CurrentUser:", data.CurrentUser);
-
-            // Update login button UI to show login
+            console.log("Logged out. CurrentUser:", data.CurrentUser)
+           
             setupLoginButton();
 
         }
     });
 }
 
-// Run the login button setup function on page load
+
 setupLoginButton();
 
 }
