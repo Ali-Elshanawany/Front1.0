@@ -41,6 +41,9 @@ window.addEventListener("load", function () {
         }
 
         let outOfStockFlag = false;
+        let outOfStockProducts = [];
+        let reducedStockFlag = false;
+        let reducedStockProducts = [];
         let total = 0;
 
         cart.forEach((item) => {
@@ -52,11 +55,13 @@ window.addEventListener("load", function () {
             if (item.product.Stock === 0) {
                 DeleteFromCart(item.product._id);
                 outOfStockFlag = true;
+                outOfStockProducts.push(item.product.Name);
             } else {
                 if (item.num > item.product.Stock) {
                     item.num = item.product.Stock;
                     changeCartItemCount(item.product._id, item.product.Stock);
-                    outOfStockFlag = true;
+                    reducedStockFlag = true;
+                    reducedStockProducts.push(item.product.Name);
                 }
 
                 total += item.product.Price * item.num;
@@ -102,13 +107,31 @@ window.addEventListener("load", function () {
             }
         });
 
-        if (outOfStockFlag) {
+        if (outOfStockFlag || reducedStockFlag) {
+            let message = '';
+            if (outOfStockFlag) {
+            message += `Sorry, The Following Items Became Out Of Stock And Were Removed From Your Cart: ${outOfStockProducts.join(', ')}.<br><br>`;
+            }
+            if (reducedStockFlag) {
+            message += `The Stock For The Following Items Was Reduced And Your Cart Quantities Were Adjusted: ${reducedStockProducts.join(', ')}.<br>`;
+            }
             Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Sorry, some changes have happened to the seller's stock so we updated your cart to go on with the change",
-            });
-        }
+            icon: outOfStockFlag ? "error" : "warning",
+            title: outOfStockFlag ? "Oops..." : "Stock Reduced",
+            html: message.trim(),
+            }).then(() => {
+                usercart = getCurrentCart();
+                cart = usercart.map((item) => ({
+                product: getProductById(item._id),
+                num: item.Quantity,
+            }));
+
+            generateCards();
+            
+        });
+    }
+
+        
 
         document.getElementById("Total").innerText = total.toFixed(2) + "$";
     }
