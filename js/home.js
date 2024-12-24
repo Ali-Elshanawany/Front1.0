@@ -33,7 +33,7 @@ export function addToCart(productID) {
         currentUser.cart = userCart;
 
 
-        //SetUserById(currentUser);
+        SetUserById(currentUser);
         saveDataInLocalStorage();
 
         Swal.fire({
