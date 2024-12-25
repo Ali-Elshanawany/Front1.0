@@ -52,7 +52,7 @@ export const data = {
         "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
         "Role": "Seller",
         "CreatedAt": "2024-12-23T14:39:44.303Z",
-        "TotalSales": 0
+        "TotalSales": 12000
     },
     {
         "_id": "Seller2",
@@ -64,7 +64,7 @@ export const data = {
         "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
         "Role": "Seller",
         "CreatedAt": "2024-12-23T14:40:51.271Z",
-        "TotalSales": 0
+        "TotalSales": 109500
     },
     {
         "_id": "Seller3",
@@ -1194,11 +1194,6 @@ export function getSellerSalesByMonth() {
     data.Orders.forEach(x => {
         // * new Date(x.CreatedAt).getMonth() Will return The number of month Of Order
         x.Items.forEach(i => {
-            console.log("-------------------------");
-            console.log(data.CurrentUser);
-            console.log(x);
-            console.log("-------------------------");
-            console.log(i.SellerId == data.CurrentUser?._id);
             if (i.SellerID == data.CurrentUser?._id && x.Status!="Canceled") {
                 monthlySalesArr[new Date(x.CreatedAt).getMonth()] += (i.Price * i.Quantity)
             }
@@ -1280,7 +1275,7 @@ export function DeleteUserByEmail(email) {
 export function decreaseTotalSales(items) {
     items.forEach(function (item) {
         data.Users.forEach(function (u) {
-            if (u._id == item.SellerId)
+            if (u._id == item.SellerID)
                 u.TotalSales -= (item.Quantity * item.Price);
         });
         saveDataInLocalStorage();
