@@ -1,96 +1,5 @@
-import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser}
-    from './Data.js';
-
-
-// Add to Cart Function 
-export function addToCart(productID) {
-    let product = data.Products.find((p) => p._id === productID);
-
-    if (!product) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Error',
-            text: 'Product not found.',
-        });
-        return;
-    }
-
-    // Check if the product is in stock
-    if (product.Stock <= 0) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Out of Stock',
-            text: 'This product is currently out of stock.',
-        });
-        return;
-    }
-
-    // Check if the user is logged in
-    let currentUser = (data.CurrentUser && data.CurrentUser._id) ? data.CurrentUser : null;
-
-    if (currentUser) {
-        // User is logged in: Add to their cart
-
-        let userCart = currentUser.cart || []; // If no cart exists, initialize an empty array
-
-        let existingItem = userCart.find(item => item._id === productID);
-        if (existingItem) {
-            if (existingItem.Quantity >= product.Stock) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Not Enough Stock',
-                    text: 'There is not enough stock to add more of this product to your cart.',
-                });
-                return;
-            }
-            existingItem.Quantity += 1;
-        } else {
-            userCart.push({ _id: productID, Quantity: 1 , Name: product.Name });
-        }
-
-        currentUser.cart = userCart;
-
-        SetUserById(currentUser);
-        saveDataInLocalStorage();
-
-        Swal.fire({
-            icon: 'success',
-            title: 'Added to Cart',
-            text: `${product.Name} has been added to your cart.`,
-        });
-
-    } else {
-        // User is NOT logged in: Add to guest cart
-
-        let guestCart = JSON.parse(localStorage.getItem('guestCart')) || [];
-
-        let existingItem = guestCart.find(item => item._id === productID);
-        if (existingItem) {
-            if (existingItem.Quantity >= product.Stock) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Not Enough Stock',
-                    text: 'There is not enough stock to add more of this product to your cart.',
-                });
-                return;
-            }
-            existingItem.Quantity += 1;
-        } else {
-            guestCart.push({ _id: productID, Quantity: 1 , Name: product.Name });
-        }
-
-        localStorage.setItem('guestCart', JSON.stringify(guestCart));
-
-        Swal.fire({
-            icon: 'success',
-            title: 'Added to Cart',
-            text: `${product.Name} has been added to your cart.`,
-        });
-    }
-}
-
-
-
+import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser,getUsers}
+    from '../Data.js';
 
 function initializePage() {
     loadDataFromLocalStorage();
@@ -127,13 +36,11 @@ function initializePage() {
     });
     
 
-   
-    //console.log("CurrentUser ID:", data.CurrentUser);
+
 
 
     // profile 
     $(".profileIcon").on("click", function () {
-
         if (!data.CurrentUser) {
             Swal.fire({
                 title: "Can not Enter Your Profile",
@@ -142,27 +49,36 @@ function initializePage() {
            
             
             }).then(()=>{ location.assign("login.html")})
+        }else{
+            window.location.href = "../html/sellerprofile.html";
+
         }
 
-        // check the role
-        switch (data.CurrentUser.Role) {
-            case "Admin":
-                window.location.href = "../html/adminprofile.html";
-                break;
-            case "User":
-                window.location.href = "../html/users-profile.html";
-                break;
-            case "Seller":
-                window.location.href = "../html/sellerprofile.html";
-                break;
-            default:
-                window.location.href = "homeMain.html";
-                break;
-        }
+        
 
 
     })
 
+
+$('.dashboard').on("click", function () {
+    if (!data.CurrentUser) {
+        Swal.fire({
+            title: "Can not Enter Your Dashboard",
+            text: "You Should Make Login First",
+            icon: "warning",
+       
+        
+        }).then(()=>{ location.assign("login.html")})
+    }else{
+        window.location.href = "/html/SellerProductDashboard.html";
+
+    }
+
+    
+    
+    })
+
+       
 
 
     // Function to display products
@@ -191,9 +107,7 @@ function initializePage() {
                                 <div class="clearfix mb-3 d-flex justify-content-between">
                                     <span class="float-start badge rounded-pill bg-success">${product.Price.toFixed(2)}€</span>
                                 </div>
-                                <div class="text-center my-4">
-                                    <a href="#" class="btn-addToCart btn btn-warning" data-product-id="${product._id}">Add to Cart</a>
-                                </div>
+                               
                             </div>
                         </div>
                     </div>
@@ -254,13 +168,7 @@ function initializePage() {
     displayProducts(data.Products);
 
 
-    $(document).on('click', '.btn-addToCart', function (event) {
-        event.preventDefault();
-        let productID = $(this).data('product-id'); // Get product ID
-       //console.log("Add to Cart button clicked for product ID:", productID);
-
-        addToCart(productID);
-    });
+   
 
     // product details link
     $(document).on('click', '.view-details', function (e) {
@@ -347,7 +255,7 @@ function setupLoginButton() {
     const currentUser = getCurrentUser();
 
     if (currentUser && currentUser._id) {
-        //console.log("User is logged in:", currentUser);
+       
         $loginButton
             .text("Logout")
             .off("click")
@@ -363,7 +271,7 @@ function setupLoginButton() {
     }
 }
 
-// Confirm logout and reset the `CurrentUser` in localStorage
+
 function confirmLogout() {
     Swal.fire({
         title: "Are you sure?",
@@ -377,7 +285,7 @@ function confirmLogout() {
           
             //loadDataFromLocalStorage();  
             data.CurrentUser = null;
-            saveDataInLocalStorage();  // Save updated data
+            saveDataInLocalStorage();  
 
             console.log("Logged out. CurrentUser:", data.CurrentUser)
            

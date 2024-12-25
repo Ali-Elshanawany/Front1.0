@@ -172,7 +172,7 @@ div.item:nth-of-type(5) {
 /* Radio Buttons Style */
 
 input[type="radio"] {
-  opacity: 1; /* Hide radio buttons */
+  opacity: 1; 
   position: absolute;
 } 
 
