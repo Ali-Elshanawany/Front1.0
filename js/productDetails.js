@@ -1,4 +1,4 @@
-import { data, loadDataFromLocalStorage } from './Data.js';
+import { data, loadDataFromLocalStorage } from './Data (2).js';
 import { addToCart } from './home.js';  // Importing the addToCart function
 
 $(document).ready(function () {
@@ -71,5 +71,6 @@ $(document).ready(function () {
 // Handle "Go to Home" button click
 
 $('.goToHome').on('click', function () {
-    window.location.href = "homeMain.html";  // Navigate to homepage
+    window.location.href = "reviews.html";  // Navigate to homepage
 });
+

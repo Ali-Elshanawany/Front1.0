@@ -1,19 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Profile</title>
   <link rel="icon" href="../assets/pic.png" type="image/png">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i" rel="stylesheet">
   <link rel="stylesheet" href="../style/user/vendor/bootstrap/css/bootstrap.min.css">
-    <link href="../style/styles.css" rel="stylesheet">
+  <link href="../style/styles.css" rel="stylesheet">
   <link rel="stylesheet" href="../style/user/styles.css">
   <link rel="stylesheet" href="../style/user-profile.css">
-</head>
 
-<body>  
+</head>
+<body>
   <section class="section profile" id="sectionprofile">
     <div class="row">
       <div class="col-xl-4">
@@ -24,7 +23,6 @@
           </div>
         </div>
       </div>
-
       <div class="col-xl-8">
         <div class="card">
           <div class="card-body pt-3">
@@ -39,7 +37,6 @@
                 <button class="nav-link" data-bs-toggle="tab" data-bs-target="#profile-change-password">Change Password</button>
               </li>
             </ul>
-
             <div class="tab-content pt-2">
               <div class="tab-pane fade show active profile-overview" id="profile-overview">
                 <h5 class="card-title">Profile Details</h5>
@@ -64,9 +61,8 @@
                   <div class="col-lg-9 col-md-8 form-control" id="mail"></div>
                 </div>
               </div>
-
               <div class="tab-pane fade profile-edit pt-3" id="profile-edit">
-                <form id="editProfileForm" >
+                <form id="editProfileForm">
                   <div class="row mb-3">
                     <label for="fullName" class="col-md-4 col-lg-3 col-form-label">Full Name</label>
                     <div class="col-md-8 col-lg-9">
@@ -108,7 +104,6 @@
                   </div>
                 </form>
               </div>
-
               <div class="tab-pane fade pt-3" id="profile-change-password">
                 <form id="changePasswordForm">
                   <div class="row mb-3">
@@ -138,13 +133,16 @@
             <div class="container mt-4 text-center"> 
               <button class="logout-btn" id="logoutButton">Logout</button>
             </div>
-            <div class="container mt-4 text-center"> 
-              <button class="btn btn-primary" id="showData" data-bs-toggle="modal" data-bs-target="#dataModal">Show All Data</button>
-            </div>
+           
+<div id="order-details">
+    <h2>Order Details</h2>
+    <div id="order-info"></div>
+    <div id="product-details"></div>
+</div>
+
           </div>
         </div>
       </div>
-      
     </div>
     <div class="card mt-3">
       <div class="card-body">
@@ -153,38 +151,64 @@
           <thead>
             <tr>
               <th scope="col">Order ID</th>
-              <th scope="col">Product Name</th>
-              <th scope="col">Quantity</th>
               <th scope="col">Order Status</th>
+              <th scope="col">Total Price</th>
+              <th scope="col">Review Details</th>
             </tr>
           </thead>
           <tbody id="ordersTableBody">
+            <tr>
+             <!-- // <td><img src="../assets/default-product.png" alt="Product" style="width: 50px; height: 50px;"></td> -->
+              <td>Example Product</td>
+              <td>1</td>
+              <td>Delivered</td>
+              <td>
+                <button class="btn btn-info review-details-btn" >
+          Show Order Details
+            </button>
+        </td>
+            </tr>
           </tbody>
         </table>
       </div>
     </div>
-    <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-          <div class="modal-content">
-              <div class="modal-header">
-                  <h5 class="modal-title" id="dataModalLabel">Column Data</h5>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body" id="modalBody">
-              </div>
-              <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              </div>
+    <div class="modal fade" id="orderDetailsModal" tabindex="-1" aria-labelledby="modalOrderDetails" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="modalOrderDetails">Order Details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
+          <div class="modal-body">
+            <div id="order-info"></div>
+            <div id="product-details"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
       </div>
-  </div>
-
+    </div>
+    <div class="modal fade" id="dataModal" tabindex="-1" aria-labelledby="dataModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="dataModalLabel">All Data</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <div id="allDataContent"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
   <script src="../style/user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/users-profile.js" type="module">
-      
-    </script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/users-profile.js" type="module"></script>
 </body>
-
 </html>
