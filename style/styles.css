@@ -24,6 +24,7 @@ input,
 button {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
+  overflow-x: hidden; /* إضافة هذه الخاصية لإخفاء شريط التمرير الأفقي */
 }
 
 a {

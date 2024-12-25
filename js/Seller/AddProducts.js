@@ -86,6 +86,17 @@ export function AddProducts(isUpdate,SelectedProduct) {
    }else{
       img2=SelectedProduct.Images[1]
    }
+
+      if (img1 === img2) {
+         Swal.fire({
+            icon: 'error',
+            title: 'Duplicate Img Detected',
+            text: 'You must choose an Different img',
+         });
+         return;
+      }
+
+
    
    if(!isUpdate){
       const newProduct = {

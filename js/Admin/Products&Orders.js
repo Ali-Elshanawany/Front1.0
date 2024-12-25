@@ -11,9 +11,10 @@ import {
     decreaseTotalSales,
     GetOrder,
     TotalSales,
-    getSalesByMonth
+    getSalesByMonth,
+    DeleteProductsById
 } from "../Data.js";
-import {Draw} from './Chart.js'
+import { Draw } from "./Chart.js";
 
 // ! Tesing Only Remove For Production
 //saveDataInLocalStorage();
@@ -49,7 +50,7 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
             Orders.sort((a, b) => (a[prop] > b[prop] ? 1 : -1));
             displayOrdersTable(Orders, currentPage, rowsPerPage);
         }
-        Orders = getOrders(); 
+        Orders = getOrders();
     });
     // * Add Desc Sorting Event
     tr.addEventListener("dblclick", function (event) {
@@ -59,14 +60,14 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
             Orders.sort((a, b) => (a[prop] < b[prop] ? 1 : -1));
             displayOrdersTable(Orders, currentPage, rowsPerPage);
         }
-        Orders = getOrders(); 
+        Orders = getOrders();
     });
     paginatedOrders.forEach((order, index) => {
         // console.log("************************************")
         // console.log(order)
         // console.log("************************************")
         const tr = document.createElement("tr");
-        let UserName = data.Users.find(user => user._id == order.UserID).Name
+        let UserName = data.Users.find((user) => user._id == order.UserID).Name;
         tr.innerHTML = `
             <td >${order._id}</td>
             <td >${UserName}</td>
@@ -80,15 +81,22 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
             data-order="${order._id}"
         data-index="${start + index}" 
         data-Orderstatus="${order.Status}" 
-        class="btn form-control status-btn ${order.Status === "Pending" ? "btn-warning"
-                : order.Status === "Shipped" ? "btn-info"
-                    : order.Status === "Delivered" ? "btn-success" : "btn-danger"
+        class="btn form-control status-btn ${order.Status === "Pending"
+                ? "btn-warning"
+                : order.Status === "Shipped"
+                    ? "btn-info"
+                    : order.Status === "Delivered"
+                        ? "btn-success"
+                        : "btn-danger"
             }">
     ${order.Status}
             </button>
             <td class="delete-btn" >
-            <button id="Del" type="button"  data-index="${start + index}" class="btn btn-danger" data-order="${order._id}" data-status="${order.Status}">
-            <i id="Del" data-index="${start + index}" data-order="${order._id}" data-status="${order.Status}" class="bi bi-x-lg"> </i>
+            <button id="Del" type="button"  data-index="${start + index
+            }" class="btn btn-danger" data-order="${order._id}" data-status="${order.Status
+            }">
+            <i id="Del" data-index="${start + index}" data-order="${order._id
+            }" data-status="${order.Status}" class="bi bi-x-lg"> </i>
             </button>
             </td>
             `;
@@ -122,93 +130,92 @@ function setupPagination(Orders, rowsPerPage, currentPage) {
 // ! ////////////////////////////////////////////////////////////////////////////////////////////////////////
 // * Event Listeners Load
 window.addEventListener("load", function () {
-     //isAuthorized();
-    loadDataFromLocalStorage()
- 
-//LogOut
-const logoutButton = document.getElementById("logoutButton");
-if (logoutButton) {
-  logoutButton.addEventListener("click", confirmLogout);
-}
+    //isAuthorized();
+    loadDataFromLocalStorage();
 
-function confirmLogout() {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "Do you want to log out?",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonText: "Yes, Logout",
-      cancelButtonText: "Cancel",
-      reverseButtons: true,
-    }).then(result => {
-      if (result.isConfirmed) {
-        data.CurrentUser = null;
-        saveDataInLocalStorage("currentUser", null);
-        redirectToHome();
-      }
-    });
-  }
-  
-  function redirectToHome() {
-    window.location.href = "login.html";
-  }
-//End Logout
+    //LogOut
+    const logoutButton = document.getElementById("logoutButton");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", confirmLogout);
+    }
 
+    function confirmLogout() {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to log out?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Logout",
+            cancelButtonText: "Cancel",
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                data.CurrentUser = null;
+                saveDataInLocalStorage("currentUser", null);
+                redirectToHome();
+            }
+        });
+    }
+
+    function redirectToHome() {
+        window.location.href = "login.html";
+    }
+    //End Logout
 
     const dataValues = getSalesByMonth();
     console.log(dataValues);
 
-    Draw(dataValues)
+    Draw(dataValues);
     let Orders = getOrders();
     let Products = PendingProducts();
-   // console.log(Products)
+    // console.log(Products)
     let rowsPerPage = 10; // * Default rows per page
     let currentPage = 1;
 
-    ChangCard()
+    ChangCard();
 
     const counterInput = document.querySelector('input[type="number"]');
     const searchInput = document.querySelector('input[type="text"]');
     const table = document.getElementsByTagName("table")[0];
     const Producttable = document.getElementsByTagName("table")[1];
 
-
-
-    const ProductcounterInput = document.getElementById('ProductCounterInput');
-    const ProductsearchInput = document.getElementById('ProductSearhInput');
+    const ProductcounterInput = document.getElementById("ProductCounterInput");
+    const ProductsearchInput = document.getElementById("ProductSearhInput");
 
     ProductcounterInput.addEventListener("change", function () {
         rowsPerPage = parseInt(this.value, 10) || 5;
         currentPage = 1; // * Reset to the first page
-        displayProductsTable(Products, currentPage, rowsPerPage)
+        displayProductsTable(Products, currentPage, rowsPerPage);
     });
 
     ProductsearchInput.addEventListener("keyup", function () {
         const searchTerm = this.value.trim().toLowerCase();
-        const filteredProducts = Products.filter(product =>
-            product.Name.toLowerCase().includes(searchTerm) ||
-            product.Description.toLowerCase().includes(searchTerm) ||
-            product.Price.toLocaleString().toLowerCase().includes(searchTerm)||
-            product.Stock.toLocaleString().toLowerCase().includes(searchTerm) ||
-            product.CategoryID.toLowerCase().includes(searchTerm) ||
-            product.CreatedAt.toLowerCase().includes(searchTerm) 
+        const filteredProducts = Products.filter(
+            (product) =>
+                product.Name.toLowerCase().includes(searchTerm) ||
+                product.Description.toLowerCase().includes(searchTerm) ||
+                product.Price.toLocaleString().toLowerCase().includes(searchTerm) ||
+                product.Stock.toLocaleString().toLowerCase().includes(searchTerm) ||
+                product.CategoryID.toLowerCase().includes(searchTerm) ||
+                product.CreatedAt.toLowerCase().includes(searchTerm)
         );
         currentPage = 1; // * Reset to the first page
         displayProductsTable(filteredProducts, currentPage, rowsPerPage);
     });
 
-
-
     table.addEventListener("click", function (event) {
         if (event.target.id == "Del") {
             const index = +event.target.dataset.index;
-            console.log("Start")
-            console.log(event.target.dataset.order)
-            const selectedOrder = GetOrder(event.target.dataset.order)
-            console.log("This is Order")
-            console.log(selectedOrder)
+            console.log("Start");
+            console.log(event.target.dataset.order);
+            const selectedOrder = GetOrder(event.target.dataset.order);
+            console.log("This is Order");
+            console.log(selectedOrder);
 
-            if (selectedOrder.Status !== "Delivered" && selectedOrder.Status !== "Canceled") {
+            if (
+                selectedOrder.Status !== "Delivered" &&
+                selectedOrder.Status !== "Canceled"
+            ) {
                 // * Start Sweet Alert
                 Swal.fire({
                     title: "Are you sure?",
@@ -227,25 +234,27 @@ function confirmLogout() {
                         });
                         // Orders.splice(index, 1);
                         // console.log(event.target.dataset.order)
-                        // * Canceling order 
+                        // * Canceling order
                         CancelOrder(event.target.dataset.order);
-                        increaseStock(selectedOrder.Items)
-                        decreaseTotalSales(selectedOrder.Items)
+                        increaseStock(selectedOrder.Items);
+                        decreaseTotalSales(selectedOrder.Items);
                         //Draw()
                         //localStorage.setItem("Orders", JSON.stringify(Orders));
                         // * Load Data From Local To Data Object To Achieve Consistency
-                        Orders = getOrders(); 
-                        ChangCard()
+                        Orders = getOrders();
+                        ChangCard();
                         displayOrdersTable(Orders, currentPage, rowsPerPage);
                     }
                 });
                 // * End Sweet Alert
             }
-
         }
         if (event.target.id == "StatusBtn") {
-            console.log(event.target.dataset.orderstatus)
-            if (event.target.dataset.orderstatus !== "Delivered" && event.target.dataset.orderstatus !== "Canceled") {
+            console.log(event.target.dataset.orderstatus);
+            if (
+                event.target.dataset.orderstatus !== "Delivered" &&
+                event.target.dataset.orderstatus !== "Canceled"
+            ) {
                 Swal.fire({
                     title: "Are you sure?",
                     icon: "warning",
@@ -259,18 +268,24 @@ function confirmLogout() {
                             title: "Updated Successfully!",
                             icon: "success",
                         });
-                        const selectedorder=data.Orders.find(o=>o._id==event.target.dataset.order) || "NoData"
+                        const selectedorder =
+                            data.Orders.find((o) => o._id == event.target.dataset.order) ||
+                            "NoData";
                         switch (selectedorder.Status) {
                             case "Pending":
-                                data.Orders.find(o=>o._id==event.target.dataset.order).Status = "Shipped";
+                                data.Orders.find(
+                                    (o) => o._id == event.target.dataset.order
+                                ).Status = "Shipped";
                                 break;
                             case "Shipped":
-                                data.Orders.find(o=>o._id==event.target.dataset.order).Status = "Delivered";
+                                data.Orders.find(
+                                    (o) => o._id == event.target.dataset.order
+                                ).Status = "Delivered";
                         }
                         saveDataInLocalStorage();
                         Orders = getOrders();
                         //loadDataFromLocalStorage();
-                        ChangCard()
+                        ChangCard();
                         displayOrdersTable(Orders, currentPage, rowsPerPage);
                     }
                 });
@@ -278,9 +293,7 @@ function confirmLogout() {
         }
     });
 
-    displayProductsTable(Products, currentPage, rowsPerPage)
-
-
+    displayProductsTable(Products, currentPage, rowsPerPage);
 
     displayOrdersTable(Orders, currentPage, rowsPerPage);
 
@@ -295,9 +308,6 @@ function confirmLogout() {
         displayOrdersTable(Orders, currentPage, rowsPerPage);
     });
 
-
-
-
     Producttable.addEventListener("click", function (event) {
         console.log(event.target.id);
         if (event.target.id == "Approve") {
@@ -308,48 +318,51 @@ function confirmLogout() {
                 showCancelButton: true,
                 confirmButtonColor: "#3085d6",
                 cancelButtonColor: "#d33",
-                confirmButtonText: "Yes, Approve it!"
+                confirmButtonText: "Yes, Approve it!",
             }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
                         title: "Approved!!",
                         text: "Your Product has been Approved.",
-                        icon: "success"
+                        icon: "success",
                     });
 
-                 //   const index = +event.target.dataset.index;
+                    //   const index = +event.target.dataset.index;
                     const id = event.target.dataset.productid;
-                 //   console.log(index);
+                    //   console.log(index);
                     console.log(id);
                     ApproveProducts(id);
                     Products = PendingProducts();
-               //     loadDataFromLocalStorage()
-                    ChangCard()
-                    displayProductsTable(Products, currentPage, rowsPerPage)
+                    //     loadDataFromLocalStorage()
+                    ChangCard();
+                    displayProductsTable(Products, currentPage, rowsPerPage);
                 }
             });
             // * End Sweet Alert
-        }
-        // if (event.target.id == "Update") {
-        //     // * When Clicked is update trun True Then AddAccounts Function Will Know that is update not addning new Accounts 
-        //     isUpdate = true;
-        //     const selectedUser = data.Users[event.target.dataset.index]
-        //     $("#in-head").text(" Update Account");
-        //     $("#in-email").val(selectedUser.Email);
-        //     $("#in-name").val(selectedUser.Name);
-        //     $("#in-password").val(selectedUser.Password);
-        //     $("#in-Phone").val(selectedUser.Phone);
-        //     $("#in-City").val(selectedUser.City);
-        //     $("#in-Street").val(selectedUser.Street);
-        //     selectedUser.Role == "Admin"
-        //         ? $("#roleAdmin").prop("checked", true)
-        //         : selectedUser.Role == "Seller"
-        //             ? $("#roleSeller").prop("checked", true)
-        //             : $("#roleCustomer").prop("checked", true);
-        //     console.log("Changes");
-        // }
-    });
+        }else if(event.target.id == "del"){
+            Swal.fire({
+                title: "Are you sure?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, Detele it!",
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Delete!!",
+                        text: "Your Product has been Deleted.",
+                        icon: "success",
+                    });
 
+                    DeleteProductsById(event.target.dataset.productid)
+                    let Products = PendingProducts();
+                    displayProductsTable(Products, currentPage, rowsPerPage);            
+                }
+            });       
+        }
+
+    });
 
     // * Search Orders
     searchInput.addEventListener("keyup", function () {
@@ -359,7 +372,7 @@ function confirmLogout() {
                 order.UserID.toLowerCase().includes(searchTerm) ||
                 order._id.toLowerCase().includes(searchTerm) ||
                 order.Status.toLowerCase().includes(searchTerm) ||
-                order.CreatedAt.toLowerCase().includes(searchTerm)||
+                order.CreatedAt.toLowerCase().includes(searchTerm) ||
                 order.TotalAmount.toString().toLowerCase().includes(searchTerm)
         );
 
@@ -367,7 +380,6 @@ function confirmLogout() {
         displayOrdersTable(filteredOrders, currentPage, rowsPerPage);
     });
 }); // * end of load
-
 
 //! ////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -377,8 +389,6 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
     const thead = document.getElementById("ProductHead");
     tbody.innerHTML = ""; // Clear previous rows
     thead.innerHTML = ""; // Clear previous rows
-
-
 
     const tr = document.createElement("tr");
     tr.innerHTML = `
@@ -392,24 +402,25 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
     <th  id="Images" > Images</th>
     <th  id="CreatedAt" > CreatedAt</th>
     <th  id="approve" > Action</th>
+    <th  id="del" > cancel</th>
     </tr>   
 `;
     thead.appendChild(tr);
     // * Add Asc Sorting Event
     tr.addEventListener("click", function (event) {
         const prop = event.target.id;
-        console.log("Asc Sorting")
+        console.log("Asc Sorting");
         if (prop) {
-            Products.sort((a, b) => a[prop] > b[prop] ? 1 : -1);
+            Products.sort((a, b) => (a[prop] > b[prop] ? 1 : -1));
             displayProductsTable(Products, currentPage, rowsPerPage);
         }
     });
     // * Add Desc Sorting Event
     tr.addEventListener("dblclick", function (event) {
         const prop = event.target.id;
-        console.log("Desc Sorting")
+        console.log("Desc Sorting");
         if (prop) {
-            Products.sort((a, b) => a[prop] < b[prop] ? 1 : -1);
+            Products.sort((a, b) => (a[prop] < b[prop] ? 1 : -1));
             displayProductsTable(Products, currentPage, rowsPerPage);
         }
     });
@@ -422,7 +433,9 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
         // console.log("-----------------------2")
         // console.log(data.Users.find(user => user._id == product.SellerID).Name)
         // console.log("-----------------------3")
-        let SellerName = data.Users.find(user => user._id == product.SellerID).Name
+        let SellerName = data.Users.find(
+            (user) => user._id == product.SellerID
+        ).Name;
         // console.log("-----------------------4")
         // console.log(SellerName)
         //console.log(SellerName)
@@ -434,17 +447,24 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
             <td >${product.Stock}</td>
             <td >${product.CategoryID}</td>
             <td >${SellerName}</td>
-            <td><img src="${product.Images[0]}" style="width: 150px !important; height: 150px !important;" /></td>
+            <td><img src="${product.Images[0]
+            }" style="width: 150px !important; height: 150px !important;" /></td>
             <td >${product.CreatedAt}</td>
              <td class="delete-btn" >
-            <button id="Approve" type="button"  data-index="${start + index}" data-Productid=${product._id} class="btn btn-success">
+            <button id="Approve" type="button"  data-index="${start + index
+            }" data-Productid=${product._id} class="btn btn-success">
             Approve
+            </button>
+            </td>
+            <td>
+            <button id="del" type="button"  data-index="${start + index
+            }" data-Productid=${product._id} class="btn btn-danger">
+            Cancel
             </button>
             </td>
             `;
         tbody.appendChild(tr);
     });
-
 
     setupProductsPagination(Products, rowsPerPage, currentPage);
 }
@@ -458,7 +478,7 @@ function setupProductsPagination(Products, rowsPerPage, currentPage) {
         const button = document.createElement("button");
         button.textContent = i;
         button.className = "btn btn-info m-1";
-        if (i === currentPage) button.className = ("btn btn-dark");
+        if (i === currentPage) button.className = "btn btn-dark";
         button.addEventListener("click", () => {
             displayProductsTable(Products, i, rowsPerPage);
         });
@@ -466,37 +486,40 @@ function setupProductsPagination(Products, rowsPerPage, currentPage) {
     }
 }
 
-
 function ChangCard() {
-    console.log("Entered")
-    loadDataFromLocalStorage()
-    // * Altering Cards Dynamically 
+    console.log("Entered");
+    loadDataFromLocalStorage();
+    // * Altering Cards Dynamically
     const NumofOrdersCard = document.getElementById("OrderCard");
     const NumOfCanceledOrdersCard = document.getElementById("CanceledOrdersCard");
     const NumofPendingProductssCard = document.getElementById("PendingProducts");
     const TotalSalesCard = document.getElementById("TotalSalesCard");
 
     if (data.Orders.length) {
-        NumofOrdersCard.innerText = data.Orders.length
+        NumofOrdersCard.innerText = data.Orders.length;
     } else {
-        NumofOrdersCard.innerText = 0
+        NumofOrdersCard.innerText = 0;
     }
 
-    if (data.Orders.filter(o=>o.Status=="Canceled").length) {
-        NumOfCanceledOrdersCard.innerText = data.Orders.filter(o=>o.Status=="Canceled").length
+    if (data.Orders.filter((o) => o.Status == "Canceled").length) {
+        NumOfCanceledOrdersCard.innerText = data.Orders.filter(
+            (o) => o.Status == "Canceled"
+        ).length;
     } else {
-        NumOfCanceledOrdersCard.innerText = 0
+        NumOfCanceledOrdersCard.innerText = 0;
     }
 
-    if (data.Products.filter(p=>p.Approved==false).length) {
-        NumofPendingProductssCard.innerText = data.Products.filter(p=>p.Approved==false).length
+    if (data.Products.filter((p) => p.Approved == false).length) {
+        NumofPendingProductssCard.innerText = data.Products.filter(
+            (p) => p.Approved == false
+        ).length;
     } else {
-        NumofPendingProductssCard.innerText = 0
+        NumofPendingProductssCard.innerText = 0;
     }
 
     if (TotalSales()) {
-        TotalSalesCard.innerText = TotalSales() + '$'
+        TotalSalesCard.innerText = TotalSales() + "$";
     } else {
-        TotalSalesCard.innerText = 0
+        TotalSalesCard.innerText = 0;
     }
 }

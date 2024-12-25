@@ -54,13 +54,22 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
         }
     });
     paginatedOrders.forEach((order, index) => {
+        let SellerTotalSales=0;
+        let NumofItems=0;
+        order.Items.forEach(i=>{
+            if(i.SellerID==data.CurrentUser._id){
+                SellerTotalSales+=(i.Price * i.Quantity);
+                NumofItems++;
+            }
+
+        });
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td >${order._id}</td>
             <td >${order.UserID}</td>
             <td >${order.UserID}</td>
-            <td >${order.Items.length}</td>
-            <td >${order.TotalAmount}</td>
+            <td >${NumofItems}</td>
+            <td >${SellerTotalSales}</td>
             <td >${order.CreatedAt}</td>
             <td >
             <button type="button" 
@@ -193,8 +202,8 @@ function ChangCard() {
     const NumofDeliveredOrdersCard = document.getElementById("DeliveredOrdersCard");
     const TotalSalesCard = document.getElementById("TotalSalesCard");
 
-    if ((data.Orders || []).filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id)).length) {
-        NumofOrdersCard.innerText = (data.Orders || []).filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id)).length
+    if ((data.Orders ).filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id)).length) {
+        NumofOrdersCard.innerText = (data.Orders).filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id)).length
 
     } else {
         NumofOrdersCard.innerText = 0

@@ -1,40 +1,39 @@
 img {
-    margin:3vw;
-    width: 400px;
-    height: 440px;
-  }
-  td img{
-    margin: 20px auto;
-    width: 400px;
-    height: 440px;
-  }
-  #sectionprofile{
-    margin: 2vw .5vw;
-    
-  }
-
-
-  .logout-btn {
-    background-color: #dc3545;
-    color: white;
-    width: 20%;
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin: 10px auto;
-    display: block;
-  
-  }
-
-  .logout-btn:hover {
-    background-color: #c82333;
-  }
-  th {
-    cursor: pointer;
-    background-color: #f2f2f2;
+  margin:3vw;
+  width: 400px;
+  height: 440px;
 }
-@media (max-width: 768px) {
+td img{
+  margin: 20px auto;
+  width: 400px;
+  height: 440px;
+}
+#sectionprofile{
+  margin: 2vw .5vw;
+  
+}
+
+.logout-btn {
+  background-color: #dc3545;
+  color: white;
+  width: 20%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 10px auto;
+  display: block;
+
+}
+
+.logout-btn:hover {
+  background-color: #c82333;
+}
+th {
+  cursor: pointer;
+  background-color: #f2f2f2;
+}
+/*@media (max-width: 768px) {
 #showData {
 display: block; 
 margin: 20px auto;

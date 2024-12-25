@@ -63,6 +63,10 @@ function setCurrentUser(user) {
     }
 }
 
+function encryptPassword(password) {
+  return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); // استخدم نفس التنسيق دائمًا
+}
+
 document.getElementById('loginForm').addEventListener('submit', function (event) {
     event.preventDefault();
 
@@ -77,21 +81,20 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
         return;
     }
 
-    const email = document.getElementById('email').value.trim();
+    const email = document.getElementById('email').value.trim().toLowerCase(); 
     const password = document.getElementById('password').value.trim();
+
 
     if (!validateInputs(email, password)) {
         return;
     }
-    const user = getUserByEmail(email);
+    const user = data.Users.find(user => user.Email.toLowerCase() === email);
     if (user) {
-        console.log("Matching user:", user);
-
-        if (CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64) === user.Password) {
+        if (encryptPassword(password) === user.Password) {
             setCurrentUser(user);
             transferGuestCartToUserCart();
             getCurrentCart();
-
+            
             Swal.fire({
                 icon: 'success',
                 title: 'Login Successful',
@@ -99,21 +102,22 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
                 showConfirmButton: false,
                 timer: 2000
             }).then(() => {
-                if(user.Role=="Seller"){
-                window.location.assign("../html/SellerHome.html");
-            }
-            else if(user.Role=="Admin"){
-                window.location.assign("../html/AdminHome.html");
-            }else
-                window.location.href = 'homeMain.html';
+                if (user.Role == "Seller") {
+                    window.location.assign("../html/SellerHome.html");
+                } else if (user.Role == "Admin") {
+                    window.location.assign("../html/AdminHome.html");
+                } else {
+                    window.location.href = 'homeMain.html';
+                }
             });
-
-            failedAttempts = 0; 
-            passwordErrorMessage.textContent = ''; 
+    
+            failedAttempts = 0;
+            passwordErrorMessage.textContent = '';
         } else {
+
             failedAttempts++;
             console.log("Password does not match.");
-
+    
             if (failedAttempts >= 3) {
                 loginBlocked = true;
                 Swal.fire({
@@ -121,19 +125,20 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
                     title: 'Login Failed',
                     text: `Incorrect password. You are blocked for 30 seconds.`,
                     showConfirmButton: false,
-                    timer: 30000 
+                    timer: 30000
                 }).then(() => {
-                    startBlockTimer(); 
+                    startBlockTimer();
                 });
             } else {
                 Swal.fire({
                     icon: 'error',
-                    title: 'Login Failed',
+                    title: 'Invalid Password',
                     text: `Incorrect password. Try again. Remaining attempts: ${3 - failedAttempts}`,
                 });
             }
         }
     } else {
+
         console.log("Email not registered.");
         Swal.fire({
             icon: 'error',
@@ -170,6 +175,11 @@ function transferGuestCartToUserCart() {
         const currentUser = data.CurrentUser;
         if (!currentUser) {
             console.error("No user is logged in to transfer the cart.");
+            return;
+        }
+
+        if (currentUser.Role !== "User") {
+            console.log("Current user is not a User. Cart transfer skipped.");
             return;
         }
 
