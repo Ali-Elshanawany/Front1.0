@@ -19,6 +19,8 @@ isAuthorized();
 
 let ucart = user.cart;
 let cart = ucart.map((item) => ({ // mapping the cart to get the product and the quantity of each product
+  _id: item._id,
+  name: item.Name,
   product: getProductById(item._id),
   num: item.Quantity,
 }));
@@ -184,29 +186,53 @@ window.addEventListener("load", function () {
     cards.innerHTML = "";
 
     cart = getCurrentCart().map((item) => ({
+        _id: item._id,
+        name: item.Name,
         product: getProductById(item._id),
         num: item.Quantity,
     }));
 
-      
 
-      if (cart.length == 0) {
-        content.innerHTML = 
-        `
-            <div class="row">
-                <div class="col-lg-12 text-center emptyCart">
-                    <span class="fs-1 fw-bold">Your Cart Is Empty</span>
-                </div>       
-            </div>
-        `;
-      }
+
+      let outOfStockFlag = false;
+      let outOfStockProducts = [];
+
+      let reducedStockFlag = false;
+      let reducedStockProducts = [];
+
+      let removedProductsFlag = false;
+      let removedProducts = [];
 
       let total = 0;
+
       let numOfItems = 0;
+
       cart.forEach((item) => {
 
+        if (!item.product) {
+                DeleteFromCart(item._id);
+                removedProductsFlag = true;
+                removedProducts.push(item.name);
+                console.error(`Product with ID ${item._id} not found !!!!!!!!!!!`);
+                return;
+            }
+
+            if (item.product.Stock === 0) {
+                DeleteFromCart(item.product._id);
+                outOfStockFlag = true;
+                outOfStockProducts.push(item.product.Name);
+            } else {
+                if (item.num > item.product.Stock) {
+                    item.num = item.product.Stock;
+                    changeCartItemCount(item.product._id, item.product.Stock);
+                    reducedStockFlag = true;
+                    reducedStockProducts.push(item.product.Name);
+                }
+
         numOfItems += item.num;
+
         total += item.product.Price * item.num;
+
         cards.innerHTML += `<div id="${flag}" class="card m-1 luxurious-card ">
                 <div class="row g-0">
                     <div class="col-lg-2">
@@ -246,7 +272,52 @@ window.addEventListener("load", function () {
 
         flag++;
 
+        }
+
       });
+
+
+      if (outOfStockFlag || reducedStockFlag || removedProductsFlag) {
+                  let message = '';
+                  if (outOfStockFlag) {
+                      message += `The Following Items Became Out Of Stock And Were Removed From Your Cart: ${outOfStockProducts.join(', ')}.<br><br>`;
+                  }
+                  if (reducedStockFlag) {
+                      message += `The Stock For The Following Items Were Reduced And Your Cart Quantities Were Adjusted: ${reducedStockProducts.join(', ')}.<br><br>`;
+                  }
+                  if (removedProductsFlag) {
+                      message += `The Following Items Were Removed From The Website And Were Removed From Your Cart: ${removedProducts.join(', ')}.<br>`;
+                  }
+                  let title = '';
+                  if (outOfStockFlag && reducedStockFlag && removedProductsFlag) {
+                      title = "Cart Adjusted";
+                  } else if (outOfStockFlag) {
+                      title = "Out of Stock";
+                  } else if (reducedStockFlag) {
+                      title = "Stock Reduced";
+                  } else if (removedProductsFlag) {
+                      title = "Removed from Website";
+                  }
+      
+                  Swal.fire({
+                      icon: outOfStockFlag ? "error" : "warning",
+                      title: title,
+                      html: message.trim(),
+                  }).then(() => {
+                       let usercart = getCurrentCart();
+                      cart = usercart.map((item) => ({
+                          _id: item._id,
+                          name: item.Name,
+                          product: getProductById(item._id),
+                          num: item.Quantity,
+                      }));
+
+                      generateCards();
+                      if (getCurrentCart().length === 0) {
+                          location.assign("../html/homeMain.html");
+                      }
+                  });
+              }
 
       // change checkout form
 
