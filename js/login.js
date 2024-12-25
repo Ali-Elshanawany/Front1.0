@@ -1,6 +1,28 @@
 import { data, getUserByEmail, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentCart} from './Data.js';
 
-loadDataFromLocalStorage();
+function load() {
+    loadDataFromLocalStorage();
+    const currentUser = data.CurrentUser;
+
+    if (currentUser) {
+        console.log(currentUser);
+        switch (currentUser.Role) {
+            case "Admin":
+                window.location.assign("../html/AdminHome.html");
+                break;
+            case "Seller":
+                window.location.assign("../html/SellerProductDashboard.html");
+                break;
+            case "User":
+                window.location.assign("../html/homeMain.html");
+                break;
+            default:
+                console.error("Invalid role detected for the current user.");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', load);
 
 const togglePassword = document.getElementById('togglePassword');
 const passwordInput = document.getElementById('password');
@@ -64,7 +86,7 @@ function setCurrentUser(user) {
 }
 
 function encryptPassword(password) {
-  return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); // استخدم نفس التنسيق دائمًا
+  return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
 }
 
 document.getElementById('loginForm').addEventListener('submit', function (event) {
@@ -83,7 +105,6 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 
     const email = document.getElementById('email').value.trim().toLowerCase(); 
     const password = document.getElementById('password').value.trim();
-
 
     if (!validateInputs(email, password)) {
         return;
@@ -149,25 +170,6 @@ document.getElementById('loginForm').addEventListener('submit', function (event)
 
     loadDataFromLocalStorage();
 });
-
-const currentUser = data.CurrentUser;
-
-if (currentUser) {
-    console.log(currentUser);
-    switch (currentUser.Role) {
-        case "Admin":
-            window.location.assign("../html/AdminHome.html");
-            break;
-        case "Seller":
-            window.location.assign("../html/SellerProductDashboard.html");
-            break;
-        case "User":
-            window.location.assign("../html/homeMain.html");
-            break;
-        default:
-            console.error("Invalid role detected for the current user.");
-    }
-}
 
 function transferGuestCartToUserCart() {
     const guestCart = data.guestCart || [];

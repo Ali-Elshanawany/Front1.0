@@ -228,9 +228,52 @@ $('.dashboard').on("click", function () {
 
 
 
-    
-C
 
+}
+
+function setupLoginButton() {
+    const $loginButton = $('#login');
+    if (!$loginButton.length) {
+        console.error("Login button not found in the DOM.");
+        return;
+    }
+
+    
+    loadDataFromLocalStorage();
+
+    const currentUser = getCurrentUser();
+
+    if (currentUser && currentUser._id) {
+       
+        $loginButton
+            .text("Logout")
+            .off("click")
+            .on("click", confirmLogout); 
+    } 
+}
+
+
+function confirmLogout() {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to log out?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Logout",
+        cancelButtonText: "Cancel",
+    }).then(result => {
+        if (result.isConfirmed) {
+
+            //loadDataFromLocalStorage();  
+            data.CurrentUser = null;
+            saveDataInLocalStorage();  
+
+            console.log("Logged out. CurrentUser:", data.CurrentUser)
+           
+            setupLoginButton();
+location.assign("/html/login.html");
+        }
+    });
 }
 $(document).ready(function () {
     initializePage();
