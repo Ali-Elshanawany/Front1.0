@@ -132,7 +132,7 @@ export function AddAccounts(isUpdate, selecteduser) {
          Role: selecteduser.Role,
          CreatedAt: selecteduser.CreatedAt,
          TotalSales: role === "Seller" ? 0 : undefined,
-         orders:userType=="User" ? [] : undefined
+         orders:role=="User" ? [] : undefined
 
       }
       const index = data.Users.findIndex(u => u._id === selecteduser._id);

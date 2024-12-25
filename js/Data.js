@@ -1284,9 +1284,17 @@ export function decreaseTotalSales(items) {
 
 // * Receive Items and Increase Stocks of the products 
 export function increaseStock(items) {
+    loadDataFromLocalStorage();
+    console.log("Entered Increase Stock")
+    console.log(items)
     items.forEach(function (item) {
+
+        console.log("-----------------------------------------")
+        console.log(item)
+        console.log("-----------------------------------------")
+
         data.Products.forEach(function (p) {
-            if (p._id == item.ProductID)
+            if (p._id == item._id)
                 p.Stock += item.Quantity;
         });
 
