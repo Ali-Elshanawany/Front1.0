@@ -88,88 +88,118 @@ function setCurrentUser(user) {
 function encryptPassword(password) {
   return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
 }
+//* Start From Here 
 
-document.getElementById('loginForm').addEventListener('submit', function (event) {
-    event.preventDefault();
 
-    if (loginBlocked) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'Please wait...',
-            text: `You have been blocked from logging in. Please try again after ${30 - failedAttempts}s.`,
-            showConfirmButton: false,
-            timer: 30000 // 30 seconds
-        });
-        return;
-    }
-
-    const email = document.getElementById('email').value.trim().toLowerCase(); 
-    const password = document.getElementById('password').value.trim();
-
-    if (!validateInputs(email, password)) {
-        return;
-    }
-    const user = data.Users.find(user => user.Email.toLowerCase() === email);
-    if (user) {
-        if (encryptPassword(password) === user.Password) {
-            setCurrentUser(user);
-            transferGuestCartToUserCart();
-            getCurrentCart();
-            
-            Swal.fire({
-                icon: 'success',
-                title: 'Login Successful',
-                text: `Welcome back, ${user.Name}!`,
-                showConfirmButton: false,
-                timer: 2000
-            }).then(() => {
-                if (user.Role == "Seller") {
-                    window.location.assign("../html/SellerHome.html");
-                } else if (user.Role == "Admin") {
-                    window.location.assign("../html/AdminHome.html");
-                } else {
-                    window.location.href = 'homeMain.html';
-                }
-            });
-    
-            failedAttempts = 0;
-            passwordErrorMessage.textContent = '';
-        } else {
-
-            failedAttempts++;
-            console.log("Password does not match.");
-    
-            if (failedAttempts >= 3) {
-                loginBlocked = true;
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Login Failed',
-                    text: `Incorrect password. You are blocked for 30 seconds.`,
-                    showConfirmButton: false,
-                    timer: 30000
-                }).then(() => {
-                    startBlockTimer();
-                });
-            } else {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Invalid Password',
-                    text: `Incorrect password. Try again. Remaining attempts: ${3 - failedAttempts}`,
-                });
-            }
-        }
-    } else {
-
-        console.log("Email not registered.");
-        Swal.fire({
-            icon: 'error',
-            title: 'Email Not Registered',
-            text: 'The email you entered is not registered. Please sign up first.',
-        });
-    }
-
+window.addEventListener('load',function(){
     loadDataFromLocalStorage();
+    const currentUser = data.CurrentUser;
+
+    if (currentUser) {
+        console.log(currentUser);
+        switch (currentUser.Role) {
+            case "Admin":
+                window.location.assign("../html/AdminHome.html");
+                break;
+            case "Seller":
+                window.location.assign("../html/SellerHome.html");
+                break;
+            case "User":
+                window.location.assign("../html/homeMain.html");
+                break;
+            default:
+                console.error("Invalid role detected for the current user.");
+        }
+    }
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+        event.preventDefault();
+    
+        if (loginBlocked) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Please wait...',
+                text: `You have been blocked from logging in. Please try again after ${30 - failedAttempts}s.`,
+                showConfirmButton: false,
+                timer: 30000 // 30 seconds
+            });
+            return;
+        }
+    
+        const email = document.getElementById('email').value.trim().toLowerCase(); 
+        const password = document.getElementById('password').value.trim();
+    
+    
+        if (!validateInputs(email, password)) {
+            return;
+        }
+        const user = data.Users.find(user => user.Email.toLowerCase() === email);
+        if (user) {
+            if (encryptPassword(password) === user.Password) {
+                setCurrentUser(user);
+                transferGuestCartToUserCart();
+                getCurrentCart();
+                
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Login Successful',
+                    text: `Welcome back, ${user.Name}!`,
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(() => {
+                    if (user.Role == "Seller") {
+                        window.location.assign("../html/SellerHome.html");
+                    } else if (user.Role == "Admin") {
+                        window.location.assign("../html/AdminHome.html");
+                    } else {
+                        window.location.href = 'homeMain.html';
+                    }
+                });
+        
+                failedAttempts = 0;
+                passwordErrorMessage.textContent = '';
+            } else {
+    
+                failedAttempts++;
+                console.log("Password does not match.");
+        
+                if (failedAttempts >= 3) {
+                    loginBlocked = true;
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Login Failed',
+                        text: `Incorrect password. You are blocked for 30 seconds.`,
+                        showConfirmButton: false,
+                        timer: 30000
+                    }).then(() => {
+                        startBlockTimer();
+                    });
+                } else {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Invalid Password',
+                        text: `Incorrect password. Try again. Remaining attempts: ${3 - failedAttempts}`,
+                    });
+                }
+            }
+        } else {
+    
+            console.log("Email not registered.");
+            Swal.fire({
+                icon: 'error',
+                title: 'Email Not Registered',
+                text: 'The email you entered is not registered. Please sign up first.',
+            });
+        }
+    
+        loadDataFromLocalStorage();
+    });
+
 });
+
+
+
+
+
 
 function transferGuestCartToUserCart() {
     const guestCart = data.guestCart || [];
