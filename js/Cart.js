@@ -145,6 +145,8 @@ window.addEventListener("load", function () {
             }).then(() => {
                 usercart = getCurrentCart();
                 cart = usercart.map((item) => ({
+                    _id: item._id,
+                    name: item.Name,
                     product: getProductById(item._id),
                     num: item.Quantity,
                 }));
@@ -211,4 +213,5 @@ window.addEventListener("load", function () {
             });
         }
     });
+    
 });

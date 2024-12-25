@@ -374,5 +374,39 @@ window.addEventListener("load", function () {
             }
     });
 
+
+
+    ///////////////////////////////////////////////////////////////////
+
+
+
+
+    // ...existing code...
+
+const apiUrl = 'http://ip-api.com/json/';
+
+// Function to fetch data from IP-API
+function fetchLocationData() {
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            console.log('IP-API Data:', data);
+        }).catch(error => {
+            console.error('Error fetching data from IP-API:', error);
+        });
+}
+
+// Call the function to fetch and log the data
+fetchLocationData();
+
+// ...existing code...
+    
+    
+
+
+
+
+
+
     
   });
