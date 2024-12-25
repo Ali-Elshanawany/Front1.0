@@ -1,4 +1,4 @@
-import { addUser, saveDataInLocalStorage, loadDataFromLocalStorage, isAuthorized, data } from './Data.js';
+import { addUser, saveDataInLocalStorage, loadDataFromLocalStorage,isAuthorized, data, SetUserById, getCurrentUser } from './Data.js';
 
 loadDataFromLocalStorage();
 data.CurrentUser = null;
@@ -17,6 +17,8 @@ function isEmailRegistered(email) {
 function encryptPassword(password) {
   return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); // استخدم نفس التنسيق دائمًا
 }
+
+
 
 document.getElementById('registerForm').addEventListener('submit', function (event) {
   event.preventDefault();
@@ -141,30 +143,70 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
 
   addUser(newUser);
 
-  setCurrentUser(newUser);
-  //saveDataInLocalStorage();
-  console.log("User added successfully!");
-  console.log(newUser);
+   setCurrentUser(newUser);
+   transferGuestCartToUserCart()
+   //saveDataInLocalStorage();
+   console.log("User added successfully!");
+   console.log(newUser);
 
   Swal.fire('Success', 'User registered successfully!', 'success').then(() => {
     console.log('Redirecting to login page...');
 
-    if (newUser) {
-      console.log(newUser);
-      switch (newUser.Role) {
+if(getCurrentUser.Role=="Seller"){
+   window.location.href="/html/SellerHome.html"
+}else if(getCurrentUser.Role =="User")
+{
+   window.location.href = 'homeMain.html';
+}
+      
+//     if (newUser) {
+//       console.log(newUser);
+//       switch (newUser.Role) {
 
-          case "Seller":
-              window.location.assign("../html/SellerProductDashboard.html");
-              break;
-          case "User":
-              window.location.assign("../html/homeMain.html");
-              break;
-          default:
-              console.error("Invalid role detected for the current user.");
-      }
-  }
+//           case "Seller":
+//               window.location.assign("../html/SellerProductDashboard.html");
+//               break;
+//           case "User":
+//               window.location.assign("../html/homeMain.html");
+//               break;
+//           default:
+//               console.error("Invalid role detected for the current user.");
+//       }
+//   }
   });
 });
+
+
+function transferGuestCartToUserCart() {
+   const guestCart = data.guestCart || [];
+   if (guestCart.length > 0) {
+       const currentUser = data.CurrentUser;
+       if (!currentUser) {
+           console.error("No user is logged in to transfer the cart.");
+           return;
+       }
+
+       const userCart = currentUser.cart || [];
+       guestCart.forEach(item => {
+           const existingItem = userCart.find(uItem => uItem._id === item._id);
+           if (existingItem) {
+               existingItem.Quantity += item.Quantity;
+           } else {
+               userCart.push(item);
+           }
+       });
+
+       currentUser.cart = userCart;
+       data.guestCart = [];
+
+       SetUserById(currentUser);
+       saveDataInLocalStorage();
+
+       console.log("Guest cart transferred to user cart successfully.");
+   } else {
+       console.log("Guest cart is empty. No items to transfer.");
+   }
+}
 
 const togglePassword = document.getElementById('togglePassword');
 const passwordField = document.getElementById('password');

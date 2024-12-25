@@ -207,7 +207,7 @@ function validateProfileFields(username, email, phone, city, street) {
 }
 
 function encryptPassword(password) {
-    return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); // استخدم نفس التنسيق دائمًا
+    return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
   }
   
 async function updatePassword(event) {

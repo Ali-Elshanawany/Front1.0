@@ -1,5 +1,5 @@
-import { data, loadDataFromLocalStorage } from './Data.js';
-import { addToCart } from './home.js';
+import { data,loadDataFromLocalStorage } from "../Data.js";
+
 
 $(document).ready(function () {
 
@@ -19,9 +19,9 @@ $(document).ready(function () {
 
     let aref = document.createElement('a');
     aref.href = '#';
-    aref.classList.add('btn-addToCart', 'btn', 'btn-warning');
+   
     aref.setAttribute('data-product-id', productId);
-    aref.textContent = 'Add to Cart';
+   
 
     let div = document.getElementById('arefDiv');
     div.appendChild(aref);
@@ -59,21 +59,18 @@ $(document).ready(function () {
         $('#product-details').html('<p>Product not found.</p>');
     }
 
-    $(document).off('click', '.btn-addToCart');
-    $(document).on('click', '.btn-addToCart', function () {
-
-        addToCart(productID);
-    });
+  
+    
 
 });
 
 
 
 $('.goToHome').on('click', function () {
-    window.location.href = "homeMain.html";
+    window.location.href = "/html/AdminHome.html";
 });
 
-$('.homeNav').on("click",function(){ window.location.href = "homeMain.html";})
-$('.productNav').on("click",function(){window.location.href="homeMain.html#product"})
-$('.contactNav').on("click",function(){window.location.href="homeMain.html#contact"})
-$('.aboutNav').on("click",function(){window.location.href="homeMain.html#about"})
+$('.homeNav').on("click",function(){ window.location.href = "/html/AdminHome.html";})
+$('.productNav').on("click",function(){window.location.href="/html/AdminHome.html#product"})
+$('.contactNav').on("click",function(){window.location.href="/html/AdminHome.html#contact"})
+$('.aboutNav').on("click",function(){window.location.href="/html/AdminHome.html#about"})
