@@ -17,6 +17,8 @@ isAuthorized();
 
 let usercart = getCurrentCart();
 let cart = usercart.map((item) => ({
+    _id: item._id,
+    name: item.Name,
     product: getProductById(item._id),
     num: item.Quantity,
 }));
@@ -41,22 +43,34 @@ window.addEventListener("load", function () {
         }
 
         let outOfStockFlag = false;
+        let outOfStockProducts = [];
+
+        let reducedStockFlag = false;
+        let reducedStockProducts = [];
+
+        let removedProductsFlag = false;
+        let removedProducts = [];
         let total = 0;
 
         cart.forEach((item) => {
             if (!item.product) {
-                console.error(`Product with ID ${item._id} not found.`);
+                DeleteFromCart(item._id);
+                removedProductsFlag = true;
+                removedProducts.push(item.name);
+                console.error(`Product with ID ${item._id} not found !!!!!!!!!!!`);
                 return;
             }
 
             if (item.product.Stock === 0) {
                 DeleteFromCart(item.product._id);
                 outOfStockFlag = true;
+                outOfStockProducts.push(item.product.Name);
             } else {
                 if (item.num > item.product.Stock) {
                     item.num = item.product.Stock;
                     changeCartItemCount(item.product._id, item.product.Stock);
-                    outOfStockFlag = true;
+                    reducedStockFlag = true;
+                    reducedStockProducts.push(item.product.Name);
                 }
 
                 total += item.product.Price * item.num;
@@ -102,11 +116,40 @@ window.addEventListener("load", function () {
             }
         });
 
-        if (outOfStockFlag) {
+        if (outOfStockFlag || reducedStockFlag || removedProductsFlag) {
+            let message = '';
+            if (outOfStockFlag) {
+                message += `The Following Items Became Out Of Stock And Were Removed From Your Cart: ${outOfStockProducts.join(', ')}.<br><br>`;
+            }
+            if (reducedStockFlag) {
+                message += `The Stock For The Following Items Were Reduced And Your Cart Quantities Were Adjusted: ${reducedStockProducts.join(', ')}.<br><br>`;
+            }
+            if (removedProductsFlag) {
+                message += `The Following Items Were Removed From The Website And Were Removed From Your Cart: ${removedProducts.join(', ')}.<br>`;
+            }
+            let title = '';
+            if (outOfStockFlag && reducedStockFlag && removedProductsFlag) {
+                title = "Cart Adjusted";
+            } else if (outOfStockFlag) {
+                title = "Out of Stock";
+            } else if (reducedStockFlag) {
+                title = "Stock Reduced";
+            } else if (removedProductsFlag) {
+                title = "Removed from Website";
+            }
+
             Swal.fire({
-                icon: "error",
-                title: "Oops...",
-                text: "Sorry, some changes have happened to the seller's stock so we updated your cart to go on with the change",
+                icon: outOfStockFlag ? "error" : "warning",
+                title: title,
+                html: message.trim(),
+            }).then(() => {
+                usercart = getCurrentCart();
+                cart = usercart.map((item) => ({
+                    product: getProductById(item._id),
+                    num: item.Quantity,
+                }));
+
+                generateCards();
             });
         }
 

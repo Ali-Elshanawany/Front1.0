@@ -72,3 +72,8 @@ $(document).ready(function () {
 $('.goToHome').on('click', function () {
     window.location.href = "homeMain.html";
 });
+
+$('.homeNav').on("click",function(){ window.location.href = "homeMain.html";})
+$('.productNav').on("click",function(){window.location.href="homeMain.html#product"})
+$('.contactNav').on("click",function(){window.location.href="homeMain.html#contact"})
+$('.aboutNav').on("click",function(){window.location.href="homeMain.html#about"})

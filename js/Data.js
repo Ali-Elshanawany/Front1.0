@@ -1,18 +1,6 @@
 export const data = {
     guestCart: [],
-    CurrentUser: {
-        "_id": "User1",
-        "Name": "User1",
-        "Email": "User1@User.com",
-        "Phone": "01011145011",
-        "City": "cairo",
-        "Street": "El-Rehab",
-        "Password": "ZT/N5YlatVuZmyKEzit2LzWOM1FklGr9BLurr98mDYk=",
-        "Role": "User",
-        "CreatedAt": "2024-12-23T14:38:05.385Z",
-        "cart": [],
-        "orders": []
-    },
+    CurrentUser:null,
        
     Users: [
     {
@@ -140,7 +128,7 @@ export const data = {
             "Name": "Chair1",
             "Description": "chair is crafted from high-quality materials like solid wood, metal, or premium upholstery, ensuring lasting comfort and timeless appeal. With a variety of designs ranging from classic to contemporary, our chairs are perfect for enhancing your living spaces, workspaces, and dining areas.",
             "Price": 500,
-            "Stock": 50,
+            "Stock": 4,
             "SellerID": "Seller1",
             "CategoryID": "cat1",
             "Images": [

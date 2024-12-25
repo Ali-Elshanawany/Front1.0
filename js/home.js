@@ -15,8 +15,18 @@ export function addToCart(productID) {
         return;
     }
 
+    // Check if the product is in stock
+    if (product.Stock <= 0) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Out of Stock',
+            text: 'This product is currently out of stock.',
+        });
+        return;
+    }
+
     // Check if the user is logged in
-    let currentUser = (data.CurrentUser && data.CurrentUser._id ) ? data.CurrentUser : null;
+    let currentUser = (data.CurrentUser && data.CurrentUser._id) ? data.CurrentUser : null;
 
     if (currentUser) {
         // User is logged in: Add to their cart
@@ -25,13 +35,20 @@ export function addToCart(productID) {
 
         let existingItem = userCart.find(item => item._id === productID);
         if (existingItem) {
+            if (existingItem.Quantity >= product.Stock) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Not Enough Stock',
+                    text: 'There is not enough stock to add more of this product to your cart.',
+                });
+                return;
+            }
             existingItem.Quantity += 1;
         } else {
-            userCart.push({ _id: productID, Quantity: 1 });
+            userCart.push({ _id: productID, Quantity: 1 , Name: product.Name });
         }
 
         currentUser.cart = userCart;
-
 
         SetUserById(currentUser);
         saveDataInLocalStorage();
@@ -49,9 +66,17 @@ export function addToCart(productID) {
 
         let existingItem = guestCart.find(item => item._id === productID);
         if (existingItem) {
+            if (existingItem.Quantity >= product.Stock) {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Not Enough Stock',
+                    text: 'There is not enough stock to add more of this product to your cart.',
+                });
+                return;
+            }
             existingItem.Quantity += 1;
         } else {
-            guestCart.push({ _id: productID, Quantity: 1 });
+            guestCart.push({ _id: productID, Quantity: 1 , Name: product.Name });
         }
 
         localStorage.setItem('guestCart', JSON.stringify(guestCart));
@@ -82,18 +107,17 @@ function initializePage() {
         }
     });
 
+// smooth navbar
 
-
-
-    // Smooth scrolling for sections
     document.querySelectorAll('.navbar a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href').slice(1);
+            e.preventDefault(); 
+            const targetId = this.getAttribute('href').slice(1); 
             const targetElement = document.getElementById(targetId);
+    
             if (targetElement) {
-                const offset = document.querySelector('.navbar-main').offsetHeight; // Adjust for navbar height
-                const position = targetElement.offsetTop - offset;
+                const offset = document.querySelector('.navbar').offsetHeight; //  navbar height
+                const position = targetElement.offsetTop - offset; // Position for scroll
                 window.scrollTo({
                     top: position,
                     behavior: 'smooth'
@@ -101,15 +125,23 @@ function initializePage() {
             }
         });
     });
-    console.log("CurrentUser ID:", data.CurrentUser);
+    
+
+   
+    //console.log("CurrentUser ID:", data.CurrentUser);
 
 
     // profile 
     $(".profileIcon").on("click", function () {
 
         if (!data.CurrentUser) {
-            window.location.href = "homeMain.html"
-            return;
+            Swal.fire({
+                title: "Can not Enter Your Profile",
+                text: "You Should Make Login First",
+                icon: "warning",
+           
+            
+            }).then(()=>{ location.assign("login.html")})
         }
 
         // check the role
@@ -342,25 +374,22 @@ function confirmLogout() {
         cancelButtonText: "Cancel",
     }).then(result => {
         if (result.isConfirmed) {
-            console.log("Logging out...");
+          
+            //loadDataFromLocalStorage();  
 
-            
-            loadDataFromLocalStorage();  // Ensure data is loaded from localStorage
-
-            // Set CurrentUser to null and save it in localStorage and memory
+           
             data.CurrentUser = null;
             saveDataInLocalStorage();  // Save updated data
 
-            console.log("Logged out. CurrentUser:", data.CurrentUser);
-
-            // Update login button UI to show login
+            console.log("Logged out. CurrentUser:", data.CurrentUser)
+           
             setupLoginButton();
 
         }
     });
 }
 
-// Run the login button setup function on page load
+
 setupLoginButton();
 
 }
