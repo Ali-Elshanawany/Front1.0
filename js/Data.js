@@ -1211,7 +1211,7 @@ export function getSellerSalesByMonth() {
             console.log(x);
             console.log("-------------------------");
             console.log(i.SellerId == data.CurrentUser?._id);
-            if (i.SellerID == data.CurrentUser?._id) {
+            if (i.SellerID == data.CurrentUser?._id && x.Status!="Canceled") {
                 monthlySalesArr[new Date(x.CreatedAt).getMonth()] += (i.Price * i.Quantity)
             }
         })
@@ -1320,6 +1320,10 @@ export function DeleteOrders(userId) {
 // * Send Seller Id To Delete All of his Products This Happen When Deleting Seller Accounts
 export function DeleteProducts(sellerId) {
     data.Products = data.Products.filter(product => product.SellerID !== sellerId);
+    saveDataInLocalStorage();
+}
+export function DeleteProductsById(productId) {
+    data.Products = data.Products.filter(product => product._id !==productId);
     saveDataInLocalStorage();
 }
 

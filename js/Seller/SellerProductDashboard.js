@@ -298,7 +298,7 @@ function ChangCard() {
     const NumofPendingProductssCard = document.getElementById("PendingProducts");
     const TotalSalesCard = document.getElementById("TotalSalesCard");
 
-    if (data.Orders.filter(o => o.Items.some(i => i.SellerId == data.CurrentUser._id)).length) {
+    if (data.Orders.filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id)).length) {
         NumofOrdersCard.innerText = data.Orders.filter(o => o.Items.some(i => i.SellerID == data.CurrentUser._id)).length
 
     } else {
