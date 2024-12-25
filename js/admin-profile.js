@@ -78,7 +78,7 @@ function confirmLogout() {
 function redirectToHome() {
     window.location.href = "homeMain.html";
 }function loadOverview() {
-    admin = data.Users.find(user => user.Role === 'Admin');
+    admin = getCurrentUser();
     if (!admin) {
         console.error("No admin user found.");
         return;
