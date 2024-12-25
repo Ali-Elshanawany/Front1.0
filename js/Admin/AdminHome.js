@@ -1,4 +1,4 @@
-import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser,getUsers}
+import {data,loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser,getUsers}
     from '../Data.js';
 
 function initializePage() {
@@ -48,7 +48,7 @@ function initializePage() {
             
             }).then(()=>{ location.assign("login.html")})
         }else{
-            window.location.href = "../html/sellerprofile.html";
+            window.location.href = "/html/adminprofile.html";
 
         }
 
@@ -57,13 +57,6 @@ function initializePage() {
 
     })
 
-
-$('.dashboard').on("click", function () {
-        window.location.href = "/html/SellerProductDashboard.html";
-
-    })
-
-       
 
 
     // Function to display products
@@ -153,15 +146,20 @@ $('.dashboard').on("click", function () {
     displayProducts(data.Products);
 
 
-   
+   $('.dashboard').on("click",function(){window.location.href="./AccountsDataTable.html"})
 
     // product details link
     $(document).on('click', '.view-details', function (e) {
         e.preventDefault();
         let productID = $(this).data('product-id');
         console.log("Clicked product ID:", productID);
-        window.location.href = `sellerProductDetails.html?productID=${productID}`;
+        window.location.href = `AdminProductDetails.html?productID=${productID}`;
     });
+
+
+
+
+
 
     //  comment 
     $('#AddTicketButton').on("click", function (e) {
@@ -199,36 +197,10 @@ $('.dashboard').on("click", function () {
         }
     });
 
-    // Create the best-sellers carousel
-    let bestSellers = data.Products;
-    bestSellers = bestSellers.sort((a, b) => b.NumOfSales - a.NumOfSales).slice(0, 5);
-
-    let bestSellersSection = $('.best-sellers-section');
-    let best = `
-        <input type="radio" name="position"  />
-        <input type="radio" name="position" />
-        <input type="radio" name="position" checked />
-        <input type="radio" name="position" />
-        <input type="radio" name="position" />
-        <main id="carousel">
-    `;
-
-    bestSellers.forEach((product) => {
-        product.Images.forEach((image) => {
-            best += `
-                <div class="item"><img src="${image}" alt="${product.Name}"></div>
-            `;
-        });
-    });
-
-    best += `</main>`;
+   
+  
 
 
-    bestSellersSection.append(best);
-
-
-
-    
 function setupLoginButton() {
     const $loginButton = $('#login');
     if (!$loginButton.length) {
@@ -247,7 +219,15 @@ function setupLoginButton() {
             .text("Logout")
             .off("click")
             .on("click", confirmLogout); 
-    } 
+    } else {
+        //console.log("User is not logged in.");
+        $loginButton
+            .text("Login")
+            .off("click")
+            .on("click", () => {
+                window.location.href = "../html/login.html";  
+            });
+    }
 }
 
 
@@ -261,7 +241,7 @@ function confirmLogout() {
         cancelButtonText: "Cancel",
     }).then(result => {
         if (result.isConfirmed) {
-
+          
             //loadDataFromLocalStorage();  
             data.CurrentUser = null;
             saveDataInLocalStorage();  
@@ -269,7 +249,7 @@ function confirmLogout() {
             console.log("Logged out. CurrentUser:", data.CurrentUser)
            
             setupLoginButton();
-location.assign("/html/login.html");
+
         }
     });
 }

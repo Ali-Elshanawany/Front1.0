@@ -187,7 +187,6 @@ function initializePage() {
                             <div class="label-top shadow-sm">${(product.Stock > 0) ? "in stock" : "out stock"}</div>
                             <div class="card-body">
                                 <h5 class="card-title">${product.Name}</h5>
-                                <p class="card-text">${product.Description}</p>
                                 <div class="clearfix mb-3 d-flex justify-content-between">
                                     <span class="float-start badge rounded-pill bg-success">${product.Price.toFixed(2)}€</span>
                                 </div>

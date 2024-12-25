@@ -261,5 +261,5 @@ function confirmLogout() {
 
 
 function redirectToHome() {
-    window.location.href = "homeMain.html";
+    window.location.href = "/html/login.html";
 }

@@ -14,9 +14,8 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Baloo+Paaji+2:wght@400..800&family=Protest+Revolution&display=swap"
         rel="stylesheet">
-        <link rel="stylesheet" href="../style/seller.css">
+    <link rel="stylesheet" href="../style/seller.css">
 </head>
-
 <body>
     <!-- First Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top text-dark navbar-main origin bg-light ">
@@ -41,24 +40,21 @@
                         <a class="nav-link category-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#" id="login">Login</a>
+                        <a class="nav-link" href="#" id="login">Logout</a>
                     </li>
                     <li class="nav-item">
                         <a class=" dashboard nav-link category-link" href="./SellerProductDashboard.html">Dashboard</a>
                     </li>
                 </ul>
                 <!-- Icons -->
-                <a href="#"><i class="  profileIcon fa-solid fa-user fa-xl icon-spacing m-2"
-                        title="Profile"></a></i>
-              
+                <a href="#"><i class="  profileIcon fa-solid fa-user fa-xl icon-spacing m-2" title="Profile"></a></i>
+
             </div>
         </div>
     </nav>
 
 
-    
-
-
+<!--stickey-->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-navbar bg-secondary sticky-navbar .show ">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -104,7 +100,7 @@
         </div>
     </nav>
 
-<!--start home-->
+    <!--start home-->
     <section class="home position-relative" id="home">
         <!-- Text Overlay -->
         <div class="carousel-overlay text-center text-light position-absolute top-50 start-50 translate-middle">
@@ -170,24 +166,19 @@
     <h1 class=" line text-center p-3">BEST SELLER</h1>
     <section class="best-sellers-section my-5 container w-50 text-center">
     </section>
- <!-- our product section-->
- <section class="product" id="product">
-    <h1 class="pro"> Products</h1>
- 
+    <!-- our product section-->
+    <section class="product" id="product">
+        <h1 class="pro"> Products</h1>
+        <main>
+            <div class="container-fluid bg-transparent my-4 p-3">
+                <div id="products-container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2">
 
-<main>
-    <div class="container-fluid bg-transparent my-4 p-3">
-        <div id="products-container" class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-2">
-           
-        </div>
-    </div>
-</main>
+                </div>
+            </div>
+        </main>
+    </section>
 
-
-
-</section>
-
-<!--end product section-->
+    <!--end product section-->
 
     <!--about section-->
     <h1 class="pro">ABOUT</h1>
@@ -215,7 +206,7 @@
     <section id="contact" class="contact container d-flex justify-content-between align-items-center">
         <div class="info p-3 m-3 bg-light">
             <h4> YOUR COMMENT HERE</h4>
-            <div >
+            <div>
                 <textarea name="comment" id="textarea" cols="30" rows="10"></textarea>
                 <button type="button" id="AddTicketButton" value="Send" class="submit">Save</button>
                 <!-- <button id="AddTicket" value="Send" class="submit"> -->
@@ -239,14 +230,20 @@
                     <div class="col-11">
                         <div class="row">
                             <div class="col-xl-8 col-md-3 col-sm-4 col-12 my-auto mx-auto a">
-                               <img src="../assets/logo.png" alt="logo" width="70px" height="70">
+                                <img src="../assets/logo.png" alt="logo" width="70px" height="70">
                             </div>
                             <div class="col-xl-2 col-md-4 col-sm-4 col-12">
                                 <h6 class="mb-3 mb-lg-4 bold-text"><b>MENU</b></h6>
                                 <ul class="list-unstyled">
-                                   <a href="#home" ><li>Home</li></a>
-                                    <a href="#about"><li>About</li></a>
-                                   <a href="profile.html" ><li>Portfolio</li></a>
+                                    <a href="#home">
+                                        <li>Home</li>
+                                    </a>
+                                    <a href="#about">
+                                        <li>About</li>
+                                    </a>
+                                    <a href="profile.html">
+                                        <li>Portfolio</li>
+                                    </a>
                                 </ul>
                             </div>
                             <div class="col-xl-2 col-md-4 col-sm-4 col-12">
@@ -256,9 +253,12 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="col-xl-8 col-md-4 col-sm-4 col-auto my-md-0 mt-7 order-sm-1 order-3 align-self-end">
+                            <div
+                                class="col-xl-8 col-md-4 col-sm-4 col-auto my-md-0 mt-7 order-sm-1 order-3 align-self-end">
                                 <p class="social text-muted mb-0 pb-0 bold-text">
-                                    <i class="fa-brands fa-facebook"></i> <span class="mx-2"><i class="fa-brands fa-x-twitter"></i></span> <span class="mx-2"><i class="fa-brands fa-instagram"></i></span>
+                                    <i class="fa-brands fa-facebook"></i> <span class="mx-2"><i
+                                            class="fa-brands fa-x-twitter"></i></span> <span class="mx-2"><i
+                                            class="fa-brands fa-instagram"></i></span>
                                 </p>
                                 <small class="rights"><span>&#174;</span>All Rights Reserved.</small>
                             </div>
@@ -276,20 +276,21 @@
             </footer>
         </div>
     </section>
-    
+
     <!--end footer-->
     <!-- Bootstrap JS -->
     <script src="../bootstrapp/bootstrap.bundle.min.js"></script>
-     
+
     <script src="../jquary/jquery-3.7.1.min.js"></script>
     <script src="../jquary/jquery-3.7.1.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>   
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <!-- Add SweetAlert JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<!-- <script src="../js/home.js" type="module"></script> -->
-  <script src="../js/Seller/sellerHome.js" type="module"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <!-- <script src="../js/home.js" type="module"></script> -->
+    <script src="../js/Seller/sellerHome.js" type="module"></script>
 </body>
 
 </html>
