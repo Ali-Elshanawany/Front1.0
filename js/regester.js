@@ -1,4 +1,4 @@
-import { addUser, saveDataInLocalStorage, loadDataFromLocalStorage,isAuthorized, data, SetUserById } from './Data.js';
+import { addUser, saveDataInLocalStorage, loadDataFromLocalStorage,isAuthorized, data, SetUserById, getCurrentUser } from './Data.js';
 
 loadDataFromLocalStorage();
 data.CurrentUser=null;
@@ -154,6 +154,10 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
    Swal.fire('Success', 'User registered successfully!', 'success').then(() => {
       console.log('Redirecting to login page...');
 
+if(getCurrentUser.Role=="Seller"){
+   window.location.href="/html/SellerHome.html"
+}else if(getCurrentUser.Role =="User")
+      
       window.location.href = 'homeMain.html';
    });
 });
