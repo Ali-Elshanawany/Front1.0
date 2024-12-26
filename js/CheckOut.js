@@ -376,31 +376,61 @@ window.addEventListener("load", function () {
 
 
 
-    ///////////////////////////////////////////////////////////////////
+    function populateShippingDetails() {
+        const user = getCurrentUser();
+        document.getElementById('streetAddress').value = user.Street || '';
+        document.getElementById('additionalPhoneNumber').value = user.Phone || '';
+        document.getElementById('City').value = user.City || '';
+    }
+    
+    populateShippingDetails();
 
 
 
+    //////////////////////////////// MAP ///////////////////////////////////
 
-    // ...existing code...
+
 
 const apiUrl = 'http://ip-api.com/json/';
 
-// Function to fetch data from IP-API
+// fetching data from IP-API and display it on a map
 function fetchLocationData() {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             console.log('IP-API Data:', data);
-        }).catch(error => {
-            console.error('Error fetching data from IP-API:', error);
+            const { lat, lon, city, regionName } = data;
+
+           
+            const map = L.map('map').setView([lat, lon], 13);
+
+            
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            
+            const marker = L.marker([lat, lon]).addTo(map)
+                .bindPopup('قفشتك يا معلم و هجيبك')
+                .openPopup();
+
+            // getting values from object from response to input fields
+            map.on('click', function() {
+
+                // updateing form fields with data from IP-API
+                document.getElementById('City').value = city;
+                document.getElementById('Governerate').value = regionName;
+                document.getElementById('Zip').value = '33551';
+
+                
+            });
+        })
+        .catch(error => {
+            console.error('Erroorrrr !!!');
         });
 }
 
-// Call the function to fetch and log the data
 fetchLocationData();
-
-// ...existing code...
-    
     
 
 
@@ -409,4 +439,4 @@ fetchLocationData();
 
 
     
-  });
+});
