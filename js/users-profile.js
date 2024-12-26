@@ -2,6 +2,7 @@
 import { getUsers, saveDataInLocalStorage, loadDataFromLocalStorage, data, isAuthorized, getCurrentUser } from './Data.js';
 
 document.addEventListener("DOMContentLoaded", function () {
+  isAuthorized()
   loadDataFromLocalStorage();
   loadOverview(); 
   loadOrders(); 

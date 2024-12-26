@@ -1,7 +1,7 @@
-import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser}
+import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser, isAuthorized}
     from './Data.js';
 
-
+isAuthorized();
 // Add to Cart Function 
 export function addToCart(productID) {
     let product = data.Products.find((p) => p._id === productID);

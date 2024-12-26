@@ -1,7 +1,8 @@
-import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById, getCurrentUser, getUsers }
+import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById, getCurrentUser, getUsers, isAuthorized }
     from '../Data.js';
 
 function initializePage() {
+    isAuthorized()
     loadDataFromLocalStorage();
     saveDataInLocalStorage();
 
