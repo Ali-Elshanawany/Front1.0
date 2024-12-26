@@ -178,25 +178,23 @@ function initializePage() {
         products.forEach(product => {
             if (product.Approved) {
                 let productCard = `
-                
-                    <div class=" ">
-                        <div class="card h-100 shadow-sm product-item">
+                    <div class="col-md-4 col-sm-6 mb-4">
+                        <div class="card h-100 shadow-sm product-item d-flex flex-column">
                             <a href="productDetails.html" class="view-details" data-product-id="${product._id}">
                                 <img src="${product.Images[0]}" data-product-id="${product._id}" class="card-img-top product-image" alt="${product.Name}">
                             </a>
-                            <div class="label-top shadow-sm">${(product.Stock > 0) ? "in stock" : "out stock"}</div>
-                            <div class="card-body">
-                                <h5 class="card-title">${product.Name}</h5>
-                                <div class="clearfix mb-3 d-flex justify-content-between">
-                                    <span class="float-start badge rounded-pill bg-success">${product.Price.toFixed(2)}€</span>
+                            <div class="label-top shadow-sm" style="background-color: ${(product.Stock > 0) ? 'green' : 'red'};">${(product.Stock > 0) ? "in stock" : "out stock"}</div>
+                            <div class="card-body d-flex flex-column">
+                                <h5 class="card-title text-center">${product.Name}</h5>
+                                <div class="clearfix mb-3 d-flex justify-content-between" >
+                                    <span class="float-start badge rounded-pill" style="background-color: #B88E2F;">${product.Price.toFixed(2)}€</span>
                                 </div>
-                                <div class="text-center my-4">
-                                    <a href="#" class="btn-addToCart btn btn-warning" data-product-id="${product._id}">Add to Cart</a>
+                                <div class="mt-auto text-center">
+                                    <a href="#" class="btn-addToCart btn btn-warning w-100" data-product-id="${product._id}" style="background-color: #B88E2F; color: white;">Add to Cart</a>
                                 </div>
                             </div>
                         </div>
                     </div>
-                   
                 `;
 
                 $productSection.append(productCard);

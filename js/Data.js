@@ -1202,10 +1202,10 @@ export function getSellerSalesByMonth() {
     return monthlySalesArr;
 }
 
-const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page', 'products&orders.html'];
-const UserPages = ['Cart.html' , 'CheckOut.html'];
-const SellerPages = ["SellerProductDashboard.html","OrdersDataTable.html"];
-const GuestPages = ['ProductDetails','register.html' , 'Cart.html'];
+const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'products&orders.html' , 'AdminHome.html' , 'adminprofile.html'];
+const UserPages = ['Cart.html' , 'CheckOut.html' , 'homeMain.html' , 'users-profile.html'];
+const SellerPages = ["SellerProductDashboard.html","OrdersDataTable.html" , 'SellerHome.html' , 'sellerprofile.html'];
+const GuestPages = ['ProductDetails','register.html' , 'Cart.html' , 'homeMain.html' , 'login.html'];
 
 
 
