@@ -1,6 +1,29 @@
-import { addUser, saveDataInLocalStorage, loadDataFromLocalStorage,isAuthorized, data, SetUserById, getCurrentUser } from './Data.js';
+import { addUser, saveDataInLocalStorage, loadDataFromLocalStorage, isAuthorized, data, SetUserById, getCurrentUser } from './Data.js';
 
-loadDataFromLocalStorage();
+function load() {
+    loadDataFromLocalStorage();
+    const currentUser = data.CurrentUser;
+
+    if (currentUser) {
+        console.log(currentUser);
+        switch (currentUser.Role) {
+            case "Admin":
+                window.location.assign("../html/AdminHome.html");
+                break;
+            case "Seller":
+                window.location.assign("../html/SellerProductDashboard.html");
+                break;
+            case "User":
+                window.location.assign("../html/homeMain.html");
+                break;
+            default:
+                console.error("Invalid role detected for the current user.");
+        }
+    }
+}
+
+document.addEventListener('DOMContentLoaded', load);
+
 data.CurrentUser = null;
 
 if (data.CurrentUser) {
@@ -15,10 +38,8 @@ function isEmailRegistered(email) {
 }
 
 function encryptPassword(password) {
-  return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); // استخدم نفس التنسيق دائمًا
+  return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
 }
-
-
 
 document.getElementById('registerForm').addEventListener('submit', function (event) {
   event.preventDefault();
@@ -152,27 +173,14 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
   Swal.fire('Success', 'User registered successfully!', 'success').then(() => {
     console.log('Redirecting to login page...');
 
-if(getCurrentUser.Role=="Seller"){
-   window.location.href="/html/SellerHome.html"
-}else if(getCurrentUser.Role =="User")
-{
-   window.location.href = 'homeMain.html';
-}
-      
-//     if (newUser) {
-//       console.log(newUser);
-//       switch (newUser.Role) {
+    const currentUser = getCurrentUser();
+    console.log('Current User:', currentUser);
 
-//           case "Seller":
-//               window.location.assign("../html/SellerProductDashboard.html");
-//               break;
-//           case "User":
-//               window.location.assign("../html/homeMain.html");
-//               break;
-//           default:
-//               console.error("Invalid role detected for the current user.");
-//       }
-//   }
+    if (currentUser.Role === "Seller") {
+        window.location.href = "/html/SellerHome.html";
+    } else if (currentUser.Role === "User") {
+        window.location.href = 'homeMain.html';
+    }
   });
 });
 

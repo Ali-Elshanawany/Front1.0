@@ -1,5 +1,8 @@
 import { getUsers, saveDataInLocalStorage, loadDataFromLocalStorage, data, isAuthorized, getCurrentUser } from './Data.js';
 
+function encryptPassword(password) {
+    return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     loadDataFromLocalStorage(); 
@@ -256,71 +259,54 @@ function validateProfileFields(username, email, phone, city, street) {
     return true;
 }
 
-function encryptPassword(password) {
-  return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
-}
 function updatePassword(event) {
-  event.preventDefault();
+    event.preventDefault();
 
-  const currentUser = getCurrentUser();
-  if (!currentUser) {
-    Swal.fire("Error!", "Current user not found.", "error");
-    return;
-  }
+    const Seller = getCurrentUser();
+    if (!Seller) {
+        Swal.fire("Error!", "Current user not found.", "error");
+        return;
+    }
 
-  const currentPassword = document.getElementById("currentPassword").value.trim();
-  const newPassword = document.getElementById("newPassword").value.trim();
-  const renewPassword = document.getElementById("renewPassword").value.trim();
+    const oldPassword = document.getElementById("oldPassword").value.trim();
+    const newPassword = document.getElementById("newPassword").value.trim();
+    const confirmPassword = document.getElementById("confirmPassword").value.trim();
 
-  const encryptedCurrentPassword = encryptPassword(currentPassword);
-  console.log("Encrypted Current Password:", encryptedCurrentPassword);
-  console.log("Stored Password:", currentUser.Password);
+    if (!oldPassword || !newPassword || !confirmPassword) {
+        Swal.fire("Error!", "Please fill in all fields.", "error");
+        return;
+    }
 
-  if (encryptedCurrentPassword !== currentUser.Password) {
-      Swal.fire({
-          icon: 'error',
-          title: 'Incorrect Password',
-          text: 'The current password you entered is incorrect.',
-      });
-      return;
-  }
+    if (newPassword !== confirmPassword) {
+        Swal.fire("Error!", "New password and confirmation do not match.", "error");
+        return;
+    }
 
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
-  if (!passwordPattern.test(newPassword)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Invalid Password',
-      text: 'Password must contain at least 6 characters, including an uppercase letter, a lowercase letter, and a special character.',
-    });
-    return;
-  }
+    if (newPassword.length < 6) {
+        Swal.fire("Error!", "New password must be at least 6 characters.", "error");
+        return;
+    }
 
-  if (newPassword !== renewPassword) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Password Mismatch',
-      text: 'The new password and confirmation password do not match.',
-    });
-    return;
-  }
+    const encryptedOldPassword = encryptPassword(oldPassword);
+    if (Seller.Password !== encryptedOldPassword) {
+        Swal.fire("Error!", "Old password is incorrect.", "error");
+        return;
+    }
 
-  const encryptedPassword = encryptPassword(newPassword);
+    const encryptedNewPassword = encryptPassword(newPassword);
+    Seller.Password = encryptedNewPassword;
 
-  const users = getUsers();
-  const sellerIndex = users.findIndex(user => user._id === currentUser._id);
-  if (sellerIndex !== -1) {
-    users[sellerIndex].Password = encryptedPassword;
-    data.CurrentUser.Password = encryptedPassword;
-
-    saveDataInLocalStorage("users", users);
-    saveDataInLocalStorage("currentUser", data.CurrentUser);
-
-    loadOverview();
-    Swal.fire("Success!", "Password updated successfully.", "success");
-  } else {
-    Swal.fire("Error!", "User not found in the users list.", "error");
-  }
+    const users = getUsers();
+    const SellerIndex = users.findIndex(user => user._id === Seller._id);
+    if (SellerIndex !== -1) {
+        users[SellerIndex].Password = encryptedNewPassword;
+        saveDataInLocalStorage("users", users);
+        Swal.fire("Success!", "Password updated successfully.", "success");
+    } else {
+        Swal.fire("Error!", "User not found.", "error");
+    }
 }
+
 function confirmLogout() {
     Swal.fire({
         title: 'Are you sure?',

@@ -139,6 +139,12 @@ function loadOverview() {
 
   const profileImage = currentUser.ProfileImage || "../assets/profile.png";
   document.getElementById("profileImage").src = profileImage;
+  document.getElementById("editFullName").value = currentUser.Name || "";
+  document.getElementById("editEmail").value = currentUser.Email || "";
+  document.getElementById("editPhone").value = currentUser.Phone || "";
+  document.getElementById("editCity").value = currentUser.City || "";
+  document.getElementById("editStreet").value = currentUser.Street || "";
+
 }
 
 function updateCurrentUserProfile(event) {
@@ -251,7 +257,7 @@ function validateProfileFields(username, email, phone, city, street) {
 }
 
 function encryptPassword(password) {
-  return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); // استخدم نفس التنسيق دائمًا
+  return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
 }
 
 function updatePassword(event) {
@@ -268,16 +274,14 @@ function updatePassword(event) {
   const renewPassword = document.getElementById("renewPassword").value.trim();
 
   const encryptedCurrentPassword = encryptPassword(currentPassword);
-  console.log("Encrypted Current Password:", encryptedCurrentPassword);
-  console.log("Stored Password:", currentUser.Password);
 
   if (encryptedCurrentPassword !== currentUser.Password) {
-      Swal.fire({
-          icon: 'error',
-          title: 'Incorrect Password',
-          text: 'The current password you entered is incorrect.',
-      });
-      return;
+    Swal.fire({
+      icon: 'error',
+      title: 'Incorrect Password',
+      text: 'The current password you entered is incorrect.',
+    });
+    return;
   }
 
   const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
@@ -302,15 +306,15 @@ function updatePassword(event) {
   const encryptedPassword = encryptPassword(newPassword);
 
   const users = getUsers();
-  const userindex = users.findIndex(user => user._id === currentUser._id);
-  if (userindex !== -1) {
-    users[userindex].Password = encryptedPassword;
-    data.CurrentUser.Password = encryptedPassword;
+  const userIndex = users.findIndex(user => user._id === currentUser._id);
+  if (userIndex !== -1) {
+
+    users[userIndex].Password = encryptedPassword;
+    data.CurrentUser = { ...users[userIndex], Password: encryptedPassword };
 
     saveDataInLocalStorage("users", users);
     saveDataInLocalStorage("currentUser", data.CurrentUser);
 
-    loadOverview();
     Swal.fire("Success!", "Password updated successfully.", "success");
   } else {
     Swal.fire("Error!", "User not found in the users list.", "error");
