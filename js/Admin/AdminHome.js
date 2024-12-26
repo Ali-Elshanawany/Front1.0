@@ -179,7 +179,6 @@ function initializePage() {
     } 
 }
 
-
 function confirmLogout() {
     Swal.fire({
         title: "Are you sure?",
@@ -198,12 +197,10 @@ function confirmLogout() {
             console.log("Logged out. CurrentUser:", data.CurrentUser)
            
             setupLoginButton();
-location.assign("/html/login.html");
+location.assign("login.html");
         }
     });
 }
-
-
 setupLoginButton();
 
 
