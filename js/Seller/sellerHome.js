@@ -269,7 +269,6 @@ function setupLoginButton() {
     }
 
     
-<<<<<<< HEAD
     loadDataFromLocalStorage();
 
     const currentUser = getCurrentUser();
@@ -311,9 +310,6 @@ location.assign("login.html");
 setupLoginButton();
 
 
-=======
-    
->>>>>>> master
 
 }
 $(document).ready(function () {
