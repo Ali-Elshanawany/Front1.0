@@ -25,10 +25,7 @@ text-decoration: none;
 i{
   cursor: pointer;
 }
-.navbar-main{
-  max-width: 100%;
-  overflow-x: hidden;
-}
+
 .sticky-navbar {
  position: sticky;
   top: 0;
@@ -37,6 +34,9 @@ i{
  display: none;
   transition: all 0.3s ease;
   will-change: transform;
+  border-bottom: 2px solid gold;
+  padding: 20px 20px;
+  font-family: 'Raleway', sans-serif;
 }
 
 .sticky-navbar.show {
@@ -118,7 +118,7 @@ main#carousel {
   justify-content: center;
   overflow: hidden;
   transform-style: preserve-3d;
-  perspective: 600px;
+  perspective: 1000px;
   --items: 5;
   --middle: 3;
   --position: 1;
@@ -172,9 +172,39 @@ div.item:nth-of-type(5) {
 /* Radio Buttons Style */
 
 input[type="radio"] {
-  opacity: 1; 
+  appearance: none; /* Remove default styling */
+  -webkit-appearance: none; /* Safari compatibility */
+  -moz-appearance: none; /* Firefox compatibility */
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ccc;
+  border-radius: 50%;
+  outline: none;
+  cursor: pointer;
+  position: relative;
+}
+
+input[type="radio"] {
+  opacity: 1;
   position: absolute;
-} 
+  background: linear-gradient(145deg, #f0e68c, #fffacd);
+  border: 2px solid gold;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+  transition: background 0.3s, transform 0.3s;
+}
+
+input[type="radio"]:hover {
+  background: #ffcc00;
+  transform: scale(1.1);
+}
+
+input[type="radio"]:checked {
+  background: #e6b800;
+  transform: scale(1.2);
+}
 
 input:nth-of-type(1) {
   grid-column: 2 / 3;
@@ -554,7 +584,108 @@ height: 300px;
   font-size: calc(10px + (12 - 10) * ((100vw - 360px) / (1600 - 360))) !important; 
 }
 
+.navbar-main {
+  max-width: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(145deg, #f0e68c, #fffacd);
+  border-bottom: 2px solid gold;
+  padding: 10px 20px;
+  font-family: 'Raleway', sans-serif;
+}
 
+.navbar-main a {
+  color: #333;
+  text-decoration: none;
+  padding: 10px 15px;
+  transition: color 0.3s, background 0.3s;
+}
+
+.navbar-main a:hover{
+  color: #000000;
+  border-radius: 5px;
+}
+
+.navbar-main .navbar-brand {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #8b4513;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-main .navbar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.navbar-main .navbar-nav li {
+  list-style: none;
+}
+
+.navbar-main .navbar-toggler {
+  background: #ffd700;
+  border: none;
+  padding: 5px 10px;
+  font-size: 1.2rem;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.navbar-main .navbar-toggler:hover {
+  background: #ffcc00;
+  transform: scale(1.05);
+}
+
+.navbar-main .navbar-toggler:active {
+  background: #e6b800;
+  transform: scale(1);
+}
+
+.navbar-main .navbar-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Adjust this value */
+}
+
+.navbar-main .navbar-nav li {
+  list-style: none;
+  margin: 0 10px; /* Add margin to reduce spacing */
+}
+
+
+.footer .foot{
+  overflow:hidden; 
+  background:#262626 ;
+  color: #627482  !important;
+  margin-bottom: 0 ;
+  padding-bottom:0  ;
+  text-decoration: none;
+}
+
+.footer small{
+  font-size: calc(12px + (15 - 12) * ((100vw - 360px) / (1600 - 360))) !important; 
+}
+
+.footer .bold-text{
+  color: #989c9e !important;
+}
+
+
+.footer .mt-55{
+  margin-top: calc(50px + (60 - 50) * ((100vw - 360px) / (1600 - 360))) !important; 
+}
+
+
+.footer h3{
+  font-size: calc(34px + (40 - 34) * ((100vw - 360px) / (1600 - 360))) !important; 
+}
+
+.footer .social{
+  font-size: 21px !important; 
+}
+
+.footer .rights{
+  font-size: calc(10px + (12 - 10) * ((100vw - 360px) / (1600 - 360))) !important; 
+}
 
 
 

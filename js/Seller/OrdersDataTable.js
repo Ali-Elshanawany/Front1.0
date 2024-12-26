@@ -61,13 +61,15 @@ function displayOrdersTable(Orders, currentPage = 1, rowsPerPage = 5) {
                 SellerTotalSales+=(i.Price * i.Quantity);
                 NumofItems++;
             }
+            
 
         });
+        let UserName=data.Users.find(u=>u._id==order.UserID).Name
         const tr = document.createElement("tr");
         tr.innerHTML = `
             <td >${order._id}</td>
             <td >${order.UserID}</td>
-            <td >${order.UserID}</td>
+            <td >${UserName}</td>
             <td >${NumofItems}</td>
             <td >${SellerTotalSales}</td>
             <td >${order.CreatedAt}</td>

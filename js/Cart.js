@@ -145,6 +145,8 @@ window.addEventListener("load", function () {
             }).then(() => {
                 usercart = getCurrentCart();
                 cart = usercart.map((item) => ({
+                    _id: item._id,
+                    name: item.Name,
                     product: getProductById(item._id),
                     num: item.Quantity,
                 }));
@@ -211,4 +213,66 @@ window.addEventListener("load", function () {
             });
         }
     });
+
+
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const homeNav = document.querySelector('.homeNav');
+        const productNav = document.querySelector('.productNav');
+        const contactNav = document.querySelector('.contactNav');
+        const aboutNav = document.querySelector('.aboutNav');
+        const logoutButton = document.getElementById("logoutButton");
+    
+        if (homeNav) {
+            homeNav.addEventListener('click', function() {
+                window.location.href = "homeMain.html";
+            });
+        }
+    
+        if (productNav) {
+            productNav.addEventListener('click', function() {
+                window.location.href = "homeMain.html#product";
+            });
+        }
+    
+        if (contactNav) {
+            contactNav.addEventListener('click', function() {
+                window.location.href = "homeMain.html#contact";
+            });
+        }
+    
+        if (aboutNav) {
+            aboutNav.addEventListener('click', function() {
+                window.location.href = "homeMain.html#about";
+            });
+        }
+    
+        if (logoutButton) {
+            logoutButton.addEventListener("click", confirmLogout);
+        }
+    
+        function confirmLogout() {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "Do you want to log out?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "Yes, Logout",
+                cancelButtonText: "Cancel",
+                reverseButtons: true,
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    data.CurrentUser = null;
+                    saveDataInLocalStorage("currentUser", null);
+                    redirectToHome();
+                }
+            });
+        }
+    
+        function redirectToHome() {
+            window.location.href = "login.html";
+        }
+    
+    });
+    
 });

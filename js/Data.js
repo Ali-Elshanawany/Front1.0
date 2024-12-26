@@ -1202,10 +1202,10 @@ export function getSellerSalesByMonth() {
     return monthlySalesArr;
 }
 
-const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'home.page', 'products&orders.html'];
-const UserPages = ['Cart.html' , 'CheckOut.html'];
-const SellerPages = ["SellerProductDashboard.html","OrdersDataTable.html"];
-const GuestPages = ['ProductDetails','register.html' , 'Cart.html'];
+const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'products&orders.html' , 'AdminHome.html' , 'adminprofile.html'];
+const UserPages = ['Cart.html' , 'CheckOut.html' , 'homeMain.html' , 'users-profile.html'];
+const SellerPages = ["SellerProductDashboard.html","OrdersDataTable.html" , 'SellerHome.html' , 'sellerprofile.html'];
+const GuestPages = ['ProductDetails','register.html' , 'Cart.html' , 'homeMain.html' , 'login.html'];
 
 
 
@@ -1284,9 +1284,17 @@ export function decreaseTotalSales(items) {
 
 // * Receive Items and Increase Stocks of the products 
 export function increaseStock(items) {
+    loadDataFromLocalStorage();
+    console.log("Entered Increase Stock")
+    console.log(items)
     items.forEach(function (item) {
+
+        console.log("-----------------------------------------")
+        console.log(item)
+        console.log("-----------------------------------------")
+
         data.Products.forEach(function (p) {
-            if (p._id == item.ProductID)
+            if (p._id == item._id)
                 p.Stock += item.Quantity;
         });
 

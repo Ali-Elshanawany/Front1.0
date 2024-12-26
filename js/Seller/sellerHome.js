@@ -58,9 +58,9 @@ function initializePage() {
     })
 
 
-$('.dashboard').on("click", function () {
-        window.location.href = "/html/SellerProductDashboard.html";
-
+$('.dashboard').on("click", function (e) {
+    e.preventDefault()
+   window.location.href = "../html/SellerProductDashboard.html";
     })
 
        
@@ -227,6 +227,37 @@ $('.dashboard').on("click", function () {
     bestSellersSection.append(best);
 
 
+    //LogOut
+    const logoutButton = document.getElementById("logoutButton");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", confirmLogout);
+    }
+
+    function confirmLogout() {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to log out?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Logout",
+            cancelButtonText: "Cancel",
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                data.CurrentUser = null;
+                saveDataInLocalStorage("currentUser", null);
+                redirectToHome();
+            }
+        });
+    }
+
+    function redirectToHome() {
+        window.location.href = "login.html";
+    }
+    //End Logout
+
+
+
 
 
 //logout 
@@ -238,6 +269,7 @@ function setupLoginButton() {
     }
 
     
+<<<<<<< HEAD
     loadDataFromLocalStorage();
 
     const currentUser = getCurrentUser();
@@ -279,6 +311,9 @@ location.assign("login.html");
 setupLoginButton();
 
 
+=======
+    
+>>>>>>> master
 
 }
 $(document).ready(function () {

@@ -245,7 +245,32 @@ setupLoginButton();
 
 
 
+    const logoutButton = document.getElementById("logoutButton");
+    if (logoutButton) {
+        logoutButton.addEventListener("click", confirmLogout);
+    }
 
+    function confirmLogout() {
+        Swal.fire({
+            title: "Are you sure?",
+            text: "Do you want to log out?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: "Yes, Logout",
+            cancelButtonText: "Cancel",
+            reverseButtons: true,
+        }).then((result) => {
+            if (result.isConfirmed) {
+                data.CurrentUser = null;
+                saveDataInLocalStorage("currentUser", null);
+                redirectToHome();
+            }
+        });
+    }
+
+    function redirectToHome() {
+        window.location.href = "login.html";
+    }
        
 
 

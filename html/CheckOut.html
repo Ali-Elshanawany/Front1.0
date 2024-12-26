@@ -12,51 +12,77 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="../style/CheckOut.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
-        <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Diphylleia&display=swap" rel="stylesheet">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bungee&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Diphylleia&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <link rel="icon" href="../assets/logo.png" type="image/png">
 </head>
+
 <body style="min-height: 100vh; display: flex; flex-direction: column;">
-    <div id="hero" class="container-fluid d-flex justify-content-center flex-column mb-3 ">
+
+
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top text-dark navbar-main origin bg-light ">
+        <div class="container-fluid fw-bold">
+            <a class="navbar-brand" href="#"><img src="../assets/logo.png" width="40px" alt="Logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class=" productNav nav-link category-link" href="homeMain.html#product">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="contactNav nav-link category-link"  href="homeMain.html#contact">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class=" aboutNav nav-link category-link" href="homeMain.html#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" id="login">Logout</a>
+                    </li>
+                </ul>
+                <a href="users-profile.html"><i class="  profileIcon fa-solid fa-user fa-xl icon-spacing m-2"
+                        title="Profile"></a></i>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <div id="hero" style="padding-top: 150px;" class="container-fluid d-flex justify-content-center flex-column mb-3 ">
         <div class="text-center "><img width="75 em" src="../assets/pic.png" alt="logo"></div>
         <span class="text-center fw-bold fs-1 m-0 p-0">CHECKOUT</span><br>
         <div class="d-flex justify-content-center">
-            <nav  aria-label="breadcrumb">
+            <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
                     <li class="breadcrumb-item">
                         <a class="text-decoration-none text-white fw-bold position-relative" href="../html/homeMain.html">
                             Home
                             <span class="hover-underline-animation"></span>
                         </a>
-                        </li>
-                        <li class="breadcrumb-item">
-                            <a class="text-decoration-none text-white fw-bold position-relative" href="../html/Cart.html">
-                                Cart
-                                <span class="hover-underline-animation"></span>
-                            </a>
-                            </li>
+                    </li>
+                    <li class="breadcrumb-item">
+                        <a class="text-decoration-none text-white fw-bold position-relative" href="../html/Cart.html">
+                            Cart
+                            <span class="hover-underline-animation"></span>
+                        </a>
+                    </li>
                     <li class="breadcrumb-item active text-decoration-none fw-bold" aria-current="page">Checkout</li>
                 </ol>
             </nav>
         </div>
-</div>
+    </div>
     <div id="all">
         <div id="content" class="container ">
             <div class="row ">
                 <div class="col-lg-8 col-md-10">
-                    <form id="checkoutForm" class="row g-3 needs-validation"  novalidate>
-
+                    <form id="checkoutForm" class="row g-3 needs-validation" novalidate>
                         <div class="rounded-4 p-4 row g-3 shadow-lg SD d-flex flex-row">
                             <span class="fs-4 fw-bolder text-uppercase" style="color: #333;">Shipping Details :</span>
                             <div class="col-md-8">
@@ -69,7 +95,6 @@
                                     Please Enter Your Address Correctly. It should be at least 8 characters long.
                                 </div>
                             </div>
-
                             <div class="col-md-4">
                                 <label for="additionalPhoneNumber" class="form-label fw-bold">Phone Number:</label>
                                 <input type="text" name="additionalPhoneNumber" class="form-control border-0 shadow-sm" id="additionalPhoneNumber" pattern="^(010|011|012|015)[0-9]{8}$" required>
@@ -80,7 +105,6 @@
                                     Please enter a valid phone number.
                                 </div>
                             </div>
-
                             <div class="col-md-4">
                                 <label for="Governerate" name="Governerate" class="form-label fw-bold">Governerate:</label>
                                 <select class="form-select border-0 shadow-sm" id="Governerate" required>
@@ -99,7 +123,7 @@
                             </div>
                             <div class="col-md-4">
                                 <label for="City" class="form-label fw-bold">City:</label>
-                                <input name="City" pattern="[A-Za-z]{3,}" type="text" class="form-control border-0 shadow-sm" id="City" required>
+                                <input name="City" pattern="^[A-Za-z]+(?:[-\s][A-Za-z]+){0,2}$" type="text" class="form-control border-0 shadow-sm" id="City" required>
                                 <div class="invalid-feedback">
                                     Please Enter Your City Name.
                                 </div>
@@ -114,20 +138,19 @@
                                     Alright!
                                 </div>
                             </div>
+                            <div class="col-12">
+                                <div id="map" class="mt-4" style="height: 400px;"></div>
+                            </div>
                         </div>
-        
-        
                         <div style="background: linear-gradient(145deg, #f0e68c, #9f8625);" class="rounded-4 p-4 row g-3 mb-3">
                             <span class="fs-4 fw-bold" style="font-family: 'Raleway', sans-serif;">Your Choices:</span>
                             <div id="items" class=" p-3 d-flex flex-column gap-3">
-        
-        
                             </div>
                         </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-4 col-md-10">
                     <div id="placeOrder" class="rounded-4 pt-4 p-4 ">
-                        <p class="fs-3 fw-bold">Order Summary :</p> 
+                        <p class="fs-3 fw-bold">Order Summary :</p>
                         <div class="d-flex justify-content-between ">
                             <span id="numOfItems"></span>
                             <span id="SubTotal"></span>
@@ -160,22 +183,73 @@
                                     You Must Agree Before Placing Your Order.
                                 </div>
                             </div>
-                        <button id="placing" style="background-color: #B88E2F; color: white;" class="btn w-100 mt-3 fw-bold" type="submit">Place Order</button>
+                            <button id="placing" style="background-color: #B88E2F; color: white;" class="btn w-100 mt-3 fw-bold" type="submit">Place Order</button>
+                        </form>
                     </div>
                 </div>
-            </form>
-        
             </div>
         </div>
     </div>
     <div style="flex: 1;"></div>
-            </div>
+
+    <section class="footer">
+        <div class="foot pb-0 mb-0 justify-content-center text-light">
+            <footer style="height: 300px;">
+                <div class="row my-5 justify-content-center py-4">
+                    <div class="col-11">
+                        <div class="row">
+                            <div class="col-xl-8 col-md-3 col-sm-4 col-12 my-auto mx-auto a">
+                                <img src="../assets/logo.png" alt="logo" width="70px" height="70">
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-sm-4 col-12">
+                                <h6 class="mb-3 mb-lg-4 bold-text"><b>MENU</b></h6>
+                                <ul class="list-unstyled">
+                                    <a href="#home" style="color: #e6b800; text-decoration: none;">
+                                        <li>Home</li>
+                                    </a>
+                                    <a href="#about" style="color: #e6b800; text-decoration: none;">
+                                        <li>About</li>
+                                    </a>
+                                    <a href="profile.html" style="color: #e6b800; text-decoration: none;">
+                                        <li>Portfolio</li>
+                                    </a>
+                                </ul>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-sm-4 col-12">
+                                <h6 class="mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5"><b>ADDRESS</b></h6>
+                                <p class="mb-1" style="color: #e6b800;">605, RATAN ICON BUILDING</p>
+                                <p style="color: #e6b800;">SEAWOODS SECTOR</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div
+                                class="col-xl-8 col-md-4 col-sm-4 col-auto my-md-0 mt-7 order-sm-1 order-3 align-self-end">
+                                <p class="social text-muted mb-0 pb-0 bold-text">
+                                    <i class="fa-brands fa-facebook"></i> <span class="mx-2"><i
+                                            class="fa-brands fa-x-twitter"></i></span> <span class="mx-2"><i
+                                            class="fa-brands fa-instagram"></i></span>
+                                </p>
+                                <small class="rights"><span>&#174;</span>All Rights Reserved.</small>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-1 align-self-end">
+                                <h6 class="mt-55 mt-2 text-muted bold-text"><b>ANIRUDH SINGLA</b></h6>
+                                <small><span><i class="fa fa-envelope" aria-hidden="true" style="color: #e6b800;"></i></span></small>
+                            </div>
+                            <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3">
+                                <h6 class="text-muted bold-text"><b>RISHABH SHEKHAR</b></h6>
+                                <small><span><i class="fa fa-envelope" aria-hidden="true" style="color: #e6b800;"></i></span></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
-    </div>
+    </section>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script type="module" src="../js/CheckOut.js"></script>
 </body>
 

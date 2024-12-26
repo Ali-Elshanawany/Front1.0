@@ -1,0 +1,15 @@
+@media (max-width: 768px) {
+    #showData {
+    display: block; 
+    margin: 20px auto;
+    }
+    table,h5 {
+    display: none; 
+    }
+    }
+    
+    @media (min-width: 769px) {
+    #showData {
+    display: none; 
+    }
+    }

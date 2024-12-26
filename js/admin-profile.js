@@ -1,4 +1,4 @@
-import { getUsers, saveDataInLocalStorage, loadDataFromLocalStorage, data, isAuthorized } from './Data.js';
+import { getCurrentUser, getUsers,saveDataInLocalStorage, loadDataFromLocalStorage, data, isAuthorized } from './Data.js';
 
 let admin;
 
@@ -38,44 +38,66 @@ document.addEventListener("DOMContentLoaded", function () {
     
         tableBody.innerHTML = tableRows;
     }
-    
-    
-
-    function loadOverview() {
-        admin = data.Users.find(user => user.Role === 'Admin');
-        if (!admin) {
-            console.error("No admin user found.");
-            return;
-        }
-
-        data.CurrentUser = admin; 
-        saveDataInLocalStorage("currentUser", data.CurrentUser); 
-
-        document.getElementById("fullName").innerText = admin.Name || "Unknown";
-        document.getElementById("mail").innerText = admin.Email || "Unknown";
-        document.getElementById("phone").innerText = admin.Phone || "Unknown";
-        document.getElementById("street").innerText = admin.Street || "Unknown";
-        document.getElementById("city").innerText = admin.City || "Unknown";
-
-        const profileImage = admin.ProfileImage || "../assets/profile.png";
-        document.getElementById("profileImage").src = profileImage;
-    }
-
-    const editProfileForm = document.getElementById("editProfileForm");
-    if (editProfileForm) {
-        editProfileForm.addEventListener("submit", updateAdminProfile);
-    }
-
-    const changePasswordForm = document.getElementById("changePasswordForm");
-    if (changePasswordForm) {
-        changePasswordForm.addEventListener("submit", updatePassword);
-    }
-
-    const logoutButton = document.getElementById("logoutButton");
-    if (logoutButton) {
-        logoutButton.addEventListener("click", confirmLogout);
-    }
 });
+const editProfileForm = document.getElementById("editProfileForm");
+if (editProfileForm) {
+    editProfileForm.addEventListener("submit", updateAdminProfile);
+}
+
+const changePasswordForm = document.getElementById("changePasswordForm");
+if (changePasswordForm) {
+    changePasswordForm.addEventListener("submit", updatePassword);
+}
+
+const logoutButton = document.getElementById("logoutButton");
+if (logoutButton) {
+    logoutButton.addEventListener("click", confirmLogout);
+}
+
+
+function confirmLogout() {
+    Swal.fire({
+        title: "Are you sure?",
+        text: "Do you want to log out?",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Yes, Logout",
+        cancelButtonText: "Cancel",
+        reverseButtons: true,
+    }).then(result => {
+        if (result.isConfirmed) {
+            data.CurrentUser = null;
+            saveDataInLocalStorage("admin", null);
+            saveDataInLocalStorage("currentUser", null);  
+            redirectToHome();
+        }
+    });
+}
+
+
+function redirectToHome() {
+    window.location.href = "homeMain.html";
+}function loadOverview() {
+    admin = getCurrentUser();
+    if (!admin) {
+        console.error("No admin user found.");
+        return;
+    }
+
+    data.CurrentUser = admin; 
+    saveDataInLocalStorage("currentUser", data.CurrentUser); 
+
+    document.getElementById("fullName").innerText = admin.Name || "Unknown";
+    document.getElementById("mail").innerText = admin.Email || "Unknown";
+    document.getElementById("phone").innerText = admin.Phone || "Unknown";
+    document.getElementById("street").innerText = admin.Street || "Unknown";
+    document.getElementById("city").innerText = admin.City || "Unknown";
+
+    const profileImage = admin.ProfileImage || "../assets/profile.png";
+    document.getElementById("profileImage").src = profileImage;
+}
+
+
 
 function updateAdminProfile(event) {
     event.preventDefault();
@@ -116,7 +138,7 @@ function updateAdminProfile(event) {
         _id: admin._id,
     };
 
-    const users = getUsers();
+    const users = getCurrentUser();
     const adminIndex = users.findIndex(user => user._id === admin._id);
     if (adminIndex !== -1) {
         users[adminIndex] = { ...users[adminIndex], ...updatedData };
@@ -184,25 +206,34 @@ function validateProfileFields(username, email, phone, city, street) {
     return true;
 }
 
-function updatePassword(event) {
+function encryptPassword(password) {
+    return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
+  }
+  
+async function updatePassword(event) {
     event.preventDefault();
+    const admin = getCurrentUser();
 
     if (!admin) {
         Swal.fire("Error!", "Current user not found.", "error");
         return;
     }
-
     const currentPassword = document.getElementById("currentPassword").value.trim();
     const newPassword = document.getElementById("newPassword").value.trim();
     const renewPassword = document.getElementById("renewPassword").value.trim();
-
-    if (currentPassword !== admin.Password) {
+  
+    const encryptedCurrentPassword = encryptPassword(currentPassword);
+    console.log("Encrypted Current Password:", encryptedCurrentPassword);
+    console.log("Stored Password:", admin.Password);
+  
+    if (encryptedCurrentPassword !== admin.Password) {
         Swal.fire({
             icon: 'error',
             title: 'Incorrect Password',
             text: 'The current password you entered is incorrect.',
         });
         return;
+
     }
 
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
@@ -224,11 +255,13 @@ function updatePassword(event) {
         return;
     }
 
+  
+    const encryptedPassword = encryptPassword(newPassword);
     const users = getUsers();
-    const userIndex = users.findIndex(user => user._id === admin._id);
-    if (userIndex !== -1) {
-        users[userIndex].Password = newPassword;
-        data.CurrentUser.Password = newPassword;
+    const adminIndex = users.findIndex(user => user._id === admin._id);
+    if (adminIndex !== -1) {
+        users[adminIndex].Password = encryptedPassword;
+        data.CurrentUser.Password = encryptedPassword;
 
         saveDataInLocalStorage("users", users);
         saveDataInLocalStorage("currentUser", data.CurrentUser);
@@ -238,28 +271,4 @@ function updatePassword(event) {
     } else {
         Swal.fire("Error!", "User not found in the users list.", "error");
     }
-}
-
-function confirmLogout() {
-    Swal.fire({
-        title: "Are you sure?",
-        text: "Do you want to log out?",
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Yes, Logout",
-        cancelButtonText: "Cancel",
-        reverseButtons: true,
-    }).then(result => {
-        if (result.isConfirmed) {
-            data.CurrentUser = null;
-            saveDataInLocalStorage("admin", null);
-            saveDataInLocalStorage("currentUser", null);  
-            redirectToHome();
-        }
-    });
-}
-
-
-function redirectToHome() {
-    window.location.href = "/html/login.html";
 }

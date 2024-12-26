@@ -19,7 +19,7 @@ button.goToHome {
   font-size: 15px;
   letter-spacing: 2px;
   position: relative;
-  background-color: #16a085;
+  background-color: #8f7815;
   border: none;
   color: #fff;
 
@@ -28,21 +28,21 @@ button.goToHome {
   text-align: center;
   transition-duration: 0.4s;
   overflow: hidden;
-  box-shadow: 0 5px 15px #193047;
+  box-shadow: 0 5px 15px #966f0d;
   border-radius: 4px;
 }
 
 button#goToHome:hover,
 button.goToHome:hover {
   background: #fff;
-  box-shadow: 0px 2px 10px 5px #1abc9c;
+  box-shadow: 0px 2px 10px 5px #896d10;
   color: #000;
 }
 
 button#goToHome:after,
 button.goToHome:after {
   content: "";
-  background: #1abc9c;
+  background: #9e750e;
   display: block;
   position: absolute;
   padding-top: 300%;
@@ -128,4 +128,90 @@ button.goToHome:active:after {
       max-width: 100%;
       flex: 100%;
   }
+}
+
+body {
+  font-family: 'Georgia', serif;
+  background-color: #f5f5f5;
+  color: #333;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.navbar {
+  background-color: #f0e68c;
+  border-bottom: 2px solid gold;
+}
+
+.navbar .nav-link {
+  color: #8b4513;
+  font-weight: bold;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar .nav-link:hover {
+  color: #000000;
+}
+
+.navbar .nav-link.active {
+  color: #333;
+}
+
+.footer {
+  background: #262626;
+  color: #627482;
+  padding: 20px;
+  transition: background 0.3s ease-in-out;
+}
+
+.footer a {
+  color: #e6b800;
+  text-decoration: none;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer a:hover {
+  color: #ffd700;
+}
+
+.footer .bold-text {
+  color: #989c9e;
+}
+
+.footer .social i {
+  color: #ffd700;
+  transition: color 0.3s ease-in-out;
+}
+
+.footer .social i:hover {
+  color: #e6b800;
+}
+
+.footer .rights {
+  color: #627482;
+}
+
+.product-info h1,
+.product-info h4,
+.product-info p {
+  color: #8b4513;
+}
+
+.product-info .price {
+  color: #e6b800;
+  font-weight: bold;
+}
+
+.product-info .goToHome {
+  background-color: #ffd700;
+  border: none;
+  color: #333;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.product-info .goToHome:hover {
+  background-color: #e6b800;
+  transform: scale(1.05);
 }
