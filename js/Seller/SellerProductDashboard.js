@@ -210,7 +210,7 @@ function displayProductsTable(Products, currentPage = 1, rowsPerPage = 10) {
             data-index="${start + index}" 
             data-Productid="${product._id}" 
             class="${product.Approved ? "btn btn-success" : "btn btn-danger"}">
-        ${product.Approved ? "Approved" : "Not Approved"}
+            ${product.Approved ? "Approved" : "Not Approved Yet"}
             </button>
             </td>
             <td class="delete-btn" >

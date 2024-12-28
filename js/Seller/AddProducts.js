@@ -2,6 +2,15 @@ import { data, addUser, loadDataFromLocalStorage,DeleteUserByEmail, addProduct, 
 
 export function AddProducts(isUpdate,SelectedProduct) {
 
+   if((data.Products.filter(p=>p.SellerID==data.CurrentUser._id && p.Approved==false).length)>5){
+      Swal.fire({
+         icon: 'error',
+         title: `Can't Add More Products `,
+         text: 'You reached Max Pending Products',
+      });
+      return;
+   }
+
    console.log(`This is ${isUpdate}`)
    console.log(`This is ${SelectedProduct}`)
 
