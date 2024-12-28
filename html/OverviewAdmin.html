@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Products & Orders</title>
+    <title>Accounts</title>
     <link rel="stylesheet" href="../style/Lux/bootstrap.Lux.css">
     <link rel="stylesheet" href="../style/Admin/AccountsDataTable.css">
     <link rel="stylesheet" href="../style/CardStyle.css">
@@ -12,10 +12,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css"
         integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <!-- Sweet Alert -->
-        <script src="
+    <!-- Sweet Alert -->
+    <script src="
         https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.all.min.js
-        "></script></head>
+        "></script>
+
+
+
+</head>
+
 
 <body style="background-color: #cfd9df;">
     <nav class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark">
@@ -28,30 +33,26 @@
             <div class="collapse navbar-collapse" id="navbarColor02">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link " href="./AdminHome.html" id="home" >Home
+                       
+                        <a class="nav-link " href="./AdminHome.html" id="home">Home
                             <span class="visually-hidden">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">      
-                        <a class="nav-link " href="./OverviewAdmin.html" id="home">OverView
+                        <a class="nav-link active" href="./OverviewAdmin.html" id="home">OverView
                             <span class="visually-hidden">(current)</span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="Accounts" href="./AccountsDataTable.html">Accounts</a>
+                        <a class="nav-link " id="Accounts" href="./AccountsDataTable.html">Accounts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" id="Orders" href="./Products&Orders.html">Orders</a>
+                        <a class="nav-link" id="Orders" href="./Products&Orders.html">Orders</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="adminprofile.html">Profile</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" id="logoutButton" href="#">Logout</a>
-                    </li>
                 </ul>
-
-                <!-- <button class="logout-btn" id="logoutButton">Logout</button> -->
 
             </div>
         </div>
@@ -84,16 +85,16 @@
                 </div>
                 <!-- End Order Card -->
                 <!-- Start Customers Card -->
-                <div class="col-6  col-xl-3 NewcardStyle">
+                <div class="col-6  col-xl-3 NewcardStyle ">
                     <div class="shadow card l-bg-blue-dark">
                         <div class="card-statistic-3 p-4">
-                            <div class="card-icon card-icon-large"><i class="fa fa-cube" style="font-size:100px"></i></div>
+                            <div class="card-icon card-icon-large"><i class="fas fa-users"></i></div>
                             <div class="mb-4">
-                                <h6 class="card-title mb-0"># Canceled Orders</h6>
+                                <h6 class="card-title mb-0">Users</h6>
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
-                                    <h2 id="CanceledOrdersCard" class="d-flex align-items-center mb-0">
+                                    <h2 id="UsersCard" class="d-flex align-items-center mb-0">
                                         15.07k
                                     </h2>
                                 </div>
@@ -107,16 +108,16 @@
                 </div>
                 <!-- End Customers Card -->
                 <!-- Start Ticket Resolved Card -->
-                <div class="col-6  col-xl-3 NewcardStyle">
+                <div class="col-6  col-xl-3  NewcardStyle">
                     <div class="shadow card l-bg-orange-dark">
                         <div class="card-statistic-3 p-4">
-                            <div class="card-icon card-icon-large"><i class="fas fa-cubes"></i></div>
+                            <div class="card-icon card-icon-large"><i class="fas fa-ticket-alt"></i></div>
                             <div class="mb-4">
-                                <h6 class="card-title mb-0">Pending Products</h6>
+                                <h6 class="card-title mb-0">Ticket Resolved</h6>
                             </div>
                             <div class="row align-items-center mb-2 d-flex">
                                 <div class="col-8">
-                                    <h2 id="PendingProducts" class="d-flex align-items-center mb-0">
+                                    <h2 id="TicketCard" class="d-flex align-items-center mb-0">
                                         578
                                     </h2>
                                 </div>
@@ -131,7 +132,7 @@
                 </div>
                 <!-- End Ticket Resolved Card -->
                 <!-- Start Sales Card -->
-                <div class="col-6  col-xl-3 NewcardStyle">
+                <div class="col-6  col-xl-3 NewcardStyle ">
                     <div class="shadow card l-bg-green-dark">
                         <div class="card-statistic-3 p-4">
                             <div class="card-icon card-icon-large"><i class="fas fa-dollar-sign"></i></div>
@@ -158,92 +159,79 @@
         </div>
         <!-- End Card Container 2 -->
         <!-- Start Chart Container -->
-        <div class="shadow container">
+        <!-- <div class="shadow container">
             <div class="row">
                 <canvas id="myChart"></canvas>
             </div>
-        </div>
+        </div> -->
         <!-- End Chart Container -->
-         <h1 class="text-center mt-5">Orders</h1>
-        <div id="Inputs" class="row mt-5 mb-3">
-            <!-- Inputs Section  -->
-            <div class="col-md-6 col-sm-12 mb-2">
-                <input type="number" name="RowCount" id="" value="10" min="1" class="form-control border-1 border-black"
-                    placeholder="Rows per page">
-            </div>
-            <div class="col-md-6 col-sm-12 mb-2">
-                <input type="text" name="Search" class="form-control  border-1 border-black " placeholder="Search">
-            </div>
-        </div>
+         <h1 class="text-center">OverView</h1>
+
+
         <div class="row">
             <!-- Table Section  -->
-            <div class="col-12">
-                <div class="table-responsive">
-                    <table class="table table-hover table-bordered">
-                        <thead class="table-dark">
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <div class="row mb-4">
-            <!-- Pagination Section  -->
-            <div id="pagination" class="col-12 text-center mb-3 mt-2">
-                <button class="btn btn-dark">1</button>
-            </div>
+            <table class="table table-hover table-bordered">
+                    <tr class="table-dark" >
+                    <th   > Top Selling Product</th>
+                    <td id="TopProduct" class="table-light">
+                        No Data
+                    </td>
+                    </tr>  
+                    <!-- <tr class="table-dark" >
+                    <th   > Top Selling Category</th>
+                    <td id="TopCategory" class="table-light">
+                        No Data
+                    </td>
+                    </tr>   -->
+                    <tr class="table-dark" >
+                    <th   > Top Selling Seller</th>
+                    <td id="TopSeller" class="table-light">
+                        No Data
+                    </td>
+                    </tr>  
+                    <tr class="table-dark" >
+                    <th   > Top Selling Year</th>
+                    <td id="TopYear" class="table-light">
+                        No Data
+                    </td>
+                    </tr>  
+                    <tr class="table-dark" >
+                    <th   > Top Selling Month</th>
+                    <td id="TopMonth" class="table-light">
+                        No Data
+                    </td>
+                    </tr>  
+                    <tr class="table-dark" >
+                    <th  > Top Selling Day</th>
+                    <td id="TopDay" class="table-light">
+                        No Data
+                    </td>
+                    </tr>  
+            </table>
         </div>
 
-            <!-- Products Table -->
-    <h1 class="text-center">Products</h1>
-    <div id="Inputs" class="row mt-5 mb-3">
-        <!-- Inputs Section  -->
-        <div class="col-md-6 col-sm-12 mb-2">
-            <input id="ProductCounterInput" type="number" name="RowCount" id="" value="10" min="1" class="form-control border-1 border-black"
-                placeholder="Rows per page">
-        </div>
-        <div class="col-md-6 col-sm-12 mb-2">
-            <input id="ProductSearhInput" type="text" name="Search" class="form-control  border-1 border-black " placeholder="Search">
-        </div>
-    </div>
-    <div class="row">
-        <!-- Table Section  -->
-        <div class="col-12">
-            <div class="table-responsive">
-                <table class="table table-hover table-bordered">
-                    <thead class="table-dark" id="ProductHead">
-                    </thead>
-                    <tbody id="ProductBody">
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    <!-- <h1 id="ProductsNoData" class="text-center"> No Data </h1> -->
-    <div class="row mb-4">
-        <!-- Pagination Section  -->
-        <div id="Productpagination" class="col-12 text-center mb-3 mt-2">
-            <button class="btn btn-dark">1</button>
-        </div>
-    </div>
+    
+
+    <!-- Ticket Table -->
+
 
 </div>
 
 </div>
-     <!-- End Products  Table -->
+     <!-- End Ticket  Table -->
 
 
 
 
-    </div>
-    <script src="../js/Admin/Products&Orders.js" type="module"></script>
-    <script src="../js/Admin/Chart.js" type="module"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="../js/jq-3-7-1.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-gradient"></script>
-   
+
+
+        <script src="../js/Admin/OverviewAdmin.js" type="module"></script>
+        <!-- <script src="../js/Admin/Chart.js" type="module"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.js"></script>
+        <script src="../js/jq-3-7-1.js"></script>
 
 </body>
 
