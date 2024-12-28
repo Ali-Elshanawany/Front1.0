@@ -1,6 +1,7 @@
 import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser, isAuthorized}
     from './Data.js';
 
+// isAuthorized();
 // Add to Cart Function 
 export function addToCart(productID) {
     let product = data.Products.find((p) => p._id === productID);
@@ -94,7 +95,6 @@ export function addToCart(productID) {
 function initializePage() {
     loadDataFromLocalStorage();
     saveDataInLocalStorage();
-
 
     // Sticky Navbar
     const firstNavbarHeight = $('.navbar-main').outerHeight();
@@ -390,6 +390,5 @@ setupLoginButton();
 }
 $(document).ready(function () {
     initializePage();
-
     console.log("Page initialized.");
 });

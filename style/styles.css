@@ -2,7 +2,6 @@
 
 :root {
 
-  /*Color mode HSL(hue, saturation, lightness)*/
   --white-color: hsl(0, 0%, 100%);
   --black-color: hsl(0, 0%, 0%);
 
@@ -24,7 +23,7 @@ input,
 button {
   font-family: var(--body-font);
   font-size: var(--normal-font-size);
-  overflow-x: hidden; /* إضافة هذه الخاصية لإخفاء شريط التمرير الأفقي */
+  overflow-x: hidden; 
 }
 
 a {
