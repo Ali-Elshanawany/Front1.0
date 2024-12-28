@@ -5,6 +5,28 @@ document.addEventListener("DOMContentLoaded", function () {
   loadDataFromLocalStorage();
   loadOverview(); 
   loadOrders(); 
+
+  const emailInput = document.getElementById("editEmail");
+  if (emailInput) {
+    emailInput.addEventListener("click", function () {
+      const newEmail = emailInput.value.trim();
+      if (newEmail !== "") {
+        Swal.fire({
+          title: "Are Y ou Sure ?",
+          text: "Are You Sure You Want To Chang Your Email",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes, Change It",
+          cancelButtonText: "Cancel",
+          reverseButtons: true,
+        }).then(result => {
+          if (!result.isConfirmed) {
+            emailInput.value = getCurrentUser().Email || ""; 
+          }
+        });
+      }
+    });
+  }
   document.querySelectorAll(".review-details-btn").forEach(button => {
     button.addEventListener("click", function () {
       const orderId = this.getAttribute("data-order-id");
@@ -158,6 +180,7 @@ function updateCurrentUserProfile(event) {
 
   const username = document.getElementById("editFullName").value.trim();
   const email = document.getElementById("editEmail").value.trim();
+
   const phone = document.getElementById("editPhone").value.trim();
   const city = document.getElementById("editCity").value.trim();
   const street = document.getElementById("editStreet").value.trim();
