@@ -93,7 +93,7 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
   event.preventDefault();
 
   const username = document.getElementById('username').value.trim();
-  const email = document.getElementById('email').value.trim().toLowerCase(); // Convert email to lowercase
+  const email = document.getElementById('email').value.trim().toLowerCase(); 
   const phone = document.getElementById('phone').value.trim();
   const city = document.getElementById('City').value;
   const gov = document.getElementById('Gov').value;

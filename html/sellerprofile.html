@@ -18,7 +18,38 @@
   </style>
 </head>
 
+
 <body>
+
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top text-dark navbar-main origin bg-light ">
+    <div class="container-fluid fw-bold">
+        <a class="navbar-brand" href="#"><img src="../assets/logo.png" width="40px" alt="Logo"></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link " href="./SellerHome.html" id="home">Home
+                    <span class="visually-hidden">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" id="Accounts" href="./SellerProductDashboard.html">Products</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="Orders" href="./OrdersDataTable.html">Orders</a>
+            </li>
+           
+          </ul>
+            <a href="users-profile.html"><i class="  profileIcon fa-solid fa-user fa-xl icon-spacing m-2"
+                    title="Profile"></a></i>
+        </div>
+    </div>
+</nav>
+
+
   <section class="section profile" id="sectionprofile">
     <div class="row">
       <div class="col-xl-4">
@@ -164,6 +195,8 @@
                   <th scope="col">Name</th>
                   <th scope="col">Stock</th>
                   <th scope="col">Price</th>
+                  <th scope="col">Status</th>
+
                 </tr>            
             </thead>
           <tbody id="ordersTableBody">
@@ -189,6 +222,58 @@
     </div>
 
   </section>
+  <section class="footer">
+    <div class="foot pb-0 mb-0 justify-content-center text-light">
+      <footer style="height: 300px;">
+        <div class="row my-5 justify-content-center py-4">
+          <div class="col-11">
+            <div class="row">
+              <div class="col-xl-2 col-md-3 col-sm-4 col-12 my-auto mx-auto a">
+                <img src="../assets/logo.png" alt="logo" width="50px" height="50px">
+              </div>
+              <div class="col-xl-10 col-md-9 col-sm-8 col-12 text-content">
+                <div class="row">
+                  <div class="col-xl-4 col-md-4 col-sm-4 col-12">
+                    <h6 class="mb-3 mb-lg-4 bold-text"><b>MENU</b></h6>
+                    <ul class="list-unstyled">
+                      <a href="#home" style="color: #e6b800; text-decoration: none;">
+                        <li>Home</li>
+                      </a>
+                      <a href="#about" style="color: #e6b800; text-decoration: none;">
+                        <li>About</li>
+                      </a>
+                      <a href="profile.html" style="color: #e6b800; text-decoration: none;">
+                        <li>Portfolio</li>
+                      </a>
+                    </ul>
+                  </div>
+                  <div class="col-xl-4 col-md-4 col-sm-4 col-12">
+                    <h6 class="mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5"><b>ADDRESS</b></h6>
+                    <p class="mb-1" style="color: #e6b800;">605, RATAN ICON BUILDING</p>
+                    <p style="color: #e6b800;">SEAWOODS SECTOR</p>
+                  </div>
+                  <div class="col-xl-4 col-md-4 col-sm-4 col-12">
+                    <h6 class="mt-55 mt-2 text-muted bold-text"><b>ANIRUDH SINGLA</b></h6>
+                    <small><span><i class="fa fa-envelope" aria-hidden="true" style="color: #e6b800;"></i></span></small>
+                    <h6 class="text-muted bold-text"><b>RISHABH SHEKHAR</b></h6>
+                    <small><span><i class="fa fa-envelope" aria-hidden="true" style="color: #e6b800;"></i></span></small>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12">
+                    <p class="social text-muted mb-0 pb-0 bold-text">
+                      <i class="fa-brands fa-facebook"></i> <span class="mx-2"><i class="fa-brands fa-x-twitter"></i></span> <span class="mx-2"><i class="fa-brands fa-instagram"></i></span>
+                    </p>
+                    <small class="rights"><span>&#174;</span>All Rights Reserved.</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </section>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 
 <script src="../style/user/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -199,3 +284,7 @@
 </body>
 
 </html>
+
+
+
+

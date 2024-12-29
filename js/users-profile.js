@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const newEmail = emailInput.value.trim();
       if (newEmail !== "") {
         Swal.fire({
-          title: "Are Y ou Sure ?",
+          title: "Are You Sure ?",
           text: "Are You Sure You Want To Chang Your Email",
           icon: "warning",
           showCancelButton: true,
@@ -109,9 +109,8 @@ function sortTable(columnIndex, ascending) {
     const a = isNaN(cellA) ? cellA : parseFloat(cellA);
     const b = isNaN(cellB) ? cellB : parseFloat(cellB);
 
-    if (a < b) return ascending ? -1 : 1;
-    if (a > b) return ascending ? 1 : -1;
-    return 0;
+    return ascending ? (a - b) : (b - a);
+
   });
 
   // Append sorted rows 
@@ -181,11 +180,9 @@ function updateCurrentUserProfile(event) {
 
   const username = document.getElementById("editFullName").value.trim();
   const email = document.getElementById("editEmail").value.trim();
-
   const phone = document.getElementById("editPhone").value.trim();
   const city = document.getElementById("editCity").value.trim();
   const street = document.getElementById("editStreet").value.trim();
-
   const profileImgElement = document.getElementById("profileImg");
   let profileImagePath = currentUser.ProfileImage || "../assets/profile.png";
 
@@ -222,10 +219,36 @@ function updateCurrentUserProfile(event) {
     saveDataInLocalStorage("currentUser", data.CurrentUser);
 
     loadOverview();
-    Swal.fire("Success!", "Profile updated successfully.", "success");
+    Swal.fire("Success!", "Profile updated successfully.", "success").then(() => {
+      confirmSaveChanges(); // Show confirmation dialog after update
+    });
   } else {
     Swal.fire("Error!", "User not found in the users list.", "error");
   }
+}
+
+function confirmSaveChanges() {
+  Swal.fire({
+    title: "Do you want to keep logging?",
+    text: "If you log out, you will be redirected to the login page.",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonText: "Keep Logging",
+    cancelButtonText: "Log Out",
+    reverseButtons: true
+  }).then(result => {
+    if (result.isConfirmed) {
+      console.log("User chose to keep logging.");
+    } else {
+      logoutUser(); 
+    }
+  });
+}
+
+function logoutUser() {
+  data.CurrentUser = null;
+  saveDataInLocalStorage("currentUser", null);
+  window.location.href = "login.html"; // Redirect to login page
 }
 
 function validateProfileFields(username, email, phone, city, street) {
@@ -343,6 +366,8 @@ function updatePassword(event) {
   } else {
     Swal.fire("Error!", "User not found in the users list.", "error");
   }
+
+  confirmSaveChanges();
 }
 
 // Load orders

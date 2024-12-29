@@ -47,23 +47,47 @@ function validateInputs(email, password) {
     let isValid = true;
 
     const emailPattern = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
-    if (!emailPattern.test(email)) {
-        isValid = false;
-        Swal.fire({
-            icon: 'error',
-            title: 'Invalid Email',
-            text: 'Please enter a valid email address.',
-        });
-    }
-
     const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
-    if (!passwordPattern.test(password)) {
-        isValid = false;
+
+    if (!email && !password) {
         Swal.fire({
             icon: 'error',
-            title: 'Invalid Password',
-            text: 'Password must contain at least 6 characters, including an uppercase letter, a lowercase letter, and a special character.',
+            title: 'Email and Password Required',
+            text: 'Please enter your email address and password.',
         });
+        isValid = false;
+    } else if (!email) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Email Required',
+            text: 'Please enter your email address.',
+        });
+        isValid = false;
+    } else if (!password) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Password Required',
+            text: 'Please enter your password.',
+        });
+        isValid = false;
+    } else {
+        if (!emailPattern.test(email)) {
+            isValid = false;
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Email',
+                text: 'Please enter a valid email address.',
+            });
+        }
+
+        if (!passwordPattern.test(password)) {
+            isValid = false;
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Password',
+                text: 'Password must contain at least 6 characters, including an uppercase letter, a lowercase letter, and a special character.',
+            });
+        }
     }
 
     return isValid;
@@ -88,8 +112,6 @@ function setCurrentUser(user) {
 function encryptPassword(password) {
   return CryptoJS.SHA256(password).toString(CryptoJS.enc.Base64); 
 }
-//* Start From Here 
-
 
 window.addEventListener('load',function(){
     loadDataFromLocalStorage();

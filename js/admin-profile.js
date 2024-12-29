@@ -9,6 +9,27 @@ document.addEventListener("DOMContentLoaded", function () {
     populateUserSellerTable();
 
     loadOverview();
+    const emailInput = document.getElementById("editEmail");
+  if (emailInput) {
+    emailInput.addEventListener("click", function () {
+      const newEmail = emailInput.value.trim();
+      if (newEmail !== "") {
+        Swal.fire({
+          title: "Are You Sure ?",
+          text: "Are You Sure You Want To Chang Your Email",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonText: "Yes, Change It",
+          cancelButtonText: "Cancel",
+          reverseButtons: true,
+        }).then(result => {
+          if (!result.isConfirmed) {
+            emailInput.value = getCurrentUser().Email || ""; 
+          }
+        });
+      }
+    });
+  }
     function populateUserSellerTable() {
         const tableBody = document.getElementById("ordersTableBody");
     
@@ -97,6 +118,13 @@ function redirectToHome() {
 
     const profileImage = admin.ProfileImage || "../assets/profile.png";
     document.getElementById("profileImage").src = profileImage;
+    document.getElementById("profileImage").src = profileImage;
+    document.getElementById("editFullName").value = admin.Name || "";
+    document.getElementById("editEmail").value = admin.Email || "";
+    document.getElementById("editPhone").value = admin.Phone || "";
+    document.getElementById("editCity").value = admin.City || "";
+    document.getElementById("editStreet").value = admin.Street || "";
+  
 }
 
 
@@ -140,7 +168,7 @@ function updateAdminProfile(event) {
         _id: admin._id,
     };
 
-    const users = getCurrentUser();
+    const users = getUsers();
     const adminIndex = users.findIndex(user => user._id === admin._id);
     if (adminIndex !== -1) {
         users[adminIndex] = { ...users[adminIndex], ...updatedData };
@@ -151,11 +179,33 @@ function updateAdminProfile(event) {
 
         loadOverview();
         Swal.fire("Success!", "Profile updated successfully.", "success");
+        confirmSaveChanges();
     } else {
         Swal.fire("Error!", "User not found in the users list.", "error");
     }
 }
-
+function confirmSaveChanges() {
+    Swal.fire({
+      title: "Do you want to keep logging?",
+      text: "If you log out, you will be redirected to the login page.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Keep Logging",
+      cancelButtonText: "Log Out",
+      reverseButtons: true
+    }).then(result => {
+      if (result.isConfirmed) {
+        console.log("User chose to keep logging.");
+      } else {
+        logoutUser(); 
+    }
+    });
+  }
+  function logoutUser() {
+    data.CurrentUser = null;
+    saveDataInLocalStorage("currentUser", null);
+    window.location.href = "login.html"; // Redirect to login page
+  }
 function validateProfileFields(username, email, phone, city, street) {
     if (username === "" || username.length < 3) {
         Swal.fire({
@@ -273,4 +323,6 @@ async function updatePassword(event) {
     } else {
         Swal.fire("Error!", "User not found in the users list.", "error");
     }
+    confirmSaveChanges();
+
 }
