@@ -1221,7 +1221,8 @@ export function isAuthorized() {
 
     // Define a reusable function to check authorization
     const checkAuthorization = (pages) => {
-        return pages.some(page => page.toLocaleLowerCase() === webPage.toLocaleLowerCase());
+        //return pages.some(page => page.toLocaleLowerCase() === webPage.toLocaleLowerCase());
+        return pages.some(page => webPage.toLowerCase().includes(page.toLowerCase())); // Note !!!!!! isAuth Fix
     };
 
     if (!data.CurrentUser) {
