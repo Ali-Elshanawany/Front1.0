@@ -378,12 +378,17 @@ function initializePage() {
     bestSellersSection.append(best);
 
     // Function to switch between products every 2 seconds
-    let currentIndex = 0;
-    const totalItems = bestSellers.length;
-    setInterval(() => {
-        currentIndex = (currentIndex + 1) % totalItems;
-        document.querySelector(`#pos${currentIndex + 1}`).checked = true;
-    }, 2000);
+    if (bestSellers.length > 0) {
+        let currentIndex = 0;
+        const totalItems = bestSellers.length;
+        setInterval(() => {
+            currentIndex = (currentIndex + 1) % totalItems;
+            const radioButton = document.querySelector(`#pos${currentIndex + 1}`);
+            if (radioButton) {
+                radioButton.checked = true;
+            }
+        }, 2000);
+    }
 
 
 function setupLoginButton() {
