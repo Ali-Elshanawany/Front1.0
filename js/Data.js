@@ -587,7 +587,8 @@ export const data = {
             ],
             "CreatedAt": "2024-12-23T15:07:10.550Z",
             "NumOfSales": 0,
-            "Approved": true
+            "Approved": true,
+            "clicks":20
         },
         {
             "_id": "Product14",
@@ -621,22 +622,6 @@ export const data = {
             "NumOfSales": 0,
             "Approved": true
         },
-        {
-            "_id": "Product16",
-            "Name": "Dressing Room2",
-            "Description": "Design a stylish and functional dressing room with our curated selection of furniture and storage solutions. From spacious wardrobes and elegant dressers to chic vanity tables and full-length mirrors, our collection helps you create an organized and luxurious personal retreat.",
-            "Price": 14000,
-            "Stock": 50,
-            "SellerID": "Seller2",
-            "CategoryID": "cat8",
-            "Images": [
-                "../assets/dressing-3.jpg",
-                "../assets/dressing-4.avif"
-            ],
-            "CreatedAt": "2024-12-23T15:10:59.326Z",
-            "NumOfSales": 0,
-            "Approved": true
-        }
     ]
     
     
@@ -1202,9 +1187,9 @@ export function getSellerSalesByMonth() {
     return monthlySalesArr;
 }
 
-const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'products&orders.html' , 'AdminHome.html' , 'adminprofile.html' , 'OverviewAdmin.html'];
-const UserPages = ['Cart.html' , 'CheckOut.html' , 'homeMain.html' , 'users-profile.html'];
-const SellerPages = ["SellerProductDashboard.html","OrdersDataTable.html" , 'SellerHome.html' , 'sellerprofile.html'];
+const AdminPages = ['AccountsDataTable.html', 'OrdersDataTable.html', 'products&orders.html' , 'AdminHome.html' , 'adminprofile.html' , 'OverviewAdmin.html' , 'ProductDetails'];
+const UserPages = ['Cart.html' , 'CheckOut.html' , 'homeMain.html' , 'users-profile.html' , 'ProductDetails'];
+const SellerPages = ["SellerProductDashboard.html","OrdersDataTable.html" , 'SellerHome.html' , 'sellerprofile.html' , 'ProductDetails'];
 const GuestPages = ['ProductDetails','register.html' , 'Cart.html' , 'homeMain.html' , 'login.html'];
 
 
@@ -1221,7 +1206,8 @@ export function isAuthorized() {
 
     // Define a reusable function to check authorization
     const checkAuthorization = (pages) => {
-        return pages.some(page => page.toLocaleLowerCase() === webPage.toLocaleLowerCase());
+        //return pages.some(page => page.toLocaleLowerCase() === webPage.toLocaleLowerCase());
+        return pages.some(page => webPage.toLowerCase().includes(page.toLowerCase())); // Note !!!!!! isAuth Fix
     };
 
     if (!data.CurrentUser) {

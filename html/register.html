@@ -9,7 +9,7 @@
    <link rel="icon" href="../assets/pic.png" type="image/png">
    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <title>Register</title>
-   <!-- <style>
+   <style>
       .logo-container {
           text-align: center;
           margin: 0 auto;
@@ -17,21 +17,22 @@
           z-index: 1000;
           width: 6rem;
           height: 6rem;
+          filter: drop-shadow(2px 4px 6px rgb(255, 188, 3));
       }
-  </style> -->
+  </style>
 </head>
 <body>
    <div class="login">
 
-      <!-- <div class="logo-container">
+      <div class="logo-container" style="margin-left: 45%;">
          <a href="homeMain.html">
              <img src="../assets/pic.png" alt="Website Logo">
          </a>
-      </div> -->
+      </div>
 
-      <img src="../assets/bg.jpg" alt="image" class="login__bg">
+      <img src="../assets/bgbgbg.jpg" alt="image" class="login__bg">
 
-      <form action="" class="login__form" id="registerForm">
+      <form action="" class="login__form" id="registerForm" style="margin-left: 15%;">
          <h1 class="login__title">Register</h1>
 
          <div class="login__inputs">
@@ -50,7 +51,7 @@
 
             <div class="form-row">
                <div class="login__box">
-                  <select id="Gov" class="login__input">
+                  <select id="Gov" class="login__input" >
                      <option value=""> Governorate</option>
                      <option value="cairo">Cairo</option>
                      <option value="alexandria">Alexandria</option>
@@ -99,17 +100,17 @@
             </div>
             <div class="login__check-box">
                <input type="radio" class="login__check-input" id="seller" value="Seller" name="user_type">
-               <label for="seller" class="login__check-label">Seller</label>
+               <label for="seller" class="login__check-label" style="color: #7d461f;">Seller</label>
                
-               <input type="radio" class="login__check-input" id="user" value="User" name="user_type">
-               <label for="user" class="login__check-label">User</label>
+               <input type="radio" class="login__check-input" id="user" value="User" name="user_type" >
+               <label for="user" class="login__check-label" style="color: #7d461f;">User</label>
             </div>
          </div>
 
-         <button type="submit" class="login__button">Register</button>
+         <button type="submit" class="login__button" style="color: #7d461f;">Register</button>
 
          <div class="login__register">
-            Already have an account? <a href="login.html" id="reg">Login</a>
+            Already have an account? <a href="login.html" id="reg" style="color: #7d461f;">Login</a>
          </div>
       </form>
    </div>

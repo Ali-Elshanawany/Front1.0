@@ -13,7 +13,6 @@ export function AddProducts(isUpdate,SelectedProduct) {
 
    console.log(`This is ${isUpdate}`)
    console.log(`This is ${SelectedProduct}`)
-
    const Name = $("#in-Name").val();
    console.log(Name);
    const Desc = $("#in-Desc").val();

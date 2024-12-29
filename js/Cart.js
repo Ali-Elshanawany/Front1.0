@@ -9,7 +9,7 @@ import {
     isAuthorized,
     loadDataFromLocalStorage,
 } from "./Data.js";
-
+import { updateCartCounter } from "./home.js";
 // Load data from local storage
 loadDataFromLocalStorage();
 
@@ -152,6 +152,7 @@ window.addEventListener("load", function () {
                 }));
 
                 generateCards();
+                
             });
         }
 
@@ -174,6 +175,7 @@ window.addEventListener("load", function () {
             changeCartItemCount(cart[cardID].product._id, cart[cardID].num + 1);
             cart[cardID].num += 1;
             generateCards();
+            updateCartCounter()
         }
 
         if (e.target.innerText == "-") {
@@ -186,6 +188,7 @@ window.addEventListener("load", function () {
             changeCartItemCount(cart[cardID].product._id, cart[cardID].num - 1);
             cart[cardID].num -= 1;
             generateCards();
+            updateCartCounter()
         }
 
         if (e.target.dataset.id) {
@@ -193,6 +196,7 @@ window.addEventListener("load", function () {
             DeleteFromCart(itemId);
             cart = cart.filter(item => item.product._id !== itemId);
             generateCards();
+            updateCartCounter()
         }
     });
 
@@ -221,7 +225,6 @@ window.addEventListener("load", function () {
         const productNav = document.querySelector('.productNav');
         const contactNav = document.querySelector('.contactNav');
         const aboutNav = document.querySelector('.aboutNav');
-        const logoutButton = document.getElementById("logoutButton");
     
         if (homeNav) {
             homeNav.addEventListener('click', function() {
@@ -246,32 +249,7 @@ window.addEventListener("load", function () {
                 window.location.href = "homeMain.html#about";
             });
         }
-    
-        if (logoutButton) {
-            logoutButton.addEventListener("click", confirmLogout);
-        }
-    
-        function confirmLogout() {
-            Swal.fire({
-                title: "Are you sure?",
-                text: "Do you want to log out?",
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Yes, Logout",
-                cancelButtonText: "Cancel",
-                reverseButtons: true,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    data.CurrentUser = null;
-                    saveDataInLocalStorage("currentUser", null);
-                    redirectToHome();
-                }
-            });
-        }
-    
-        function redirectToHome() {
-            window.location.href = "login.html";
-        }
+
     
     });
     
