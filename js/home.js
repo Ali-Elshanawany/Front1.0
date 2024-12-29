@@ -107,25 +107,34 @@ updateCartCounter();
 
 
 
-export function updateCartCounter(){
-    let cartAmount =0;
-    
-    if(data.CurrentUser && data.CurrentUser.cart){
-     cartAmount = data.CurrentUser.cart.length
-       
-    
-    }else {
+export function updateCartCounter() {
+    let cartAmount = 0;
+
+    if (data.CurrentUser && data.CurrentUser.cart) {
+        cartAmount = data.CurrentUser.cart.length;
+    } else {
         // If the user is a guest,
         let guestCart = JSON.parse(localStorage.getItem('guestCart')) || [];
-       cartAmount = guestCart.length;
+        cartAmount = guestCart.length;
     }
+
     let cartCounterElement = document.querySelector(".cartAmount");
-    console.log(cartCounterElement)
+    console.log(cartCounterElement);
     if (cartCounterElement) {
         cartCounterElement.innerText = cartAmount;
-    } 
-    
     }
+
+    let cartIconElement = document.querySelector(".cartIcon");
+    if (cartIconElement) {
+        if (cartAmount > 0) {
+            cartIconElement.classList.remove("fa-cart-shopping");
+            cartIconElement.classList.add("fa-cart-plus");
+        } else {
+            cartIconElement.classList.remove("fa-cart-plus");
+            cartIconElement.classList.add("fa-cart-shopping");
+        }
+    }
+}
 
 
 function initializePage() {
@@ -135,7 +144,7 @@ function initializePage() {
     let welcomMessage = document.querySelector('.Username');
         let the_name  = data.CurrentUser.Name
         console.log(the_name)
-        welcomMessage.innerText=`Welcome ${the_name}`
+        welcomMessage.innerText=`Welcome ${the_name} !`
  }
     // Sticky Navbar
     const firstNavbarHeight = $('.navbar-main').outerHeight();
@@ -350,26 +359,31 @@ function initializePage() {
 
     let bestSellersSection = $('.best-sellers-section');
     let best = `
-        <input type="radio" name="position"  />
-        <input type="radio" name="position" />
-        <input type="radio" name="position" checked />
-        <input type="radio" name="position" />
-        <input type="radio" name="position" />
+        <input type="radio" name="position" id="pos1" />
+        <input type="radio" name="position" id="pos2" />
+        <input type="radio" name="position" id="pos3" checked />
+        <input type="radio" name="position" id="pos4" />
+        <input type="radio" name="position" id="pos5" />
         <main id="carousel">
     `;
 
-    bestSellers.forEach((product) => {
-        product.Images.forEach((image) => {
-            best += `
-                <div class="item"><img src="${image}" alt="${product.Name}"></div>
-            `;
-        });
+    bestSellers.forEach((product, index) => {
+        best += `
+            <div class="item"><img src="${product.Images[0]}" alt="${product.Name}"></div>
+        `;
     });
 
     best += `</main>`;
 
-
     bestSellersSection.append(best);
+
+    // Function to switch between products every 2 seconds
+    let currentIndex = 0;
+    const totalItems = bestSellers.length;
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % totalItems;
+        document.querySelector(`#pos${currentIndex + 1}`).checked = true;
+    }, 2000);
 
 
 function setupLoginButton() {

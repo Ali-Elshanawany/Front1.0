@@ -407,3 +407,57 @@ body {
   .footer .rights{
     font-size: calc(10px + (12 - 10) * ((100vw - 360px) / (1600 - 360))) !important; 
   }
+
+  .nav-link {
+    position: relative;
+    display: inline-block;
+    text-decoration: none;
+  }
+  
+  .nav-link span {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  
+  .nav-link span::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #8b4513;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .nav-link:hover span::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
+  
+  .nav-link span {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 5px;
+  }
+  
+  .nav-link span::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #8b4513;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+  
+  .nav-link:hover span::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+  }
