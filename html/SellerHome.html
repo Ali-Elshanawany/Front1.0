@@ -20,7 +20,7 @@
     <!-- First Navbar -->
     <nav class="navbar navbar-expand-lg navbar-light fixed-top text-dark navbar-main origin bg-light ">
         <div class="container-fluid fw-bold">
-            <a class="navbar-brand" href="#"><img src="../assets/logo.png" width="40px" alt="Logo"></a>
+            <a class="navbar-brand" href="#"><img src="../assets/logo.png" width="40px" alt="Logo" style="filter: drop-shadow(0px 4px 2px rgb(255, 188, 3));"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -28,22 +28,22 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
-                        <a class="nav-link active category-link" href="#home">Home</a>
+                        <a class="nav-link active category-link" href="#home"><span>Home</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link category-link" href="#product">Products</a>
+                        <a class="nav-link category-link" href="#product"><span>Products</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link category-link" href="#contact">Contact</a>
+                        <a class="nav-link category-link" href="#contact"><span>Contact</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link category-link" href="#about">About</a>
+                        <a class="nav-link category-link" href="#about"><span>About</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" id="logoutButton" href="#">Logout</a>
+                        <a class="nav-link" id="logoutButton" href="#"><span>Logout</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class=" dashboard nav-link category-link" href="#">Dashboard</a>
+                        <a class=" dashboard nav-link category-link" href="#"><span>Dashboard</span></a>
                     </li>
                 </ul>
                 <!-- Icons -->
@@ -181,45 +181,57 @@
     <!--end product section-->
 
     <!--about section-->
-    <h1 class="pro">ABOUT</h1>
-    <section id="about" class="about d-flex justify-content-between  flex-column-reverse flex-xl-row">
-        <div class="history p-4">
-            <h2>our history, promise & purpose</h2>
-            <h4>who we are</h4>
-            <p class="w-50 ">Home is at the forefront of all we do. It's why we're so commited to caring for the places
-                and spaces in
-                which we work and live.What was once a family company with just 35 employees in 1970 now employs more
-                than 35,000 valued team members across the globe. Boasting more than 30 million square feet in facility
-                space in 155 countries globally allows us to support vendors and businesses, create additional jobs and
-                continue to infuse economies.</p>
+    <section id="about" class="about text-center position-relative">
+        <h1 class="pro">ABOUT</h1>
+        <div class="avatar-container position-relative">
+            <img src="../assets/image.webp" class="img-fluid w-100" style="height: 500px; object-fit: cover; filter: brightness(50%);">
+            <div class="text-overlay position-absolute top-50 start-50 translate-middle text-light p-3" style="width: 90%;">
+                <h2 class="display-6">Our History, Promise & Purpose</h2>
+                <h4 class="h5">Who We Are</h4>
+                <p class="mx-auto" style="max-width: 800px;">Home is at the forefront of all we do. It's why we're so committed to caring for the places and spaces in which we work and live. What was once a family company with just 35 employees in 1970 now employs more than 35,000 valued team members across the globe. Boasting more than 30 million square feet in facility space in 155 countries globally allows us to support vendors and businesses, create additional jobs and continue to infuse economies.</p>
+            </div>
         </div>
-        <div class="info ">
-            <img src="../assets/image.webp" class="img-fluid w-100">
-        </div>
-
-
     </section>
     <!--end about section-->
 
     <!--contact us section -->
-    <h1 class="pro">contact </h1>
-    <section id="contact" class="contact container d-flex justify-content-between align-items-center">
-        <div class="info p-3 m-3 bg-light">
-            <h4> YOUR COMMENT HERE</h4>
-            <div>
-                <textarea name="comment" id="textarea" cols="30" rows="10"></textarea>
-                <button type="button" id="AddTicketButton" value="Send" class="submit">Save</button>
-                <!-- <button id="AddTicket" value="Send" class="submit"> -->
+    <h1 class="pro">Contact Us</h1>
+    <section id="contact" class="contact container my-5">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="card p-5 shadow-lg" style="background-color: #fffacd;">
+                    <h4 class="card-title text-center mb-4" style="color: #8b4513; font-size: 2rem;">Your Feedback</h4>
+                    <div class="card-body">
+                        <form>
+                            <div class="mb-4">
+                                <label for="textarea" class="form-label" style="color: #8b4513; position: relative; font-size: 1.2rem; margin-bottom: 25px;">Feedback
+                                    <span class="static-underline"></span>
+                                </label>
+                                <textarea name="comment" id="textarea" class="form-control" rows="6" placeholder="Enter your feedback" style="border: 2px solid #e6b800; font-size: 1rem;"></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="button" id="AddTicketButton" class="btn btn-primary" style="background-color: #e6b800; border-color: #e6b800; font-size: 1.2rem; padding: 0.75rem 1.5rem;">Send</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-
         </div>
-        <div class=" image m-2  d-xl-block d-none">
-            <img src="../assets/contact.jpj.avif " class=" align-items-end  ">
-        </div>
-
     </section>
 
+    <style>
+        .static-underline {
+            display: block;
+            height: 2px;
+            background-color: #e6b800;
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+        }
+    </style>
 
+    </div>
 
     <!--end contact section-->
     <!--footer section-->
@@ -235,21 +247,21 @@
                             <div class="col-xl-2 col-md-4 col-sm-4 col-12">
                                 <h6 class="mb-3 mb-lg-4 bold-text"><b>MENU</b></h6>
                                 <ul class="list-unstyled">
-                                    <a href="#home">
+                                    <a href="#home" style="color: #e6b800; text-decoration: none;">
                                         <li>Home</li>
                                     </a>
-                                    <a href="#about">
+                                    <a href="#about" style="color: #e6b800; text-decoration: none;">
                                         <li>About</li>
                                     </a>
-                                    <a href="profile.html">
+                                    <a href="profile.html" style="color: #e6b800; text-decoration: none;">
                                         <li>Portfolio</li>
                                     </a>
                                 </ul>
                             </div>
                             <div class="col-xl-2 col-md-4 col-sm-4 col-12">
                                 <h6 class="mb-3 mb-lg-4 text-muted bold-text mt-sm-0 mt-5"><b>ADDRESS</b></h6>
-                                <p class="mb-1">605, RATAN ICON BUILDING</p>
-                                <p>SEAWOODS SECTOR</p>
+                                <p class="mb-1" style="color: #e6b800;">605, RATAN ICON BUILDING</p>
+                                <p style="color: #e6b800;">SEAWOODS SECTOR</p>
                             </div>
                         </div>
                         <div class="row">
@@ -264,11 +276,11 @@
                             </div>
                             <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-1 align-self-end">
                                 <h6 class="mt-55 mt-2 text-muted bold-text"><b>ANIRUDH SINGLA</b></h6>
-                                <small><span><i class="fa fa-envelope" aria-hidden="true"></i></span></small>
+                                <small><span><i class="fa fa-envelope" aria-hidden="true" style="color: #e6b800;"></i></span></small>
                             </div>
                             <div class="col-xl-2 col-md-4 col-sm-4 col-auto order-2 align-self-end mt-3">
                                 <h6 class="text-muted bold-text"><b>RISHABH SHEKHAR</b></h6>
-                                <small><span><i class="fa fa-envelope" aria-hidden="true"></i></span></small>
+                                <small><span><i class="fa fa-envelope" aria-hidden="true" style="color: #e6b800;"></i></span></small>
                             </div>
                         </div>
                     </div>
@@ -276,7 +288,6 @@
             </footer>
         </div>
     </section>
-
     <!--end footer-->
     <!-- Bootstrap JS -->
     <script src="../bootstrapp/bootstrap.bundle.min.js"></script>
