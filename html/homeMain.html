@@ -42,7 +42,7 @@
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse" id="navbarNav" style="position: relative;" >
                 <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a class="nav-link active category-link" href="#home">Home</a>
@@ -59,12 +59,17 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#" id="login">Login</a>
                     </li>
+                    <li class="nav-item">
+                        <span class="Username" ></span>
+                    </li>
                 </ul>
                 <!-- Icons -->
                 <a href="#"><i class="  profileIcon fa-solid fa-user fa-xl icon-spacing m-2"
                         title="Profile"></a></i>
-                <a href="Cart.html"><i class="  cartIcon  fa-solid fa-cart-plus fa-xl icon-spacing"
-                        title="Add to Cart"></i></a>
+                        <a href="Cart.html" class="position-relative">
+                            <i class="cartIcon fa-solid  fa-cart-shopping fa-xl icon-spacing" title="Add to Cart"></i>
+                            <span class="cartAmount position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">0</span>
+                          </a>
             </div>
         </div>
     </nav>

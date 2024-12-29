@@ -9,7 +9,7 @@ import {
     isAuthorized,
     loadDataFromLocalStorage,
 } from "./Data.js";
-
+import { updateCartCounter } from "./home.js";
 // Load data from local storage
 loadDataFromLocalStorage();
 
@@ -152,6 +152,7 @@ window.addEventListener("load", function () {
                 }));
 
                 generateCards();
+                
             });
         }
 
@@ -174,6 +175,7 @@ window.addEventListener("load", function () {
             changeCartItemCount(cart[cardID].product._id, cart[cardID].num + 1);
             cart[cardID].num += 1;
             generateCards();
+            updateCartCounter()
         }
 
         if (e.target.innerText == "-") {
@@ -186,6 +188,7 @@ window.addEventListener("load", function () {
             changeCartItemCount(cart[cardID].product._id, cart[cardID].num - 1);
             cart[cardID].num -= 1;
             generateCards();
+            updateCartCounter()
         }
 
         if (e.target.dataset.id) {
@@ -193,6 +196,7 @@ window.addEventListener("load", function () {
             DeleteFromCart(itemId);
             cart = cart.filter(item => item.product._id !== itemId);
             generateCards();
+            updateCartCounter()
         }
     });
 

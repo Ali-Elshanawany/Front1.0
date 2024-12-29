@@ -25,6 +25,21 @@ text-decoration: none;
 i{
   cursor: pointer;
 }
+.cartAmount{
+position: absolute;
+font-size: 16px;
+background-color: red;
+
+
+}
+
+
+
+
+
+
+
+
 
 .sticky-navbar {
  position: sticky;
