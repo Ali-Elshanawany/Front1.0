@@ -2,6 +2,8 @@ import { getCurrentUser, getUsers,saveDataInLocalStorage, loadDataFromLocalStora
 
 let admin;
 
+isAuthorized()
+
 document.addEventListener("DOMContentLoaded", function () {
     loadDataFromLocalStorage();  
     populateUserSellerTable();

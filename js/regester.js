@@ -21,6 +21,54 @@ function load() {
         }
     }
 }
+const govAndCities = {
+  cairo: ["Nasr City", "Heliopolis", "Maadi", "Zamalek", "Shubra"],
+  alexandria: ["Smouha", "Stanley", "Miami", "Raml Station", "Gleem"],
+  giza: ["Dokki", "Mohandessin", "6th of October", "Haram", "Sheikh Zayed"],
+  aswan: ["Aswan City", "Edfu", "Kom Ombo", "Abu Simbel"],
+  luxor: ["Luxor City", "Armant", "Esna", "Karnak"],
+  "red sea": ["Hurghada", "Safaga", "El Quseir", "Marsa Alam"],
+  sohag: ["Sohag City", "Akhmim", "Tahta", "Girga"],
+  qena: ["Qena City", "Nag Hammadi", "Dishna", "Qus"],
+  assiut: ["Assiut City", "Manfalut", "Dayrout", "Abnub"],
+  menia: ["Minya City", "Mallawi", "Beni Mazar", "Maghagha"],
+  beni_suef: ["Beni Suef City", "Nasser", "El Wasta", "Fashn"],
+  fayoum: ["Fayoum City", "Ibshaway", "Sinnuris", "Tamiyah"],
+  damietta: ["Damietta City", "New Damietta", "Faraskur", "Ezbet Al-Borg"],
+  ismailia: ["Ismailia City", "Fayed", "El Qantara", "Abu Sultan"],
+  port_said: ["Port Said City", "Port Fouad"],
+  suez: ["Suez City", "Ain Sokhna"],
+  dakahlia: ["Mansoura", "Talkha", "Mit Ghamr", "Sherbin", "Belqas"],
+  sharqia: ["Zagazig", "10th of Ramadan", "Belbeis", "Abu Kabir"],
+  gharbia: ["Tanta", "Mahalla", "Kafr El Zayat", "Zefta"],
+  monufia: ["Shebin El Kom", "Menouf", "Sadat City", "Ashmoun"],
+  kafr_el_sheikh: ["Kafr El Sheikh City", "Baltim", "Desouk", "Fuwwah"],
+  beheira: ["Damanhour", "Kafr El Dawwar", "Rashid", "Edku"],
+  matrouh: ["Marsa Matrouh", "Sidi Barrani", "El Alamein", "Siwa Oasis"],
+  north_sinai: ["Arish", "Sheikh Zuweid", "Rafah", "Bir El Abd"],
+  south_sinai: ["Sharm El Sheikh", "Dahab", "Nuweiba", "Taba"],
+  new_valley: ["Kharga", "Dakhla", "Farafra", "Baris"],
+};
+
+document.addEventListener("DOMContentLoaded", () => {
+  const govSelect = document.getElementById("Gov");
+  const citySelect = document.getElementById("City");
+
+  govSelect.addEventListener("change", () => {
+    const selectedGov = govSelect.value;
+
+    citySelect.innerHTML = '<option value="">Select City</option>';
+
+    if (selectedGov && govAndCities[selectedGov]) {
+      govAndCities[selectedGov].forEach(city => {
+        const option = document.createElement("option");
+        option.value = city.toLowerCase(); 
+        option.textContent = city; 
+        citySelect.appendChild(option);
+      });
+    }
+  });
+});
 
 document.addEventListener('DOMContentLoaded', load);
 
@@ -47,7 +95,8 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
   const username = document.getElementById('username').value.trim();
   const email = document.getElementById('email').value.trim().toLowerCase(); // Convert email to lowercase
   const phone = document.getElementById('phone').value.trim();
-  const city = document.getElementById('city').value;
+  const city = document.getElementById('City').value;
+  const gov = document.getElementById('Gov').value;
   const street = document.getElementById('street').value.trim();
   const password = document.getElementById('password').value.trim();
   const userTypeElement = document.querySelector('input[name="user_type"]:checked');
@@ -71,7 +120,14 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
     });
     return;
   }
-
+  if (isEmailRegistered(email)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Email Already Registered',
+      text: 'This email is already registered. Please use a different one.',
+    });
+    return;
+  }
   const phonePattern = /^(011|012|010|015)\d{8}$/;
   if (!phonePattern.test(phone)) {
     Swal.fire({
@@ -82,11 +138,28 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
     return;
   }
 
+  if (gov === "") {
+    Swal.fire({
+      icon: 'error',
+      title: 'Governrate Not Selected',
+      text: 'Please select a city.',
+    });
+    return;
+  }
   if (city === "") {
     Swal.fire({
       icon: 'error',
       title: 'City Not Selected',
       text: 'Please select a city.',
+    });
+    return;
+  }
+  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
+  if (!passwordPattern.test(password)) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Invalid Password',
+      text: 'Password must contain at least 6 characters, including an uppercase letter, a lowercase letter, and a special character.',
     });
     return;
   }
@@ -106,25 +179,6 @@ document.getElementById('registerForm').addEventListener('submit', function (eve
       icon: 'error',
       title: 'User Type Not Selected',
       text: 'Please select a user type (Seller or User).',
-    });
-    return;
-  }
-
-  const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{6,}$/;
-  if (!passwordPattern.test(password)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Invalid Password',
-      text: 'Password must contain at least 6 characters, including an uppercase letter, a lowercase letter, and a special character.',
-    });
-    return;
-  }
-
-  if (isEmailRegistered(email)) {
-    Swal.fire({
-      icon: 'error',
-      title: 'Email Already Registered',
-      text: 'This email is already registered. Please use a different one.',
     });
     return;
   }

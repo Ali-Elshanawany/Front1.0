@@ -3,6 +3,7 @@ import { addToCart } from './home.js';
 
 $(document).ready(function () {
 
+    
     let productId = location.href.split("=")[1];
     if (productId.slice(-1) === "#") {
         productId = productId.slice(0, productId.length - 1);

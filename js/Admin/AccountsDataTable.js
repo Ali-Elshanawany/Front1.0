@@ -99,7 +99,7 @@ function setupPagination(Users, rowsPerPage, currentPage) {
 
 // * Event Listeners Load 
 window.addEventListener("load", function () {
-    //isAuthorized();
+    isAuthorized();
     let isUpdate=false;
 
     let Users = getUsers();

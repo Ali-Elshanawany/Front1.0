@@ -1,7 +1,7 @@
-import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser, getUsers}
+import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser, isAuthorized , getUsers}
     from './Data.js';
 
-
+// isAuthorized();
 // Add to Cart Function 
 export function addToCart(productID) {
     let product = data.Products.find((p) => p._id === productID);
@@ -417,8 +417,9 @@ function confirmLogout() {
             if(messsage){
                 messsage.innerText="";
             }
+
             console.log("Logged out. CurrentUser:", data.CurrentUser)
-           
+           updateCartCounter()
             setupLoginButton();
  
         }

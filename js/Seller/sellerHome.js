@@ -1,6 +1,7 @@
-import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser,getUsers}
+import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser,getUsers, isAuthorized}
     from '../Data.js';
 
+    isAuthorized();
 function initializePage() {
     loadDataFromLocalStorage();
     saveDataInLocalStorage();
@@ -269,7 +270,6 @@ function setupLoginButton() {
     }
 
     
-<<<<<<< HEAD
     loadDataFromLocalStorage();
 
     const currentUser = getCurrentUser();
@@ -311,9 +311,6 @@ location.assign("login.html");
 setupLoginButton();
 
 
-=======
-    
->>>>>>> master
 
 }
 $(document).ready(function () {

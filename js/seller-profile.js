@@ -5,6 +5,7 @@ function encryptPassword(password) {
 }
 
 document.addEventListener("DOMContentLoaded", function () {
+    isAuthorized();
     loadDataFromLocalStorage(); 
     loadOverview(); 
     loadSellerProducts();
