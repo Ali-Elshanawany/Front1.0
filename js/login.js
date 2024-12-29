@@ -196,11 +196,6 @@ window.addEventListener('load',function(){
 
 });
 
-
-
-
-
-
 function transferGuestCartToUserCart() {
     const guestCart = data.guestCart || [];
     if (guestCart.length > 0) {

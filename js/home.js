@@ -1,4 +1,4 @@
-import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser, isAuthorized}
+import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser, isAuthorized , getUsers}
     from './Data.js';
 
 //debugger;
@@ -27,13 +27,17 @@ export function addToCart(productID) {
         });
         return;
     }
-
+    let isNewProduct = false;
     // Check if the user is logged in
+    
+   
+
     let currentUser = (data.CurrentUser && data.CurrentUser._id) ? data.CurrentUser : null;
 
     if (currentUser) {
         // User is logged in: Add to their cart
-
+        
+          
         let userCart = currentUser.cart || []; // If no cart exists, initialize an empty array
 
         let existingItem = userCart.find(item => item._id === productID);
@@ -48,7 +52,9 @@ export function addToCart(productID) {
             }
             existingItem.Quantity += 1;
         } else {
+            // New product added
             userCart.push({ _id: productID, Quantity: 1 , Name: product.Name });
+            isNewProduct=true;
         }
 
         currentUser.cart = userCart;
@@ -79,26 +85,58 @@ export function addToCart(productID) {
             }
             existingItem.Quantity += 1;
         } else {
+            // New product added
             guestCart.push({ _id: productID, Quantity: 1 , Name: product.Name });
+            isNewProduct=true;
         }
 
         localStorage.setItem('guestCart', JSON.stringify(guestCart));
-
+        updateCartCounter()
         Swal.fire({
             icon: 'success',
             title: 'Added to Cart',
             text: `${product.Name} has been added to your cart.`,
         });
+        
+    }
+    if(isNewProduct){
+updateCartCounter();
     }
 }
 
 
 
 
+export function updateCartCounter(){
+    let cartAmount =0;
+    
+    if(data.CurrentUser && data.CurrentUser.cart){
+     cartAmount = data.CurrentUser.cart.length
+       
+    
+    }else {
+        // If the user is a guest,
+        let guestCart = JSON.parse(localStorage.getItem('guestCart')) || [];
+       cartAmount = guestCart.length;
+    }
+    let cartCounterElement = document.querySelector(".cartAmount");
+    console.log(cartCounterElement)
+    if (cartCounterElement) {
+        cartCounterElement.innerText = cartAmount;
+    } 
+    
+    }
+
+
 function initializePage() {
     loadDataFromLocalStorage();
     saveDataInLocalStorage();
-
+ if (data.CurrentUser !==null){
+    let welcomMessage = document.querySelector('.Username');
+        let the_name  = data.CurrentUser.Name
+        console.log(the_name)
+        welcomMessage.innerText=`Welcome ${the_name}`
+ }
     // Sticky Navbar
     const firstNavbarHeight = $('.navbar-main').outerHeight();
     $(window).on('scroll', function () {
@@ -378,11 +416,15 @@ function confirmLogout() {
             //loadDataFromLocalStorage();  
             data.CurrentUser = null;
             saveDataInLocalStorage();  // Save updated data
+            let messsage = document.querySelector(".Username");
+            if(messsage){
+                messsage.innerText="";
+            }
 
             console.log("Logged out. CurrentUser:", data.CurrentUser)
-           
+           updateCartCounter()
             setupLoginButton();
-
+ 
         }
     });
 }
@@ -390,8 +432,13 @@ function confirmLogout() {
 
 setupLoginButton();
 
+
+
+
+
 }
 $(document).ready(function () {
     initializePage();
     console.log("Page initialized.");
+    updateCartCounter();
 });
