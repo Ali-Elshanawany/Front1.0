@@ -34,6 +34,7 @@ This is a furniture e-commerce web application built using **HTML**, **CSS**, **
 ### Admin Features:
 - Has His Own Dashboard
 - Manage users (Customers, Sellers, and Other Admins)
+- See Customers Feedbacks
 - Approve or reject seller product registration requests
 - Manage product listings across the platform
 - View system-wide statistics (orders, users, etc.)
