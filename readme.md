@@ -23,18 +23,21 @@ This is a furniture e-commerce web application built using **HTML**, **CSS**, **
 - Search products by category or name
 - Add items to the shopping cart
 - Proceed to checkout and complete orders
-- View order history (stored locally)
+- View order history (stored locally) and manage his personal data
 
 ### Seller Features:
-- Add, edit, and remove furniture listings
+- Has His Own Dashboard
+- Add furniture listings
 - View current inventory and sales
-- View orders placed by customers
+- View orders placed by customers and statistics
 
 ### Admin Features:
+- Has His Own Dashboard
 - Manage users (Customers, Sellers, and Other Admins)
 - Approve or reject seller product registration requests
 - Manage product listings across the platform
 - View system-wide statistics (orders, users, etc.)
+- has access to all features
 
 ---
 
