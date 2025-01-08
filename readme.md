@@ -59,3 +59,19 @@ Unlike traditional backend authentication services, this project uses **localSto
 1. **Login**: When a user logs in, their role and status are stored in `localStorage` (e.g., `userRole: 'customer'` or `userRole: 'admin'`).
 2. **Session Persistence**: User sessions persist even after page reload, allowing users to stay logged in until they log out or the session expires.
 3. **Role-Based Access**: Based on the stored role in `localStorage`, the application shows different content and features for customers, sellers, or admins.
+
+---
+
+## Installation
+
+1. **Clone the repository**:
+
+```bash
+   git clone https://github.com/your-username/furniture-ecommerce.git](https://github.com/Ali-Elshanawany/Front1.0.git
+```
+
+2. **Navigate to the project folder**:
+cd furniture-ecommerce
+
+3. **Open The Project As Live Server**:
+   open homeMain.html
