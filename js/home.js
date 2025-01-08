@@ -1,7 +1,6 @@
 import { data, loadDataFromLocalStorage, saveDataInLocalStorage, SetUserById ,getCurrentUser, isAuthorized , getUsers}
     from './Data.js';
 
-//debugger;
 
 isAuthorized();
 
